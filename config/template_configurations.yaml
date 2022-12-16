@@ -1,0 +1,77 @@
+setups:
+  - name: activity
+    fields:
+      required: [eventDate, eventTime, stationName, decimalLatitude, decimalLongitude, gearType, pi_details, recordedBy_details]
+      recommended: [id, statID, catalogNumber, endDate, endTime, endDecimalLatitude, endDecimalLongitude, minimumDepthInMeters, maximumDepthInMeters, minimumElevationInMeters, maximumElevationInMeters,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion,comments1]
+  - name: default
+    fields:
+      required: [parentID, sampleType, pi_details, recordedBy_details]
+      recommended: [id, catalogNumber,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion, comments1]
+  - name: Fish
+    fields:
+      required: [parentID, sampleType, pi_details, recordedBy_details]
+      recommended: [id, catalogNumber,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion,scientificName,comments1]
+  - name: Ice core
+    fields:
+      required: [parentID, sampleType, pi_details, recordedBy_details, seaIceCoreType]
+      recommended: [id, catalogNumber,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion,seaIceCoreLengthInCentimeters,seaIceThicknessInCentimeters,seaIceFreeboardInCentimeters,comments1]
+  - name: Macrofauna
+    fields:
+      required: [parentID, sampleType, pi_details, recordedBy_details]
+      recommended: [id, catalogNumber,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion,scientificName,comments1]
+  - name: Macrozooplankton
+    fields:
+      required: [parentID, sampleType, pi_details, recordedBy_details]
+      recommended: [id, catalogNumber,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion,scientificName,comments1]
+  - name: Megafauna
+    fields:
+      required: [parentID, sampleType, pi_details, recordedBy_details]
+      recommended: [id, catalogNumber,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion,scientificName,comments1]
+  - name: Meiofauna
+    fields:
+      required: [parentID, sampleType, pi_details, recordedBy_details]
+      recommended: [id, catalogNumber,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion,scientificName,comments1]
+  - name: Melt pond water
+    fields:
+      required: [parentID, sampleType, pi_details, recordedBy_details, sampleVolumeInMilliliters]
+      recommended: [id, catalogNumber,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion,filteredVolumeInMilliliters,filter,comments1]
+  - name: Melt pond
+    fields:
+      required: [parentID, sampleType, pi_details, recordedBy_details]
+      recommended: [id, catalogNumber,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion,seaIceMeltpondTemperatureInCelsius,seaIceMeltpondSalinity,comments1]
+  - name: Meroplankton
+    fields:
+      required: [parentID, sampleType, pi_details, recordedBy_details]
+      recommended: [id, catalogNumber,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion,scientificName,comments1]
+  - name: Mesozooplankton
+    fields:
+      required: [parentID, sampleType, pi_details, recordedBy_details]
+      recommended: [id, catalogNumber,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion,scientificName,comments1]
+  - name: Microzooplankton
+    fields:
+      required: [parentID, sampleType, pi_details, recordedBy_details]
+      recommended: [id, catalogNumber,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion,scientificName,comments1]
+  - name: Niskin
+    fields:
+      required: [parentID, gearType, sampleType, bottleNumber, minimumDepthInMeters, maximumDepthInMeters, pi_details, recordedBy_details]
+      recommended: [id, catalogNumber,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion,dataFilename, comments1]
+  - name: Protist
+    fields:
+      required: [parentID, sampleType, pi_details, recordedBy_details]
+      recommended: [id, catalogNumber,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion,scientificName,comments1]
+  - name: Sea water
+    fields:
+      required: [parentID, sampleType, pi_details, recordedBy_details, sampleVolumeInMilliliters]
+      recommended: [id, catalogNumber,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion,filteredVolumeInMilliliters,filter,comments1]
+  - name: Small meiofauna
+    fields:
+      required: [parentID, sampleType, pi_details, recordedBy_details]
+      recommended: [id, catalogNumber,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion,scientificName,comments1]
+  - name: Small mesozooplankton
+    fields:
+      required: [parentID, sampleType, pi_details, recordedBy_details]
+      recommended: [id, catalogNumber,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion,scientificName,comments1]
+  - name: Under ice water
+    fields:
+      required: [parentID, sampleType, pi_details, recordedBy_details, sampleVolumeInMilliliters]
+      recommended: [id, catalogNumber,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion,filteredVolumeInMilliliters,filter,comments1]

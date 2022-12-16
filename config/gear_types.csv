@@ -1,0 +1,82 @@
+id,geartype,comment,IMR_name,vocabLabel,vocabURI,group,recommendedSampleTypes,recommendedChildren
+7c329aae-bfe1-11ec-9d64-0242ac120002,500 ml bottle,,,,,Water,,"{'sampleTypes': 'Sea water, Melt pond water, Under ice water'}"
+7c329de2-bfe1-11ec-9d64-0242ac120002,Active water sampler,In situ filtration of sea water,,,,Water,,{'sampleTypes': 'Sea water'}
+7c32a2f6-bfe1-11ec-9d64-0242ac120002,ADCP,,,,,Water,,{'sampleTypes': ''}
+7c32a4e0-bfe1-11ec-9d64-0242ac120002,Algal Incubator,,,,,Water,,{'sampleTypes': ''}
+7c32a63e-bfe1-11ec-9d64-0242ac120002,ARGO,Float,,,,Water,,{'sampleTypes': ''}
+7c32aa62-bfe1-11ec-9d64-0242ac120002,ASSIST,Arctic Shipborne Sea Ice Standardization Tool,,,,Snow and Ice,,{'sampleTypes': ''}
+7c32abf2-bfe1-11ec-9d64-0242ac120002,AUV,,,,,UVs,,{'sampleTypes': ''}
+7c32ad3c-bfe1-11ec-9d64-0242ac120002,Beam trawl,,Bunntrål,Unknown beam trawl,http://vocab.nerc.ac.uk/collection/L22/current/TOOL0651/,Nets and Trawls,,{'sampleTypes': ''}
+7c32aecc-bfe1-11ec-9d64-0242ac120002,Bongonet 180 um,,,Bongo net,http://vocab.nerc.ac.uk/collection/L22/current/NETT0176/,Nets and Trawls,,{'sampleTypes': ''}
+7c32b020-bfe1-11ec-9d64-0242ac120002,Bongonet 64 um,,,Bongo net,http://vocab.nerc.ac.uk/collection/L22/current/NETT0176/,Nets and Trawls,,{'sampleTypes': ''}
+7c32b192-bfe1-11ec-9d64-0242ac120002,Bottle 1L,,,,,Water,,"{'sampleTypes': 'Sea water, Melt pond water, Under ice water'}"
+7c32b30e-bfe1-11ec-9d64-0242ac120002,Box core,,Box core,Unspecified box corer,http://vocab.nerc.ac.uk/collection/L22/current/TOOL1177/,Benthos,,{'sampleTypes': ''}
+7c32b44e-bfe1-11ec-9d64-0242ac120002,Bucket,,,Bucket,http://vocab.nerc.ac.uk/collection/L22/current/TOOL0536/,Water,,{'sampleTypes': ''}
+7c32b912-bfe1-11ec-9d64-0242ac120002,Calypso,Piston corer,,,,Benthos,,{'sampleTypes': ''}
+7c32bad4-bfe1-11ec-9d64-0242ac120002,Camera,,,,,Not grouped,,{'sampleTypes': ''}
+7c32bc14-bfe1-11ec-9d64-0242ac120002,Campelen trawl with fish lift,,,,,Nets and Trawls,,{'sampleTypes': ''}
+7c32bdae-bfe1-11ec-9d64-0242ac120002,Campelen trawl,Without fish lift,,,,Nets and Trawls,,{'sampleTypes': ''}
+7c32bf16-bfe1-11ec-9d64-0242ac120002,Cast away CTD,,,,,Water,,{'sampleTypes': ''}
+7c32c074-bfe1-11ec-9d64-0242ac120002,CMET Balloon,,,,,Air,,{'sampleTypes': ''}
+7c32c1fa-bfe1-11ec-9d64-0242ac120002,CTD w/bottles,,CTD med vannhenter,,,Water,,"{'sampleTypes': 'Niskin, L-ADCP'}"
+7c32c344-bfe1-11ec-9d64-0242ac120002,CTD,,CTD,"Conductivity, temperature and depth package",http://vocab.nerc.ac.uk/collection/L22/current/TOOL0001/,Water,,"{'sampleTypes': 'Niskin, L-ADCP'}"
+7c32c6d2-bfe1-11ec-9d64-0242ac120002,Drone,,,,,Air,,{'sampleTypes': ''}
+7c32c83a-bfe1-11ec-9d64-0242ac120002,EK80,Fish echo sounder,,Simrad EK80 echo sounder,http://vocab.nerc.ac.uk/collection/L22/current/TOOL1205/,Echo Sounders,,{'sampleTypes': ''}
+7c32c9d4-bfe1-11ec-9d64-0242ac120002,EM-bird,,,,,Air,,{'sampleTypes': ''}
+7c32cb46-bfe1-11ec-9d64-0242ac120002,EM302,Echo Sounder,,Kongsberg EM 302 multibeam echosounder,http://vocab.nerc.ac.uk/collection/L22/current/TOOL0744/,Echo Sounders,,{'sampleTypes': ''}
+7c32cc7c-bfe1-11ec-9d64-0242ac120002,EM710,Echo Sounder,,Kongsberg EM 710 multibeam echosounder,http://vocab.nerc.ac.uk/collection/L22/current/TOOL0746/,Echo Sounders,,{'sampleTypes': ''}
+7c32cdb2-bfe1-11ec-9d64-0242ac120002,Filtration Pump,,,,,Water,,{'sampleTypes': ''}
+7c32ced4-bfe1-11ec-9d64-0242ac120002,Glider,,,,,Water,,{'sampleTypes': ''}
+7c32cff6-bfe1-11ec-9d64-0242ac120002,GNSS setup,,,,,Not grouped,,{'sampleTypes': ''}
+7c32d3b6-bfe1-11ec-9d64-0242ac120002,GO-FLO,This is the product name,,,,Water,,{'sampleTypes': ''}
+7c32d4ec-bfe1-11ec-9d64-0242ac120002,Gravity corer,,,Unspecified gravity corer,http://vocab.nerc.ac.uk/collection/L22/current/TOOL1260/,Benthos,,{'sampleTypes': ''}
+7c32d618-bfe1-11ec-9d64-0242ac120002,Harstad trawl,,,,,Nets and Trawls,,{'sampleTypes': ''}
+7c32d79e-bfe1-11ec-9d64-0242ac120002,Helicopter flight,,,,,Air,,{'sampleTypes': ''}
+7c32d94c-bfe1-11ec-9d64-0242ac120002,Ice auger,,,,,Snow and Ice,,{'sampleTypes': ''}
+7c32da8c-bfe1-11ec-9d64-0242ac120002,Ice corer 9 cm,,,,,Snow and Ice,,{'sampleTypes': ''}
+7c32dbc2-bfe1-11ec-9d64-0242ac120002,Ice corer,,,,,Snow and Ice,,{'sampleTypes': ''}
+cc93c50c-65c9-11ed-b85a-bf9bd9f18690,Krill trawl,,,,,Nets and Trawls,,{'sampleTypes': ''}
+7c32dd16-bfe1-11ec-9d64-0242ac120002,L-ADCP,,,,,Water,,{'sampleTypes': ''}
+7c32e1da-bfe1-11ec-9d64-0242ac120002,Macroplankton trawl,,,,,Nets and Trawls,,{'sampleTypes': ''}
+7c32e34c-bfe1-11ec-9d64-0242ac120002,MicroPap,,,,,Water,,{'sampleTypes': ''}
+7c32e478-bfe1-11ec-9d64-0242ac120002,MIK-net 1500 um,,Mik,Dual Methot Isaacs-Kidd Trawl net,http://vocab.nerc.ac.uk/collection/L22/current/TOOL0985/,Nets and Trawls,,{'sampleTypes': ''}
+7c32e5ae-bfe1-11ec-9d64-0242ac120002,Mooring,,,,,Not grouped,,{'sampleTypes': ''}
+7c32e6da-bfe1-11ec-9d64-0242ac120002,Multicorer,,Multicorer,,,Benthos,,{'sampleTypes': ''}
+7c32e806-bfe1-11ec-9d64-0242ac120002,Multinet mammoth,,,,,Nets and Trawls,,{'sampleTypes': ''}
+7c32e932-bfe1-11ec-9d64-0242ac120002,Multinet 180 um,,,Hyrdo-Bios MultiNet Mammoth,http://vocab.nerc.ac.uk/collection/L22/current/NETT0187/,Nets and Trawls,,{'sampleTypes': ''}
+7c32ea68-bfe1-11ec-9d64-0242ac120002,Multinet 64 um,,,Hyrdo-Bios MultiNet Mammoth,http://vocab.nerc.ac.uk/collection/L22/current/NETT0187/,Nets and Trawls,,{'sampleTypes': ''}
+7c32ed6a-bfe1-11ec-9d64-0242ac120002,Niskin,,,Niskin bottle,http://vocab.nerc.ac.uk/collection/L22/current/TOOL0412/,Water,,"{'sampleTypes': 'Sea water, Under ice water'}"
+7c32eeaa-bfe1-11ec-9d64-0242ac120002,Optical profiler,,,,,Water,,{'sampleTypes': ''}
+7c32efd6-bfe1-11ec-9d64-0242ac120002,pC02 underway,,,,,Water,,{'sampleTypes': ''}
+7c32f10c-bfe1-11ec-9d64-0242ac120002,Phytoplankton net 10 um,,,,,Nets and Trawls,,{'sampleTypes': ''}
+7c32f238-bfe1-11ec-9d64-0242ac120002,Phytoplankton net 20 um,,,,,Nets and Trawls,,{'sampleTypes': ''}
+7c3300a2-bfe1-11ec-9d64-0242ac120002,RP sled,Epibenthos sled,,,,Benthos,,{'sampleTypes': ''}
+7c330232-bfe1-11ec-9d64-0242ac120002,ROV,,ROV,,,UVs,,{'sampleTypes': ''}
+7c3307aa-bfe1-11ec-9d64-0242ac120002,SBP300,Seismic echo sounder,,,,Echo Sounders,,{'sampleTypes': ''}
+7c330980-bfe1-11ec-9d64-0242ac120002,Sea water intake,,,,,Water,,{'sampleTypes': 'Sea water'}
+7c330ad4-bfe1-11ec-9d64-0242ac120002,Secchi disk,,,,,Water,,{'sampleTypes': ''}
+7c330c3c-bfe1-11ec-9d64-0242ac120002,Benthos trap (long term),1 year+,,,,Benthos,,{'sampleTypes': ''}
+7c330d86-bfe1-11ec-9d64-0242ac120002,Benthos trap (short term),<1 year,,,,Benthos,,{'sampleTypes': ''}
+7c330ea8-bfe1-11ec-9d64-0242ac120002,Slurp gun,,,,,Water,,{'sampleTypes': ''}
+7c33101a-bfe1-11ec-9d64-0242ac120002,Snow pit,,,,,Snow and Ice,,{'sampleTypes': ''}
+7c331178-bfe1-11ec-9d64-0242ac120002,Snow probe,includes Magna Probe and stake measurements,,,,Snow and Ice,,{'sampleTypes': ''}
+7c331628-bfe1-11ec-9d64-0242ac120002,Spear,,,,,Water,,{'sampleTypes': ''}
+7c33177c-bfe1-11ec-9d64-0242ac120002,Suction pump (20 um),,,,,Water,,{'sampleTypes': ''}
+7c3318a8-bfe1-11ec-9d64-0242ac120002,Suction pump (200 um),,,,,Water,,{'sampleTypes': ''}
+7c3319c0-bfe1-11ec-9d64-0242ac120002,Suction pump (500 um),,,,,Water,,{'sampleTypes': ''}
+7c331ad8-bfe1-11ec-9d64-0242ac120002,Surface drifter,,,,,Water,,{'sampleTypes': ''}
+7c331c68-bfe1-11ec-9d64-0242ac120002,Swim net (200 um),,,,,Nets and Trawls,,{'sampleTypes': ''}
+7c331e02-bfe1-11ec-9d64-0242ac120002,Syringe,,,,,Not grouped,,{'sampleTypes': ''}
+7c33217c-bfe1-11ec-9d64-0242ac120002,Thermosalinograph,,,,,Water,,{'sampleTypes': ''}
+7c3323e8-bfe1-11ec-9d64-0242ac120002,Topas40,Seismic echo sounder,,,,Echo Sounders,,{'sampleTypes': ''}
+7c332654-bfe1-11ec-9d64-0242ac120002,TS probe,Echo Sounder,TS probe,,,Echo Sounders,,{'sampleTypes': ''}
+7c332866-bfe1-11ec-9d64-0242ac120002,Tube,For sucking up water (from for instance a melt pond),,,,Water,,{'sampleTypes': ''}
+7c332c30-bfe1-11ec-9d64-0242ac120002,USV,Unmanned surface vehicle,,,,UVs,,{'sampleTypes': ''}
+7c332d84-bfe1-11ec-9d64-0242ac120002,Vertical microstructure profiler,,,,,Water,,{'sampleTypes': ''}
+7c332f0a-bfe1-11ec-9d64-0242ac120002,Wave recorder,,,,,Water,,{'sampleTypes': ''}
+7c333554-bfe1-11ec-9d64-0242ac120002,Weather station,,,,,Air,,{'sampleTypes': ''}
+7c333734-bfe1-11ec-9d64-0242ac120002,WP2 180 um,,,,,Not grouped,,{'sampleTypes': ''}
+7c333900-bfe1-11ec-9d64-0242ac120002,WP2 64 um,,,,,Not grouped,,{'sampleTypes': ''}
+7c333a86-bfe1-11ec-9d64-0242ac120002,WP2 56 um,,,,,Not grouped,,{'sampleTypes': ''}
+7c33403a-bfe1-11ec-9d64-0242ac120002,WP2 90 um,,,,,Not grouped,,{'sampleTypes': ''}
+7c334238-bfe1-11ec-9d64-0242ac120002,WP3 1000 um,,,,,Not grouped,,{'sampleTypes': ''}
