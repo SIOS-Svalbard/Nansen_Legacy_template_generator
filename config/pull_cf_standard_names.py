@@ -8,17 +8,13 @@ Created on Tue Dec 13 08:53:13 2022
 
 import pandas as pd
 import json
-import http.client as httplib
+import sys
+from os.path import os
+config_dir = os.path.abspath(os.path.join(
+    os.path.dirname(__file__), '..', 'config'))
 
-def have_internet() -> bool:
-    conn = httplib.HTTPSConnection("8.8.8.8", timeout=1) # Check for maximum of 1 second
-    try:
-        conn.request("HEAD", "/")
-        return True
-    except Exception:
-        return False
-    finally:
-        conn.close()
+sys.path.append(config_dir)
+from check_internet import have_internet
 
 class CF_standard_names_json():
     '''
