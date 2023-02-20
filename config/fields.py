@@ -44,10 +44,6 @@ Each field is defined as a dictionary which should contain:
                     other
                     False
 Optional fields are:
-    # sampleTypes: list
-    #         List of sample types that the term is a recommended column for. Can be 'ALL' or taken from sample types table.
-    # intendedMethods: list
-    #         List of intended methods that the term is a recommended column for. Can be 'ALL' or taken from intended methods table.
     width : int
             the width of the cell
     long_list: Boolean
@@ -58,8 +54,6 @@ Optional fields are:
     units : str
             The measurement unit of the variable, using the standard in CF
            Examples: 'm', 'm s-1', '
-    cf_name : str
-             The variable name in the CF standard
     inherit : Boolean
              Is this a variable that can be inherited by children?
              If it is not present its default is False
@@ -669,29 +663,6 @@ Decimal number >=0.''',
     # ==============================================================================
     # Depths & Altitudes
     # ==============================================================================
-    {'name': 'bottomDepthInMeters',
-                       'disp_name': 'Bottom Depth (m)',
-                       'description': '''Sea floor depth below sea surface.
-Bathymetric depth at measurement site.
-0 is the surface.''',
-                       'inherit': True,
-                       'format': 'double precision',
-                       'grouping': 'Coordinates',
-                       'hstore': False,
-                       'units': 'm',
-                       'cf_name': 'sea_floor_depth_below_sea_surface',
-                       'valid': {
-                           'validate': 'decimal',
-                           'criteria': '>=',
-                           'value': 0,
-                           'input_title': 'Bottom Depth (m)',
-                           'input_message': '''Sea floor depth below sea surface.
-Bathymetric depth at measurement site.
-0 is the surface.''',
-                           'error_title': 'Error',
-                           'error_message': 'Float >= 0'
-                       }
-                       },
     {'name': 'minimumDepthInMeters',
                         'disp_name': 'Minimum depth (m)',
                         'description': '''The minimum depth sampled in meters.
@@ -717,64 +688,6 @@ Please include depth or elevation and not both.''',
                             'input_message': '''The minimum depth sampled in meters.
 0 m is the surface.
 Positive numbers for increasing depth.''',
-                            'error_title': 'Error',
-                            'error_message': 'Decimal [0, 9999]'
-                        }
-                        },
-    {'name': 'depth',
-                        'disp_name': 'Depth (m)',
-                        'description': '''Depth sampled in meters.
-0 m is the surface.
-Positive numbers for increasing depth.
-Please include depth or elevation and not both.''',
-                        'inherit': True,
-                        'inherit_weak': True,
-                        'format': 'double precision',
-                        'grouping': 'Coordinates',
-                        'hstore': False,
-                        'width': 22,
-                        'units': 'm',
-                        'cf_name': 'depth',
-                        'valid': {
-                            'validate': 'decimal',
-                            'criteria': 'between',
-                            'minimum': 0,
-                            'maximum': 9999,
-                            # 'criteria': '<',
-                            # 'value': '=INDIRECT(ADDRESS(ROW(),COLUMN()-1))',
-                            'input_title': 'Sample depth in (m)',
-                            'input_message': '''The depth sampled in meters.
-0 m is the surface.
-Positive numbers for increasing depth.''',
-                            'error_title': 'Error',
-                            'error_message': 'Decimal [0, 9999]'
-                        }
-                        },
-    {'name': 'altitude',
-                        'disp_name': 'Altitude (m)',
-                        'description': '''Altitude sampled in meters.
-0 m is the surface.
-Positive numbers for increasing altitude.
-Please include depth or elevation and not both.''',
-                        'inherit': True,
-                        'inherit_weak': True,
-                        'format': 'double precision',
-                        'grouping': 'Coordinates',
-                        'hstore': False,
-                        'width': 22,
-                        'units': 'm',
-                        'cf_name': 'altitude',
-                        'valid': {
-                            'validate': 'decimal',
-                            'criteria': 'between',
-                            'minimum': 0,
-                            'maximum': 9999,
-                            # 'criteria': '<',
-                            # 'value': '=INDIRECT(ADDRESS(ROW(),COLUMN()-1))',
-                            'input_title': 'Sample depth in (m)',
-                            'input_message': '''The altitude sampled in meters.
-0 m is the surface.
-Positive numbers for increasing altitude.''',
                             'error_title': 'Error',
                             'error_message': 'Decimal [0, 9999]'
                         }
@@ -1625,44 +1538,6 @@ Float number larger than 0 ''',
                                 'error_message': 'Float > 0'
                             }
                             },
-    {'name': 'seaIceThicknessInCentimeters',
-                           'disp_name': 'Sea Ice Thickness (cm)',
-                           'description': '''Sea ice thickness in decimal centimeters.
-Float number larger than 0 ''',
-                           'units': 'cm',
-                           'format': 'double precision',
-                           'grouping': 'Ice',
-                           'hstore': 'other',
-                           'valid': {
-                               'validate': 'decimal',
-                               'criteria': '>',
-                               'value': 0,
-                               'input_title': 'Sea Ice Thickness (cm)',
-                               'input_message': '''Sea ice thickness in decimal centimeters.
- Float number larger than 0 ''',
-                               'error_title': 'Error',
-                               'error_message': 'Float > 0'
-                           }
-                           },
-    {'name': 'seaIceFreeboardInCentimeters',
-                           'disp_name': 'Sea Ice Freeboard (cm)',
-                           'description': '''The height of the sea ice surface relative to the adjacent sea in decimal centimeters.
-Float number larger than 0 ''',
-                           'units': 'cm',
-                           'format': 'double precision',
-                           'grouping': 'Ice',
-                           'hstore': 'other',
-                           'valid': {
-                               'validate': 'decimal',
-                               'criteria': '>',
-                               'value': 0,
-                               'input_title': 'Sea Ice Freeboard (cm)',
-                               'input_message': '''Sea ice freeboard in decimal centimeters.
- Float number larger than 0 ''',
-                               'error_title': 'Error',
-                               'error:message': 'Float > 0'
-                           }
-                           },
     {'name': 'seaIceMeltpondTemperatureInCelsius',
                                        'disp_name': 'Sea Ice Meltpond Temperature (C)',
                                        'description': '''Sea ice meltpond temperature in Celsius.
@@ -1705,264 +1580,6 @@ Example: 0.029''',
                               'error_message': 'Float >= 0'
                           }
                           },
-    {'name': 'seaWaterTemperatueInCelsius',
-                               'disp_name': 'Sea Water Temp (C)',
-                               'description': '''Sea water temperature in Celsius
-Float number larger than -10 degrees C''',
-                               'inherit': True,
-                               'inherit_weak': True,
-                               'format': 'double precision',
-                               'grouping': 'Water',
-                               'hstore': 'other',
-                               'units': 'Celsius',
-                               'cf_name': 'sea_water_temperature',
-                               'valid': {
-                                   'validate': 'decimal',
-                                   'criteria': '>',
-                                   'value': -10,
-                                   'input_title': 'Sea Water Temp (C)',
-                                   'input_message': '''Sea water temperature in Celsius
-Float number larger than -10 degrees C''',
-                                   'error_title': 'Error',
-                                   'error_message': 'Float > -10 C'
-                               }
-                               },
-    {'name': 'seaWaterPracticalSalinity',
-                             'disp_name': 'Sea Water Practical Salinity (1)',
-                             'description': '''Practical Salinity, S_P, is a determination of
-the salinity of sea water, based on its electrical conductance.
-The measured conductance, corrected for temperature and pressure,
-is compared to the conductance of a standard potassium chloride
-solution, producing a value on the Practical Salinity Scale of 1978 (PSS-78).
-Float number larger than or equal to 0
-Example: 29.003''',
-                             'inherit': True,
-                             'inherit_weak': True,
-                             'format': 'double precision',
-                             'grouping': 'Water',
-                             'hstore': 'other',
-                             'units': '1',
-                             'cf_name': 'sea_water_practical_salinity',
-                             'valid': {
-                                 'validate': 'decimal',
-                                 'criteria': '>=',
-                                 'value': 0,
-                                 'input_title': 'Sea Water Practical Salinity',
-                                 'input_message': '''Practical Salinity, S_P, is a determination of
-the salinity of sea water, based on its electrical conductance.
-The measured conductance, corrected for temperature and pressure,
-is compared to the conductance of a standard potassium chloride
-solution, producing a value on the Practical Salinity Scale of 1978 (PSS-78).
-Float number larger than or equal to 0
-Example: 29.003''',
-                                 'error_title': 'Error',
-                                 'error_message': 'Float >= 0'
-                             }
-                             },
-    {'name': 'seaWaterAbsoluteSalinity',
-                            'disp_name': 'Sea Water Absolute Salinity (g/kg)',
-                            'description': '''Absolute Salinity, S_A, is defined as part of
-the Thermodynamic Equation of Seawater 2010 (TEOS-10) which was
-adopted in 2010 by the Intergovernmental Oceanographic
-Commission (IOC). It is the mass fraction of dissolved material
-in sea water.
-Float number larger than or equal to 0
-Example: 3.5''',
-                            'inherit': True,
-                            'inherit_weak': True,
-                            'units': 'g kg-1',
-                            'format': 'double precision',
-                            'grouping': 'Water',
-                            'hstore': 'other',
-                            'cf_name': 'sea_water_absolute_salinity',
-                            'valid': {
-                                'validate': 'decimal',
-                                'criteria': '>=',
-                                'value': 0,
-                                'input_title': 'Sea Water Absolute Salinity',
-                                'input_message': '''Absolute Salinity, S_A, is defined as part of
-the Thermodynamic Equation of Seawater 2010 (TEOS-10) which was
-adopted in 2010 by the Intergovernmental Oceanographic
-Commission (IOC). It is the mass fraction of dissolved material
-in sea water.
-Float number larger than or equal to 0
-Example: 3.5''',
-                                'error_title': 'Error',
-                                'error_message': 'Float >= 0'
-                            }
-                            },
-    {'name': 'seaWaterElectricalConductivity',
-                                  'disp_name': 'Sea Water Conductivity (S/m)',
-                                  'description': '''Sea water electrical conductivity in siemens per meter
-Float number larger than or equal to 0
-Example: 3.0''',
-                                  'inherit': True,
-                                  'inherit_weak': True,
-                                  'format': 'double precision',
-                                  'grouping': 'Water',
-                                  'hstore': 'other',
-                                  'units': 's m-1',
-                                  'cf_name': 'sea_water_electrical_conductivity',
-                                  'valid': {
-                                      'validate': 'decimal',
-                                      'criteria': '>=',
-                                      'value': 0,
-                                      'input_title': 'Sea Water Conductivity',
-                                      'input_message': '''Sea water electrical conductivity in siemens per meter
-Float number larger than or equal to 0
-Example: 3.0''',
-                                      'error_title': 'Error',
-                                      'error_message': 'Float >= 0'
-                                  }
-                                  },
-    {'name': 'seaWaterPressure',
-                    'disp_name': 'Sea Water Pressure (dbar)',
-                    'description': '''Sea water pressure in decibar
-Float number larger than 0''',
-                    'inherit': True,
-                    'inherit_weak': True,
-                    'format': 'double precision',
-                    'grouping': 'Water',
-                    'hstore': 'other',
-                    'units': 'dbar',
-                    'cf_name': 'sea_water_pressure',
-                    'valid': {
-                        'validate': 'decimal',
-                        'criteria': '>',
-                        'value': 0,
-                        'input_title': 'Sea Water Pressure (dbar)',
-                        'input_message': '''Sea water pressure in decibar
-Float number larger than 0''',
-                        'error_title': 'Error',
-                        'error_message': 'Float > 0'
-                    }
-                    },
-    {'name': 'seaWaterChlorophyllA',
-                        'disp_name': 'Sea Chl A (mg/m^3)',
-                        'description': '''Sea Water Chlorophyll A in milligrams per cubic meter
-Positive float number (>= 0)''',
-                        'format': 'double precision',
-                        'grouping': 'Water',
-                        'hstore': 'other',
-                        'units': 'mg m-3',
-                        'cf_name': 'mass_concentration_of_chlorophyll_a_in_sea_water',
-                        'valid': {
-                            'validate': 'decimal',
-                            'criteria': '>=',
-                            'value': 0,
-                            'input_title': 'Sea Water Chlorophyll A (mg/m^3)',
-                            'input_message': '''
-Sea Water Chlorophyll A in milligrams per cubic meter
-Positive float number (>= 0)''',
-                            'error_title': 'Error',
-                            'error_message': 'Float >= 0'
-                        }
-                        },
-    {'name': 'seaWaterPhaeopigment',
-                        'disp_name': 'Sea Phaeo (mg/m^3)',
-                        'description': '''Sea Water Phaeopigment in milligrams per cubic meter.
-Positive float number''',
-                        'format': 'double precision',
-                        'grouping': 'Water',
-                        'hstore': 'other',
-                        'units': 'mg m-3',
-                        'cf_name': 'mass_concentration_of_phaeopigments_in_sea_water',
-                        'valid': {
-                            'validate': 'decimal',
-                            'criteria': '>=',
-                            'value': 0,
-                            'input_title': 'Sea Water Phaeopigment (mg/m^3)',
-                            'input_message': '''
-Sea Water Phaeopigment in milligrams per cubic meter
-Positive float number''',
-                            'error_title': 'Error',
-                            'error_message': 'Float > 0'
-                        }
-                        },
-    {'name': 'seaIceChlorophyllA',
-                      'disp_name': 'Ice Chl A (mg/m^3)',
-                      'description': '''Sea ice Chlorophyll A in milligrams per cubic meter
-Positive float number (>= 0)''',
-                      'format': 'double precision',
-                      'grouping': 'Ice',
-                      'hstore': 'other',
-                      'units': 'mg m-3',
-                      'cf_name': 'mass_concentration_of_chlorophyll_a_in_sea_ice',
-                      'valid': {
-                          'validate': 'decimal',
-                          'criteria': '>=',
-                          'value': 0,
-                          'input_title': 'Sea Ice Chlorophyll a (mg/m^3)',
-                          'input_message': '''
-Sea Ice Chlorophyll in milligrams per cubic meter
-Positive float number (>= 0)''',
-                          'error_title': 'Error',
-                          'error_message': 'Float >= 0'
-                      }
-                      },
-    {'name': 'seaIcePhaeopigment',
-                      'disp_name': 'Ice Phaeo (mg/m^3)',
-                      'description': '''Sea Ice Phaeopigment in milligrams per cubic meter
-Positive float number''',
-                      'format': 'double precision',
-                      'grouping': 'Ice',
-                      'hstore': 'other',
-                      'units': 'mg m-3',
-                      'cf_name': 'mass_concentration_of_phaeopigments_in_sea_ice',
-                      'valid': {
-                          'validate': 'decimal',
-                          'criteria': '>=',
-                          'value': 0,
-                          'input_title': 'Sea Ice Phaeopigment (mg/m^3)',
-                          'input_message': '''
-Sea Ice Phaeopigment in milligrams per cubic meter
-Positive float number''',
-                          'error_title': 'Error',
-                          'error_message': 'Float > 0'
-                      }
-                      },
-    {'name': 'sedimentChlorophyllA',
-                        'disp_name': 'Sediment Chl A (mg/m^3)',
-                        'description': '''
-Sediment Chlorophyll A in milligrams per cubic meter
-Positive float number (>= 0)''',
-                        'format': 'double precision',
-                        'grouping': 'Sediment',
-                        'hstore': 'other',
-                        'units': 'mg m-3',
-                        'valid': {
-                            'validate': 'decimal',
-                            'criteria': '>=',
-                            'value': 0,
-                            'input_title': 'Sediment Chlorophyll a (mg/m^3)',
-                            'input_message': '''
-Sediment Chlorophyll in milligrams per cubic meter
-Positive float number (>= 0)''',
-                            'error_title': 'Error',
-                            'error_message': 'Float >= 0'
-                        }
-                        },
-    {'name': 'sedimentPhaeopigment',
-                        'disp_name': 'Sediment Phaeo (mg/m^3)',
-                        'description': '''
-Sediment Phaeopigment in milligrams per cubic meter
-Positive float number''',
-                        'format': 'double precision',
-                        'grouping': 'Sediment',
-                        'hstore': 'other',
-                        'units': 'mg m-3',
-                        'valid': {
-                            'validate': 'decimal',
-                            'criteria': '>=',
-                            'value': 0,
-                            'input_title': 'Sediment Phaeopigment (mg/m^3)',
-                            'input_message': '''
-Sediment Phaeopigment in milligrams per cubic meter
-Positive float number''',
-                            'error_title': 'Error',
-                            'error_message': 'Float > 0'
-                        }
-                        },
     {'name': 'sedimentPH',
               'disp_name': 'Sediment pH  (total scale)',
               'description': '''
@@ -1993,48 +1610,6 @@ Float in range [-2, 16]''',
                   'error_message': 'Not in range [-2, 16]'
               }
               },
-    {'name': 'sedimentTOC',
-               'disp_name': 'Sediment TOC (mg/L)',
-               'description': '''
-Sediment Total Organic Carbon in milligrams per litre
-Positive float number''',
-               'format': 'double precision',
-               'grouping': 'Sediment',
-               'hstore': 'other',
-               'units': 'mg L-1',
-               'valid': {
-                   'validate': 'decimal',
-                   'criteria': '>=',
-                   'value': 0,
-                   'input_title': 'Sediment TOC (mg/L)',
-                   'input_message': '''
-Sediment Total Organic Carbon in milligrams per litre
-Positive float number''',
-                   'error_title': 'Error',
-                   'error_message': 'Float >= 0'
-               }
-               },
-    {'name': 'sedimentTN',
-              'disp_name': 'Sediment TN (mg/L)',
-              'description': '''
-Sediment Total Nitrogen in milligrams per litre
-Positive float number''',
-              'format': 'double precision',
-              'grouping': 'Sediment',
-              'hstore': 'other',
-              'units': 'mg L-1',
-              'valid': {
-                  'validate': 'decimal',
-                  'criteria': '>=',
-                  'value': 0,
-                  'input_title': 'Sediment TN (mg/L)',
-                  'input_message': '''
-Sediment Total Nitrogen in milligrams per litre
-Positive float number''',
-                  'error_title': 'Error',
-                  'error_message': 'Float >= 0'
-              }
-              },
     {'name': 'benthicRespiration',
                       'disp_name': 'Benthic Respiration (mmol/m^2)',
                       'description': '''
@@ -2056,28 +1631,6 @@ Positive float number''',
                           'error_message': 'Float >= 0'
                       }
                       },
-    {'name': 'seaWaterTotalDIC',
-                    'disp_name': 'Sea DIC (umol/kg)',
-                    'description': '''
-Sea Water Total dissolved inorganic carbon in umol per kg
-Positive float number''',
-                    'format': 'double precision',
-                    'grouping': 'Water',
-                    'hstore': 'other',
-                    'units': 'umol kg-1',
-                    'cf_name': 'mole_concentration_of_dissolved_inorganic_carbon_in_sea_water',
-                    'valid': {
-                        'validate': 'decimal',
-                        'criteria': '>=',
-                        'value': 0,
-                        'input_title': 'Sea Water DIC (umol/kg)',
-                        'input_message': '''
-Sea Water Total dissolved inorganic carbon in umol per kg
-Positive float number''',
-                        'error_title': 'Error',
-                        'error_message': 'Float >= 0'
-                    }
-                    },
     {'name': 'seaIceTotalDIC',
                   'disp_name': 'Ice DIC (umol/kg)',
                   'description': '''
@@ -2141,37 +1694,6 @@ Positive float number''',
                       'error_message': 'Float >= 0'
                   }
                   },
-    {'name': 'seaWaterPH',
-              'disp_name': 'Sea Water pH  (total scale)',
-              'description': '''
-Is the measure of acidity of seawater, defined as the negative logarithm of
-the concentration of dissolved hydrogen ions plus bisulfate ions in a sea water
-medium; it can be measured or calculated; when measured the scale is defined
-according to a series of buffers prepared in artificial seawater containing
-bisulfate.
-Float in range [-2, 16]''',
-              'format': 'double precision',
-              'grouping': 'Water',
-              'hstore': 'other',
-              'units': '1',
-              'cf_name': 'sea_water_ph_reported_on_total_scale',
-              'valid': {
-                  'validate': 'decimal',
-                  'criteria': 'between',
-                  'minimum': -2,
-                  'maximum': 16,
-                  'input_title': 'Sea Water pH  (total scale)',
-                  'input_message': '''
-Is the measure of acidity of seawater, defined as the negative logarithm of
-the concentration of dissolved hydrogen ions plus bisulfate ions in a sea water
-medium; it can be measured or calculated; when measured the scale is defined
-according to a series of buffers prepared in artificial seawater containing
-bisulfate.
-Float in range [-2, 16]''',
-                  'error_title': 'Error',
-                  'error_message': 'Not in range [-2, 16]'
-              }
-              },
     {'name': 'seaWaterAlkalinity',
                       'disp_name': 'Total Alkalinity (umol/kg)',
                       'description': '''
@@ -2193,69 +1715,6 @@ Positive float number''',
                           'error_message': 'Float >= 0'
                       }
                       },
-    {'name': 'seaWaterTOC',
-               'disp_name': 'TOC (mg/L)',
-               'description': '''
-Sea Water Total Organic Carbon in milligrams per litre
-Positive float number''',
-               'format': 'double precision',
-               'grouping': 'Water',
-               'hstore': 'other',
-               'units': 'mg L-1',
-               'valid': {
-                   'validate': 'decimal',
-                   'criteria': '>=',
-                   'value': 0,
-                   'input_title': 'TOC (mg/L)',
-                   'input_message': '''
-Sea Water Total Organic Carbon in milligrams per litre
-Positive float number''',
-                   'error_title': 'Error',
-                   'error_message': 'Float >= 0'
-               }
-               },
-    {'name': 'seaWaterPON',
-               'disp_name': 'PON (ug/L)',
-               'description': '''
-Sea Water Quantification of particulate organic nitrogen in micrograms per litre
-Positive float number''',
-               'format': 'double precision',
-               'grouping': 'Water',
-               'hstore': 'other',
-               'units': 'ug L-1',
-               'valid': {
-                   'validate': 'decimal',
-                   'criteria': '>=',
-                   'value': 0,
-                   'input_title': 'PON (ug/L)',
-                   'input_message': '''
-Sea Water Quantification of particulate organic nitrogen in micrograms per litre
-Positive float number''',
-                   'error_title': 'Error',
-                   'error_message': 'Float >= 0'
-               }
-               },
-    {'name': 'seaWaterPOC',
-               'disp_name': 'POC (ug/L)',
-               'description': '''
-Sea Water Quantification of particulate organic carbon  in micrograms per litre
-Positive float number''',
-               'format': 'double precision',
-               'grouping': 'Water',
-               'hstore': 'other',
-               'units': 'ug L-1',
-               'valid': {
-                   'validate': 'decimal',
-                   'criteria': '>=',
-                   'value': 0,
-                   'input_title': 'POC (ug/L)',
-                   'input_message': '''
-Sea Water Quantification of particulate organic carbon  in micrograms per litre
-Positive float number''',
-                   'error_title': 'Error',
-                   'error_message': 'Float >= 0'
-               }
-               },
 
     # ==============================================================================
     # Sample details
