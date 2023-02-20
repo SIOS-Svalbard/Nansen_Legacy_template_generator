@@ -22,41 +22,75 @@
 
     <div class="container">
       <br><br><br>
-      <form method="POST">
-        <p>Configuration: </p>
-        <p>Required and recommended fields if also using the Nansen Legacy logging system onboard a vessel.</p><br>
-        <div class="form-row">
-          <!--Required fields-->
-          <div class="col-md-4">
-            <h3>Required</h3><br>
-            % for key, field in required_fields_dic.items():
-            <div class="form-check">
-              <label class="form-check-label">
-                <input class="form-check-input form-control-lg" type="checkbox" id="${key}" name="${key}" checked>
-                ${field['disp_name']}
-                <!--<img src="templates/info.png" alt="..." height="20" title="${field['description']}">-->
-                <img src="/usr/lib/cgi-bin/info.png" alt="..." height="20" title="${field['description']}">
-              </label>
-            </div>
-            <br>
-            % endfor
-          </div>
 
-          <!--Recommended fields-->
+      <form method="POST" enctype="multipart/form-data">
+        <div class="row">
+          <label class="col-sm-2 col-form-label" for="select-config">Configuration:</label>
+          <div class="col-sm-5">
+            <select class="form-control" id="select-config" name="select-config">
+              <option selected="selected">${config}</option>
+              % for ii in list_of_configs:
+              % if ii != config:
+              <option>${ii}</option>
+              % endif
+              % endfor
+            </select>
+          </div>
+          <div class="col-sm-1">
+            <button class="btn btn-secondary" type="submit" name="submitbutton" value="selectConfig">Select</button>
+          </div>
+        </div><br>
+
+        <div class="row">
+          % if list_of_subconfigs:
+          <label class="col-sm-2 col-form-label" for="select-subconfig">Sub-configuration:</label>
+          <div class="col-sm-5">
+            <select class="form-control" id="select-subconfig" name="select-subconfig">
+              <option selected="selected">${subconfig}</option>
+              % for ii in list_of_subconfigs:
+              % if ii != subconfig:
+              <option>${ii}</option>
+              % endif
+              % endfor
+            </select>
+          </div>
+          <div class="col-sm-1">
+            <button class="btn btn-secondary" type="submit" name="submitbutton" value="selectSubConfig">Select</button>
+          </div>
+          % endif
+        </div>
+        <br>
+
+        <p>Description of the configuration.</p><br><br>
+
+        <div class="form-row">
+          <!--Configuration required/recommended fields-->
+          % for col, fields in output_config_dict.items():
           <div class="col-md-4">
-            <h3>Recommended</h3><br>
-            % for key, field in recommended_fields_dic.items():
+
+            <h3>${col}</h3><br>
+            % for key, field in fields.items():
             <div class="form-check">
               <label class="form-check-label">
-                <input class="form-check-input form-control-lg" type="checkbox" id="${key}" name="${key}" % if 'checked' not in field.keys(): checked % endif>
+                <input
+                  class="form-check-input form-control-lg"
+                  type="checkbox"
+                  id="${key}"
+                  name="${key}"
+                  % if col == 'Required' or 'checked' in field.keys():
+                  checked
+                  % endif
+                  >
                 ${field['disp_name']}
-                <!--<img src="templates/info.png" alt="..." height="20" title="${field['description']}">-->
-                <img src="/usr/lib/cgi-bin/info.png" alt="..." height="20" title="${field['description']}">
+                <img src="templates/info.png" alt="..." height="20" title="${field['description']}">
+                <!--<img src="/usr/lib/cgi-bin/info.png" alt="..." height="20" title="${field['description']}">-->
               </label>
+
             </div>
             <br>
             % endfor
           </div>
+          % endfor
 
           <!--Add more fields-->
           <div class="col-md-4">
@@ -65,6 +99,7 @@
             <button type="button" class="btn btn-dark btn-lg btn-block" data-toggle="modal" data-target="#fieldsModal">
               Add more fields
             </button>
+
             <!-- Modal -->
             <div class="modal fade" id="fieldsModal" tabindex="-1" role="dialog" aria-labelledby="fieldsModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
@@ -82,7 +117,7 @@
                         ${group}
                       </button>
                       <div class="dropdown-menu pre-scrollable">
-                         % for field, vals in extra_fields_dic.items():
+                         % for field, vals in extra_fields_dict.items():
                            % if vals['grouping'] == group:
                              <label class="col-sm-9 col-form-label">${vals["disp_name"]} <img src="/usr/lib/cgi-bin/info.png" alt="..." height="14" title='${vals["description"]}'></label>
                              <input type=checkbox class="col-sm-3" value=y name='${field}'>
@@ -100,6 +135,7 @@
               </div>
             </div><br>
 
+            <!--List of extra fields that have been added-->
             % if added_fields_bool == True:
             % for key, field in added_fields_dic.items():
             <div class="form-check">
@@ -137,7 +173,7 @@
                       </button>
                       <div class="dropdown-menu pre-scrollable">
                          % for field in cf_standard_names:
-                           % if field[group] == True:
+                           % if group in field["id"]:
                              <label class="col-sm-9 col-form-label">${field["id"]} <img src="/usr/lib/cgi-bin/info.png" alt="..." height="14" title='${field["description"]}'></label>
                              <input type=checkbox class="col-sm-3" value=y name='${field["id"]}'>
                            % endif
@@ -145,6 +181,7 @@
                        </div>
                     </div><br>
                     % endfor
+
                     <div class="dropdown">
                       <button type="button" class="btn btn-light btn-lg btn-block dropdown-toggle" data-toggle="dropdown">
                         All CF standard names
@@ -156,6 +193,7 @@
                          % endfor
                        </div>
                     </div><br>
+
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -165,6 +203,7 @@
               </div>
             </div><br>
 
+            <!--List of CF standard names that have been selected-->
             % if added_cf_names_bool == True:
             % for key, field in added_cf_names_dic.items():
             <div class="form-check">
@@ -180,18 +219,22 @@
 
             <!--Darwin Core Terms-->
             <!-- Button trigger modal for fields -->
+            <!--
             <button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#cfModal">
               Add Darwin Core terms
             </button>
+            -->
 
             <br><br><br>
             <button class="btn btn-primary btn-lg btn-block" type="submit" name="submitbutton" value="generateTemplate">Generate</button>
             <br>
 
 
+
           </div>
 
         </div>
+
 
       </form>
       <br><br><br>

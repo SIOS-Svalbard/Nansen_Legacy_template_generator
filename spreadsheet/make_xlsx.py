@@ -21,7 +21,8 @@ sys.path.append(config_dir)
 
 import fields as fields
 import metadata_fields as metadata_fields
-from pull_cf_standard_names import create_cf_standard_names_json
+from pull_cf_standard_names import cf_standard_names_to_dic
+from get_configurations import get_config_fields_list
 import os
 from argparse import Namespace
 #from website.database.get_data import get_data, get_personnel_list, get_cruise
@@ -32,6 +33,20 @@ DEBUG = 1
 
 DEFAULT_FONT = 'Calibri'
 DEFAULT_SIZE = 10
+
+def add_line_breaks(text, n):
+    """Add line breaks to a long string every n characters or fewer if n characters falls within a word."""
+    lines = []
+    while len(text) > n:
+        # Find the last space within the limit
+        space_index = text.rfind(' ', 0, n+1)
+        if space_index == -1:
+            # No space found, just break at the limit
+            space_index = n
+        lines.append(text[:space_index].strip())
+        text = text[space_index:].strip()
+    lines.append(text)
+    return '\n'.join(lines)
 
 def split_personnel_df(df, col):
     '''
@@ -93,9 +108,9 @@ class Variable_sheet(object):
         self.workbook = workbook
         self.name = 'Variables'  # The name of the worksheet
         self.sheet = workbook.add_worksheet(self.name)
-        self.sheet.hide()  # Hide the sheet
         # For holding the current row to add variables on
         self.current_column = 0
+        self.sheet.hide()  # Hide the sheet
 
     def add_row(self, variable, parameter_list):
         """
@@ -699,7 +714,7 @@ def write_metadata(args, workbook, variable_sheet_obj, data, metadata_df, DB=Non
     # Freeze the rows at the top
     sheet.freeze_panes(6, 1)
 
-def make_xlsx(args, fields_list, metadata, conversions, data, metadata_df, DB, CRUISE_NUMBER=None, configuration=None):
+def make_xlsx(args, fields_list, metadata, conversions, data, metadata_df, DB, CRUISE_NUMBER=None, configuration=None, subconfiguration=None):
     """
     Writes the xlsx file based on the wanted fields
     Parameters
@@ -727,6 +742,11 @@ def make_xlsx(args, fields_list, metadata, conversions, data, metadata_df, DB, C
     configuration: string
         Name of configuration
         If configuration is 'lfnl_logging_system', some of the metadata sheet are populated for the user
+        Default: None
+    subconfiguration: string
+        Name of sub-configuration
+        If configuration is 'lfnl_logging_system', some of the metadata sheet are populated for the user
+        Default: None
     """
 
     output = args.filepath
@@ -743,6 +763,8 @@ def make_xlsx(args, fields_list, metadata, conversions, data, metadata_df, DB, C
 
     # Create sheet for data
     data_sheet = workbook.add_worksheet('Data')
+
+    data_sheet.activate()
 
 
     header_format = workbook.add_format({
@@ -801,6 +823,8 @@ def make_xlsx(args, fields_list, metadata, conversions, data, metadata_df, DB, C
 
     # Loop over all the variables needed
     ii = 0
+
+    config_fields_list = get_config_fields_list(config=configuration, subconfig=subconfiguration)
 
     for field in fields.fields:
         if field['name'] in fields_list:
@@ -905,10 +929,11 @@ def make_xlsx(args, fields_list, metadata, conversions, data, metadata_df, DB, C
                 ii = ii + 1
                 duplication = duplication - 1
 
-    cf_standard_names, cf_groups = create_cf_standard_names_json()
+    cf_standard_names = cf_standard_names_to_dic()
 
     for cf_standard_name in cf_standard_names:
-        if cf_standard_name['id'] in fields_list:
+        if cf_standard_name['id'] in config_fields_list and cf_standard_name['id'] in fields_list:
+
             # Write title row
             data_sheet.write(title_row, ii, cf_standard_name['id'], cf_field_format)
 
@@ -916,14 +941,28 @@ def make_xlsx(args, fields_list, metadata, conversions, data, metadata_df, DB, C
             data_sheet.write(parameter_row, ii, cf_standard_name['id'])
 
             valid = {
-                'validate': 'any',
-                'input_title': cf_standard_name['id']
+                'validate': 'decimal',
+                'input_title': cf_standard_name['id'],
+                'criteria': '>=',
+                'value': '-1e100'
                 }
 
-            if len(cf_standard_name['description']) > 255:
-                valid['input_message'] = cf_standard_name['description'][:252] + '...'
+            if cf_standard_name['description'] == None:
+                cf_standard_name['description'] = ''
+
+            if len(cf_standard_name['description']) > 230:
+                valid['input_message'] = f"{cf_standard_name['description'][:227]}... \ncanonical units: {cf_standard_name['canonical_units']}"
             else:
-                valid['input_message'] = cf_standard_name['description']
+                valid['input_message'] = f"{cf_standard_name['description']} \ncanonical units: {cf_standard_name['canonical_units']}"
+
+            valid['input_message'] = add_line_breaks(valid['input_message'], 35)
+
+            if len(cf_standard_name['id']) > 32:
+                valid['input_title'] = cf_standard_name['id'][:29] + '...'
+            else:
+                valid['input_title'] = cf_standard_name['id']
+
+            valid['input_message'].replace('\n', '\n\r')
 
             data_sheet.data_validation(first_row=start_row,
                                        first_col=ii,
@@ -934,6 +973,92 @@ def make_xlsx(args, fields_list, metadata, conversions, data, metadata_df, DB, C
             data_sheet.set_column(first_col=ii, last_col=ii, width=20)
 
             ii = ii + 1
+
+    # BOUNDS
+    for field in fields_list:
+
+        if 'bounds' in field:
+
+            duplication = 2 # 2 copies of these columns, one for the minimum bound and one for the maximum
+            while duplication > 0:
+
+                field = field.replace('_bounds','')
+                if duplication == 2:
+                    name = 'Minimum ' + field
+                elif duplication == 1:
+                    name = 'Maximum ' + field
+
+                # Write title row
+                data_sheet.write(title_row, ii, name, cf_field_format)
+
+                # Write row below with parameter name
+                data_sheet.write(parameter_row, ii, name.replace(' ','_'))
+
+                valid = {
+                    'validate': 'decimal',
+                    'input_title': name,
+                    'criteria': '>=',
+                    'value': '-1e100'
+                    }
+
+                valid['input_message'] = add_line_breaks('For use when a data point does not represent a single point in space or time, but a cell of finite size. Use this variable to encode the extent of the cell (e.g. the minimum and maximum depth that a data point is representative of).', 35)
+
+                valid['input_message'].replace('\n', '\n\r')
+
+                data_sheet.data_validation(first_row=start_row,
+                                           first_col=ii,
+                                           last_row=end_row,
+                                           last_col=ii,
+                                           options=valid)
+
+                data_sheet.set_column(first_col=ii, last_col=ii, width=20)
+
+                ii = ii + 1
+                duplication = duplication - 1
+
+    for cf_standard_name in cf_standard_names:
+        if cf_standard_name['id'] in fields_list and cf_standard_name['id'] not in config_fields_list:
+
+            # Write title row
+            data_sheet.write(title_row, ii, cf_standard_name['id'], cf_field_format)
+
+            # Write row below with parameter name
+            data_sheet.write(parameter_row, ii, cf_standard_name['id'])
+
+            valid = {
+                'validate': 'decimal',
+                'input_title': cf_standard_name['id'],
+                'criteria': '>=',
+                'value': '-1e100'
+                }
+
+            if cf_standard_name['description'] == None:
+                cf_standard_name['description'] = ''
+
+            if len(cf_standard_name['description']) > 230:
+                valid['input_message'] = f"{cf_standard_name['description'][:227]}... \ncanonical units: {cf_standard_name['canonical_units']}"
+            else:
+                valid['input_message'] = f"{cf_standard_name['description']} \ncanonical units: {cf_standard_name['canonical_units']}"
+
+            valid['input_message'] = add_line_breaks(valid['input_message'], 35)
+
+            if len(cf_standard_name['id']) > 32:
+                valid['input_title'] = cf_standard_name['id'][:29] + '...'
+            else:
+                valid['input_title'] = cf_standard_name['id']
+
+            valid['input_message'].replace('\n', '\n\r')
+
+            data_sheet.data_validation(first_row=start_row,
+                                       first_col=ii,
+                                       last_row=end_row,
+                                       last_col=ii,
+                                       options=valid)
+
+            data_sheet.set_column(first_col=ii, last_col=ii, width=20)
+
+            ii = ii + 1
+
 
 
     if type(data) == pd.core.frame.DataFrame:
@@ -991,7 +1116,7 @@ def make_xlsx(args, fields_list, metadata, conversions, data, metadata_df, DB, C
 
     workbook.close()
 
-def write_file(filepath, fields_list, metadata=True, conversions=True, data=None, metadata_df=None, DB=None, CRUISE_NUMBER=None, configuration=None):
+def write_file(filepath, fields_list, metadata=True, conversions=True, data=None, metadata_df=None, DB=None, CRUISE_NUMBER=None, configuration=None, subconfiguration=None):
     """
     Method for calling from other python programs
     Parameters
@@ -1021,10 +1146,15 @@ def write_file(filepath, fields_list, metadata=True, conversions=True, data=None
     configuration: string
         Name of configuration
         If configuration is 'lfnl_logging_system', some of the metadata sheet are populated for the user
+        Default: None
+    subconfiguration: string
+        Name of sub-configuration
+        If configuration is 'lfnl_logging_system', some of the metadata sheet are populated for the user
+        Default: None
     """
     args = Namespace()
     args.verbose = 0
     args.dir = os.path.dirname(filepath)
     args.filepath = filepath
 
-    make_xlsx(args, fields_list, metadata, conversions, data, metadata_df, DB, CRUISE_NUMBER, configuration)
+    make_xlsx(args, fields_list, metadata, conversions, data, metadata_df, DB, CRUISE_NUMBER, configuration, subconfiguration)
