@@ -22,6 +22,7 @@ sys.path.append(config_dir)
 import fields as fields
 import metadata_fields as metadata_fields
 from pull_cf_standard_names import cf_standard_names_to_dic
+from pull_acdd_conventions import acdd_to_df
 from get_configurations import get_config_fields_list
 import os
 from argparse import Namespace
@@ -405,15 +406,15 @@ def write_metadata(args, workbook, variable_sheet_obj, data, metadata_df, DB=Non
         'bg_color': '#4a4a4a',
     })
 
-    parameter_format = workbook.add_format({
-            'font_name': DEFAULT_FONT,
-            'bottom': True,
-            'right': True,
-            'bold': False,
-            'text_wrap': True,
-            'valign': 'vcenter',
-            'font_size': DEFAULT_SIZE + 1,
-            'bg_color': '#B9F6F5'
+    content_format = workbook.add_format({
+        'bold': False,
+        'font_name': DEFAULT_FONT,
+        'text_wrap': True,
+        'valign': 'vcenter',
+        'bg_color': '#e6ffff',
+        'bottom': True,
+        'right': True,
+        'font_size': DEFAULT_SIZE,
         })
 
     blank_format = workbook.add_format({
@@ -426,64 +427,7 @@ def write_metadata(args, workbook, variable_sheet_obj, data, metadata_df, DB=Non
         'font_size': DEFAULT_SIZE,
         })
 
-    hidden_col_format = workbook.add_format({
-        'bold': False,
-        'font_name': DEFAULT_FONT,
-        'text_wrap': True,
-        'valign': 'vcenter',
-        'bottom': True,
-        'right': 5,
-        'font_size': DEFAULT_SIZE,
-        })
-
-    input_optional_format = workbook.add_format({
-        'bold': False,
-        'font_name': DEFAULT_FONT,
-        'text_wrap': True,
-        'valign': 'vcenter',
-        'bottom': True,
-        'right': 5,
-        'font_size': DEFAULT_SIZE,
-        'left': 5
-        })
-
-    input_datetime_format = workbook.add_format({
-        'bold': False,
-        'font_name': DEFAULT_FONT,
-        'text_wrap': True,
-        'valign': 'vcenter',
-        'bottom': True,
-        'right': 5,
-        'font_size': DEFAULT_SIZE,
-        'left': 5,
-        'num_format': 'yyyy-mm-ddThh:mm:ssZ'
-        })
-
-    input_required_format = workbook.add_format({
-            'font_name': DEFAULT_FONT,
-            'bottom': True,
-            'bold': False,
-            'text_wrap': True,
-            'valign': 'vcenter',
-            'font_size': DEFAULT_SIZE,
-            'bg_color': '#F5E69E',
-            'left': 5,
-            'right': 5
-        })
-
-    input_required_key_format = workbook.add_format({
-            'font_name': DEFAULT_FONT,
-            'bottom': True,
-            'bold': False,
-            'text_wrap': True,
-            'valign': 'vcenter',
-            'font_size': DEFAULT_SIZE,
-            'bg_color': '#F5E69E',
-            'left': True,
-            'right': True
-        })
-
-    acdd_highly_recommended_format = workbook.add_format({
+    required_format = workbook.add_format({
             'font_name': DEFAULT_FONT,
             'bottom': True,
             'right': True,
@@ -494,7 +438,7 @@ def write_metadata(args, workbook, variable_sheet_obj, data, metadata_df, DB=Non
             'bg_color': '#F06292'
         })
 
-    acdd_recommended_format = workbook.add_format({
+    recommended_format = workbook.add_format({
             'font_name': DEFAULT_FONT,
             'bottom': True,
             'right': True,
@@ -505,7 +449,7 @@ def write_metadata(args, workbook, variable_sheet_obj, data, metadata_df, DB=Non
             'bg_color': '#F8BBD0'
         })
 
-    acdd_suggested_format = workbook.add_format({
+    optional_format = workbook.add_format({
             'font_name': DEFAULT_FONT,
             'bottom': True,
             'right': True,
@@ -516,203 +460,65 @@ def write_metadata(args, workbook, variable_sheet_obj, data, metadata_df, DB=Non
             'bg_color': '#F5E1E8'
         })
 
-
-    eml_required_format = workbook.add_format({
-            'font_name': DEFAULT_FONT,
-            'bottom': True,
-            'right': True,
-            'bold': False,
-            'text_wrap': True,
-            'valign': 'vcenter',
-            'font_size': DEFAULT_SIZE,
-            'bg_color': '#AED581'
-        })
-
-    eml_optional_format = workbook.add_format({
-            'font_name': DEFAULT_FONT,
-            'bottom': True,
-            'right': True,
-            'bold': False,
-            'text_wrap': True,
-            'valign': 'vcenter',
-            'font_size': DEFAULT_SIZE,
-            'bg_color': '#DCEDC8'
-        })
-
-    bottom_border_format = workbook.add_format({
-        'bold': False,
-        'font_name': DEFAULT_FONT,
-        'text_wrap': True,
-        'valign': 'vcenter',
-        'top': 5,
-        'font_size': DEFAULT_SIZE,
-        })
-
-    cols = [
-            'Field name',
-            'systemName',
-            'Content',
-            'ACDD term',
-            'ACDD description',
-            'EML term',
-            'EML description'
-            'Link'
-            ]
-
-    header_row = 5
+    header_row = 8
     start_row = header_row + 2
 
-    for ii, col in enumerate(cols):
+    acdd_df = acdd_to_df()
+    acdd_df['Content'] = ''
+    df_metadata = acdd_df
+    last_col = len(df_metadata.columns)-1
+
+    for ii, col in enumerate(df_metadata.columns):
         sheet.write(header_row, ii, col, header_format)
         sheet.write(header_row+1, ii, col, blank_format)
         sheet.set_row(header_row+1, None, None, {'hidden': True})
 
-    metadata_fields_df = pd.DataFrame(columns=(cols))
+    for idx, row in df_metadata.iterrows():
 
-    for ii, mfield in enumerate(metadata_fields.metadata_fields):
+        row_num = start_row + idx
 
-        row = start_row + ii
-
-        if 'acdd' in mfield.keys():
-            acdd_term = mfield['acdd']['name']
-            acdd_description = mfield['acdd']['description']
-            if mfield['acdd']['recommendations'] == 'Highly Recommended':
-                acdd_format = acdd_highly_recommended_format
-            elif mfield['acdd']['recommendations'] == 'Recommended':
-                acdd_format = acdd_recommended_format
-            else:
-                acdd_format = acdd_suggested_format
+        if row['Requirement'] == 'Required':
+            cell_format = required_format
+        elif row['Requirement'] == 'Recommended':
+            cell_format = recommended_format
         else:
-            acdd_term = ''
-            acdd_description = ''
-            acdd_format = blank_format
+            cell_format = optional_format
 
-        if 'eml' in mfield.keys():
-            eml_term = mfield['eml']['name']
-            eml_description = mfield['eml']['description']
-            if mfield['eml']['recommendations'] == 'Required':
-                eml_format = eml_required_format
-            else:
-                eml_format = eml_optional_format
-        else:
-            eml_term = ''
-            eml_description = ''
-            eml_format = blank_format
+        for col, val in enumerate(row):
 
-        if mfield['format'] == 'datetime':
-            input_format = input_datetime_format
-        else:
-            input_format = input_optional_format
+            if col == last_col:
+                cell_format = content_format
 
-        if 'default' in mfield.keys():
-            content = mfield['default']
-        elif 'derive_from' in mfield.keys() and DB:
-            content = derive_content(mfield, data=data, DB=DB)
-        else:
-            content = ''
+            sheet.write(row_num, col, val, cell_format)
 
-        if 'link' in mfield.keys():
-            link = mfield['link']
-        else:
-            link = ''
+        length = len(row['Description'])
 
-        # Column A: Display name
-        sheet.write(row, 0, mfield['disp_name'], parameter_format)
-
-        # Column B (hidden): System field name
-        sheet.write(row, 1, mfield['name'], hidden_col_format)
-        sheet.set_column(1, 1, None, None, {'hidden': True})
-
-        # Column C: Content
-        if type(metadata_df) == pd.core.frame.DataFrame:
-            try:
-                sheet.write(row,2,metadata_df[mfield][0], input_format)
-            except:
-                sheet.write(row, 2, content, input_format)
-                continue
-        else:
-            if configuration == 'lfnl_logging_system':
-                sheet.write(row, 2, content, input_format)
-            else:
-                sheet.write(row, 2, '', input_format)
-
-        if 'valid' in mfield.keys():
-            valid_copy = mfield['valid'].copy()
-
-            if len(valid_copy['input_message']) > 255:
-                valid_copy['input_message'] = valid_copy[
-                    'input_message'][:252] + '...'
-
-            if len(mfield['disp_name']) > 32:
-                valid_copy['input_title'] = mfield['disp_name'][:32]
-            else:
-                valid_copy['input_title'] = mfield['disp_name']
-
-            if 'long_list' in mfield.keys():
-
-                # Add the validation variable to the hidden sheet
-                lst_values = mfield['valid']['source']
-
-                ref = variable_sheet_obj.add_row(
-                    mfield['name'], lst_values)
-
-                valid_copy.pop('source', None)
-                valid_copy['value'] = ref
-
-            sheet.data_validation(first_row=row,
-                                  first_col=2,
-                                  last_row=row,
-                                  last_col=2,
-                                  options=valid_copy)
-
-        # Column D: ACDD name
-        sheet.write(row, 3, acdd_term, acdd_format)
-
-        # Column E: ACDD description
-        sheet.write(row, 4, acdd_description, acdd_format)
-
-        # Column F: EML name
-        sheet.write(row, 5, eml_term, eml_format)
-
-        # Column G: EML description
-        sheet.write(row, 6, eml_description, eml_format)
-
-        # Column H: Link
-        sheet.write(row, 7, link, blank_format)
-
-        length = max([len(acdd_description), len(eml_description)])
-
-        if mfield['name'] == 'summary':
+        if row['Attribute'] == 'summary':
             height = 150
         elif length > 0:
             height = int(length/4)
         else:
             height = 15
 
-        sheet.set_row(row, height)
+        sheet.set_row(row_num, height)
 
-    for col in range(len(cols)):
-        sheet.write(row+1, col,'',bottom_border_format)
+    # # Hide requirements column.
+    sheet.set_column(3, 3, None, None, {'hidden': True})
 
-    #sheet.merge_range('C2:C4', 'Required for metadata catalogue', input_required_key_format)
-
-    sheet.merge_range('D2:E2', 'Highly recommended ACDD term', acdd_highly_recommended_format)
-    sheet.merge_range('D3:E3', 'Recommended ACDD term', acdd_recommended_format)
-    sheet.merge_range('D4:E4', 'Suggested ACDD term', acdd_suggested_format)
-
-    sheet.merge_range('F2:G2', 'Required EML term', eml_required_format)
-    sheet.merge_range('F3:G3', 'Optional EML term', eml_optional_format)
+    # Key
+    sheet.merge_range('A2:B2', 'Required term', required_format)
+    sheet.merge_range('A3:B3', 'Recommended term', recommended_format)
+    sheet.merge_range('A4:B4', 'Optional term', optional_format)
+    sheet.merge_range('A6:B6', 'More attributes can be selected from')
+    sheet.merge_range('A7:B7', 'https://wiki.esipfed.org/Attribute_Convention_for_Data_Discovery_1-3')
 
     sheet.set_column(0, 0, width=20)
-    sheet.set_column(2, 2, width=40)
-    sheet.set_column(3, 3, width=20)
+    sheet.set_column(1, 1, width=60)
+    sheet.set_column(2, 2, width=30)
     sheet.set_column(4, 4, width=60)
-    sheet.set_column(5, 5, width=20)
-    sheet.set_column(6, 6, width=60)
-    sheet.set_column(7, 7, width=60)
 
     # Freeze the rows at the top
-    sheet.freeze_panes(6, 1)
+    sheet.freeze_panes(header_row+1, 1)
 
 def make_xlsx(args, fields_list, metadata, conversions, data, metadata_df, DB, CRUISE_NUMBER=None, configuration=None, subconfiguration=None):
     """
