@@ -361,11 +361,11 @@ def write_readme(args, workbook, config=None):
         'bg_color': '#ffffff',
     })
 
-    if config = 'CF-NetCDF':
+    if config == 'CF-NetCDF':
         readme_file = 'Learnings_from_AeN_template_generator/config/cfnetcdf_readme.txt'
-    elif config = 'Learnings from Nansen Legacy logging system':
+    elif config == 'Learnings from Nansen Legacy logging system':
         readme_file = 'Learnings_from_AeN_template_generator/config/lfnl_readme.txt'
-    elif config = 'Darwin Core':
+    elif config == 'Darwin Core':
         readme_file = 'Learnings_from_AeN_template_generator/config/dwc_readme.txt'
 
     with open(readme_file, 'r') as file:
@@ -503,6 +503,36 @@ def write_metadata(args, workbook, variable_sheet_obj, data, metadata_df, DB=Non
 
             sheet.write(row_num, col, val, cell_format)
 
+            if col == last_col:
+                valid = {}
+                if row['Attribute'] in ['geospatial_lat_max', 'geospatial_lat_min']:
+                    valid['validate'] = 'decimal'
+                    valid['criteria'] = 'between'
+                    valid['minimum'] = -90
+                    valid['maximum'] = 90
+                    valid['error_title'] = 'Error'
+                    valid['error_message'] = 'Not in range [-90, 90]'
+                elif row ['Attribute'] in ['geospatial_lon_max', 'geospatial_lon_min']:
+                    valid['validate'] = 'decimal'
+                    valid['criteria'] = 'between'
+                    valid['minimum'] = -180
+                    valid['maximum'] = 180
+                    valid['error_title'] = 'Error'
+                    valid['error_message'] = 'Not in range [-180, 180]'
+                elif row['Attribute'] == 'featureType':
+                    valid['validate'] = 'list'
+                    valid['source'] = ['point','timeSeries','trajectory','profile','timeSeriesProfile','trajectoryProfile']
+                    valid['error_title'] = 'Error'
+                    valid['error_message'] = 'Not in range [-180, 180]'
+                else:
+                    valid['validate'] = 'any'
+
+                sheet.data_validation(first_row=row_num,
+                                  first_col=col,
+                                  last_row=row_num,
+                                  last_col=col,
+                                  options=valid)
+
         length = len(row['Description'])
 
         if row['Attribute'] == 'summary':
@@ -514,7 +544,7 @@ def write_metadata(args, workbook, variable_sheet_obj, data, metadata_df, DB=Non
 
         sheet.set_row(row_num, height)
 
-    # # Hide requirements column.
+    # Hide requirements column.
     sheet.set_column(3, 3, None, None, {'hidden': True})
 
     # Key
