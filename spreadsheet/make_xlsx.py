@@ -337,7 +337,7 @@ def write_conversion(args, workbook):
     sheet.write(10, 0, "Decimal degrees ", output_format)
     sheet.write(10, 1, "=B9+B10/60 ", output_format)
 
-def write_readme(args, workbook):
+def write_readme(args, workbook, config=None):
     """
     Adds a README sheet to workbook
     Parameters
@@ -346,25 +346,37 @@ def write_readme(args, workbook):
         The input arguments
     workbook : xlsxwriter Workbook
         The workbook for the README sheet
+    configuration: string
+        Name of configuration
+        Default: None
     """
 
     sheet = workbook.add_worksheet('README')
 
-    sheet.set_column(0, 2, width=30)
+    sheet.set_column(0, 0, width=150)
 
-    header_format = workbook.add_format({
+    readme_format = workbook.add_format({
         'font_name': DEFAULT_FONT,
-        'right': True,
-        'bottom': True,
-        'bold': True,
-        'text_wrap': True,
-        'valign': 'center',
-        'font_size': 25,
-        'bg_color': '#B9F6F5',
+        'font_size': 12,
+        'bg_color': '#ffffff',
     })
 
-    sheet.write(1, 0, "README", header_format)
-    sheet.set_row(1, 30)
+    if config = 'CF-NetCDF':
+        readme_file = 'Learnings_from_AeN_template_generator/config/cfnetcdf_readme.txt'
+    elif config = 'Learnings from Nansen Legacy logging system':
+        readme_file = 'Learnings_from_AeN_template_generator/config/lfnl_readme.txt'
+    elif config = 'Darwin Core':
+        readme_file = 'Learnings_from_AeN_template_generator/config/dwc_readme.txt'
+
+    with open(readme_file, 'r') as file:
+        for idx, line in enumerate(file):
+
+            line = line.replace('\n','')
+
+            sheet.write(idx, 0, line, readme_format)
+            sheet.set_row(idx, 25)
+
+    sheet.activate()
 
 def write_metadata(args, workbook, variable_sheet_obj, data, metadata_df, DB=None, CRUISE_NUMBER=None, configuration=None):
     """
@@ -570,8 +582,7 @@ def make_xlsx(args, fields_list, metadata, conversions, data, metadata_df, DB, C
     # Create sheet for data
     data_sheet = workbook.add_worksheet('Data')
 
-    data_sheet.activate()
-
+    write_readme(args, workbook, configuration)
 
     header_format = workbook.add_format({
         'font_color': '#FF0000',
@@ -917,8 +928,6 @@ def make_xlsx(args, fields_list, metadata, conversions, data, metadata_df, DB, C
 
     if conversions:
         write_conversion(args, workbook)
-
-    write_readme(args, workbook)
 
     workbook.close()
 

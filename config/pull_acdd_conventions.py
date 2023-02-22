@@ -32,7 +32,7 @@ class ACDD_conventions_df():
         filename: string
             The name of the json file to be written
         """
-        self.filename = 'config/acdd_conventions.csv'
+        self.filename = 'Learnings_from_AeN_template_generator/config/acdd_conventions.csv'
 
 
     def pull_from_online(self):
@@ -54,6 +54,7 @@ class ACDD_conventions_df():
         df2 = df2[1:]
         self.df = pd.concat([df1, df2], ignore_index=True)
         self.df = self.df.dropna(how='all')
+        self.df.reset_index(inplace=True, drop=True)
 
     def add_recommendations_column(self):
         '''
@@ -84,7 +85,7 @@ def acdd_to_df():
     if have_internet():
         acdd.pull_from_online()
         acdd.add_recommendations_column()
-        acdd.output_to_csv()
+        #acdd.output_to_csv()
     else:
         acdd.read_csv()
 
