@@ -23,7 +23,7 @@ import fields as fields
 import metadata_fields as metadata_fields
 from pull_cf_standard_names import cf_standard_names_to_dic
 from pull_acdd_conventions import acdd_to_df
-from get_configurations import get_config_fields_list
+from get_configurations import get_config_fields_dic
 import os
 from argparse import Namespace
 #from website.database.get_data import get_data, get_personnel_list, get_cruise
@@ -614,16 +614,7 @@ def make_xlsx(args, fields_list, metadata, conversions, data, metadata_df, DB, C
 
     write_readme(args, workbook, configuration)
 
-    header_format = workbook.add_format({
-        'font_color': '#FF0000',
-        'font_name': DEFAULT_FONT,
-        'bold': False,
-        'text_wrap': False,
-        'valign': 'vcenter',
-        'font_size': DEFAULT_SIZE + 2
-    })
-
-    field_format = workbook.add_format({
+    required_field_format = workbook.add_format({
         'font_name': DEFAULT_FONT,
         'bottom': True,
         'right': True,
@@ -631,7 +622,29 @@ def make_xlsx(args, fields_list, metadata, conversions, data, metadata_df, DB, C
         'text_wrap': True,
         'valign': 'vcenter',
         'font_size': DEFAULT_SIZE + 1,
-        'bg_color': '#B9F6F5'
+        'bg_color': '#B74F6F'
+    })
+
+    recommended_field_format = workbook.add_format({
+        'font_name': DEFAULT_FONT,
+        'bottom': True,
+        'right': True,
+        'bold': False,
+        'text_wrap': True,
+        'valign': 'vcenter',
+        'font_size': DEFAULT_SIZE + 1,
+        'bg_color': '#F49E4C'
+    })
+
+    optional_field_format = workbook.add_format({
+        'font_name': DEFAULT_FONT,
+        'bottom': True,
+        'right': True,
+        'bold': False,
+        'text_wrap': True,
+        'valign': 'vcenter',
+        'font_size': DEFAULT_SIZE + 1,
+        'bg_color': '#C0DF85'
     })
 
     cf_field_format = workbook.add_format({
@@ -642,7 +655,18 @@ def make_xlsx(args, fields_list, metadata, conversions, data, metadata_df, DB, C
         'text_wrap': True,
         'valign': 'vcenter',
         'font_size': DEFAULT_SIZE + 1,
-        'bg_color': '#BDB9F6'
+        'bg_color': '#A4BFEB'
+    })
+
+    bounds_format = workbook.add_format({
+        'font_name': DEFAULT_FONT,
+        'bottom': True,
+        'right': True,
+        'bold': False,
+        'text_wrap': True,
+        'valign': 'vcenter',
+        'font_size': DEFAULT_SIZE + 1,
+        'bg_color': '#BCE7FD'
     })
 
     date_format = workbook.add_format({
@@ -663,15 +687,44 @@ def make_xlsx(args, fields_list, metadata, conversions, data, metadata_df, DB, C
         'num_format': 'hh:mm:ss'
         })
 
-    title_row = 1  # starting row
+    paste_message = "When pasting use 'paste special' / 'paste only' so not to overwrite cell restrictions"
+
+    # Key
+    if configuration == 'Learnings from Nansen Legacy logging system':
+        title_row = 7  # starting row
+        data_sheet.merge_range('A2:D2', 'Required', required_field_format)
+        data_sheet.merge_range('A3:D3', 'Recommended', recommended_field_format)
+        data_sheet.merge_range('A4:D4', 'Optional', optional_field_format)
+        data_sheet.merge_range('A5:D5', 'CF standard name', cf_field_format)
+        data_sheet.merge_range('A6:D6', paste_message)
+    elif configuration == 'CF-NetCDF':
+        title_row = 6
+        data_sheet.merge_range('A2:D2', 'CF standard name', cf_field_format)
+        data_sheet.merge_range('A3:D3', 'Cell bounds', bounds_format)
+        data_sheet.merge_range('A4:D4', 'Other fields', optional_field_format)
+        data_sheet.merge_range('A5:D5', paste_message)
+    else:
+        title_row = 2
+        data_sheet.merge_range('A1:D1', paste_message)
+
     start_row = title_row + 2
     parameter_row = title_row + 1  # Parameter row, hidden
     end_row = 20000  # ending row
 
-    # Loop over all the variables needed
-    ii = 0
+    config_dict = get_config_fields_dic(config=configuration, subconfig=subconfiguration)
+    list_of_lists = list(config_dict.values())
+    config_fields_list = []
+    for sublist in list_of_lists:
+        config_fields_list.extend(sublist)
 
-    config_fields_list = get_config_fields_list(config=configuration, subconfig=subconfiguration)
+    if configuration == 'Learnings from Nansen Legacy logging system':
+        required_fields = config_dict['Required']
+        recommended_fields = config_dict['Recommended']
+    else:
+        required_fields = recommended_fields = []
+
+    # Loop over all the variables/columns needed
+    ii = 0
 
     for field in fields.fields:
         if field['name'] in fields_list:
@@ -687,7 +740,14 @@ def make_xlsx(args, fields_list, metadata, conversions, data, metadata_df, DB, C
             while duplication > 0:
 
                 # Write title row
-                data_sheet.write(title_row, ii, field['disp_name'], field_format)
+                if field['name'] in required_fields:
+                    data_sheet.write(title_row, ii, field['disp_name'], required_field_format)
+                elif field['name'] in recommended_fields:
+                    data_sheet.write(title_row, ii, field['disp_name'], recommended_field_format)
+                else:
+                    data_sheet.write(title_row, ii, field['disp_name'], optional_field_format)
+
+                data_sheet.set_row(title_row, height=45)
 
                 # Write row below with parameter name
                 if field['name'] in ['pi_details','recordedBy_details']:
@@ -836,7 +896,7 @@ def make_xlsx(args, fields_list, metadata, conversions, data, metadata_df, DB, C
                     name = 'Maximum ' + field
 
                 # Write title row
-                data_sheet.write(title_row, ii, name, cf_field_format)
+                data_sheet.write(title_row, ii, name, bounds_format)
 
                 # Write row below with parameter name
                 data_sheet.write(parameter_row, ii, name.replace(' ','_'))
@@ -942,11 +1002,8 @@ def make_xlsx(args, fields_list, metadata, conversions, data, metadata_df, DB, C
 
 
     # Add header, done after the other to get correct format
-    data_sheet.write(0, 0, '', header_format)
-    # Add hint about pasting
-    data_sheet.merge_range(0, 1, 0, 7,
-                           "When pasting only use 'paste special' / 'paste only', selecting numbers and/or text ",
-                           header_format)
+    #data_sheet.write(0, 0, '', header_format)
+
     # Set height of row
     data_sheet.set_row(0, height=24)
 

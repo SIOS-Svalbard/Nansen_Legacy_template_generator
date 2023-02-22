@@ -30,7 +30,7 @@ def get_list_of_subconfigs(config):
 
     return subconfigs
 
-def get_config_fields_list(config, subconfig=None):
+def get_config_fields_dic(config, subconfig=None):
 
     configs = yaml.safe_load(open("Learnings_from_AeN_template_generator/config/template_configurations.yaml", encoding='utf-8'))['setups']
     #configs = yaml.safe_load(open("template_configurations.yaml", encoding='utf-8'))['setups']
@@ -40,14 +40,7 @@ def get_config_fields_list(config, subconfig=None):
     else:
         config_dict = configs[config]['fields'][0]
 
-    list_of_lists = list(config_dict.values())
-
-    fields_in_config_list = []
-
-    for sublist in list_of_lists:
-        fields_in_config_list.extend(sublist)
-
-    return fields_in_config_list
+    return config_dict
 
 def get_config_fields(config, subconfig=None):
 
