@@ -85,7 +85,7 @@ def acdd_to_df():
     if have_internet():
         acdd.pull_from_online()
         acdd.add_recommendations_column()
-        #acdd.output_to_csv()
+        acdd.output_to_csv()
     else:
         acdd.read_csv()
 

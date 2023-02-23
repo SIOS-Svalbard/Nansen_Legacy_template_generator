@@ -64,7 +64,7 @@ class CF_standard_names_json():
         self.dic = json.load(f)
 
 def cf_standard_names_to_dic():
-    cf_standard_names_json = CF_standard_names_json('config/cf_standard_names.json')
+    cf_standard_names_json = CF_standard_names_json('Learnings_from_AeN_template_generator/config/cf_standard_names.json')
     if have_internet():
         cf_standard_names_json.pull_from_online()
         cf_standard_names_json.create_json()
