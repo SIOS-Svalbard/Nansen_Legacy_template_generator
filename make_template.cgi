@@ -36,11 +36,16 @@ def print_html_template(output_config_dict, extra_fields_dict, groups, added_fie
     else:
         added_cf_names_bool = False
 
+    if config == 'CF-NetCDF':
+        description = 'Create spreadsheet templates that are easy to convert to CF-NetCDF files.'
+    elif config == 'Learnings from Nansen Legacy logging system':
+        description = 'Create spreadsheet templates that can be used in combination with the Learnings from Nansen Legacy logging system.'
+
     template = templates.get_template("generateTemplateIsolated.html")
     sys.stdout.flush()
     sys.stdout.buffer.write(b"Content-Type: text/html\n\n")
 
-    sys.stdout.buffer.write(template.render(output_config_dict = output_config_dict, extra_fields_dict = extra_fields_dict, groups = groups, added_fields_dic = added_fields_dic, added_fields_bool = added_fields_bool, cf_standard_names=cf_standard_names, cf_groups=cf_groups, added_cf_names_dic=added_cf_names_dic, added_cf_names_bool=added_cf_names_bool, list_of_configs=list_of_configs, list_of_subconfigs=list_of_subconfigs, config=config, subconfig=subconfig))
+    sys.stdout.buffer.write(template.render(output_config_dict = output_config_dict, extra_fields_dict = extra_fields_dict, groups = groups, added_fields_dic = added_fields_dic, added_fields_bool = added_fields_bool, cf_standard_names=cf_standard_names, cf_groups=cf_groups, added_cf_names_dic=added_cf_names_dic, added_cf_names_bool=added_cf_names_bool, list_of_configs=list_of_configs, list_of_subconfigs=list_of_subconfigs, config=config, subconfig=subconfig, description=description))
 
 cgitb.enable() # comment out when not developing tool
 
@@ -48,7 +53,7 @@ cookie = Cookie.SimpleCookie(os.environ.get("HTTP_COOKIE"))
 
 method = os.environ.get("REQUEST_METHOD", "GET")
 
-templates = TemplateLookup(directories = ['Learnings_from_AeN_template_generator/templates'], output_encoding='utf-8')
+templates = TemplateLookup(directories = ['templates'], output_encoding='utf-8')
 
 form = cgi.FieldStorage()
 
