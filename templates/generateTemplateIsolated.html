@@ -3,14 +3,13 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!--
     <link rel="icon" href="Learnings_from_AeN_template_generator/templates/cropped-Logo-Nansen-Legacy_favicon.webp"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    -->
-    <link rel="icon" href="Learnings_from_AeN_template_generator/templates/cropped-Logo-Nansen-Legacy_favicon.webp"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <!--<link rel="icon" href="Learnings_from_AeN_template_generator/templates/cropped-Logo-Nansen-Legacy_favicon.webp"/>
     <link rel="stylesheet" href="Learnings_from_AeN_template_generator/templates/bootstrap.min.css"/>
-    <link rel="stylesheet" href="Learnings_from_AeN_template_generator/templates/flatpickr.min.css">
+    <link rel="stylesheet" href="Learnings_from_AeN_template_generator/templates/flatpickr.min.css">-->
     <title>Learnings from Nansen Legacy template generator</title>
   </head>
 
@@ -73,7 +72,7 @@
             <h3>${col}</h3><br>
             % for key, field in fields.items():
             <div class="form-check">
-              <label class="form-check-label">
+              <label title='${field["description"]}' class="form-check-label">
                 <input
                   class="form-check-input form-control-lg"
                   type="checkbox"
@@ -84,7 +83,6 @@
                   % endif
                   >
                 ${field['disp_name']}
-                <img src="Learnings_from_AeN_template_generator/templates/info.png" alt="..." height="20" title="${field['description']}">
               </label>
 
             </div>
@@ -120,8 +118,12 @@
                       <div class="dropdown-menu pre-scrollable">
                          % for field, vals in extra_fields_dict.items():
                            % if vals['grouping'] == group:
-                             <label class="col-sm-9 col-form-label">${vals["disp_name"]} <img src="/usr/lib/cgi-bin/info.png" alt="..." height="14" title='${vals["description"]}'></label>
-                             <input type=checkbox class="col-sm-3" value=y name='${field}'>
+                           <div class="form-check">
+                             <label title='${vals["description"]}' class="col-sm-9 col-form-label">
+                               <input class="form-check-input" type="checkbox" id='${field}' name='${field}'>
+                               ${vals["disp_name"]}
+                             </label>
+                           </div>
                            % endif
                          % endfor
                        </div>
@@ -140,10 +142,9 @@
             % if added_fields_bool == True:
             % for key, field in added_fields_dic.items():
             <div class="form-check">
-              <label class="form-check-label">
+              <label title='${field["description"]}' class="form-check-label">
                 <input class="form-check-input" type="checkbox" id="${ key }" name="${ key }" checked>
                 ${field['disp_name']}
-                <img src="/usr/lib/cgi-bin/info.png" alt="..." height="20" title="${field['description']}">
               </label>
             </div>
             <br>
@@ -156,6 +157,7 @@
               Add CF standard names
             </button>
             <!-- Modal -->
+
             <div class="modal fade" id="cfModal" tabindex="-1" role="dialog" aria-labelledby="cfModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -167,34 +169,17 @@
                   </div>
                   <div class="modal-body">
                     <p>CF standard names as listed <a href="https://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html">here</a></p>
-                    % for group in cf_groups:
-                    <div class="dropdown">
-                      <button type="button" class="btn btn-light btn-lg btn-block dropdown-toggle" data-toggle="dropdown">
-                        ${group}
-                      </button>
-                      <div class="dropdown-menu pre-scrollable">
-                         % for field in cf_standard_names:
-                           % if group in field["id"]:
-                             <label class="col-sm-9 col-form-label">${field["id"]} <img src="/usr/lib/cgi-bin/info.png" alt="..." height="14" title='${field["description"]}'></label>
-                             <input type=checkbox class="col-sm-3" value=y name='${field["id"]}'>
-                           % endif
-                         % endfor
-                       </div>
-                    </div><br>
-                    % endfor
 
-                    <div class="dropdown">
-                      <button type="button" class="btn btn-light btn-lg btn-block dropdown-toggle" data-toggle="dropdown">
-                        All CF standard names
-                      </button>
-                      <div class="dropdown-menu pre-scrollable">
-                         % for field in cf_standard_names:
-                           <label class="col-sm-9 col-form-label">${field["id"]} <img src="/usr/lib/cgi-bin/info.png" alt="..." height="14" title='${field["description"]}'></label>
-                           <input type=checkbox class="col-sm-3" value=y name='${field["id"]}'>
-                         % endfor
-                       </div>
-                    </div><br>
-
+                    <div class="search-box">
+            					<input type="text" class="form-control" placeholder="Search...">
+            				</div>
+            				<div class="list-group">
+                      % for field in cf_standard_names:
+            					<label title='${field["description"]}' class="list-group-item dropdown-menu pre-scrollable">
+            						<input type="checkbox" name='${field["id"]}' value="y"> ${field["id"]}
+            					</label>
+                      % endfor
+            				</div>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -208,10 +193,9 @@
             % if added_cf_names_bool == True:
             % for key, field in added_cf_names_dic.items():
             <div class="form-check">
-              <label class="form-check-label">
+              <label title='${field["description"]}' class="form-check-label">
                 <input class="form-check-input" type="checkbox" id="${ key }" name="${ key }" checked>
                 ${field['disp_name']}
-                <img src="/usr/lib/cgi-bin/info.png" alt="..." height="20" title="${field['description']}">
               </label>
             </div>
             <br>
@@ -285,6 +269,29 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 
+    <script>
+      $(document).ready(function(){
+          $('.search_select_box select').selectpicker();
+      })
+    </script>
+
+    <script>
+  		$(document).ready(function(){
+  			// Search functionality
+  			$('.search-box input[type="text"]').on('keyup', function() {
+  				var searchText = $(this).val().toLowerCase();
+  				$('.list-group label').each(function() {
+  					var currentItemText = $(this).text().toLowerCase();
+  					if(currentItemText.indexOf(searchText) == -1) {
+  						$(this).hide();
+  					} else {
+  						$(this).show();
+  					}
+  				});
+  			});
+  		});
+  	</script>
   </body>
 </html>
