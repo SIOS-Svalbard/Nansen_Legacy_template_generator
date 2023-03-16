@@ -43,7 +43,7 @@
         </div><br>
 
         <div class="row">
-          {% if list_of_subconfigs %}:
+          {% if list_of_subconfigs %}
           <label class="col-sm-2 col-form-label" for="select-subconfig">Sub-configuration:</label>
           <div class="col-sm-5">
             <select class="form-control" id="select-subconfig" name="select-subconfig">
@@ -72,15 +72,15 @@
             <h3>{{col}}</h3><br>
             {% for key, field in fields.items() %}
             <div class="form-check">
-              <label title='${field["description"]}' class="form-check-label">
+              <label title='{{field["description"]}}' class="form-check-label">
                 <input
                   class="form-check-input form-control-lg"
                   type="checkbox"
-                  id="${key}"
-                  name="${key}"
-                  % if col == 'Required' or 'checked' in field.keys():
+                  id="{{key}}"
+                  name="{{key}}"
+                  {% if col == 'Required' or 'checked' in field.keys() %}
                   checked
-                  % endif
+                  {% endif %}
                   >
                 {{field['disp_name']}}
               </label>
@@ -119,8 +119,8 @@
                         {% for field, vals in extra_fields_dict.items() %}
                           {% if vals['grouping'] == group %}
                            <div class="form-check">
-                             <label title='${vals["description"]}' class="col-sm-9 col-form-label">
-                               <input class="form-check-input" type="checkbox" id='${field}' name='${field}'>
+                             <label title='{{vals["description"]}}' class="col-sm-9 col-form-label">
+                               <input class="form-check-input" type="checkbox" id='{{field}}' name='{{field}}'>
                                {{vals["disp_name"]}}
                              </label>
                            </div>
@@ -142,9 +142,9 @@
             {% if added_fields_bool == True %}
               {% for key, field in added_fields_dic.items() %}
                 <div class="form-check">
-                  <label title='${field["description"]}' class="form-check-label">
-                    <input class="form-check-input" type="checkbox" id="${ key }" name="${ key }" checked>
-                    ${field['disp_name']}
+                  <label title='{{field["description"]}}' class="form-check-label">
+                    <input class="form-check-input" type="checkbox" id="{{key}}" name="{{key}}" checked>
+                    {{field['disp_name']}}
                   </label>
                 </div>
                 <br>
@@ -175,8 +175,8 @@
             				</div>
             				<div class="list-group">
                       {% for field in cf_standard_names %}
-            					<label title='${field["description"]}' class="list-group-item dropdown-menu pre-scrollable">
-            						<input type="checkbox" name='${field["id"]}' value="y"> {{field["id"]}}
+            					<label title='{{field["description"]}}' class="list-group-item dropdown-menu pre-scrollable">
+            						<input type="checkbox" name='{{field["id"]}}' value="y"> {{field["id"]}}
             					</label>
                       {% endfor %}
             				</div>
@@ -193,8 +193,8 @@
             {% if added_cf_names_bool == True %}
               {% for key, field in added_cf_names_dic.items() %}
                 <div class="form-check">
-                  <label title='${field["description"]}' class="form-check-label">
-                    <input class="form-check-input" type="checkbox" id="${ key }" name="${ key }" checked>
+                  <label title='{{field["description"]}}' class="form-check-label">
+                    <input class="form-check-input" type="checkbox" id="{{key}}" name="{{key}}" checked>
                     {{field['disp_name']}}
                   </label>
                 </div>
