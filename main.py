@@ -4,7 +4,8 @@
 from website import create_app
 from website.lib.template import print_html_template
 from website.lib.get_configurations import *
-from flask import request
+from flask import request, send_file
+from website.lib.make_xlsx import write_file
 
 app = create_app()
 
@@ -82,18 +83,9 @@ def home():
                     output_config_dict[key][field]['checked'] = 'yes'
 
         if request.form['submitbutton'] == 'generateTemplate':
-
-            outputFileName = 'LFNL_template.xlsx'
-
-            print("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
-            print("Content-Disposition: attachment; filename="+outputFileName+"\n")
-            path = "/tmp/" + next(tempfile._get_candidate_names()) + '.xlsx'
-
-            mx.write_file(path, fields_list, metadata=True, conversions=True, configuration=config, subconfiguration=subconfig)
-
-            with open(path, "rb") as f:
-                sys.stdout.flush()
-                shutil.copyfileobj(f, sys.stdout.buffer)
+            filepath = '/tmp/LFNL_template.xlsx'
+            write_file(filepath, fields_list, metadata=True, conversions=True, configuration=config, subconfiguration=subconfig)
+            return send_file(filepath, as_attachment=True)
 
         else:
             return print_html_template(output_config_dict = output_config_dict, extra_fields_dict = extra_fields_dict, groups = groups, added_fields_dic = added_fields_dic, cf_standard_names = cf_standard_names, cf_groups = cf_groups, added_cf_names_dic = added_cf_names_dic, list_of_configs = list_of_configs, list_of_subconfigs=list_of_subconfigs, config=config, subconfig=subconfig)
