@@ -20,7 +20,7 @@ def print_html_template(output_config_dict, extra_fields_dict, groups, added_fie
         description = 'Create spreadsheet templates that can be used in combination with the Learnings from Nansen Legacy logging system.'
 
     return render_template(
-        "generateTemplateIsolated.html",
+        "home.html",
         output_config_dict = output_config_dict,
         extra_fields_dict = extra_fields_dict,
         groups = groups,
