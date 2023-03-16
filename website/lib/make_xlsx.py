@@ -20,10 +20,10 @@ config_dir = os.path.abspath(os.path.join(
 sys.path.append(config_dir)
 
 import fields as fields
-import metadata_fields as metadata_fields
-from pull_cf_standard_names import cf_standard_names_to_dic
-from pull_acdd_conventions import acdd_to_df
-from get_configurations import get_config_fields_dic
+#import metadata_fields as metadata_fields
+from .pull_cf_standard_names import cf_standard_names_to_dic
+from .pull_acdd_conventions import acdd_to_df
+from .get_configurations import get_config_fields_dic
 import os
 from argparse import Namespace
 #from website.database.get_data import get_data, get_personnel_list, get_cruise
@@ -362,11 +362,11 @@ def write_readme(args, workbook, config=None):
     })
 
     if config == 'CF-NetCDF':
-        readme_file = 'Learnings_from_AeN_template_generator/config/cfnetcdf_readme.txt'
+        readme_file = 'website/config/cfnetcdf_readme.txt'
     elif config == 'Learnings from Nansen Legacy logging system':
-        readme_file = 'Learnings_from_AeN_template_generator/config/lfnl_readme.txt'
+        readme_file = 'website/config/lfnl_readme.txt'
     elif config == 'Darwin Core':
-        readme_file = 'Learnings_from_AeN_template_generator/config/dwc_readme.txt'
+        readme_file = 'website/config/dwc_readme.txt'
 
     with open(readme_file, 'r') as file:
         for idx, line in enumerate(file):
@@ -786,7 +786,7 @@ def make_xlsx(args, fields_list, metadata, conversions, data, metadata_df, DB, C
                             # Add the validation variable to the hidden sheet
                             table = valid_copy['source']
                             if not DB:
-                                df = pd.read_csv(f'Learnings_from_AeN_template_generator/config/{table}.csv')
+                                df = pd.read_csv(f'website/config/{table}.csv')
                             else:
                                 try:
                                     df = get_data(DB, table)

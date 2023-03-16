@@ -3,9 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="Learnings_from_AeN_template_generator/templates/cropped-Logo-Nansen-Legacy_favicon.webp"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="icon" href="{{ url_for('static', filename='cropped-Logo-Nansen-Legacy_favicon.webp')}}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css')}}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='flatpickr.min.css')}}">
+    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
     <!--<link rel="icon" href="Learnings_from_AeN_template_generator/templates/cropped-Logo-Nansen-Legacy_favicon.webp"/>
     <link rel="stylesheet" href="Learnings_from_AeN_template_generator/templates/bootstrap.min.css"/>
@@ -17,7 +19,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
-      <a class="navbar-brand" style="padding-left:15px" href="/"><img src="Learnings_from_AeN_template_generator/templates/cropped-Logo-Nansen-Legacy_favicon.webp" alt="..." height="72"> Learnings from Nansen Legacy logging system</a>
+      <a class="navbar-brand" style="padding-left:15px" href="/"><img src="{{ url_for('static', filename='cropped-Logo-Nansen-Legacy_favicon.webp')}}" alt="The Nansen Legacy" height="72"> Learnings from Nansen Legacy logging system</a>
 
     </nav>
 
@@ -29,12 +31,12 @@
           <label class="col-sm-2 col-form-label" for="select-config">Configuration:</label>
           <div class="col-sm-5">
             <select class="form-control" id="select-config" name="select-config">
-              <option selected="selected">${config}</option>
-              % for ii in list_of_configs:
-              % if ii != config:
-              <option>${ii}</option>
-              % endif
-              % endfor
+              <option selected="selected">{{config}}</option>
+              {% for ii in list_of_configs %}
+                {% if ii != config %}
+                  <option>{{ii}}</option>
+                {% endif %}
+              {% endfor %}
             </select>
           </div>
           <div class="col-sm-1">
@@ -43,53 +45,53 @@
         </div><br>
 
         <div class="row">
-          % if list_of_subconfigs:
+          {% if list_of_subconfigs %}
           <label class="col-sm-2 col-form-label" for="select-subconfig">Sub-configuration:</label>
           <div class="col-sm-5">
             <select class="form-control" id="select-subconfig" name="select-subconfig">
-              <option selected="selected">${subconfig}</option>
-              % for ii in list_of_subconfigs:
-              % if ii != subconfig:
-              <option>${ii}</option>
-              % endif
-              % endfor
+              <option selected="selected">{{subconfig}}</option>
+              {% for ii in list_of_subconfigs %}
+                {% if ii != subconfig %}
+                  <option>{{ii}}</option>
+                {% endif %}
+              {% endfor %}
             </select>
           </div>
           <div class="col-sm-1">
             <button class="btn btn-secondary" type="submit" name="submitbutton" value="selectSubConfig">Select</button>
           </div>
-          % endif
+          {% endif %}
         </div>
         <br>
 
-        <p>${description}</p><br><br>
+        <p>{{description}}</p><br><br>
 
         <div class="form-row">
           <!--Configuration required/recommended fields-->
-          % for col, fields in output_config_dict.items():
+          {% for col, fields in output_config_dict.items() %}
           <div class="col-md-4">
 
-            <h3>${col}</h3><br>
-            % for key, field in fields.items():
+            <h3>{{col}}</h3><br>
+            {% for key, field in fields.items() %}
             <div class="form-check">
-              <label title='${field["description"]}' class="form-check-label">
+              <label title='{{field["description"]}}' class="form-check-label">
                 <input
                   class="form-check-input form-control-lg"
                   type="checkbox"
-                  id="${key}"
-                  name="${key}"
-                  % if col == 'Required' or 'checked' in field.keys():
+                  id="{{key}}"
+                  name="{{key}}"
+                  {% if col == 'Required' or 'checked' in field.keys() %}
                   checked
-                  % endif
+                  {% endif %}
                   >
-                ${field['disp_name']}
+                {{field['disp_name']}}
               </label>
 
             </div>
             <br>
-            % endfor
+            {% endfor %}
           </div>
-          % endfor
+          {% endfor %}
 
           <!--Add more fields-->
           <div class="col-md-4">
@@ -110,25 +112,25 @@
                     </button>
                   </div>
                   <div class="modal-body">
-                    % for group in groups:
+                    {% for group in groups %}
                     <div class="dropdown">
                       <button type="button" class="btn btn-light btn-lg btn-block dropdown-toggle" data-toggle="dropdown">
-                        ${group}
+                        {{group}}
                       </button>
                       <div class="dropdown-menu pre-scrollable">
-                         % for field, vals in extra_fields_dict.items():
-                           % if vals['grouping'] == group:
+                        {% for field, vals in extra_fields_dict.items() %}
+                          {% if vals['grouping'] == group %}
                            <div class="form-check">
-                             <label title='${vals["description"]}' class="col-sm-9 col-form-label">
-                               <input class="form-check-input" type="checkbox" id='${field}' name='${field}'>
-                               ${vals["disp_name"]}
+                             <label title='{{vals["description"]}}' class="col-sm-9 col-form-label">
+                               <input class="form-check-input" type="checkbox" id='{{field}}' name='{{field}}'>
+                               {{vals["disp_name"]}}
                              </label>
                            </div>
-                           % endif
-                         % endfor
+                          {% endif %}
+                        {% endfor %}
                        </div>
                     </div><br>
-                    % endfor
+                    {% endfor %}
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -139,17 +141,17 @@
             </div><br>
 
             <!--List of extra fields that have been added-->
-            % if added_fields_bool == True:
-            % for key, field in added_fields_dic.items():
-            <div class="form-check">
-              <label title='${field["description"]}' class="form-check-label">
-                <input class="form-check-input" type="checkbox" id="${ key }" name="${ key }" checked>
-                ${field['disp_name']}
-              </label>
-            </div>
-            <br>
-            % endfor
-            % endif
+            {% if added_fields_bool == True %}
+              {% for key, field in added_fields_dic.items() %}
+                <div class="form-check">
+                  <label title='{{field["description"]}}' class="form-check-label">
+                    <input class="form-check-input" type="checkbox" id="{{key}}" name="{{key}}" checked>
+                    {{field['disp_name']}}
+                  </label>
+                </div>
+                <br>
+              {% endfor %}
+            {% endif %}
 
             <!--CF standard names-->
             <!-- Button trigger modal for fields -->
@@ -174,11 +176,11 @@
             					<input type="text" class="form-control" placeholder="Search...">
             				</div>
             				<div class="list-group">
-                      % for field in cf_standard_names:
-            					<label title='${field["description"]}' class="list-group-item dropdown-menu pre-scrollable">
-            						<input type="checkbox" name='${field["id"]}' value="y"> ${field["id"]}
+                      {% for field in cf_standard_names %}
+            					<label title='{{field["description"]}}' class="list-group-item dropdown-menu pre-scrollable">
+            						<input type="checkbox" name='{{field["id"]}}' value="y"> {{field["id"]}}
             					</label>
-                      % endfor
+                      {% endfor %}
             				</div>
                   </div>
                   <div class="modal-footer">
@@ -190,17 +192,17 @@
             </div><br>
 
             <!--List of CF standard names that have been selected-->
-            % if added_cf_names_bool == True:
-            % for key, field in added_cf_names_dic.items():
-            <div class="form-check">
-              <label title='${field["description"]}' class="form-check-label">
-                <input class="form-check-input" type="checkbox" id="${ key }" name="${ key }" checked>
-                ${field['disp_name']}
-              </label>
-            </div>
-            <br>
-            % endfor
-            % endif
+            {% if added_cf_names_bool == True %}
+              {% for key, field in added_cf_names_dic.items() %}
+                <div class="form-check">
+                  <label title='{{field["description"]}}' class="form-check-label">
+                    <input class="form-check-input" type="checkbox" id="{{key}}" name="{{key}}" checked>
+                    {{field['disp_name']}}
+                  </label>
+                </div>
+                <br>
+              {% endfor %}
+            {% endif %}
 
             <!--Darwin Core Terms-->
             <!-- Button trigger modal for fields -->

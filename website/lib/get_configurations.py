@@ -6,12 +6,12 @@ config_dir = os.path.abspath(os.path.join(
 
 sys.path.append(config_dir)
 import fields as fields
-from pull_cf_standard_names import cf_standard_names_to_dic
+from .pull_cf_standard_names import cf_standard_names_to_dic
 #import pandas as pd
 
 def get_list_of_configs():
 
-    configs = yaml.safe_load(open("Learnings_from_AeN_template_generator/config/template_configurations.yaml", encoding='utf-8'))['setups']
+    configs = yaml.safe_load(open("website/config/template_configurations.yaml", encoding='utf-8'))['setups']
     configs_list = []
 
     for config in configs:
@@ -21,7 +21,7 @@ def get_list_of_configs():
 
 def get_list_of_subconfigs(config):
 
-    configs = yaml.safe_load(open("Learnings_from_AeN_template_generator/config/template_configurations.yaml", encoding='utf-8'))['setups']
+    configs = yaml.safe_load(open("website/config/template_configurations.yaml", encoding='utf-8'))['setups']
     subconfigs = []
 
     if config == 'Learnings from Nansen Legacy logging system':
@@ -32,7 +32,7 @@ def get_list_of_subconfigs(config):
 
 def get_config_fields_dic(config, subconfig=None):
 
-    configs = yaml.safe_load(open("Learnings_from_AeN_template_generator/config/template_configurations.yaml", encoding='utf-8'))['setups']
+    configs = yaml.safe_load(open("website/config/template_configurations.yaml", encoding='utf-8'))['setups']
 
     if subconfig:
         config_dict = configs[config][subconfig]['fields'][0]
@@ -43,7 +43,7 @@ def get_config_fields_dic(config, subconfig=None):
 
 def get_config_fields(config, subconfig=None):
 
-    configs = yaml.safe_load(open("Learnings_from_AeN_template_generator/config/template_configurations.yaml", encoding='utf-8'))['setups']
+    configs = yaml.safe_load(open("website/config/template_configurations.yaml", encoding='utf-8'))['setups']
 
     if subconfig:
         config_dict = configs[config][subconfig]['fields'][0]

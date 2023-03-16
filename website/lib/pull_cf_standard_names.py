@@ -14,7 +14,7 @@ config_dir = os.path.abspath(os.path.join(
     os.path.dirname(__file__), '..', 'config'))
 
 sys.path.append(config_dir)
-from check_internet import have_internet
+from .check_internet import have_internet
 
 class CF_standard_names_json():
     '''
@@ -64,7 +64,7 @@ class CF_standard_names_json():
         self.dic = json.load(f)
 
 def cf_standard_names_to_dic():
-    cf_standard_names_json = CF_standard_names_json('Learnings_from_AeN_template_generator/config/cf_standard_names.json')
+    cf_standard_names_json = CF_standard_names_json('website/config/cf_standard_names.json')
     if have_internet():
         cf_standard_names_json.pull_from_online()
         cf_standard_names_json.create_json()

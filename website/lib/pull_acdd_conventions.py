@@ -14,7 +14,7 @@ config_dir = os.path.abspath(os.path.join(
     os.path.dirname(__file__), '..', 'config'))
 
 sys.path.append(config_dir)
-from check_internet import have_internet
+from .check_internet import have_internet
 
 class ACDD_conventions_df():
     '''
@@ -32,7 +32,7 @@ class ACDD_conventions_df():
         filename: string
             The name of the json file to be written
         """
-        self.filename = 'Learnings_from_AeN_template_generator/config/acdd_conventions.csv'
+        self.filename = 'website/config/acdd_conventions.csv'
 
 
     def pull_from_online(self):
