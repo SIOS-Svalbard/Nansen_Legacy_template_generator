@@ -5,3 +5,4 @@ datetime
 numpy
 pyyaml
 XlsxWriter
+lxml
