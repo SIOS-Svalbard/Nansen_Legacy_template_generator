@@ -11,7 +11,6 @@ app = create_app()
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-
     config = request.form.get("select-config", "CF-NetCDF")
 
     if config == 'Learnings from Nansen Legacy logging system':
