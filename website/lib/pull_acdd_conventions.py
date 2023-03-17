@@ -80,16 +80,18 @@ class ACDD_conventions_df():
         self.df = pd.read_csv(self.filename, index_col=False)
 
 
+
+
+def acdd_conventions_update():
+    acdd = ACDD_conventions_df()
+    if not have_internet():
+        raise Exception("cannot update ACDD conventions, no internet")
+    acdd.pull_from_online()
+    acdd.add_recommendations_column()
+    acdd.output_to_csv()
+
+
 def acdd_to_df():
     acdd = ACDD_conventions_df()
-    if have_internet():
-        acdd.pull_from_online()
-        acdd.add_recommendations_column()
-        acdd.output_to_csv()
-    else:
-        acdd.read_csv()
-
+    acdd.read_csv()
     return acdd.df
-
-if __name__ == '__main__':
-    acdd_to_df()

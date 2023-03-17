@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+from flask import request, send_file
+import json
+
 from website import create_app
 from website.lib.template import print_html_template
 from website.lib.get_configurations import *
-from flask import request, send_file
 from website.lib.make_xlsx import write_file
+from website.lib.pull_cf_standard_names import cf_standard_names_update
+from website.lib.pull_acdd_conventions import acdd_conventions_update
 
 app = create_app()
 
@@ -125,6 +129,20 @@ def home():
             config=config,
             subconfig=subconfig,
         )
+
+@app.route("/update", methods=["POST"])
+def update_config():
+    """
+    updates the ACDD Conventions and the CF standard names
+    in the config directory.
+    """
+    try:
+        acdd_conventions_update()
+        cf_standard_names_update()
+        return '"OK"'
+    except Exception as e:
+        return json.dumps(str(e)), 500
+
 
 
 if __name__ == "__main__":

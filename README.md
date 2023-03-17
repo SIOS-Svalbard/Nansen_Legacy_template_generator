@@ -1,6 +1,6 @@
 # Learnings_from_AeN_template_generator
 
-Learnings from AeN template generator is designed based on experiences gained during the Nansen Legacy project (Arven etter Nansen - AeN). This template generator will be used to create spreadsheet templates that include columns based on both the NetCDF Climate and Forecast (CF) Metadata Conventions and Darwin Core. 
+Learnings from AeN template generator is designed based on experiences gained during the Nansen Legacy project (Arven etter Nansen - AeN). This template generator will be used to create spreadsheet templates that include columns based on both the NetCDF Climate and Forecast (CF) Metadata Conventions and Darwin Core.
 
 CF Conventions: https://cfconventions.org/
 Darwin Core: https://dwc.tdwg.org/
@@ -21,4 +21,16 @@ This application was developed with Python version 3.8.10
 git clone <repo-url>
 
 pip install -r requirements.txt
+```
+
+The field definitions are not updated automatically
+
+Either run
+```sh
+make update-config
+```
+
+or when the source is not available but the Flask server is running
+```sh
+curl -X POST http://localhost:5000/update
 ```
