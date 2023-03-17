@@ -1,0 +1,72 @@
+id,intendedmethod,comment
+2ce8c13a-bfe6-11ec-9d64-0242ac120002,14C AMS dating,
+2ce8c3e2-bfe6-11ec-9d64-0242ac120002,AADI,
+2ce8c536-bfe6-11ec-9d64-0242ac120002,Abundance,
+2ce8c8f6-bfe6-11ec-9d64-0242ac120002,Activity,
+2ce8ca90-bfe6-11ec-9d64-0242ac120002,aDNA,Ancient DNA
+2ce8cbee-bfe6-11ec-9d64-0242ac120002,Algae aggregates,
+2ce8cd92-bfe6-11ec-9d64-0242ac120002,AT/DIC/pH,
+2ce8cee6-bfe6-11ec-9d64-0242ac120002,Barcoding,
+2ce8d01c-bfe6-11ec-9d64-0242ac120002,Bio bulk,Ice cores for biological processing
+2ce8d148-bfe6-11ec-9d64-0242ac120002,Biomass,
+2ce8d77e-bfe6-11ec-9d64-0242ac120002,CDOM,Colored dissolved organic matter
+2ce8d8fa-bfe6-11ec-9d64-0242ac120002,Chlorophyll a > 10 um,
+2ce8da26-bfe6-11ec-9d64-0242ac120002,Chlorophyll a tot,
+2ce8db48-bfe6-11ec-9d64-0242ac120002,d13C,
+2ce8dc74-bfe6-11ec-9d64-0242ac120002,d18O,
+2ce8dd96-bfe6-11ec-9d64-0242ac120002,dCSP,dissolved Coomassie stainable particles
+2ce8deb8-bfe6-11ec-9d64-0242ac120002,dD,
+2ce8dfe4-bfe6-11ec-9d64-0242ac120002,DIC,Dissolved inorganic carbon
+2ce8e494-bfe6-11ec-9d64-0242ac120002,Diet,New
+2ce8e638-bfe6-11ec-9d64-0242ac120002,Dilution culture,
+2ce8e764-bfe6-11ec-9d64-0242ac120002,Dinocysts,Recorded from Paleo cores
+2ce8e8a4-bfe6-11ec-9d64-0242ac120002,Dissolved Organic Carbon,
+2ce8eb4c-bfe6-11ec-9d64-0242ac120002,Dissolved trace elements,
+2ce8ed68-bfe6-11ec-9d64-0242ac120002,Diversity,
+2ce8ef02-bfe6-11ec-9d64-0242ac120002,DNA,
+2ce8f088-bfe6-11ec-9d64-0242ac120002,DO, dissolved oxygen
+2ce8f45c-bfe6-11ec-9d64-0242ac120002,dTEP,dissolved Transparent exopolymeric particles
+2ce8f56a-bfe6-11ec-9d64-0242ac120002,Ecotoxicology,
+2ce8f68c-bfe6-11ec-9d64-0242ac120002,Ecotoxicology,
+2ce8f79a-bfe6-11ec-9d64-0242ac120002,eDNA,environmental DNA
+2ce8f8b2-bfe6-11ec-9d64-0242ac120002,Electron microscopy (SEM filter),
+2ce8f9de-bfe6-11ec-9d64-0242ac120002,Fatty acids,
+2ce8fb0a-bfe6-11ec-9d64-0242ac120002,FDOM,Flourescent dissolved organic matter
+2ce8ff7e-bfe6-11ec-9d64-0242ac120002,Fecal pellet flux,Taken from sediment traps
+2ce900d2-bfe6-11ec-9d64-0242ac120002,Female:egg ratio,New
+2ce90208-bfe6-11ec-9d64-0242ac120002,FISH-EPS,Fluorescent in situ hybridization EPS is exopolymeric substances
+2ce90320-bfe6-11ec-9d64-0242ac120002,FISH-Mixotrophy,
+2ce90438-bfe6-11ec-9d64-0242ac120002,Gelatinous zooplankton taxonomy,New
+2ce90564-bfe6-11ec-9d64-0242ac120002,Gelatinous zooplankton volume,New
+2ce90690-bfe6-11ec-9d64-0242ac120002,Grain size,Sediment grain size
+2ce907ee-bfe6-11ec-9d64-0242ac120002,HBI,
+2ce90a96-bfe6-11ec-9d64-0242ac120002,Highly branched isoprenoids (HBI),
+2ce90bae-bfe6-11ec-9d64-0242ac120002,HPLC,High-performance liquid chromatography
+2ce90cd0-bfe6-11ec-9d64-0242ac120002,iDNA,intestinal DNA
+2ce90de8-bfe6-11ec-9d64-0242ac120002,IP25,Ice algal biomarker
+2ce90f00-bfe6-11ec-9d64-0242ac120002,ISUS,
+2ce9102c-bfe6-11ec-9d64-0242ac120002,Metabarcoding,
+2ce913f6-bfe6-11ec-9d64-0242ac120002,Metagenomics,
+2ce9157c-bfe6-11ec-9d64-0242ac120002,Methylmercury, remarks can for instance be PET or PC Bottle
+2ce91784-bfe6-11ec-9d64-0242ac120002,Mixotrophy FISH,Fluorescence in situ hybridization of mixotrophy samples
+2ce91900-bfe6-11ec-9d64-0242ac120002,Nutrients,"Nitrate, nitrite,phosphate and silicic acid"
+2ce91a22-bfe6-11ec-9d64-0242ac120002,Organic matter characterization,Samples taken from Niskin
+2ce91b30-bfe6-11ec-9d64-0242ac120002,Particulate absorption,
+2ce91c48-bfe6-11ec-9d64-0242ac120002,Particulate elements, Needed to differentiate from trace
+2ce91d60-bfe6-11ec-9d64-0242ac120002,pCSP,particulate Coomassie stainable particles
+2ce92044-bfe6-11ec-9d64-0242ac120002,POC/PON,
+2ce922ba-bfe6-11ec-9d64-0242ac120002,Primary production (14C-CO2),
+2ce923dc-bfe6-11ec-9d64-0242ac120002,Production,
+2ce924ea-bfe6-11ec-9d64-0242ac120002,pTEP,particulate Transparent exopolymeric particles
+2ce925ee-bfe6-11ec-9d64-0242ac120002,Sediment incubation,"Sample type (?) instead of ""material"""
+2ce926fc-bfe6-11ec-9d64-0242ac120002,Sediment pigments,
+2ce92800-bfe6-11ec-9d64-0242ac120002,Sediment porosity,
+2ce92b84-bfe6-11ec-9d64-0242ac120002,Seston elemental composition, Method can be XRF
+2ce92d28-bfe6-11ec-9d64-0242ac120002,Stable isotopes,
+2ce92e4a-bfe6-11ec-9d64-0242ac120002,Taxonomy,
+2ce92f8a-bfe6-11ec-9d64-0242ac120002,Total Mercury, Remarks can be Glass vial
+2ce930f2-bfe6-11ec-9d64-0242ac120002,Total Nitrogen,
+2ce93214-bfe6-11ec-9d64-0242ac120002,Total organic carbon,
+2ce93340-bfe6-11ec-9d64-0242ac120002,Total thickness ice+snow,
+2ce9350c-bfe6-11ec-9d64-0242ac120002,Trace elements,sampling with GO-FLO in a clean lab
+2ce9380e-bfe6-11ec-9d64-0242ac120002,Viral decay,
