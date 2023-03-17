@@ -135,9 +135,6 @@ def update_config():
     """
     updates the ACDD Conventions and the CF standard names
     in the config directory.
-
-    Can be invoked by e.g.:
-    curl -X POST http://localhost:5000/update
     """
     try:
         acdd_conventions_update()
