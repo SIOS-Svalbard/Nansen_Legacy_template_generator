@@ -19,9 +19,6 @@ def home():
     else:
         subconfig = None
 
-    # config = 'CF-NetCDF'
-    # subconfig = None
-
     list_of_configs = get_list_of_configs()
     list_of_subconfigs = get_list_of_subconfigs(config = config)
 
@@ -57,9 +54,6 @@ def home():
         )
 
     if request.form['submitbutton'] not in ['selectConfig', 'selectSubConfig']:
-        print('-------------------------')
-        print(request.form)
-
         for field in cf_standard_names:
             if field['id'] in request.form and field['id'] not in output_config_fields:
                 fields_list.append(field['id'])
