@@ -52,26 +52,27 @@ class CF_standard_names_json():
 
 
     def create_json(self):
-
         self.dic = self.df.to_dict(orient='records')
-        # Uncomment when in production
-        #with open(self.filename, 'w', encoding='utf-8') as f:
-        #    json.dump(self.dic, f, ensure_ascii=False, indent=4)
+        with open(self.filename, 'w', encoding='utf-8') as f:
+           json.dump(self.dic, f, ensure_ascii=False, indent=4)
 
     def load_json(self):
-
         f = open(self.filename)
         self.dic = json.load(f)
 
+
+PATH = 'website/config/cf_standard_names.json'
+
+
+def cf_standard_names_update():
+    cf_standard_names_json = CF_standard_names_json(PATH)
+    if not have_internet():
+        raise Exception("cannot update CF standard names, no internet")
+    cf_standard_names_json.pull_from_online()
+    cf_standard_names_json.create_json()
+
+
 def cf_standard_names_to_dic():
-    cf_standard_names_json = CF_standard_names_json('website/config/cf_standard_names.json')
-    if have_internet():
-        cf_standard_names_json.pull_from_online()
-        cf_standard_names_json.create_json()
-    else:
-        cf_standard_names_json.load_json()
-
+    cf_standard_names_json = CF_standard_names_json(PATH)
+    cf_standard_names_json.load_json()
     return cf_standard_names_json.dic
-
-if __name__ == '__main__':
-    cf_standard_names_to_dic()
