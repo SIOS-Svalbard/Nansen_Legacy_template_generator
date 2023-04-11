@@ -18,6 +18,8 @@ def print_html_template(output_config_dict, extra_fields_dict, groups, added_fie
         description = 'Create spreadsheet templates that are easy to convert to CF-NetCDF files.'
     elif config == 'Learnings from Nansen Legacy logging system':
         description = 'Create spreadsheet templates that can be used in combination with the Learnings from Nansen Legacy logging system.'
+    elif config == 'Darwin Core':
+        description = 'Create spreadsheet templates that can be used to create Darwin Core cores and extension CSVs. Each sheet below represents one core or extension.'
 
     return render_template(
         "home.html",
