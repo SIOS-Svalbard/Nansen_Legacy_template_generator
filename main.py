@@ -34,14 +34,17 @@ def home():
         extra_fields_dict,
         cf_standard_names,
         groups,
+        dwc_conf_dict
     ) = get_config_fields(config=config, subconfig=subconfig)
 
     # Creating a dictionary of all the fields.
     all_fields_dict = extra_fields_dict.copy()
 
-    for key in output_config_dict.keys():
-        for field, values in output_config_dict[key].items():
-            all_fields_dict[field] = values
+    for sheet in output_config_dict.keys():
+        for key in output_config_dict[sheet].keys():
+            if key not in ['Required CSV', 'Source']:
+                for field, values in output_config_dict[sheet][key].items():
+                    all_fields_dict[field] = values
 
     cf_groups = ["sea_water", "sea_ice"]
     added_fields_dic = {}
