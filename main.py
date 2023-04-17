@@ -19,15 +19,19 @@ def home():
 
     config = request.form.get("select-config", "CF-NetCDF")
 
-    if config == "Learnings from Nansen Legacy logging system":
-        subconfig = request.form.get("select-subconfig", "default")
-    elif config == 'Darwin Core':
-        subconfig = request.form.get("select-subconfig", "Sampling Event")
-    else:
-        subconfig = None
-
     list_of_configs = get_list_of_configs()
     list_of_subconfigs = get_list_of_subconfigs(config=config)
+
+    if config == "Learnings from Nansen Legacy logging system":
+        subconfig = request.form.get("select-subconfig", "default")
+        if subconfig not in list_of_subconfigs:
+            subconfig = 'default'
+    elif config == 'Darwin Core':
+        subconfig = request.form.get("select-subconfig", "Sampling Event")
+        if subconfig not in list_of_subconfigs:
+            subconfig = 'Sampling Event'
+    else:
+        subconfig = None
 
     # Getting setup specific to this configuration
     (
