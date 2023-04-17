@@ -47,14 +47,19 @@ def home():
     # Creating a dictionary of all the fields.
     all_fields_dict = extra_fields_dict.copy()
     sheets = []
+    compulsary_sheets = []
 
     for sheet in output_config_dict.keys():
+        if output_config_dict[sheet]['Required CSV'] == True:
+            compulsary_sheets.append(sheet)
         added_sheet = request.form.get("submitbutton", None)
         if 'add_'+sheet == added_sheet:
             output_config_dict[sheet]['Required CSV'] = True
         for key, val in request.form.items():
             if key.startswith(sheet):
                 output_config_dict[sheet]['Required CSV'] = True
+        if 'remove_'+sheet == added_sheet:
+            output_config_dict[sheet]['Required CSV'] = False
         for key in output_config_dict[sheet].keys():
             if key not in ['Required CSV', 'Source']:
                 for field, values in output_config_dict[sheet][key].items():
@@ -66,6 +71,7 @@ def home():
 
     print('------------')
     print(sheets)
+    print(compulsary_sheets)
     print('------------')
     cf_groups = ["sea_water", "sea_ice"]
     added_fields_dic = {}
@@ -86,6 +92,7 @@ def home():
             list_of_subconfigs=list_of_subconfigs,
             config=config,
             subconfig=subconfig,
+            compulsary_sheets=compulsary_sheets
         )
 
     if request.form["submitbutton"] not in ["selectConfig", "selectSubConfig"]:
@@ -138,6 +145,7 @@ def home():
                 list_of_subconfigs=list_of_subconfigs,
                 config=config,
                 subconfig=subconfig,
+                compulsary_sheets=compulsary_sheets
             )
     else:
         return print_html_template(
@@ -152,6 +160,7 @@ def home():
             list_of_subconfigs=list_of_subconfigs,
             config=config,
             subconfig=subconfig,
+            compulsary_sheets=compulsary_sheets
         )
 
 @app.route("/update", methods=["POST"])

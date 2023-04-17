@@ -84,6 +84,10 @@
               {% endif %}
               <br>
 
+              {% if sheet not in compulsary_sheets %}
+                <button class="btn btn-outline-danger btn-sm" type="submit" name="submitbutton" value="remove_{{sheet}}">Remove {{sheet}}</button><br><br>
+              {% endif %}
+
               <div class="form-row">
                 <!--Configuration required/recommended fields-->
                 {% for col, fields in output_config_dict[sheet].items() %}
@@ -256,10 +260,6 @@
                     Add Darwin Core terms
                   </button>
                   -->
-
-
-
-
 
                 </div>
 

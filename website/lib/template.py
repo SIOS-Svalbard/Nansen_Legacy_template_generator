@@ -1,6 +1,6 @@
 from flask import render_template
 
-def print_html_template(output_config_dict, extra_fields_dict, groups, added_fields_dic, cf_standard_names, cf_groups, added_cf_names_dic, list_of_configs, config, list_of_subconfigs=None, subconfig=None):
+def print_html_template(output_config_dict, extra_fields_dict, groups, added_fields_dic, cf_standard_names, cf_groups, added_cf_names_dic, list_of_configs, config, list_of_subconfigs=None, subconfig=None, compulsary_sheets=None):
     '''
     Prints the html template. Excluding closing the <main> element which must be closed at the bottom of this script
     '''
@@ -36,5 +36,6 @@ def print_html_template(output_config_dict, extra_fields_dict, groups, added_fie
         list_of_subconfigs=list_of_subconfigs,
         config=config,
         subconfig=subconfig,
-        description=description
+        description=description,
+        compulsary_sheets=compulsary_sheets
     )
