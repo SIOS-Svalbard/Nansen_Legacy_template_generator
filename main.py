@@ -50,16 +50,19 @@ def home():
 
     for sheet in output_config_dict.keys():
         added_sheet = request.form.get("submitbutton", None)
-        print('added_sheet: ',added_sheet)
         if 'add_'+sheet == added_sheet:
             output_config_dict[sheet]['Required CSV'] = True
+        for key, val in request.form.items():
+            if key.startswith(sheet):
+                output_config_dict[sheet]['Required CSV'] = True
         for key in output_config_dict[sheet].keys():
             if key not in ['Required CSV', 'Source']:
                 for field, values in output_config_dict[sheet][key].items():
-                    print('field: ', field)
                     all_fields_dict[field] = values
         if output_config_dict[sheet]['Required CSV'] == True:
             sheets.append(sheet)
+
+
 
     print('------------')
     print(sheets)

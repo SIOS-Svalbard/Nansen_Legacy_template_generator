@@ -69,7 +69,7 @@
         {% for sheet in output_config_dict.keys() %}
           {% if output_config_dict[sheet]['Required CSV'] == False %}
           <!--Option to add extensions that aren't required-->
-            <button class="btn btn-outline-success btn-sm" type="submit" name="submitbutton" value="{{sheet}}">Add {{sheet}}</button>
+            <button class="btn btn-outline-success btn-sm" type="submit" name="submitbutton" value="add_{{sheet}}">Add {{sheet}}</button>
           {% endif %}
         {% endfor %}
         <br><br>
@@ -266,8 +266,6 @@
               </div><hr class="bg-dark"><br>
 
             {% else %}
-            <!--Option to add extensions that aren't required-->
-              <button class="btn btn-outline-success btn-sm" type="submit" name="submitbutton" value="add_{{sheet}}">Add {{sheet}}</button>
             {% endif %}
         {% endfor %}
 
