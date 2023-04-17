@@ -4,15 +4,19 @@ def print_html_template(output_config_dict, extra_fields_dict, groups, added_fie
     '''
     Prints the html template. Excluding closing the <main> element which must be closed at the bottom of this script
     '''
-    if len(added_fields_dic) > 0:
-        added_fields_bool = True
-    else:
-        added_fields_bool = False
+    added_fields_bool = {}
+    for sheet in added_fields_dic.keys():
+        if len(added_fields_dic[sheet]) > 0:
+            added_fields_bool[sheet] = True
+        else:
+            added_fields_bool[sheet] = False
 
-    if len(added_cf_names_dic) > 0:
-        added_cf_names_bool = True
-    else:
-        added_cf_names_bool = False
+    added_cf_names_bool = {}
+    for sheet in added_cf_names_dic.keys():
+        if len(added_cf_names_dic) > 0:
+            added_cf_names_bool[sheet] = True
+        else:
+            added_cf_names_bool[sheet] = False
 
     if config == 'CF-NetCDF':
         description = 'Create spreadsheet templates that are easy to convert to CF-NetCDF files.'

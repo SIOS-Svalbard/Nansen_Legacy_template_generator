@@ -3,16 +3,15 @@
 
 from flask import request, send_file
 import json
-
 from website import create_app
 from website.lib.template import print_html_template
 from website.lib.get_configurations import *
 from website.lib.make_xlsx import write_file
+from website.lib.create_template import create_template
 from website.lib.pull_cf_standard_names import cf_standard_names_update
 from website.lib.pull_acdd_conventions import acdd_conventions_update
 
 app = create_app()
-
 
 @app.route("/", methods=["GET", "POST"])
 def home():
@@ -67,16 +66,16 @@ def home():
         if output_config_dict[sheet]['Required CSV'] == True:
             sheets.append(sheet)
 
-
-
-    print('------------')
-    print(sheets)
-    print(compulsary_sheets)
-    print('------------')
     cf_groups = ["sea_water", "sea_ice"]
     added_fields_dic = {}
     added_cf_names_dic = {}
     fields_list = []  # List of fields selected - dictates columns in template
+    template_fields_dict = {} # Dictionary of fields. All info needed for spreadsheet template.
+
+    for sheet in output_config_dict.keys():
+        template_fields_dict[sheet] = {}
+        added_cf_names_dic[sheet] = {}
+        added_fields_dic[sheet] = {}
 
     if request.method == "GET":
 
@@ -96,39 +95,56 @@ def home():
         )
 
     if request.form["submitbutton"] not in ["selectConfig", "selectSubConfig"]:
+
+        all_form_keys = request.form.keys()
+
+        # CF standard names
         for field in cf_standard_names:
-            if field["id"] in request.form and field["id"] not in output_config_fields:
-                fields_list.append(field["id"])
-                added_cf_names_dic[field["id"]] = {}
-                added_cf_names_dic[field["id"]]["disp_name"] = field["id"]
-                if field["description"] == None:
-                    field["description"] = ""
-                added_cf_names_dic[field["id"]][
-                    "description"
-                ] = f"{field['description']} \ncanonical units: {field['canonical_units']}"
-                added_cf_names_dic[field["id"]]["format"] = "double precision"
+            for sheet in template_fields_dict.keys():
+                for form_key in all_form_keys:
+                    if form_key.startswith(sheet):
+                        form_field = form_key.split('__')[1]
+                        if field['id'] == form_field and field['id'] not in output_config_dict[sheet]:
+                            template_fields_dict[sheet][field['id']] = {}
+                            template_fields_dict[sheet][field['id']]['disp_name'] = field['id']
+                            if field["description"] == None:
+                                field["description"] = ""
+                            template_fields_dict[sheet][field['id']]['description'] = f"{field['description']} \ncanonical units: {field['canonical_units']}"
+                            template_fields_dict[sheet][field['id']]['format'] = "double precision"
+                            added_cf_names_dic[sheet][field['id']] = template_fields_dict[sheet][field['id']]
 
-        for field in all_fields_dict.keys():
-            if field in request.form:
-                if field not in added_cf_names_dic.keys():
-                    fields_list.append(field)
-                    if field in extra_fields_dict.keys():
-                        added_fields_dic[field] = extra_fields_dict[field]
+        # Other fields (not CF standard names or DwC terms - terms designed for the template generator and logging system)
+        for sheet in template_fields_dict.keys():
+            #for field in all_fields_dict.keys():
 
-        for key in output_config_dict.keys():
-            for field, values in output_config_dict[key].items():
-                if field in request.form:
-                    output_config_dict[key][field]["checked"] = "yes"
+            for form_key in all_form_keys:
+                #print(form_key)
+                if form_key.startswith(sheet):
+                #    print(form_key)
+                    form_field = form_key.split('__')[1]
+                    if form_field not in added_cf_names_dic[sheet].keys():
+                        template_fields_dict[sheet][form_field] = all_fields_dict[form_field] # fields to write to template
+                        if form_field in extra_fields_dict.keys():
+                            added_fields_dic[sheet][form_field] = extra_fields_dict[form_field] # Extra fields added to template generator interface by user
+
+
+        for sheet in output_config_dict.keys():
+            for key in output_config_dict[sheet].keys():
+                if key not in ['Required CSV', 'Source']:
+                    for field, values in output_config_dict[sheet][key].items():
+                        if field in request.form:
+                            output_config_dict[sheet][key][field]["checked"] = "yes"
 
         if request.form["submitbutton"] == "generateTemplate":
             filepath = "/tmp/LFNL_template.xlsx"
-            write_file(
+
+            metadata = 'ACDD'
+
+            create_template(
                 filepath,
-                fields_list,
-                metadata=True,
-                conversions=True,
-                configuration=config,
-                subconfiguration=subconfig,
+                template_fields_dict,
+                metadata=metadata,
+                conversions=True
             )
             return send_file(filepath, as_attachment=True)
 

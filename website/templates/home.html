@@ -171,7 +171,7 @@
                                  {% if vals['grouping'] == group %}
                                  <div class="form-check">
                                    <label title='{{vals["description"]}}' class="col-sm-9 col-form-label">
-                                     <input class="form-check-input" type="checkbox" id='{{field}}' name='{{field}}'>
+                                     <input class="form-check-input" type="checkbox" id='{{sheet}}__{{field}}' name='{{sheet}}__{{field}}'>
                                      {{vals["disp_name"]}}
                                    </label>
                                  </div>
@@ -190,11 +190,11 @@
                   </div><br>
 
                   <!--List of extra fields that have been added-->
-                  {% if added_fields_bool == True %}
-                  {% for key, field in added_fields_dic.items() %}
+                  {% if added_fields_bool[sheet] == True %}
+                  {% for key, field in added_fields_dic[sheet].items() %}
                   <div class="form-check">
                     <label title='{{field["description"]}}' class="form-check-label">
-                      <input class="form-check-input" type="checkbox" id="{{key}}" name="{{key}}" checked>
+                      <input class="form-check-input" type="checkbox" id="{{sheet}}__{{key}}" name="{{sheet}}__{{key}}" checked>
                       {{field['disp_name']}}
                     </label>
                   </div>
@@ -227,7 +227,7 @@
                   				<div class="list-group">
                             {% for field in cf_standard_names %}
                   					<label title='{{field["description"]}}' class="list-group-item dropdown-menu pre-scrollable">
-                  						<input type="checkbox" name='{{field["id"]}}' value="y"> {{field["id"]}}
+                  						<input type="checkbox" name='{{sheet}}__{{field["id"]}}' value="y"> {{field["id"]}}
                   					</label>
                             {% endfor %}
                   				</div>
@@ -241,11 +241,11 @@
                   </div><br>
 
                   <!--List of CF standard names that have been selected-->
-                  {% if added_cf_names_bool == True %}
-                  {% for key, field in added_cf_names_dic.items() %}
+                  {% if added_cf_names_bool[sheet] == True %}
+                  {% for key, field in added_cf_names_dic[sheet].items() %}
                   <div class="form-check">
                     <label title='{{field["description"]}}' class="form-check-label">
-                      <input class="form-check-input" type="checkbox" id="{{key}}" name="{{key}}" checked>
+                      <input class="form-check-input" type="checkbox" id="{{sheet}}__{{key}}" name="{{sheet}}__{{key}}" checked>
                       {{field['disp_name']}}
                     </label>
                   </div>
