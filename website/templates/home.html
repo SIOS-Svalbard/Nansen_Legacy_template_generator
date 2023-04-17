@@ -103,8 +103,8 @@
                                  <input
                                    class="form-check-input form-control-lg"
                                    type="checkbox"
-                                   id="{{key}}"
-                                   name="{{key}}"
+                                   id="{{sheet}}__{{key}}"
+                                   name="{{sheet}}__{{key}}"
                                    {% if col == 'Required' or 'checked' in field.keys() %}
                                    checked
                                    {% endif %}
@@ -122,8 +122,8 @@
                               <input
                                 class="form-check-input form-control-lg"
                                 type="checkbox"
-                                id="{{key}}"
-                                name="{{key}}"
+                                id="{{sheet}}__{{key}}"
+                                name="{{sheet}}__{{key}}"
                                 {% if col == 'Required' or 'checked' in field.keys() %}
                                 checked
                                 {% endif %}
@@ -267,7 +267,7 @@
 
             {% else %}
             <!--Option to add extensions that aren't required-->
-              <button class="btn btn-outline-success btn-sm" type="submit" name="submitbutton" value="{{sheet}}">Add {{sheet}}</button>
+              <button class="btn btn-outline-success btn-sm" type="submit" name="submitbutton" value="add_{{sheet}}">Add {{sheet}}</button>
             {% endif %}
         {% endfor %}
 

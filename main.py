@@ -17,6 +17,7 @@ app = create_app()
 @app.route("/", methods=["GET", "POST"])
 def home():
 
+    # Select or change configuration
     config = request.form.get("select-config", "CF-NetCDF")
 
     list_of_configs = get_list_of_configs()
@@ -45,13 +46,24 @@ def home():
 
     # Creating a dictionary of all the fields.
     all_fields_dict = extra_fields_dict.copy()
+    sheets = []
 
     for sheet in output_config_dict.keys():
+        added_sheet = request.form.get("submitbutton", None)
+        print('added_sheet: ',added_sheet)
+        if 'add_'+sheet == added_sheet:
+            output_config_dict[sheet]['Required CSV'] = True
         for key in output_config_dict[sheet].keys():
             if key not in ['Required CSV', 'Source']:
                 for field, values in output_config_dict[sheet][key].items():
+                    print('field: ', field)
                     all_fields_dict[field] = values
+        if output_config_dict[sheet]['Required CSV'] == True:
+            sheets.append(sheet)
 
+    print('------------')
+    print(sheets)
+    print('------------')
     cf_groups = ["sea_water", "sea_ice"]
     added_fields_dic = {}
     added_cf_names_dic = {}
