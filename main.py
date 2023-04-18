@@ -131,8 +131,9 @@ def home():
                             added_cf_names_dic[sheet][field['id']] = template_fields_dict[sheet][field['id']]
 
         # DWC terms
-        for term in dwc_terms:
-            for sheet in template_fields_dict.keys():
+
+        for sheet in dwc_terms_by_sheet.keys():
+            for term in dwc_terms_by_sheet[sheet]:
                 for form_key in all_form_keys:
                     if form_key.startswith(sheet):
                         form_field = form_key.split('__')[1]
