@@ -258,17 +258,4 @@ def get_dwc_config_dict(subconfig, dwc_terms_df):
             for field in output_config_dict[extension]['Recommended'].keys():
                 output_config_dict[extension]['Other'].pop(field, None)
 
-    return output_config_dict, dwc_terms_json
-
-# #%%
-
-# for sheet in output_config_dict.keys():
-#     print('\n', sheet)
-#     if 'Required CSV' in output_config_dict[sheet].keys():
-#         for col, fields in output_config_dict[sheet].items():
-#             if col not in ['Required CSV', 'Source']:
-#                 print('\n',col)
-#                 for key, field in fields.items():
-#                     print('Key: ',key)
-#                     print('disp_name: ', field['disp_name'])
-#                     print('Description: ', field['description'])
+    return output_config_dict

@@ -219,7 +219,7 @@
                   					<input type="text" class="form-control" placeholder="Search...">
                   				</div>
                   				<div class="list-group">
-                            {% for term in dwc_terms %}
+                            {% for term in dwc_terms_by_sheet[sheet] %}
                   					<label title='{{term["description"]}}' class="list-group-item dropdown-menu pre-scrollable">
                   						<input type="checkbox" name='{{sheet}}__{{term["id"]}}' value="y"> {{term["id"]}}
                   					</label>

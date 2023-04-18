@@ -73,12 +73,24 @@ def home():
     added_dwc_terms_dic = {}
     fields_list = []  # List of fields selected - dictates columns in template
     template_fields_dict = {} # Dictionary of fields. All info needed for spreadsheet template.
+    dwc_terms_by_sheet = {} # Separate dictionary of dwc terms for each sheet. Not including required or recommended terms in each sheet.
 
     for sheet in output_config_dict.keys():
         template_fields_dict[sheet] = {}
         added_cf_names_dic[sheet] = {}
         added_dwc_terms_dic[sheet] = {}
         added_fields_dic[sheet] = {}
+        dwc_terms_tmp = dwc_terms
+        for key in output_config_dict[sheet].keys():
+            if key not in ['Required CSV', 'Source']:
+                fields_accounted_for = output_config_dict[sheet][key].keys()
+                idxs_to_remove = []
+                for idx, dwc_term in enumerate(dwc_terms_tmp):
+                    if dwc_term['id'] in fields_accounted_for:
+                        idxs_to_remove.append(idx)
+                dwc_terms_to_keep = [dwc_terms_tmp[i] for i in range(len(dwc_terms_tmp)) if i not in idxs_to_remove]
+                dwc_terms_tmp = dwc_terms_to_keep
+        dwc_terms_by_sheet[sheet] = dwc_terms_tmp
 
     if request.method == "GET":
 
@@ -90,7 +102,7 @@ def home():
             cf_standard_names=cf_standard_names,
             cf_groups=cf_groups,
             added_cf_names_dic=added_cf_names_dic,
-            dwc_terms=dwc_terms,
+            dwc_terms_by_sheet=dwc_terms_by_sheet,
             added_dwc_terms_dic=added_dwc_terms_dic,
             list_of_configs=list_of_configs,
             list_of_subconfigs=list_of_subconfigs,
@@ -177,7 +189,7 @@ def home():
                 cf_standard_names=cf_standard_names,
                 cf_groups=cf_groups,
                 added_cf_names_dic=added_cf_names_dic,
-                dwc_terms=dwc_terms,
+                dwc_terms_by_sheet=dwc_terms_by_sheet,
                 added_dwc_terms_dic=added_dwc_terms_dic,
                 list_of_configs=list_of_configs,
                 list_of_subconfigs=list_of_subconfigs,
@@ -194,7 +206,7 @@ def home():
             cf_standard_names=cf_standard_names,
             cf_groups=cf_groups,
             added_cf_names_dic=added_cf_names_dic,
-            dwc_terms=dwc_terms,
+            dwc_terms_by_sheet=dwc_terms_by_sheet,
             added_dwc_terms_dic=added_dwc_terms_dic,
             list_of_configs=list_of_configs,
             list_of_subconfigs=list_of_subconfigs,
@@ -215,8 +227,6 @@ def update_config():
         return '"OK"'
     except Exception as e:
         return json.dumps(str(e)), 500
-
-
 
 if __name__ == "__main__":
     app.run(debug=True)
