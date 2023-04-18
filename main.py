@@ -40,7 +40,8 @@ def home():
         extra_fields_dict,
         cf_standard_names,
         groups,
-        dwc_conf_dict
+        dwc_conf_dict,
+        dwc_terms
     ) = get_config_fields(config=config, subconfig=subconfig)
 
     # Creating a dictionary of all the fields.
@@ -69,12 +70,14 @@ def home():
     cf_groups = ["sea_water", "sea_ice"]
     added_fields_dic = {}
     added_cf_names_dic = {}
+    added_dwc_terms_dic = {}
     fields_list = []  # List of fields selected - dictates columns in template
     template_fields_dict = {} # Dictionary of fields. All info needed for spreadsheet template.
 
     for sheet in output_config_dict.keys():
         template_fields_dict[sheet] = {}
         added_cf_names_dic[sheet] = {}
+        added_dwc_terms_dic[sheet] = {}
         added_fields_dic[sheet] = {}
 
     if request.method == "GET":
@@ -87,6 +90,8 @@ def home():
             cf_standard_names=cf_standard_names,
             cf_groups=cf_groups,
             added_cf_names_dic=added_cf_names_dic,
+            dwc_terms=dwc_terms,
+            added_dwc_terms_dic=added_dwc_terms_dic,
             list_of_configs=list_of_configs,
             list_of_subconfigs=list_of_subconfigs,
             config=config,
@@ -112,6 +117,21 @@ def home():
                             template_fields_dict[sheet][field['id']]['description'] = f"{field['description']} \ncanonical units: {field['canonical_units']}"
                             template_fields_dict[sheet][field['id']]['format'] = "double precision"
                             added_cf_names_dic[sheet][field['id']] = template_fields_dict[sheet][field['id']]
+
+        # DWC terms
+        for term in dwc_terms:
+            for sheet in template_fields_dict.keys():
+                for form_key in all_form_keys:
+                    if form_key.startswith(sheet):
+                        form_field = form_key.split('__')[1]
+                        if term['id'] == form_field and term['id'] not in output_config_dict[sheet]:
+                            template_fields_dict[sheet][term['id']] = {}
+                            template_fields_dict[sheet][term['id']]['disp_name'] = term['id']
+                            if term["description"] == None:
+                                term["description"] = ""
+                            template_fields_dict[sheet][term['id']]['description'] = term['description']
+                            template_fields_dict[sheet][term['id']]['format'] = "double precision"
+                            added_dwc_terms_dic[sheet][term['id']] = template_fields_dict[sheet][term['id']]
 
         # Other fields (not CF standard names or DwC terms - terms designed for the template generator and logging system)
         for sheet in template_fields_dict.keys():
@@ -157,6 +177,8 @@ def home():
                 cf_standard_names=cf_standard_names,
                 cf_groups=cf_groups,
                 added_cf_names_dic=added_cf_names_dic,
+                dwc_terms=dwc_terms,
+                added_dwc_terms_dic=added_dwc_terms_dic,
                 list_of_configs=list_of_configs,
                 list_of_subconfigs=list_of_subconfigs,
                 config=config,
@@ -172,6 +194,8 @@ def home():
             cf_standard_names=cf_standard_names,
             cf_groups=cf_groups,
             added_cf_names_dic=added_cf_names_dic,
+            dwc_terms=dwc_terms,
+            added_dwc_terms_dic=added_dwc_terms_dic,
             list_of_configs=list_of_configs,
             list_of_subconfigs=list_of_subconfigs,
             config=config,

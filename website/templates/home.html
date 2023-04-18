@@ -145,6 +145,108 @@
                 <!--Add more fields-->
                 <div class="col-md-3">
 
+                  <!--CF standard names-->
+                  <!-- Button trigger modal for fields -->
+                  <button type="button" class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#cfModal">
+                    Add CF standard names
+                  </button>
+                  <!-- Modal -->
+
+                  <div class="modal fade" id="cfModal" tabindex="-1" role="dialog" aria-labelledby="cfModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="submit" class="btn btn-primary" name="submitbutton" value="addfields">Add fields</button>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <p>CF standard names as listed <a href="https://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html">here</a></p>
+
+                          <div class="search-box">
+                  					<input type="text" class="form-control" placeholder="Search...">
+                  				</div>
+                  				<div class="list-group">
+                            {% for field in cf_standard_names %}
+                  					<label title='{{field["description"]}}' class="list-group-item dropdown-menu pre-scrollable">
+                  						<input type="checkbox" name='{{sheet}}__{{field["id"]}}' value="y"> {{field["id"]}}
+                  					</label>
+                            {% endfor %}
+                  				</div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary" name="submitbutton" value="addfields">Add fields</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div><br>
+
+                  <!--List of CF standard names that have been selected-->
+                  {% if added_cf_names_bool[sheet] == True %}
+                  {% for key, field in added_cf_names_dic[sheet].items() %}
+                  <div class="form-check">
+                    <label title='{{field["description"]}}' class="form-check-label">
+                      <input class="form-check-input" type="checkbox" id="{{sheet}}__{{key}}" name="{{sheet}}__{{key}}" checked>
+                      {{field['disp_name']}}
+                    </label>
+                  </div>
+                  <br>
+                  {% endfor %}
+                  {% endif %}
+
+                  <!--Darwin Core terms-->
+                  <!-- Button trigger modal for fields -->
+                  <button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#dwcModal">
+                    Add Darwin Core terms
+                  </button>
+                  <!-- Modal -->
+
+                  <div class="modal fade" id="dwcModal" tabindex="-1" role="dialog" aria-labelledby="dwcModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="submit" class="btn btn-primary" name="submitbutton" value="addfields">Add terms</button>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <p>Darwin Core terms as listed <a href="https://raw.githubusercontent.com/tdwg/rs.tdwg.org/master/terms/terms.csv">here</a></p>
+
+                          <div class="search-box">
+                  					<input type="text" class="form-control" placeholder="Search...">
+                  				</div>
+                  				<div class="list-group">
+                            {% for term in dwc_terms %}
+                  					<label title='{{term["description"]}}' class="list-group-item dropdown-menu pre-scrollable">
+                  						<input type="checkbox" name='{{sheet}}__{{term["id"]}}' value="y"> {{term["id"]}}
+                  					</label>
+                            {% endfor %}
+                  				</div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary" name="submitbutton" value="addfields">Add terms</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div><br>
+
+                  <!--List of CF standard names that have been selected-->
+                  {% if added_dwc_terms_bool[sheet] == True %}
+                  {% for key, field in added_dwc_terms_dic[sheet].items() %}
+                  <div class="form-check">
+                    <label title='{{field["description"]}}' class="form-check-label">
+                      <input class="form-check-input" type="checkbox" id="{{sheet}}__{{key}}" name="{{sheet}}__{{key}}" checked>
+                      {{field['disp_name']}}
+                    </label>
+                  </div>
+                  <br>
+                  {% endfor %}
+                  {% endif %}
+
                   <!-- Button trigger modal for adding more fields -->
                   <button type="button" class="btn btn-dark btn-lg btn-block" data-toggle="modal" data-target="#fieldsModal">
                     Add more fields
@@ -202,56 +304,7 @@
                   {% endfor %}
                   {% endif %}
 
-                  <!--CF standard names-->
-                  <!-- Button trigger modal for fields -->
-                  <button type="button" class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#cfModal">
-                    Add CF standard names
-                  </button>
-                  <!-- Modal -->
 
-                  <div class="modal fade" id="cfModal" tabindex="-1" role="dialog" aria-labelledby="cfModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="submit" class="btn btn-primary" name="submitbutton" value="addfields">Add fields</button>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          <p>CF standard names as listed <a href="https://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html">here</a></p>
-
-                          <div class="search-box">
-                  					<input type="text" class="form-control" placeholder="Search...">
-                  				</div>
-                  				<div class="list-group">
-                            {% for field in cf_standard_names %}
-                  					<label title='{{field["description"]}}' class="list-group-item dropdown-menu pre-scrollable">
-                  						<input type="checkbox" name='{{sheet}}__{{field["id"]}}' value="y"> {{field["id"]}}
-                  					</label>
-                            {% endfor %}
-                  				</div>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          <button type="submit" class="btn btn-primary" name="submitbutton" value="addfields">Add fields</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div><br>
-
-                  <!--List of CF standard names that have been selected-->
-                  {% if added_cf_names_bool[sheet] == True %}
-                  {% for key, field in added_cf_names_dic[sheet].items() %}
-                  <div class="form-check">
-                    <label title='{{field["description"]}}' class="form-check-label">
-                      <input class="form-check-input" type="checkbox" id="{{sheet}}__{{key}}" name="{{sheet}}__{{key}}" checked>
-                      {{field['disp_name']}}
-                    </label>
-                  </div>
-                  <br>
-                  {% endfor %}
-                  {% endif %}
 
                   <!--Darwin Core Terms-->
                   <!-- Button trigger modal for fields -->

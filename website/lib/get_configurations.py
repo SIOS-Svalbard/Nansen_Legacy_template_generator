@@ -106,13 +106,22 @@ def get_config_fields(config, subconfig=None):
             fields_in_config_dict[cf_standard_name['id']]['format'] = 'double_precision'
 
     # Loading in Darwin Core terms
+
+    dwc_terms_df = dwc_terms_to_df()
+
+    dwc_terms_df['description'] = dwc_terms_df['rdfs_comment'] + '\n\n' + dwc_terms_df['dcterms_description']+ '\n\n' + dwc_terms_df['examples']
+    dwc_terms_df['disp_name'] = dwc_terms_df['id'] = dwc_terms_df['term_localName']
+    dwc_terms_df['format'] = 'text'
+
+    dwc_terms_json = dwc_terms_df[['id', 'disp_name','description','format']].to_dict('records')
+
     if config == 'Darwin Core':
         dwc_subconfig = subconfig
     else:
         dwc_subconfig = 'Sampling Event'
 
     if config != 'CF-NetCDF': # Don't need Darwin Core terms for CF-NetCDF configuration
-        dwc_conf_dict = get_dwc_config_dict(subconfig = dwc_subconfig)
+        dwc_conf_dict = get_dwc_config_dict(subconfig = dwc_subconfig, dwc_terms_df = dwc_terms_df)
     else:
         dwc_conf_dict = {}
 
@@ -142,7 +151,7 @@ def get_config_fields(config, subconfig=None):
                 else:
                     output_config_dict['Data'][key][value] = fields_in_config_dict[value]
 
-    return output_config_dict, fields_in_config_list, extra_fields_dict, cf_standard_names, groups, dwc_conf_dict
+    return output_config_dict, fields_in_config_list, extra_fields_dict, cf_standard_names, groups, dwc_conf_dict, dwc_terms_json
 
 def get_dwc_extension(source):
     df_extension = pd.read_xml(source)
@@ -213,11 +222,9 @@ def get_dwc_term_dict_from_df(term,df):
     return terms_dict
 
 
-def get_dwc_config_dict(subconfig):
+def get_dwc_config_dict(subconfig, dwc_terms_df):
 
     config_dict = yaml.safe_load(open("website/config/template_configurations.yaml", encoding='utf-8'))['setups']['Darwin Core'][subconfig]
-
-    dwc_terms_df = dwc_terms_to_df()
 
     output_config_dict = {}
     for extension in config_dict.keys():
@@ -251,7 +258,7 @@ def get_dwc_config_dict(subconfig):
             for field in output_config_dict[extension]['Recommended'].keys():
                 output_config_dict[extension]['Other'].pop(field, None)
 
-    return output_config_dict
+    return output_config_dict, dwc_terms_json
 
 # #%%
 
