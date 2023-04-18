@@ -120,80 +120,6 @@ Could be read in with a code reader.''',
                      'error_message': "Needs to be a 36 characters long universally unique ID (UUID) including 4 '- '"
                  }
                  },
-    {'name': 'eventID',
-           'disp_name': 'Event ID',
-           'description': '''An identifier for the set of information associated with an Event (something that occurs at a place and time)''',
-           'width': 38,
-           'format': 'uuid',
-           'grouping': 'ID',
-           'hstore': False,
-           'dwcid': 'http://rs.tdwg.org/dwc/terms/eventID',
-           'valid': {
-               'validate': 'length',
-               'criteria': '==',
-               'value': 36,
-               'input_title': 'ID',
-               'input_message': '''Should be a 36 character long universally unique ID (UUID) including 4 '-'.
-Could be read in with a code reader.''',
-               'error_title': 'Error',
-               'error_message': "Needs to be a 36 characters long universally unique ID (UUID) including 4 '- '"
-           }
-           },
-    {'name': 'occurrenceID',
-           'disp_name': 'Occurrence ID',
-           'description': '''An identifier for the Occurrence (as opposed to a particular digital record of the occurrence)''',
-           'width': 38,
-           'format': 'uuid',
-           'grouping': 'ID',
-           'hstore': False,
-           'dwcid': 'http://rs.tdwg.org/dwc/terms/occurenceID',
-           'valid': {
-               'validate': 'length',
-               'criteria': '==',
-               'value': 36,
-               'input_title': 'ID',
-               'input_message': '''Should be a 36 character long universally unique ID (UUID) including 4 '-'.
-Could be read in with a code reader.''',
-               'error_title': 'Error',
-               'error_message': "Needs to be a 36 characters long universally unique ID (UUID) including 4 '- '"
-           }
-           },
-    {'name': 'measurementID',
-           'disp_name': 'Measurement ID',
-           'description': '''An identifier for the MeasurementOrFact (information pertaining to measurements, facts, characteristics, or assertions)''',
-           'width': 38,
-           'format': 'uuid',
-           'grouping': 'ID',
-           'hstore': False,
-           'dwcid': 'http://rs.tdwg.org/dwc/terms/measurementID',
-           'valid': {
-               'validate': 'length',
-               'criteria': '==',
-               'value': 36,
-               'input_title': 'ID',
-               'input_message': '''Should be a 36 character long universally unique ID (UUID) including 4 '-'.
-Could be read in with a code reader.''',
-               'error_title': 'Error',
-               'error_message': "Needs to be a 36 characters long universally unique ID (UUID) including 4 '- '"
-           }
-           },
-    {'name': 'catalogNumber',
-                 'disp_name': 'Catalogue Number',
-                 'description': '''Your own optional ID for each record, preferably unique. Note that each sample is also assigned its own UUID in the "ID" field by the system. Can include text.''',
-                 'width': 38,
-                 'format': 'text',
-                 'grouping': 'ID',
-                 'hstore': False,
-                 'valid': {
-                     'validate': 'length',
-                     'criteria': '>',
-                     'value': 3,
-                     'input_title': 'Parent ID',
-                     'input_message': '''Your own optional ID for each record, preferably unique. Note that each sample is also assigned its own UUID in the "ID" field by the system.''',
-                     'error_title': 'Error',
-                     'error_message': "Needs to be a 36 characters long universally unique ID (UUID) including 4 '- '"
-                 }
-                 },
     {'name': 'bottleNumber',
                 'disp_name': 'Bottle Number',
                 'description': '''The bottle number
@@ -215,24 +141,6 @@ Positive integer''',
                     'error_message': 'Integer > 0'
                 }
                 },
-    {'name': 'recordNumber',
-                'disp_name': 'Record Number',
-                'description': '''This is an additional number used to identify the sample.
-This is in addition to the ID. Numbers only.''',
-                'format': 'int',
-                'grouping': 'Numbering',
-                'hstore': 'other',
-                'dwcid': 'http://rs.tdwg.org/dwc/terms/recordNumber',
-                'valid': {
-                    'validate': 'integer',
-                    'criteria': '>',
-                    'value': 0,
-                    'input_title': 'Recorded Number',
-                    'input_message': '''This is an additional number used to identify the sample.
-This is in addition to the ID'''
-                }
-                },
-
     # ==============================================================================
     # Cruise Details - all in metadata hstore
     # ==============================================================================
@@ -280,55 +188,6 @@ This is in addition to the ID'''
     # ==============================================================================
     # Timestamps
     # ==============================================================================
-    {'name': 'eventDate',
-             'disp_name': 'Event Date (UTC)',
-             'description': 'Start date that the data were collected at. Should be in ISO8601 format, in UTC time, e.g. 2022-04-10',
-             'inherit': True,
-             'format': 'date',
-             'grouping': 'Coordinates',
-             'hstore': False,
-             'width': 12,
-             'dwcid': 'http://rs.tdwg.org/dwc/terms/eventDate',
-             'valid': {
-                 'validate': 'date',
-                 'criteria': 'between',
-                 'minimum': dt.date(2000, 1, 1),
-                 'maximum': '=TODAY()+2',
-                 'input_title': 'Event Date',
-                 'input_message': '''Start date that the data were collected at. Should be in ISO8601 format, in UTC time, e.g. 2022-04-10''',
-                 'error_title': 'Error',
-                 'error_message': 'Not a valid date [2000-01-01, today + 2]'
-             },
-             'cell_format': {
-                 'num_format': 'yyyy-mm-dd'
-             }
-             },
-    {'name': 'eventTime',
-             'disp_name': 'Event Time (UTC)',
-             'description': 'Start time that the data were collected at. Should be in ISO8601 format, in UTC time, e.g. 09:46:24Z',
-             'inherit': True,
-             'format': 'time',
-             'grouping': 'Coordinates',
-             'hstore': False,
-             'width': 13,
-             'dwcid': 'http://rs.tdwg.org/dwc/terms/eventTime',
-             'valid': {
-                 'validate': 'time',
-                 'criteria': 'between',
-                 'minimum': 0,  # Time in decimal days
-                 'maximum': 0.9999999,  # Time in decimal days
-                 'input_title': 'Event Time (UTC)',
-                 'input_message': '''
-The time in UTC
-Format is HH:MM
-If MM > 59, HH will be HH + 1 ''',
-                 'error_title': 'Error',
-                 'error_message': 'Not a valid time'
-             },
-             'cell_format': {
-                 'num_format': 'hh:mm'
-             }
-             },
     {'name': 'middleDate',
              'disp_name': 'Middle Date (UTC)',
              'description': '''Middle date for event, for instance for noting the deepest point of a trawl or net haul.
@@ -431,62 +290,6 @@ If MM > 59, HH will be HH + 1 ''',
     # ==============================================================================
     # Coordinates
     # ==============================================================================
-    {'name': 'decimalLatitude',
-                   'disp_name': 'Decimal Latitude',
-                   'description': '''Latitude in decimal degrees.
-Northern hemisphere is positive.
-Example: 78.1500''',
-                   'inherit': True,
-                   'format': 'double precision',
-                   'grouping': 'Coordinates',
-                   'hstore': False,
-                   'width': 10,
-                   'units': 'degrees_north',
-                   'dwcid': 'http://rs.tdwg.org/dwc/terms/decimalLatitude',
-                   'valid': {
-                       'validate': 'decimal',
-                       'criteria': 'between',
-                       'minimum': -90,
-                       'maximum': 90,
-                       'input_title': 'Decimal Latitude',
-                       'input_message': '''Latitude in decimal degrees.
-Northern hemisphere is positive.
-Example: 78.1500''',
-                       'error_title': 'Error',
-                       'error_message': 'Not in range [-90, 90]'
-                   },
-                   'cell_format': {
-                       'num_format': '0.0000'
-                   }
-                   },
-    {'name': 'decimalLongitude',
-                    'disp_name': 'Decimal Longitude',
-                    'description': '''Longitude in decimal degrees.
-East of Greenwich (0) is positive.
-Example: 15.0012''',
-                    'inherit': True,
-                    'format': 'double precision',
-                    'grouping': 'Coordinates',
-                    'hstore': False,
-                    'width': 11,
-                    'units': 'degree_east',
-                    'dwcid': 'http://rs.tdwg.org/dwc/terms/decimalLongitude',
-                    'valid': {
-                        'validate': 'decimal',
-                        'criteria': 'between',
-                        'minimum': -180,
-                        'maximum': 180,
-                        'input_title': 'Decimal Longitude',
-                        'input_message': '''Longitude in decimal degrees.
-East of Greenwich (0) is positive.
-Example: 15.0012''',
-                        'error_title': 'Error',
-                        'error_message': 'Not in range [-180, 180]'
-                    },
-                    'cell_format': {
-                        'num_format': '0.0000'
-                    }
-                    },
     {'name': 'endDecimalLatitude',
                       'disp_name': 'End Decimal Latitude',
                       'description': '''Latitude in decimal degrees at the end of the sampling period.
@@ -616,7 +419,6 @@ Example: 15.0012''',
 '''
           }
           },
-
     {'name': 'stationName',
                'disp_name': 'Station Name',
                'description': 'The full name of the station. e.g. P1 (NLEG01)',
@@ -659,115 +461,6 @@ Decimal number >=0.''',
                                   'error_message': 'Float >= 0'
                               }
                               },
-
-    # ==============================================================================
-    # Depths & Altitudes
-    # ==============================================================================
-    {'name': 'minimumDepthInMeters',
-                        'disp_name': 'Minimum depth (m)',
-                        'description': '''The minimum depth sampled in meters.
-0 m is the surface.
-Positive numbers for increasing depth.
-Please include depth or elevation and not both.''',
-                        'inherit': True,
-                        'inherit_weak': True,
-                        'format': 'double precision',
-                        'grouping': 'Coordinates',
-                        'hstore': False,
-                        'width': 22,
-                        'units': 'm',
-                        'dwcid': 'http://rs.tdwg.org/dwc/terms/minimumDepthInMeters',
-                        'valid': {
-                            'validate': 'decimal',
-                            'criteria': 'between',
-                            'minimum': 0,
-                            'maximum': 9999,
-                            # 'criteria': '<',
-                            # 'value': '=INDIRECT(ADDRESS(ROW(),COLUMN()-1))',
-                            'input_title': 'Minimum depth in (m)',
-                            'input_message': '''The minimum depth sampled in meters.
-0 m is the surface.
-Positive numbers for increasing depth.''',
-                            'error_title': 'Error',
-                            'error_message': 'Decimal [0, 9999]'
-                        }
-                        },
-    {'name': 'maximumDepthInMeters',
-                        'disp_name': 'Maximum depth (m)',
-                        'description': '''The maximum depth sampled in meters.
-0 m is the surface.
-Positive numbers for increasing depth.
-Please include depth or elevation and not both.''',
-                        'inherit': True,
-                        'inherit_weak': True,
-                        'format': 'double precision',
-                        'grouping': 'Coordinates',
-                        'hstore': False,
-                        'units': 'm',
-                        'dwcid': 'http://rs.tdwg.org/dwc/terms/maximumDepthInMeters',
-                        'valid': {
-                            'validate': 'decimal',
-                            'criteria': 'between',
-                            'minimum': 0,
-                            'maximum': 9999,
-                            'input_title': 'Maximum depth in (m)',
-                            'input_message': '''The maximum depth sampled in meters.
-0 m is the surface.
-Positive numbers for increasing depth.''',
-                            'error_title': 'Error',
-                            'error_message': 'Float[0, 9999]'
-                        }
-                        },
-    {'name': 'minimumElevationInMeters',
-                            'disp_name': 'Minimum elevation(m)',
-                            'description': '''The minimum elevation sampled in meters.
-0 m is the surface.
-Positive numbers for increasing elevation.
-Please include depth or elevation and not both.''',
-                            'inherit': True,
-                            'inherit_weak': True,
-                            'format': 'double precision',
-                            'grouping': 'Coordinates',
-                            'hstore': False,
-                            'units': 'm',
-                            'dwcid': 'http://rs.tdwg.org/dwc/terms/minimumElevationInMeters',
-                            'valid': {
-                                'validate': 'decimal',
-                                'criteria': '>=',
-                                'value': 0,
-                                'input_title': 'Minimum elevation in (m)',
-                                'input_message': '''The minimum elevation sampled in meters.
-    0 m is the surface.
-    Positive numbers for increasing elevation.''',
-                                'error_title': 'Error',
-                                'error_message': 'Float >=0'
-                            }
-                            },
-    {'name': 'maximumElevationInMeters',
-                            'disp_name': 'Maximum elevation(m)',
-                            'description': '''The maximum elevation sampled in meters.
-0 m is the surface.
-Positive numbers for increasing elevation.
-Please include depth or elevation and not both.''',
-                            'inherit': True,
-                            'inherit_weak': True,
-                            'format': 'double precision',
-                            'grouping': 'Coordinates',
-                            'hstore': False,
-                            'units': 'm',
-                            'dwcid': 'http://rs.tdwg.org/dwc/terms/maximumElevationInMeters',
-                            'valid': {
-                                'validate': 'decimal',
-                                'criteria': '>=',
-                                'value': 0,
-                                'input_title': 'Maximum elevation in (m)',
-                                'input_message': '''The maximum elevation sampled in meters.
-0 m is the surface.
-Positive numbers for increasing elevation.''',
-                                'error_title': 'Error',
-                                'error_message': 'Float >=0'
-                            }
-                            },
 
     # ==============================================================================
     # Paleo
@@ -1209,148 +902,6 @@ If no filtering is being done choose None''',
                      'error_message': 'Decimal > 0'
                  }
                  },
-
-    # ==============================================================================
-    # Darwin Core Terms
-    # ==============================================================================
-    {'name': 'individualCount',
-                   'disp_name': 'Individual Count',
-                   'description': 'The number of individuals present at the time of the Occurrence.',
-                   'format': 'int',
-                   'hstore': 'other',
-                   'grouping': 'Species, Classifications and Counts',
-                   'width': 20,
-                   'units': '1',
-                   'dwcid': 'https://dwc.tdwg.org/terms/#dwc:individualCount',
-                   'valid': {
-                       'validate': 'integer',
-                       'criteria': '>',
-                       'value': 0,
-                       'input_title': 'Abundance',
-                       'input_message': '''The number of individuals present at the time of the Occurrence.''',
-                       'error_title': 'Error',
-                       'error_message': 'Integer > 0'
-                   }
-                   },
-    {'name': 'taxon',
-            'disp_name': 'Taxon',
-            'description': 'A group of organisms considered by taxonomists to form a homogeneous unit.',
-            'format': 'text',
-            'grouping': 'Species, Classifications and Counts',
-            'hstore': 'other',
-            'dwcid': 'http://rs.tdwg.org/dwc/terms/Taxon',
-            'valid': {
-                'validate': 'any',
-                'input_title': 'Taxon',
-                'input_message': 'A group of organisms considered by taxonomists to form a homogeneous unit.'
-            }
-            },
-    {'name': 'phylum',
-            'disp_name': 'Phylum',
-            'description': 'The full scientific name of the phylum or division in which the taxon is classified.',
-            'format': 'text',
-            'grouping': 'Species, Classifications and Counts',
-            'hstore': 'other',
-            'dwcid': 'https://dwc.tdwg.org/terms/#dwc:phylum',
-            'valid': {
-                'validate': 'any',
-                'input_title': 'Phylum',
-                'input_message': 'The full scientific name of the phylum or division in which the taxon is classified.'
-            }
-            },
-    {'name': 'sex',
-       'disp_name': 'Sex',
-       'description': '''Gender of the specimen.
-Male (M), female (F), maybe male (M?), maybe female (F?) or unknown (?)''',
-       'format': 'text',
-       'grouping': 'Species, Classifications and Counts',
-       'hstore': 'other',
-       'dwcid': 'http://rs.tdwg.org/dwc/terms/sex',
-       'long_list': True,
-       'valid': {
-            'validate': 'list',
-            'source': 'sex',
-            'input_title': 'Sex',
-            'input_message': '''Male (M), female (F), maybe male (M?), maybe female (F?) or unknown (?)''',
-            'error_title': 'Error',
-            'error_message': 'Not a valid value, pick a value from the drop-down list.'
-            }
-       },
-    {'name': 'kingdom',
-       'disp_name': 'Kingdom',
-       'description': 'The full scientific name of the kingdom in which the taxon is classified.',
-       'format': 'text',
-       'grouping': 'Species, Classifications and Counts',
-       'hstore': 'other',
-       'long_list': True,
-       'dwcid': 'https://dwc.tdwg.org/terms/#dwc:kingdom',
-                'valid': {
-                    'validate': 'list',
-                    'source': 'kingdoms',
-                    'input_title': 'Kingdom',
-                    'input_message': '''The full scientific name of the kingdom in which the taxon is classified.''',
-                    'error_title': 'Error',
-                    'error_message': 'Not a valid value, pick a value from the drop-down list.'
-                }
-       },
-    {'name': 'class',
-       'disp_name': 'Class',
-       'description': 'The full scientific name of the class in which the taxon is classified.',
-       'format': 'text',
-       'grouping': 'Species, Classifications and Counts',
-       'hstore': 'other',
-       'dwcid': 'https://dwc.tdwg.org/list/#dwc_class',
-                'valid': {
-                    'validate': 'any',
-                    'input_title': 'Class',
-                    'input_message': 'The full scientific name of the class in which the taxon is classified.'
-            }
-       },
-    {'name': 'order',
-       'disp_name': 'Order',
-       'description': 'The full scientific name of the order in which the taxon is classified.',
-       'format': 'text',
-       'grouping': 'Species, Classifications and Counts',
-       'hstore': 'other',
-       'dwcid': 'https://dwc.tdwg.org/terms/#dwc:order',
-                'valid': {
-                    'validate': 'any',
-                    'input_title': 'Order',
-                    'input_message': 'The full scientific name of the order in which the taxon is classified.'
-            }
-       },
-    {'name': 'family',
-       'disp_name': 'Family',
-       'description': 'The full scientific name of the family in which the taxon is classified.',
-       'format': 'text',
-       'grouping': 'Species, Classifications and Counts',
-       'hstore': 'other',
-       'dwcid': 'https://dwc.tdwg.org/list/#dwc_family',
-                'valid': {
-                    'validate': 'any',
-                    'input_title': 'Family',
-                    'input_message': 'The full scientific name of the family in which the taxon is classified.'
-            }
-       },
-    {'name': 'scientificName',
-                  'disp_name': 'Scientific Name',
-                  'description': '''The full scientific name, with authorship and date information if known.
-When forming part of an Identification, this should be the name in lowest level taxonomic rank that can be determined''',
-                  'format': 'text',
-                  'grouping': 'Species, Classifications and Counts',
-                  'hstore': 'other',
-                  'width': 20,
-                  'dwcid': 'http://rs.tdwg.org/dwc/terms/scientificName',
-                  'valid': {
-                      'validate': 'any',
-                      'input_title': 'Scientific Name',
-                      'input_message': '''The full scientific name, with authorship and date information if known.
-When forming part of an Identification, this should be the name in lowest level taxonomic rank that can be determined'''
-                  },
-                  'cell_format': {
-                      'left': True
-                  }
-                  },
     # ==============================================================================
     # Probable MeasurementOrFact types from Darwin Core
     # ==============================================================================
@@ -1505,7 +1056,7 @@ Integer >= 0''',
                  },
 
     # ==============================================================================
-    # CF standard names and other physical properties and physical oceanography things
+    # Physical properties and physical oceanography things
     # ==============================================================================
     {'name': 'seaIceCoreType',
                   'disp_name': 'Sea Ice Core Type',
