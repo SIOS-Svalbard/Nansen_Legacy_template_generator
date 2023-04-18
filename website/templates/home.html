@@ -96,9 +96,9 @@
 
                       <h4>{{col}}</h4><br>
 
-                      {% if col == 'Other' %}
+                      {% if col == 'Suggestions' %}
                         <button type="button" class="btn btn-outline-primary btn-lg dropdown-toggle" data-toggle="dropdown">
-                          Other suggestions
+                          Suggestions
                         </button>
                         <div class="dropdown-menu pre-scrollable">
                            {% for key, field in fields.items() %}
@@ -144,6 +144,8 @@
 
                 <!--Add more fields-->
                 <div class="col-md-3">
+
+                  <h4>Other</h4><br>
 
                   <!--CF standard names-->
                   <!-- Button trigger modal for fields -->

@@ -87,14 +87,14 @@ setups:
         fields:
         - Required: [eventID,eventDate,samplingProtocol]
           Recommended: [sampleSizeValue, sampleSizeUnit, parentEventID, samplingEffort, locationID, decimalLatitude, decimalLongitude, geodeticDatum, footprintWKT, footprintSRS, countryCode, occurrenceStatus]
-          Other: 'from source'
+          Suggestions: 'from source'
         Source: 'https://rs.gbif.org/core/dwc_event_2022-02-02.xml'
         Required CSV: True
       Occurrence Extension:
         fields:
         - Required: [occurrenceID,eventID,basisOfRecord,scientificName]
           Recommended: [taxonRank,kingdom,individualCount,organismQuantity,organismQuantityType]
-          Other: 'from source'
+          Suggestions: 'from source'
         Source: 'https://rs.gbif.org/core/dwc_occurrence_2022-02-02.xml'
         Required CSV: True
       Extended Measurement or Facts Extension:
