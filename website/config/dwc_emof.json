@@ -1,0 +1,236 @@
+[
+    {
+        "name": "measurementID",
+        "namespace": "http://rs.tdwg.org/dwc/terms/",
+        "qualName": "http://rs.tdwg.org/dwc/terms/measurementID",
+        "relation": "http://rs.tdwg.org/dwc/terms/index.htm#measurementID",
+        "description": "\n\nExamples: nan",
+        "examples": NaN,
+        "required": false,
+        "disp_name": "measurementID",
+        "id": "measurementID",
+        "grouping": "Darwin Core term",
+        "valid": {
+            "validate": "any",
+            "input_title": "measurementID",
+            "input_message": "\n\nExamples: nan"
+        },
+        "format": "text"
+    },
+    {
+        "name": "occurrenceID",
+        "namespace": "http://rs.tdwg.org/dwc/terms/",
+        "qualName": "http://rs.tdwg.org/dwc/terms/occurrenceID",
+        "relation": "http://rs.tdwg.org/dwc/terms/index.htm#occurrenceID",
+        "description": "\n\nExamples: nan",
+        "examples": NaN,
+        "required": false,
+        "disp_name": "occurrenceID",
+        "id": "occurrenceID",
+        "grouping": "Darwin Core term",
+        "valid": {
+            "validate": "any",
+            "input_title": "occurrenceID",
+            "input_message": "\n\nExamples: nan"
+        },
+        "format": "text"
+    },
+    {
+        "name": "measurementType",
+        "namespace": "http://rs.tdwg.org/dwc/terms/",
+        "qualName": "http://rs.tdwg.org/dwc/terms/measurementType",
+        "relation": "http://rs.tdwg.org/dwc/terms/index.htm#measurementType",
+        "description": "\n\nExamples: \"tail length\", \"temperature\", \"trap line length\", \"survey area\", \"trap type\", \"Dry weight biomass\", \"Sampling instrument name\"  ",
+        "examples": "\"tail length\", \"temperature\", \"trap line length\", \"survey area\", \"trap type\", \"Dry weight biomass\", \"Sampling instrument name\"  ",
+        "required": false,
+        "disp_name": "measurementType",
+        "id": "measurementType",
+        "grouping": "Darwin Core term",
+        "valid": {
+            "validate": "any",
+            "input_title": "measurementType",
+            "input_message": "\n\nExamples: \"tail length\", \"temperature\", \"trap line length\", \"survey area\", \"trap type\", \"Dry weight biomass\", \"Sampling instrument name\"  "
+        },
+        "format": "text"
+    },
+    {
+        "name": "measurementTypeID",
+        "namespace": "http://rs.iobis.org/obis/terms/",
+        "qualName": "http://rs.iobis.org/obis/terms/measurementTypeID",
+        "relation": NaN,
+        "description": "\n\nExamples: \"http://vocab.nerc.ac.uk/collection/P01/current/ODRYBM01/\"",
+        "examples": "\"http://vocab.nerc.ac.uk/collection/P01/current/ODRYBM01/\"",
+        "required": false,
+        "disp_name": "measurementTypeID",
+        "id": "measurementTypeID",
+        "grouping": "Darwin Core term",
+        "valid": {
+            "validate": "any",
+            "input_title": "measurementTypeID",
+            "input_message": "\n\nExamples: \"http://vocab.nerc.ac.uk/collection/P01/current/ODRYBM01/\""
+        },
+        "format": "text"
+    },
+    {
+        "name": "measurementValue",
+        "namespace": "http://rs.tdwg.org/dwc/terms/",
+        "qualName": "http://rs.tdwg.org/dwc/terms/measurementValue",
+        "relation": "http://rs.tdwg.org/dwc/terms/index.htm#measurementValue",
+        "description": "\n\nExamples: \"45\", \"20\", \"1\", \"14.5\", \"UV-light\", \"Van Veen grab\"",
+        "examples": "\"45\", \"20\", \"1\", \"14.5\", \"UV-light\", \"Van Veen grab\"",
+        "required": false,
+        "disp_name": "measurementValue",
+        "id": "measurementValue",
+        "grouping": "Darwin Core term",
+        "valid": {
+            "validate": "any",
+            "input_title": "measurementValue",
+            "input_message": "\n\nExamples: \"45\", \"20\", \"1\", \"14.5\", \"UV-light\", \"Van Veen grab\""
+        },
+        "format": "text"
+    },
+    {
+        "name": "measurementValueID",
+        "namespace": "http://rs.iobis.org/obis/terms/",
+        "qualName": "http://rs.iobis.org/obis/terms/measurementValueID",
+        "relation": NaN,
+        "description": "\n\nExamples: \"http://vocab.nerc.ac.uk/collection/L22/current/TOOL0653/\", \"http://vocab.nerc.ac.uk/collection/B07/current/NDT023/\", \"http://vocab.nerc.ac.uk/collection/S11/current/S1116/\"",
+        "examples": "\"http://vocab.nerc.ac.uk/collection/L22/current/TOOL0653/\", \"http://vocab.nerc.ac.uk/collection/B07/current/NDT023/\", \"http://vocab.nerc.ac.uk/collection/S11/current/S1116/\"",
+        "required": false,
+        "disp_name": "measurementValueID",
+        "id": "measurementValueID",
+        "grouping": "Darwin Core term",
+        "valid": {
+            "validate": "any",
+            "input_title": "measurementValueID",
+            "input_message": "\n\nExamples: \"http://vocab.nerc.ac.uk/collection/L22/current/TOOL0653/\", \"http://vocab.nerc.ac.uk/collection/B07/current/NDT023/\", \"http://vocab.nerc.ac.uk/collection/S11/current/S1116/\""
+        },
+        "format": "text"
+    },
+    {
+        "name": "measurementAccuracy",
+        "namespace": "http://rs.tdwg.org/dwc/terms/",
+        "qualName": "http://rs.tdwg.org/dwc/terms/measurementAccuracy",
+        "relation": "http://rs.tdwg.org/dwc/terms/index.htm#measurementAccuracy",
+        "description": "\n\nExamples: \"0.01\", \"normal distribution with variation of 2 m\"",
+        "examples": "\"0.01\", \"normal distribution with variation of 2 m\"",
+        "required": false,
+        "disp_name": "measurementAccuracy",
+        "id": "measurementAccuracy",
+        "grouping": "Darwin Core term",
+        "valid": {
+            "validate": "any",
+            "input_title": "measurementAccuracy",
+            "input_message": "\n\nExamples: \"0.01\", \"normal distribution with variation of 2 m\""
+        },
+        "format": "text"
+    },
+    {
+        "name": "measurementUnit",
+        "namespace": "http://rs.tdwg.org/dwc/terms/",
+        "qualName": "http://rs.tdwg.org/dwc/terms/measurementUnit",
+        "relation": "http://rs.tdwg.org/dwc/terms/index.htm#measurementUnit",
+        "description": "\n\nExamples: \"mm\", \"C\", \"km\", \"ha\"",
+        "examples": "\"mm\", \"C\", \"km\", \"ha\"",
+        "required": false,
+        "disp_name": "measurementUnit",
+        "id": "measurementUnit",
+        "grouping": "Darwin Core term",
+        "valid": {
+            "validate": "any",
+            "input_title": "measurementUnit",
+            "input_message": "\n\nExamples: \"mm\", \"C\", \"km\", \"ha\""
+        },
+        "format": "text"
+    },
+    {
+        "name": "measurementUnitID",
+        "namespace": "http://rs.iobis.org/obis/terms/",
+        "qualName": "http://rs.iobis.org/obis/terms/measurementUnitID",
+        "relation": NaN,
+        "description": "\n\nExamples: \"http://vocab.nerc.ac.uk/collection/P06/current/UMSQ/\", “http://vocab.nerc.ac.uk/collection/P06/current/UCPL/”, “http://vocab.nerc.ac.uk/collection/P06/current/CMCM/”",
+        "examples": "\"http://vocab.nerc.ac.uk/collection/P06/current/UMSQ/\", “http://vocab.nerc.ac.uk/collection/P06/current/UCPL/”, “http://vocab.nerc.ac.uk/collection/P06/current/CMCM/”",
+        "required": false,
+        "disp_name": "measurementUnitID",
+        "id": "measurementUnitID",
+        "grouping": "Darwin Core term",
+        "valid": {
+            "validate": "any",
+            "input_title": "measurementUnitID",
+            "input_message": "\n\nExamples: \"http://vocab.nerc.ac.uk/collection/P06/current/UMSQ/\", “http://vocab.nerc.ac.uk/collection/P06/current/UCPL/”, “http://vocab.nerc.ac.uk/collection/P06/current/CMCM/”"
+        },
+        "format": "text"
+    },
+    {
+        "name": "measurementDeterminedDate",
+        "namespace": "http://rs.tdwg.org/dwc/terms/",
+        "qualName": "http://rs.tdwg.org/dwc/terms/measurementDeterminedDate",
+        "relation": "http://rs.tdwg.org/dwc/terms/index.htm#measurementDeterminedDate",
+        "description": "\n\nExamples: \"1963-03-08T14:07-0600\", \"2009-02-20T08:40Z\", \"1809-02-12\", \"1906-06\", \"1971\", \"2007-03-01T13:00:00Z/2008-05-11T15:30:00Z\", \"2007-11-13/15\"",
+        "examples": "\"1963-03-08T14:07-0600\", \"2009-02-20T08:40Z\", \"1809-02-12\", \"1906-06\", \"1971\", \"2007-03-01T13:00:00Z/2008-05-11T15:30:00Z\", \"2007-11-13/15\"",
+        "required": false,
+        "disp_name": "measurementDeterminedDate",
+        "id": "measurementDeterminedDate",
+        "grouping": "Darwin Core term",
+        "valid": {
+            "validate": "any",
+            "input_title": "measurementDeterminedDate",
+            "input_message": "\n\nExamples: \"1963-03-08T14:07-0600\", \"2009-02-20T08:40Z\", \"1809-02-12\", \"1906-06\", \"1971\", \"2007-03-01T13:00:00Z/2008-05-11T15:30:00Z\", \"2007-11-13/15\""
+        },
+        "format": "text"
+    },
+    {
+        "name": "measurementDeterminedBy",
+        "namespace": "http://rs.tdwg.org/dwc/terms/",
+        "qualName": "http://rs.tdwg.org/dwc/terms/measurementDeterminedBy",
+        "relation": "http://rs.tdwg.org/dwc/terms/index.htm#measurementDeterminedBy",
+        "description": "\n\nExamples: \"Javier de la Torre\", \"Julie Woodruff; Eileen Lacey\"",
+        "examples": "\"Javier de la Torre\", \"Julie Woodruff; Eileen Lacey\"",
+        "required": false,
+        "disp_name": "measurementDeterminedBy",
+        "id": "measurementDeterminedBy",
+        "grouping": "Darwin Core term",
+        "valid": {
+            "validate": "any",
+            "input_title": "measurementDeterminedBy",
+            "input_message": "\n\nExamples: \"Javier de la Torre\", \"Julie Woodruff; Eileen Lacey\""
+        },
+        "format": "text"
+    },
+    {
+        "name": "measurementMethod",
+        "namespace": "http://rs.tdwg.org/dwc/terms/",
+        "qualName": "http://rs.tdwg.org/dwc/terms/measurementMethod",
+        "relation": "http://rs.tdwg.org/dwc/terms/index.htm#measurementMethod",
+        "description": "\n\nExamples: \"minimum convex polygon around burrow entrances\" for a home range area, \"barometric altimeter\" for an elevation",
+        "examples": "\"minimum convex polygon around burrow entrances\" for a home range area, \"barometric altimeter\" for an elevation",
+        "required": false,
+        "disp_name": "measurementMethod",
+        "id": "measurementMethod",
+        "grouping": "Darwin Core term",
+        "valid": {
+            "validate": "any",
+            "input_title": "measurementMethod",
+            "input_message": "\n\nExamples: \"minimum convex polygon around burrow entrances\" for a home range area, \"barometric altimeter\" for an elevation"
+        },
+        "format": "text"
+    },
+    {
+        "name": "measurementRemarks",
+        "namespace": "http://rs.tdwg.org/dwc/terms/",
+        "qualName": "http://rs.tdwg.org/dwc/terms/measurementRemarks",
+        "relation": "http://rs.tdwg.org/dwc/terms/index.htm#measurementRemarks",
+        "description": "\n\nExamples: tip of tail missing",
+        "examples": "tip of tail missing",
+        "required": false,
+        "disp_name": "measurementRemarks",
+        "id": "measurementRemarks",
+        "grouping": "Darwin Core term",
+        "valid": {
+            "validate": "any",
+            "input_title": "measurementRemarks",
+            "input_message": "\n\nExamples: tip of tail missing"
+        },
+        "format": "text"
+    }
+]

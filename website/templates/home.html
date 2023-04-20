@@ -66,161 +66,267 @@
 
         <p>{{description}}</p><br><br>
 
-        <div class="form-row">
-          <!--Configuration required/recommended fields-->
-          {% for col, fields in output_config_dict.items() %}
-          <div class="col-md-4">
+        {% for sheet in output_config_dict.keys() %}
+          {% if output_config_dict[sheet]['Required CSV'] == False %}
+          <!--Option to add extensions that aren't required-->
+            <button class="btn btn-outline-success btn-sm" type="submit" name="submitbutton" value="add_{{sheet}}">Add {{sheet}}</button>
+          {% endif %}
+        {% endfor %}
+        <br><br>
+        <hr class="bg-dark"><br>
+        {% for sheet in output_config_dict.keys() %}
 
-            <h3>{{col}}</h3><br>
-            {% for key, field in fields.items() %}
-            <div class="form-check">
-              <label title='{{field["description"]}}' class="form-check-label">
-                <input
-                  class="form-check-input form-control-lg"
-                  type="checkbox"
-                  id="{{key}}"
-                  name="{{key}}"
-                  {% if col == 'Required' or 'checked' in field.keys() %}
-                  checked
-                  {% endif %}
-                  >
-                {{field['disp_name']}}
-              </label>
+            {% if output_config_dict[sheet]['Required CSV'] == True %}
+              <h3>Sheet: {{sheet}}</h3>
 
-            </div>
-            <br>
-            {% endfor %}
-          </div>
-          {% endfor %}
+              {% if 'Source' in output_config_dict[sheet].keys() %}
+                <a href="{{output_config_dict[sheet]['Source']}}">{{output_config_dict[sheet]['Source']}}</a><br>
+              {% endif %}
+              <br>
 
-          <!--Add more fields-->
-          <div class="col-md-4">
+              {% if sheet not in compulsary_sheets %}
+                <button class="btn btn-outline-danger btn-sm" type="submit" name="submitbutton" value="remove_{{sheet}}">Remove {{sheet}}</button><br><br>
+              {% endif %}
 
-            <!-- Button trigger modal for adding more fields -->
-            <button type="button" class="btn btn-dark btn-lg btn-block" data-toggle="modal" data-target="#fieldsModal">
-              Add more fields
-            </button>
+              <div class="form-row">
+                <!--Configuration required/recommended fields-->
+                {% for col, fields in output_config_dict[sheet].items() %}
+                  {% if col not in ['Required CSV', 'Source'] %}
+                    <div class="col-md-3">
 
-            <!-- Modal -->
-            <div class="modal fade" id="fieldsModal" tabindex="-1" role="dialog" aria-labelledby="fieldsModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="submit" class="btn btn-primary" name="submitbutton" value="addfields">Add fields</button>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    {% for group in groups %}
-                    <div class="dropdown">
-                      <button type="button" class="btn btn-light btn-lg btn-block dropdown-toggle" data-toggle="dropdown">
-                        {{group}}
-                      </button>
-                      <div class="dropdown-menu pre-scrollable">
-                        {% for field, vals in extra_fields_dict.items() %}
-                          {% if vals['grouping'] == group %}
-                           <div class="form-check">
-                             <label title='{{vals["description"]}}' class="col-sm-9 col-form-label">
-                               <input class="form-check-input" type="checkbox" id='{{field}}' name='{{field}}'>
-                               {{vals["disp_name"]}}
-                             </label>
-                           </div>
-                          {% endif %}
+                      <h4>{{col}}</h4><br>
+
+                      {% if col == 'Suggestions' %}
+                        <button type="button" class="btn btn-outline-primary btn-lg dropdown-toggle" data-toggle="dropdown">
+                          Suggestions
+                        </button>
+                        <div class="dropdown-menu pre-scrollable">
+                           {% for key, field in fields.items() %}
+                             <div class="form-check">
+                               <label title='{{field["description"]}}' class="form-check-label">
+                                 <input
+                                   class="form-check-input form-control-lg"
+                                   type="checkbox"
+                                   id="{{sheet}}__{{key}}"
+                                   name="{{sheet}}__{{key}}"
+                                   {% if col == 'Required' or 'checked' in field.keys() %}
+                                   checked
+                                   {% endif %}
+                                   >
+                                 {{field['disp_name']}}
+                               </label>
+                             </div>
+                           {% endfor %}
+                         </div>
+
+                      {% else %}
+                        {% for key, field in fields.items() %}
+                          <div class="form-check">
+                            <label title='{{field["description"]}}' class="form-check-label">
+                              <input
+                                class="form-check-input form-control-lg"
+                                type="checkbox"
+                                id="{{sheet}}__{{key}}"
+                                name="{{sheet}}__{{key}}"
+                                {% if col == 'Required' or 'checked' in field.keys() %}
+                                checked
+                                {% endif %}
+                                >
+                              {{field['disp_name']}}
+                            </label>
+                          </div>
+                          <br>
                         {% endfor %}
-                       </div>
-                    </div><br>
-                    {% endfor %}
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" name="submitbutton" value="addfields">Add fields</button>
-                  </div>
-                </div>
-              </div>
-            </div><br>
+                      {% endif %}
+                    </div>
+                  {% endif %}
+                {% endfor %}
 
-            <!--List of extra fields that have been added-->
-            {% if added_fields_bool == True %}
-              {% for key, field in added_fields_dic.items() %}
-                <div class="form-check">
-                  <label title='{{field["description"]}}' class="form-check-label">
-                    <input class="form-check-input" type="checkbox" id="{{key}}" name="{{key}}" checked>
-                    {{field['disp_name']}}
-                  </label>
+                <!--Add more fields-->
+                <div class="col-md-3">
+
+                  <h4>Other</h4><br>
+
+                  <!--CF standard names-->
+                  <!-- Button trigger modal for fields -->
+                  <button type="button" class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#cfModal">
+                    Add CF standard names
+                  </button>
+                  <!-- Modal -->
+
+                  <div class="modal fade" id="cfModal" tabindex="-1" role="dialog" aria-labelledby="cfModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="submit" class="btn btn-primary" name="submitbutton" value="addfields">Add fields</button>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <p>CF standard names as listed <a href="https://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html">here</a></p>
+
+                          <div class="search-box">
+                  					<input type="text" class="form-control" placeholder="Search...">
+                  				</div>
+                  				<div class="list-group">
+                            {% for field in cf_standard_names %}
+                  					<label title='{{field["description"]}}' class="list-group-item dropdown-menu pre-scrollable">
+                  						<input type="checkbox" name='{{sheet}}__{{field["id"]}}' value="y"> {{field["id"]}}
+                  					</label>
+                            {% endfor %}
+                  				</div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary" name="submitbutton" value="addfields">Add fields</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div><br>
+
+                  <!--List of CF standard names that have been selected-->
+                  {% if added_cf_names_bool[sheet] == True %}
+                  {% for key, field in added_cf_names_dic[sheet].items() %}
+                  <div class="form-check">
+                    <label title='{{field["description"]}}' class="form-check-label">
+                      <input class="form-check-input" type="checkbox" id="{{sheet}}__{{key}}" name="{{sheet}}__{{key}}" checked>
+                      {{field['disp_name']}}
+                    </label>
+                  </div>
+                  <br>
+                  {% endfor %}
+                  {% endif %}
+
+                  <!--Darwin Core terms-->
+                  <!-- Button trigger modal for fields -->
+                  <button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#dwcModal">
+                    Add Darwin Core terms
+                  </button>
+                  <!-- Modal -->
+
+                  <div class="modal fade" id="dwcModal" tabindex="-1" role="dialog" aria-labelledby="dwcModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="submit" class="btn btn-primary" name="submitbutton" value="addfields">Add terms</button>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <p>Darwin Core terms as listed <a href="https://raw.githubusercontent.com/tdwg/rs.tdwg.org/master/terms/terms.csv">here</a></p>
+
+                          <div class="search-box">
+                  					<input type="text" class="form-control" placeholder="Search...">
+                  				</div>
+                  				<div class="list-group">
+                            {% for term in dwc_terms_by_sheet[sheet] %}
+                  					<label title='{{term["description"]}}' class="list-group-item dropdown-menu pre-scrollable">
+                  						<input type="checkbox" name='{{sheet}}__{{term["id"]}}' value="y"> {{term["id"]}}
+                  					</label>
+                            {% endfor %}
+                  				</div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary" name="submitbutton" value="addfields">Add terms</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div><br>
+
+                  <!--List of CF standard names that have been selected-->
+                  {% if added_dwc_terms_bool[sheet] == True %}
+                  {% for key, field in added_dwc_terms_dic[sheet].items() %}
+                  <div class="form-check">
+                    <label title='{{field["description"]}}' class="form-check-label">
+                      <input class="form-check-input" type="checkbox" id="{{sheet}}__{{key}}" name="{{sheet}}__{{key}}" checked>
+                      {{field['disp_name']}}
+                    </label>
+                  </div>
+                  <br>
+                  {% endfor %}
+                  {% endif %}
+
+                  <!-- Button trigger modal for adding more fields -->
+                  <button type="button" class="btn btn-dark btn-lg btn-block" data-toggle="modal" data-target="#fieldsModal">
+                    Add more fields
+                  </button>
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="fieldsModal" tabindex="-1" role="dialog" aria-labelledby="fieldsModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="submit" class="btn btn-primary" name="submitbutton" value="addfields">Add fields</button>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          {% for group in groups %}
+                          <div class="dropdown">
+                            <button type="button" class="btn btn-light btn-lg btn-block dropdown-toggle" data-toggle="dropdown">
+                              {{group}}
+                            </button>
+                            <div class="dropdown-menu pre-scrollable">
+                               {% for field, vals in extra_fields_dict.items() %}
+                                 {% if vals['grouping'] == group %}
+                                 <div class="form-check">
+                                   <label title='{{vals["description"]}}' class="col-sm-9 col-form-label">
+                                     <input class="form-check-input" type="checkbox" id='{{sheet}}__{{field}}' name='{{sheet}}__{{field}}'>
+                                     {{vals["disp_name"]}}
+                                   </label>
+                                 </div>
+                                 {% endif %}
+                               {% endfor %}
+                             </div>
+                          </div><br>
+                          {% endfor %}
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary" name="submitbutton" value="addfields">Add fields</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div><br>
+
+                  <!--List of extra fields that have been added-->
+                  {% if added_fields_bool[sheet] == True %}
+                  {% for key, field in added_fields_dic[sheet].items() %}
+                  <div class="form-check">
+                    <label title='{{field["description"]}}' class="form-check-label">
+                      <input class="form-check-input" type="checkbox" id="{{sheet}}__{{key}}" name="{{sheet}}__{{key}}" checked>
+                      {{field['disp_name']}}
+                    </label>
+                  </div>
+                  <br>
+                  {% endfor %}
+                  {% endif %}
+
+
+
+                  <!--Darwin Core Terms-->
+                  <!-- Button trigger modal for fields -->
+                  <!--
+                  <button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#cfModal">
+                    Add Darwin Core terms
+                  </button>
+                  -->
+
                 </div>
-                <br>
-              {% endfor %}
+
+              </div><hr class="bg-dark"><br>
+
+            {% else %}
             {% endif %}
+        {% endfor %}
 
-            <!--CF standard names-->
-            <!-- Button trigger modal for fields -->
-            <button type="button" class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#cfModal">
-              Add CF standard names
-            </button>
-            <!-- Modal -->
-
-            <div class="modal fade" id="cfModal" tabindex="-1" role="dialog" aria-labelledby="cfModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="submit" class="btn btn-primary" name="submitbutton" value="addfields">Add fields</button>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <p>CF standard names as listed <a href="https://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html">here</a></p>
-
-                    <div class="search-box">
-            					<input type="text" class="form-control" placeholder="Search...">
-            				</div>
-            				<div class="list-group">
-                      {% for field in cf_standard_names %}
-            					<label title='{{field["description"]}}' class="list-group-item dropdown-menu pre-scrollable">
-            						<input type="checkbox" name='{{field["id"]}}' value="y"> {{field["id"]}}
-            					</label>
-                      {% endfor %}
-            				</div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" name="submitbutton" value="addfields">Add fields</button>
-                  </div>
-                </div>
-              </div>
-            </div><br>
-
-            <!--List of CF standard names that have been selected-->
-            {% if added_cf_names_bool == True %}
-              {% for key, field in added_cf_names_dic.items() %}
-                <div class="form-check">
-                  <label title='{{field["description"]}}' class="form-check-label">
-                    <input class="form-check-input" type="checkbox" id="{{key}}" name="{{key}}" checked>
-                    {{field['disp_name']}}
-                  </label>
-                </div>
-                <br>
-              {% endfor %}
-            {% endif %}
-
-            <!--Darwin Core Terms-->
-            <!-- Button trigger modal for fields -->
-            <!--
-            <button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#cfModal">
-              Add Darwin Core terms
-            </button>
-            -->
-
-            <br><br><br>
-            <button class="btn btn-primary btn-lg btn-block" type="submit" name="submitbutton" value="generateTemplate">Generate</button>
-            <br>
-
-
-
-          </div>
-
-        </div>
+        <br><br><br>
+        <button class="btn btn-primary btn-lg btn-block" type="submit" name="submitbutton" value="generateTemplate">Generate</button>
+        <br>
 
 
       </form>

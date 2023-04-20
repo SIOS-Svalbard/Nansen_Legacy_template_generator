@@ -81,4 +81,44 @@ setups:
       fields:
       - Required: [parentID, sampleType, pi_details, recordedBy_details, sampleVolumeInMilliliters]
         Recommended: [id, catalogNumber,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion,filteredVolumeInMilliliters,filter,comments1]
+  Darwin Core:
+    Sampling Event:
+      Event Core:
+        fields:
+        - Required: [eventID,eventDate,samplingProtocol]
+          Recommended: [sampleSizeValue, sampleSizeUnit, parentEventID, samplingEffort, locationID, decimalLatitude, decimalLongitude, geodeticDatum, footprintWKT, footprintSRS, countryCode]
+          Suggestions: 'from source'
+        Source: 'https://rs.gbif.org/core/dwc_event_2022-02-02.xml'
+        Required CSV: True
+      Occurrence Extension:
+        fields:
+        - Required: [occurrenceID,eventID,basisOfRecord,scientificName]
+          Recommended: [taxonRank,kingdom,individualCount,organismQuantity,organismQuantityType]
+          Suggestions: 'from source'
+        Source: 'https://rs.gbif.org/core/dwc_occurrence_2022-02-02.xml'
+        Required CSV: True
+      Extended MoF Extension:
+        fields:
+        - Required: [measurementID,occurrenceID,eventID,measurementType,measurementValue,measurementUnit]
+          Recommended: 'from source'
+        Source: 'https://rs.gbif.org/extension/obis/extended_measurement_or_fact.xml'
+        Required CSV: False
+      Material Sample Extension:
+        fields:
+        - Required: [materialSampleID,eventID,materialSampleType]
+          Recommended: 'from source'
+        Source: 'https://rs.gbif.org/extension/ggbn/materialsample.xml'
+        Required CSV: False
+      Resource Relationship Extension:
+        fields:
+        - Required: [resourceRelationshipID,resourceID,relatedResourceID, eventID]
+          Recommended: 'from source'
+        Source: 'https://rs.gbif.org/extension/dwc/resource_relationship_2022-02-02.xml'
+        Required CSV: False
+      Simple Multimedia Extension:
+        fields:
+        - Required: [type,format,identifier,eventID,occurrenceID]
+          Recommended: 'from source'
+        Source: 'https://rs.gbif.org/extension/gbif/1.0/multimedia.xml'
+        Required CSV: False
 ...

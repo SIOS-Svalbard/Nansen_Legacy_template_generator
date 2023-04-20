@@ -2,7 +2,7 @@ README:
 
 Spreadsheet template to record metadata and data.
 
-Please do not publish data in this format. This template should make it easier for you to create a CF-NetCDF file or Darwin Core Archive.
+Please do not publish data in this format. This template should make it easier for you to create a Darwin Core Archive.
 This will help make your data FAIR.
 
 Most of the column headers in the 'data' sheet are Darwin Core terms.
