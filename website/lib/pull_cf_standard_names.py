@@ -47,22 +47,36 @@ class CF_standard_names_json():
 
         '''
         self.df = pd.read_xml('https://cfconventions.org/Data/cf-standard-names/current/src/cf-standard-name-table.xml', xpath="entry")
-
         self.df = self.df.drop(['grib','amip'], axis=1)
 
-
     def create_json(self):
-        self.dic = self.df.to_dict(orient='records')
+        self.dic1 = self.df.to_dict(orient='records')
+
+        self.dic2 = []
+        for cf_standard_name in self.dic1:
+            cf_standard_name['valid'] = {
+                'validate': 'decimal',
+                'input_title': cf_standard_name['id'],
+                'input_message': cf_standard_name['description'],
+                'criteria': '>=',
+                'value': '-1e100',
+                'error_title': 'Error',
+                'error_message': 'Values should usually be numbers for CF standard names'
+                }
+            cf_standard_name['disp_name'] = cf_standard_name['id']
+            cf_standard_name['format'] = 'double precision'
+            cf_standard_name['grouping'] = 'CF standard name'
+
+            self.dic2.append(cf_standard_name)
+
         with open(self.filename, 'w', encoding='utf-8') as f:
-           json.dump(self.dic, f, ensure_ascii=False, indent=4)
+           json.dump(self.dic2, f, ensure_ascii=False, indent=4)
 
     def load_json(self):
         f = open(self.filename)
         self.dic = json.load(f)
 
-
 PATH = 'website/config/cf_standard_names.json'
-
 
 def cf_standard_names_update():
     cf_standard_names_json = CF_standard_names_json(PATH)

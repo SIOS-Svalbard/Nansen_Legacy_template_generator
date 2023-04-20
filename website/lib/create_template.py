@@ -10,25 +10,542 @@ Based on https://github.com/SIOS-Svalbard/darwinsheet/blob/master/scripts/make_x
 
 import xlsxwriter
 import pandas as pd
-import sys
-from os.path import os
-import json
-config_dir = os.path.abspath(os.path.join(
-    os.path.dirname(__file__), '..', 'config'))
-
-sys.path.append(config_dir)
-import fields as fields
-#import metadata_fields as metadata_fields
-from .pull_cf_standard_names import cf_standard_names_to_dic
-from .pull_acdd_conventions import acdd_to_df
-from .get_configurations import get_config_fields_dic
-import os
+import math
 from argparse import Namespace
-#from website.database.get_data import get_data, get_personnel_list, get_cruise
-import numpy as np
-from datetime import datetime
+import os.path
+from .get_configurations import get_field_requirements
+# import sys
 
-def create_template(filepath, template_fields_dict, metadata=None, conversions=True, data=None, metadata_df=None):
+# config_dir = os.path.abspath(os.path.join(
+#     os.path.dirname(__file__), '..', 'config'))
+
+#sys.path.append(config_dir)
+
+DEFAULT_FONT = 'Calibri'
+DEFAULT_SIZE = 10
+
+def add_line_breaks(text, n):
+    """Add line breaks to a long string every n characters or fewer if n characters falls within a word."""
+    lines = []
+    while len(text) > n:
+        # Find the last space within the limit
+        space_index = text.rfind(' ', 0, n+1)
+        if space_index == -1:
+            # No space found, just break at the limit
+            space_index = n
+        lines.append(text[:space_index].strip())
+        text = text[space_index:].strip()
+    lines.append(text)
+    return '\n'.join(lines)
+
+class Template(object):
+    """
+    Spreadsheet template object
+    """
+
+    def __init__(self, filepath, config, subconfig):
+        self.filepath = filepath
+        self.config = config
+        self.subconfig = subconfig
+        self.workbook = xlsxwriter.Workbook(self.filepath)
+
+        # Set font
+        self.workbook.formats[0].set_font_name(DEFAULT_FONT)
+        self.workbook.formats[0].set_font_size(DEFAULT_SIZE)
+
+    def add_metadata(self):
+        metadata = Metadata_Sheet(self)
+        metadata.add_acdd_metadata()
+
+    def add_data_sheet(self, sheetname, content):
+        data_sheet = Data_Sheet(sheetname, content, self)
+        data_sheet.write_key()
+        data_sheet.write_columns()
+
+    def add_conversions(self):
+        Conversions_Sheet(self)
+
+    def add_readme(self):
+        Readme_Sheet(self)
+
+    def close_and_save(self):
+        self.workbook.close()
+
+class Data_Sheet(object):
+    """
+    Data sheet object
+    """
+    def __init__(self, sheetname, content, template):
+        self.sheetname = sheetname
+        self.content = content
+        self.template = template
+        self.sheet = self.template.workbook.add_worksheet(self.sheetname)
+
+        self.required_field_format = self.template.workbook.add_format({
+            'font_name': DEFAULT_FONT,
+            'bottom': True,
+            'right': True,
+            'bold': False,
+            'text_wrap': True,
+            'valign': 'vcenter',
+            'font_size': DEFAULT_SIZE + 1,
+            'bg_color': '#B74F6F'
+        })
+
+        self.recommended_field_format = self.template.workbook.add_format({
+            'font_name': DEFAULT_FONT,
+            'bottom': True,
+            'right': True,
+            'bold': False,
+            'text_wrap': True,
+            'valign': 'vcenter',
+            'font_size': DEFAULT_SIZE + 1,
+            'bg_color': '#F49E4C'
+        })
+
+        self.optional_field_format = self.template.workbook.add_format({
+            'font_name': DEFAULT_FONT,
+            'bottom': True,
+            'right': True,
+            'bold': False,
+            'text_wrap': True,
+            'valign': 'vcenter',
+            'font_size': DEFAULT_SIZE + 1,
+            'bg_color': '#C0DF85'
+        })
+
+        self.cf_field_format = self.template.workbook.add_format({
+            'font_name': DEFAULT_FONT,
+            'bottom': True,
+            'right': True,
+            'bold': False,
+            'text_wrap': True,
+            'valign': 'vcenter',
+            'font_size': DEFAULT_SIZE + 1,
+            'bg_color': '#A4BFEB'
+        })
+
+        self.dwc_term_format = self.template.workbook.add_format({
+            'font_name': DEFAULT_FONT,
+            'bottom': True,
+            'right': True,
+            'bold': False,
+            'text_wrap': True,
+            'valign': 'vcenter',
+            'font_size': DEFAULT_SIZE + 1,
+            'bg_color': 'green'
+        })
+
+        self.bounds_format = self.template.workbook.add_format({
+            'font_name': DEFAULT_FONT,
+            'bottom': True,
+            'right': True,
+            'bold': False,
+            'text_wrap': True,
+            'valign': 'vcenter',
+            'font_size': DEFAULT_SIZE + 1,
+            'bg_color': '#BCE7FD'
+        })
+
+        self.date_format = self.template.workbook.add_format({
+            'font_name': DEFAULT_FONT,
+            'bold': False,
+            'text_wrap': False,
+            'valign': 'vcenter',
+            'font_size': DEFAULT_SIZE,
+            'num_format': 'dd/mm/yy'
+            })
+
+        self.time_format = self.template.workbook.add_format({
+            'font_name': DEFAULT_FONT,
+            'bold': False,
+            'text_wrap': False,
+            'valign': 'vcenter',
+            'font_size': DEFAULT_SIZE,
+            'num_format': 'hh:mm:ss'
+            })
+
+    def write_key(self):
+        '''
+        Writing a key for colours at the top of the data sheet
+        '''
+
+        paste_message = "Use 'paste special' / 'paste only' so not to overwrite cell restrictions"
+
+        # Key
+        if self.template.config == 'Learnings from Nansen Legacy logging system':
+            self.title_row = 8  # starting row
+            self.sheet.merge_range('A2:D2', 'Required', self.required_field_format)
+            self.sheet.merge_range('A3:D3', 'Recommended', self.recommended_field_format)
+            self.sheet.merge_range('A4:D4', 'Optional', self.optional_field_format)
+            self.sheet.merge_range('A5:D5', 'CF standard name', self.cf_field_format)
+            self.sheet.merge_range('A6:D6', 'Darwin Core term', self.dwc_term_format)
+            self.sheet.merge_range('A7:D7', paste_message)
+        elif self.template.config == 'CF-NetCDF':
+            self.title_row = 7
+            self.sheet.merge_range('A2:D2', 'CF standard name', self.cf_field_format)
+            self.sheet.merge_range('A3:D3', 'Cell bounds', self.bounds_format)
+            self.sheet.merge_range('A4:D4', 'Other fields', self.optional_field_format)
+            self.sheet.merge_range('A5:D5', 'Darwin Core term', self.dwc_term_format)
+            self.sheet.merge_range('A6:D6', paste_message)
+        elif self.template.config == 'Darwin Core':
+            self.title_row = 8
+            self.sheet.merge_range('A2:D2', 'Required', self.required_field_format)
+            self.sheet.merge_range('A3:D3', 'Recommended', self.recommended_field_format)
+            self.sheet.merge_range('A4:D4', 'Other fields', self.optional_field_format)
+            self.sheet.merge_range('A5:D5', 'CF standard name', self.cf_field_format)
+            self.sheet.merge_range('A6:D6', 'Darwin Core term', self.dwc_term_format)
+            self.sheet.merge_range('A7:D7', paste_message)
+
+    def write_columns(self):
+        '''
+        Writing one column for each field
+        '''
+        start_row = self.title_row + 2
+        parameter_row = self.title_row + 1  # Parameter row, hidden
+        end_row = 20000  # final row to extend formatting and cell restrictions to
+
+        (
+        required_fields,
+        recommended_fields,
+        dwc_terms,
+        cf_standard_names
+        ) = get_field_requirements(config=self.template.config, subconfig=self.template.subconfig, sheetname=self.sheetname)
+
+        # Loop over all the variables/columns needed
+        ii = 0
+
+        for field, vals in self.content.items():
+
+            if field in ['pi_details','recordedBy_details']:# and DB:
+                # if type(data) == pd.core.frame.DataFrame:
+                #     data, duplication = split_personnel_df(data, field)
+                # else:
+                duplication = 3 # 3 copies of these columns
+            else:
+                duplication = 1 # One copy of all other columns
+
+            while duplication > 0:
+
+                # Write title row
+                if field in required_fields:
+                    self.sheet.write(self.title_row, ii, vals['disp_name'], self.required_field_format)
+                elif field in recommended_fields:
+                    self.sheet.write(self.title_row, ii, vals['disp_name'], self.recommended_field_format)
+                elif field in cf_standard_names:
+                    self.sheet.write(self.title_row, ii, vals['disp_name'], self.cf_field_format)
+                elif field in dwc_terms:
+                    self.sheet.write(self.title_row, ii, vals['disp_name'], self.dwc_term_format)
+                else:
+                    self.sheet.write(self.title_row, ii, vals['disp_name'], self.optional_field_format)
+
+                # Write row below with parameter name
+                if field in ['pi_details','recordedBy_details']:
+                    self.sheet.write(parameter_row, ii, field+ '_' + str(3-duplication))
+                else:
+                    self.sheet.write(parameter_row, ii, field)
+
+                # Write validations and cell restrictions
+                if 'valid' in vals:
+
+                    # Need to make sure that 'input_message' is not more than 255
+                    valid_copy = vals['valid'].copy()
+
+                    if len(vals['description']) > 255:
+                        valid_copy['input_message'] = vals['description'][:240] + '...'
+                    else:
+                        valid_copy['input_message'] = vals['description']
+
+                    valid_copy['input_message'] = add_line_breaks(valid_copy['input_message'], 35)
+                    valid_copy['input_message'].replace('\n', '\n\r')
+
+                    if len(vals['disp_name']) > 32:
+                        valid_copy['input_title'] = vals['disp_name'][:32]
+                    else:
+                        valid_copy['input_title'] = vals['disp_name']
+
+                    self.sheet.data_validation(first_row=start_row,
+                                               first_col=ii,
+                                               last_row=end_row,
+                                               last_col=ii,
+                                               options=valid_copy)
+
+                # Cell formats
+
+                ii = ii + 1
+                duplication = duplication - 1
+
+        # Set height of row
+        self.sheet.set_row(0, height=24)
+
+        # Freeze the rows at the top
+        self.sheet.freeze_panes(start_row, 0)
+
+        # Hide ID row
+        self.sheet.set_row(parameter_row, None, None, {'hidden': True})
+
+
+class Metadata_Sheet(object):
+    """
+    Metadata sheet object
+    ACDD or EML metadata
+    """
+    def __init__(self, template):
+        self.sheetname = 'Metadata'
+        self.sheet = template.workbook.add_worksheet(self.sheetname)
+        self.header_row = 8
+        self.start_row = self.header_row + 2
+
+        self.header_format = template.workbook.add_format({
+            'font_name': DEFAULT_FONT,
+            'font_color': '#FFFFFF',
+            'right': True,
+            'bottom': 5,
+            'bold': True,
+            'text_wrap': True,
+            'valign': 'vcenter',
+            'font_size': DEFAULT_SIZE + 2,
+            'bg_color': '#4a4a4a',
+        })
+
+        self.content_format = template.workbook.add_format({
+            'bold': False,
+            'font_name': DEFAULT_FONT,
+            'text_wrap': True,
+            'valign': 'vcenter',
+            'bg_color': '#e6ffff',
+            'bottom': True,
+            'right': True,
+            'font_size': DEFAULT_SIZE,
+            })
+
+        self.blank_format = template.workbook.add_format({
+            'bold': False,
+            'font_name': DEFAULT_FONT,
+            'text_wrap': True,
+            'valign': 'vcenter',
+            'bottom': True,
+            'right': True,
+            'font_size': DEFAULT_SIZE,
+            })
+
+        self.required_format = template.workbook.add_format({
+                'font_name': DEFAULT_FONT,
+                'bottom': True,
+                'right': True,
+                'bold': False,
+                'text_wrap': True,
+                'valign': 'vcenter',
+                'font_size': DEFAULT_SIZE,
+                'bg_color': '#F06292'
+            })
+
+        self.recommended_format = template.workbook.add_format({
+                'font_name': DEFAULT_FONT,
+                'bottom': True,
+                'right': True,
+                'bold': False,
+                'text_wrap': True,
+                'valign': 'vcenter',
+                'font_size': DEFAULT_SIZE,
+                'bg_color': '#F8BBD0'
+            })
+
+        self.optional_format = template.workbook.add_format({
+                'font_name': DEFAULT_FONT,
+                'bottom': True,
+                'right': True,
+                'bold': False,
+                'text_wrap': True,
+                'valign': 'vcenter',
+                'font_size': DEFAULT_SIZE,
+                'bg_color': '#F5E1E8'
+            })
+
+
+    def add_acdd_metadata(self):
+
+        df_metadata = pd.read_csv('website/config/acdd_conventions.csv')
+        df_metadata['Content'] = ''
+
+        last_col = len(df_metadata.columns)-1
+
+        for ii, col in enumerate(df_metadata.columns):
+            self.sheet.write(self.header_row, ii, col, self.header_format)
+            self.sheet.write(self.header_row+1, ii, col, self.blank_format)
+            self.sheet.set_row(self.header_row+1, None, None, {'hidden': True})
+
+        for idx, row in df_metadata.iterrows():
+
+            row_num = self.start_row + idx
+
+            if row['Requirement'] == 'Required':
+                cell_format = self.required_format
+            elif row['Requirement'] == 'Recommended':
+                cell_format = self.recommended_format
+            else:
+                cell_format = self.optional_format
+
+            for col, val in enumerate(row):
+
+                if col == last_col:
+                    cell_format = self.content_format
+
+                if type(val) == float:
+                    if math.isnan(val) and col == 3:
+                        val = 'Optional'
+
+                self.sheet.write(row_num, col, val, cell_format)
+
+                if col == last_col:
+                    valid = {}
+                    if row['Attribute'] in ['geospatial_lat_max', 'geospatial_lat_min']:
+                        valid['validate'] = 'decimal'
+                        valid['criteria'] = 'between'
+                        valid['minimum'] = -90
+                        valid['maximum'] = 90
+                        valid['error_title'] = 'Error'
+                        valid['error_message'] = 'Not in range [-90, 90]'
+                    elif row ['Attribute'] in ['geospatial_lon_max', 'geospatial_lon_min']:
+                        valid['validate'] = 'decimal'
+                        valid['criteria'] = 'between'
+                        valid['minimum'] = -180
+                        valid['maximum'] = 180
+                        valid['error_title'] = 'Error'
+                        valid['error_message'] = 'Not in range [-180, 180]'
+                    elif row['Attribute'] == 'featureType':
+                        valid['validate'] = 'list'
+                        valid['source'] = ['point','timeSeries','trajectory','profile','timeSeriesProfile','trajectoryProfile']
+                        valid['error_title'] = 'Error'
+                        valid['error_message'] = 'Not in range [-180, 180]'
+                    else:
+                        valid['validate'] = 'any'
+
+                    self.sheet.data_validation(first_row=row_num,
+                                      first_col=col,
+                                      last_row=row_num,
+                                      last_col=col,
+                                      options=valid)
+
+            length = len(row['Description'])
+
+            if row['Attribute'] == 'summary':
+                height = 150
+            elif length > 0:
+                height = int(length/4)
+            else:
+                height = 15
+
+            self.sheet.set_row(row_num, height)
+
+        # Hide requirements column.
+        self.sheet.set_column(3, 3, None, None, {'hidden': True})
+
+        # Key
+        self.sheet.merge_range('A2:B2', 'Required term', self.required_format)
+        self.sheet.merge_range('A3:B3', 'Recommended term', self.recommended_format)
+        self.sheet.merge_range('A4:B4', 'Optional term', self.optional_format)
+        self.sheet.merge_range('A6:B6', 'More attributes can be selected from')
+        self.sheet.merge_range('A7:B7', 'https://wiki.esipfed.org/Attribute_Convention_for_Data_Discovery_1-3')
+
+        self.sheet.set_column(0, 0, width=20)
+        self.sheet.set_column(1, 1, width=60)
+        self.sheet.set_column(2, 2, width=30)
+        self.sheet.set_column(4, 4, width=60)
+
+        # Freeze the rows at the top
+        self.sheet.freeze_panes(self.header_row+1, 1)
+
+
+class Conversions_Sheet(object):
+    """
+    Conversions sheet object
+    For converting coordinates from minutes and seconds to decimal
+    """
+    def __init__(self, template):
+        self.sheetname = 'Conversions'
+        self.sheet = template.workbook.add_worksheet(self.sheetname)
+
+        parameter_format = template.workbook.add_format({
+            'font_name': DEFAULT_FONT,
+            'right': True,
+            'bottom': True,
+            'bold': False,
+            'text_wrap': True,
+            'valign': 'left',
+            'font_size': DEFAULT_SIZE + 2,
+            'bg_color': '#B9F6F5',
+        })
+        center_format = template.workbook.add_format({
+            'font_name': DEFAULT_FONT,
+            'right': True,
+            'bottom': True,
+            'bold': False,
+            'text_wrap': True,
+            'valign': 'center',
+            'font_size': DEFAULT_SIZE + 2,
+            'bg_color': '#23EEFF',
+        })
+        output_format = template.workbook.add_format({
+            'font_name': DEFAULT_FONT,
+            'right': True,
+            'bottom': True,
+            'bold': False,
+            'text_wrap': True,
+            'valign': 'left',
+            'font_size': DEFAULT_SIZE + 2,
+            'bg_color': '#FF94E8',
+        })
+
+        self.sheet.set_column(0, 2, width=30)
+
+        self.sheet.write(1, 0, "Coordinate conversion ", parameter_format)
+        self.sheet.merge_range(2, 0, 2, 1, "Degree Minutes Seconds ", center_format)
+        self.sheet.write(3, 0, "Degrees ", parameter_format)
+        self.sheet.write(4, 0, "Minutes ", parameter_format)
+        self.sheet.write(5, 0, "Seconds ", parameter_format)
+        self.sheet.write(6, 0, "Decimal degrees ", output_format)
+        self.sheet.write(6, 1, "=B4+B5/60+B6/3600 ", output_format)
+        self.sheet.merge_range(7, 0, 7, 1, "Degree decimal minutes", center_format)
+        self.sheet.write(8, 0, "Degrees ", parameter_format)
+        self.sheet.write(9, 0, "Decimal minutes ", parameter_format)
+        self.sheet.write(10, 0, "Decimal degrees ", output_format)
+        self.sheet.write(10, 1, "=B9+B10/60 ", output_format)
+
+class Readme_Sheet(object):
+    """
+    Readme sheet object
+    """
+    def __init__(self, template):
+        self.sheetname = 'README'
+        self.sheet = template.workbook.add_worksheet(self.sheetname)
+
+        self.sheet.set_column(0, 0, width=150)
+
+        readme_format = template.workbook.add_format({
+            'font_name': DEFAULT_FONT,
+            'font_size': 12,
+            'bg_color': '#ffffff',
+        })
+
+        if template.config == 'CF-NetCDF':
+            readme_file = 'website/config/cfnetcdf_readme.txt'
+        elif template.config == 'Learnings from Nansen Legacy logging system':
+            readme_file = 'website/config/lfnl_readme.txt'
+        elif template.config == 'Darwin Core':
+            readme_file = 'website/config/dwc_readme.txt'
+
+        with open(readme_file, 'r') as file:
+            for idx, line in enumerate(file):
+
+                line = line.replace('\n','')
+
+                self.sheet.write(idx, 0, line, readme_format)
+                self.sheet.set_row(idx, 25)
+
+        self.sheet.activate()
+
+def create_template(filepath, template_fields_dict, config, subconfig=None, conversions=True, data=None, metadata_df=None):
     """
     Method for calling from other python programs
     Parameters
@@ -37,9 +554,14 @@ def create_template(filepath, template_fields_dict, metadata=None, conversions=T
         The output file
     template_fields_dict : dictionary
         A dictionary of the fields to include in the template. Divided first by sheet. Includes descriptions, formats and validations
-    metadata: string
-        Metadata to be written. ACDD, EML or None
-        Default: None
+    config: string
+        Configuration is either 'Darwin Core', 'CF-NetCDF', or 'Learnings from Nansen Legacy logging system'
+        Dictates what is included in the metadata sheet and readme sheet
+        Also used to check if fields are required or recommended
+    subconfig: string
+        Configuration is either 'Darwin Core', 'CF-NetCDF', or 'Learnings from Nansen Legacy logging system'
+        Dictates what is included in the metadata sheet and readme sheet
+        Used to check if fields are required or recommended
     conversions: Boolean
         Should the conversions sheet be written
         Default: True
@@ -50,7 +572,16 @@ def create_template(filepath, template_fields_dict, metadata=None, conversions=T
         Optional parameter. Option to add metadata from a dataframe to the 'metadata' sheet.
         Default: False
     """
+
     args = Namespace()
     args.verbose = 0
     args.dir = os.path.dirname(filepath)
     args.filepath = filepath
+
+    template = Template(args.filepath, config, subconfig)
+    template.add_metadata()
+    for sheetname, content in template_fields_dict.items():
+        template.add_data_sheet(sheetname, content)
+    template.add_conversions()
+    template.add_readme()
+    template.close_and_save()

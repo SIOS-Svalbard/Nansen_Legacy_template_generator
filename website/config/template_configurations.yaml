@@ -86,7 +86,7 @@ setups:
       Event Core:
         fields:
         - Required: [eventID,eventDate,samplingProtocol]
-          Recommended: [sampleSizeValue, sampleSizeUnit, parentEventID, samplingEffort, locationID, decimalLatitude, decimalLongitude, geodeticDatum, footprintWKT, footprintSRS, countryCode, occurrenceStatus]
+          Recommended: [sampleSizeValue, sampleSizeUnit, parentEventID, samplingEffort, locationID, decimalLatitude, decimalLongitude, geodeticDatum, footprintWKT, footprintSRS, countryCode]
           Suggestions: 'from source'
         Source: 'https://rs.gbif.org/core/dwc_event_2022-02-02.xml'
         Required CSV: True
@@ -97,7 +97,7 @@ setups:
           Suggestions: 'from source'
         Source: 'https://rs.gbif.org/core/dwc_occurrence_2022-02-02.xml'
         Required CSV: True
-      Extended Measurement or Facts Extension:
+      Extended MoF Extension:
         fields:
         - Required: [measurementID,occurrenceID,eventID,measurementType,measurementValue,measurementUnit]
           Recommended: 'from source'

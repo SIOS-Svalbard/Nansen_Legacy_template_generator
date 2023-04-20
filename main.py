@@ -6,7 +6,6 @@ import json
 from website import create_app
 from website.lib.template import print_html_template
 from website.lib.get_configurations import *
-from website.lib.make_xlsx import write_file
 from website.lib.create_template import create_template
 from website.lib.pull_cf_standard_names import cf_standard_names_update
 from website.lib.pull_acdd_conventions import acdd_conventions_update
@@ -76,21 +75,22 @@ def home():
     dwc_terms_by_sheet = {} # Separate dictionary of dwc terms for each sheet. Not including required or recommended terms in each sheet.
 
     for sheet in output_config_dict.keys():
-        template_fields_dict[sheet] = {}
-        added_cf_names_dic[sheet] = {}
-        added_dwc_terms_dic[sheet] = {}
-        added_fields_dic[sheet] = {}
-        dwc_terms_tmp = dwc_terms
-        for key in output_config_dict[sheet].keys():
-            if key not in ['Required CSV', 'Source']:
-                fields_accounted_for = output_config_dict[sheet][key].keys()
-                idxs_to_remove = []
-                for idx, dwc_term in enumerate(dwc_terms_tmp):
-                    if dwc_term['id'] in fields_accounted_for:
-                        idxs_to_remove.append(idx)
-                dwc_terms_to_keep = [dwc_terms_tmp[i] for i in range(len(dwc_terms_tmp)) if i not in idxs_to_remove]
-                dwc_terms_tmp = dwc_terms_to_keep
-        dwc_terms_by_sheet[sheet] = dwc_terms_tmp
+        if output_config_dict[sheet]['Required CSV'] == True:
+            template_fields_dict[sheet] = {}
+            added_cf_names_dic[sheet] = {}
+            added_dwc_terms_dic[sheet] = {}
+            added_fields_dic[sheet] = {}
+            dwc_terms_tmp = dwc_terms
+            for key in output_config_dict[sheet].keys():
+                if key not in ['Required CSV', 'Source']:
+                    fields_accounted_for = output_config_dict[sheet][key].keys()
+                    idxs_to_remove = []
+                    for idx, dwc_term in enumerate(dwc_terms_tmp):
+                        if dwc_term['id'] in fields_accounted_for:
+                            idxs_to_remove.append(idx)
+                    dwc_terms_to_keep = [dwc_terms_tmp[i] for i in range(len(dwc_terms_tmp)) if i not in idxs_to_remove]
+                    dwc_terms_tmp = dwc_terms_to_keep
+            dwc_terms_by_sheet[sheet] = dwc_terms_tmp
 
     if request.method == "GET":
 
@@ -124,6 +124,7 @@ def home():
                         if field['id'] == form_field and field['id'] not in output_config_dict[sheet]:
                             template_fields_dict[sheet][field['id']] = {}
                             template_fields_dict[sheet][field['id']]['disp_name'] = field['id']
+                            template_fields_dict[sheet][field['id']]['valid'] = field['valid']
                             if field["description"] == None:
                                 field["description"] = ""
                             template_fields_dict[sheet][field['id']]['description'] = f"{field['description']} \ncanonical units: {field['canonical_units']}"
@@ -131,7 +132,6 @@ def home():
                             added_cf_names_dic[sheet][field['id']] = template_fields_dict[sheet][field['id']]
 
         # DWC terms
-
         for sheet in dwc_terms_by_sheet.keys():
             for term in dwc_terms_by_sheet[sheet]:
                 for form_key in all_form_keys:
@@ -148,18 +148,13 @@ def home():
 
         # Other fields (not CF standard names or DwC terms - terms designed for the template generator and logging system)
         for sheet in template_fields_dict.keys():
-            #for field in all_fields_dict.keys():
-
             for form_key in all_form_keys:
-                #print(form_key)
                 if form_key.startswith(sheet):
-                #    print(form_key)
                     form_field = form_key.split('__')[1]
                     if form_field not in added_cf_names_dic[sheet].keys():
                         template_fields_dict[sheet][form_field] = all_fields_dict[form_field] # fields to write to template
                         if form_field in extra_fields_dict.keys():
                             added_fields_dic[sheet][form_field] = extra_fields_dict[form_field] # Extra fields added to template generator interface by user
-
 
         for sheet in output_config_dict.keys():
             for key in output_config_dict[sheet].keys():
@@ -171,12 +166,11 @@ def home():
         if request.form["submitbutton"] == "generateTemplate":
             filepath = "/tmp/LFNL_template.xlsx"
 
-            metadata = 'ACDD'
-
             create_template(
                 filepath,
                 template_fields_dict,
-                metadata=metadata,
+                config,
+                subconfig,
                 conversions=True
             )
             return send_file(filepath, as_attachment=True)
