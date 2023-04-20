@@ -270,6 +270,15 @@ class Data_Sheet(object):
                                                last_col=ii,
                                                options=valid_copy)
 
+                if 'cell_format' in vals:
+                    if 'font_name' not in vals['cell_format']:
+                        vals['cell_format']['font_name'] = DEFAULT_FONT
+                    if 'font_size' not in vals['cell_format']:
+                        vals['cell_format']['font_size'] = DEFAULT_SIZE
+                    cell_format = workbook.add_format(vals['cell_format'])
+                    self.sheet.set_column(
+                        ii, ii, width=20, cell_format=cell_format)
+
                 # Cell formats
 
                 ii = ii + 1
