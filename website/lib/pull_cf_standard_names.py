@@ -67,6 +67,14 @@ class CF_standard_names_json():
             cf_standard_name['format'] = 'double precision'
             cf_standard_name['grouping'] = 'CF standard name'
 
+            if cf_standard_name['id'] == 'time':
+                cf_standard_name['description'] = '''
+                To encode time in CF standards, set "time" variable units using UDUNITS syntax (e.g. "days since 1970-01-01"),
+                
+                e.g. time = 0,1,2
+                for dates 1970-01-01, 1970-01-02, 1970-01-03
+                '''
+
             self.dic2.append(cf_standard_name)
 
         with open(self.filename, 'w', encoding='utf-8') as f:
