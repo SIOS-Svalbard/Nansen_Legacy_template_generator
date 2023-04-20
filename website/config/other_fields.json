@@ -1,0 +1,1189 @@
+[
+    {
+        "disp_name": "ID",
+        "description": "A 36 character long universally unique ID (UUID) including 4 '-'.\nCould be read in with a code reader.\nIf not provided, will be assigned automatically to each record.",
+        "width": 38,
+        "format": "uuid",
+        "grouping": "ID",
+        "valid": {
+            "validate": "length",
+            "criteria": "==",
+            "value": 36,
+            "input_title": "ID",
+            "input_message": "Should be a 36 character long universally unique ID (UUID) including 4 '-'.\nCould be read in with a code reader.",
+            "error_title": "Error",
+            "error_message": "Needs to be a 36 characters long universally unique ID (UUID) including 4 '- '"
+        },
+        "id": "id"
+    },
+    {
+        "disp_name": "Parent ID",
+        "description": "ID of the sample this subsample was taken from.\nShould be a 36 characters long universally unique ID (UUID) including 4 '-'\nCould be read in with a code reader.",
+        "width": 38,
+        "format": "uuid",
+        "grouping": "ID",
+        "valid": {
+            "validate": "length",
+            "criteria": "==",
+            "value": 36,
+            "input_title": "Parent ID",
+            "input_message": "ID of the sample this subsample was taken from.\nShould be a 36 characters long universally unique ID (UUID) including 4 '-'\nCould be read in with a code reader.",
+            "error_title": "Error",
+            "error_message": "Needs to be a 36 characters long universally unique ID (UUID) including 4 '- '"
+        },
+        "id": "parentID"
+    },
+    {
+        "disp_name": "Bottle Number",
+        "description": "The bottle number\nCould be for instance the niskin bottle number.\nPositive integer",
+        "inherit": true,
+        "format": "int",
+        "grouping": "Numbering",
+        "valid": {
+            "validate": "integer",
+            "criteria": ">",
+            "value": 0,
+            "input_title": "Bottle Number",
+            "input_message": "The bottle number\nCould be for instance the niskin bottle number.\nPositive integer",
+            "error_title": "Error",
+            "error_message": "Integer > 0"
+        },
+        "id": "bottleNumber"
+    },
+    {
+        "disp_name": "Middle Date (UTC)",
+        "description": "Middle date for event, for instance for noting the deepest point of a trawl or net haul.\nShould be in ISO8601 format, in UTC time, e.g. 2022-04-10",
+        "inherit": true,
+        "format": "date",
+        "grouping": "Timing",
+        "width": 12,
+        "valid": {
+            "validate": "date",
+            "criteria": "between",
+            "minimum": "2000-01-01",
+            "maximum": "=TODAY()+100",
+            "input_title": "Start Date",
+            "input_message": "Middle date for event, for instance for noting the deepest point of a trawl or net haul.\nShould be in ISO8601 format, in UTC time, e.g. 2022-04-10T09:46:24Z",
+            "error_title": "Error",
+            "error_message": "Not a valid date [2000-01-01, today + 2]"
+        },
+        "cell_format": {
+            "num_format": "yyyy-mm-dd"
+        },
+        "id": "middleDate"
+    },
+    {
+        "disp_name": "Middle Time (UTC)",
+        "description": "Middle time for event, for instance for noting the deepest point of a trawl or net haul.\nShould be in ISO8601 format, in UTC time, e.g. 09:46:24Z",
+        "inherit": true,
+        "format": "time",
+        "grouping": "Timing",
+        "width": 12,
+        "valid": {
+            "validate": "time",
+            "criteria": "between",
+            "minimum": 0,
+            "maximum": 0.9999999,
+            "input_title": "Start Date",
+            "input_message": "Middle time for event, for instance for noting the deepest point of a trawl or net haul.\nShould be in ISO8601 format, in UTC time, e.g. 09:46:24Z",
+            "error_title": "Error",
+            "error_message": "Not a valid date [2000-01-01, today + 2]"
+        },
+        "cell_format": {
+            "num_format": "yyyy-mm-dd"
+        },
+        "id": "middleTime"
+    },
+    {
+        "disp_name": "End Date (UTC)",
+        "description": "Date of the end of the collection event period,\nShould be in ISO8601 format, in UTC time, e.g. 2022-04-10",
+        "inherit": true,
+        "format": "date",
+        "grouping": "Timing",
+        "width": 12,
+        "valid": {
+            "validate": "date",
+            "criteria": "between",
+            "minimum": "2000-01-01",
+            "maximum": "=TODAY()+2",
+            "input_title": "End Date",
+            "input_message": "Date of the end of the collection event period, in UTC time, e.g. 2022-04-10",
+            "error_title": "Error",
+            "error_message": "Not a valid date [2000-01-01, today + 2]"
+        },
+        "cell_format": {
+            "num_format": "yyyy-mm-dd"
+        },
+        "id": "endDate"
+    },
+    {
+        "disp_name": "End Time (UTC)",
+        "description": "Time of the end of the collection event period,\nShould be in ISO8601 format, in UTC time, e.g. 09:46:24Z",
+        "inherit": true,
+        "format": "time",
+        "grouping": "Timing",
+        "width": 13,
+        "dwcid": "http://rs.tdwg.org/dwc/terms/eventTime",
+        "valid": {
+            "validate": "time",
+            "criteria": "between",
+            "minimum": 0,
+            "maximum": 0.9999999,
+            "input_title": "End Time (UTC)",
+            "input_message": "\nThe time in UTC\nFormat is HH:MM\nIf MM > 59, HH will be HH + 1 ",
+            "error_title": "Error",
+            "error_message": "Not a valid time"
+        },
+        "cell_format": {
+            "num_format": "hh:mm"
+        },
+        "id": "endTime"
+    },
+    {
+        "disp_name": "End Decimal Latitude",
+        "description": "Latitude in decimal degrees at the end of the sampling period.\n   Northern hemisphere is positive.\n   Example: 78.1500",
+        "inherit": true,
+        "format": "double precision",
+        "grouping": "Coordinates",
+        "units": "degrees_north",
+        "valid": {
+            "validate": "decimal",
+            "criteria": "between",
+            "minimum": -90,
+            "maximum": 90,
+            "input_title": "End Decimal Latitude",
+            "input_message": "Latitude in decimal degrees.\nThis is for use with for instance trawls and nets.\nNorthern hemisphere is positive.\nExample: 78.1500",
+            "error_title": "Error",
+            "error_message": "Not in range [-90, 90]"
+        },
+        "cell_format": {
+            "num_format": "0.0000"
+        },
+        "id": "endDecimalLatitude"
+    },
+    {
+        "disp_name": "End Decimal Longitude",
+        "description": "Longitude in decimal degrees at the end of the sampling period.\n   East of Greenwich (0) is positive.\n   Example: 15.0012",
+        "inherit": true,
+        "format": "double precision",
+        "grouping": "Coordinates",
+        "units": "degree_east",
+        "valid": {
+            "validate": "decimal",
+            "criteria": "between",
+            "minimum": -180,
+            "maximum": 180,
+            "input_title": "End Decimal Longitude",
+            "input_message": "Longitude in decimal degrees.\nThis is for use with for instance trawls and nets.\nEast of Greenwich (0) is positive.\nExample: 15.0012",
+            "error_title": "Error",
+            "error_message": "Not in range [-180, 180]"
+        },
+        "cell_format": {
+            "num_format": "0.0000"
+        },
+        "id": "endDecimalLongitude"
+    },
+    {
+        "disp_name": "Middle Decimal Latitude",
+        "description": "Latitude in decimal degrees.\nThis is for use with for instance trawls and nets and denotes the depest point.\nNorthern hemisphere is positive.\nExample: 78.1500",
+        "inherit": true,
+        "format": "double precision",
+        "grouping": "Coordinates",
+        "units": "degrees_north",
+        "valid": {
+            "validate": "decimal",
+            "criteria": "between",
+            "minimum": -90,
+            "maximum": 90,
+            "input_title": "Middle Decimal Latitude",
+            "input_message": "Latitude in decimal degrees.\nThis is for use with for instance trawls and nets and denotes the depest point.\nNorthern hemisphere is positive.\nExample: 78.1500",
+            "error_title": "Error",
+            "error_message": "Not in range [-90, 90]"
+        },
+        "cell_format": {
+            "num_format": "0.0000"
+        },
+        "id": "middleDecimalLatitude"
+    },
+    {
+        "disp_name": "Middle Decimal Longitude",
+        "description": "Longitude in decimal degrees.\nThis is for use with for instance trawls and nets and denotes the depest point.\nEast of Greenwich (0) is positive.\nExample: 15.0012",
+        "inherit": true,
+        "format": "double precision",
+        "grouping": "Coordinates",
+        "units": "degree_east",
+        "valid": {
+            "validate": "decimal",
+            "criteria": "between",
+            "minimum": -180,
+            "maximum": 180,
+            "input_title": "Middle Decimal Longitude",
+            "input_message": "Longitude in decimal degrees.\nThis is for use with for instance trawls and nets and denotes the depest point.\nEast of Greenwich (0) is positive.\nExample: 15.0012",
+            "error_title": "Error",
+            "error_message": "Not in range [-180, 180]"
+        },
+        "cell_format": {
+            "num_format": "0.0000"
+        },
+        "id": "middleDecimalLongitude"
+    },
+    {
+        "disp_name": "Local Station ID",
+        "description": "This ID is a running series (per gear) for each samling event and is found in the cruise logger.",
+        "inherit": true,
+        "width": 13,
+        "format": "int",
+        "grouping": "Station",
+        "valid": {
+            "validate": "any",
+            "input_title": "Local Station ID",
+            "input_message": "This ID is a running series (per gear) for each samling event and is found in the cruise logger.\n"
+        },
+        "id": "statID"
+    },
+    {
+        "disp_name": "Station Name",
+        "description": "The full name of the station. e.g. P1 (NLEG01)",
+        "inherit": true,
+        "width": 13,
+        "format": "text",
+        "grouping": "Station",
+        "long_list": true,
+        "valid": {
+            "validate": "list",
+            "source": "stations",
+            "input_title": "Station Name",
+            "input_message": "The full name of the station. e.g. P1 (NLEG01)",
+            "error_title": "Error",
+            "error_message": "Not a valid value, pick a value from the drop-down list."
+        },
+        "id": "stationName"
+    },
+    {
+        "disp_name": "Ship Speed (m/s)",
+        "description": "The speed of the ship in meters per second.\nDecimal number >=0.",
+        "inherit": true,
+        "format": "double precision",
+        "grouping": "Ship",
+        "units": "m/s",
+        "valid": {
+            "validate": "decimal",
+            "criteria": ">=",
+            "value": 0,
+            "input_title": "Ship Speed (m/s)",
+            "input_message": "The speed of the ship in meters per second.\nDecimal number >=0.",
+            "error_title": "Error",
+            "error_message": "Float >= 0"
+        },
+        "id": "shipSpeedInMetersPerSecond"
+    },
+    {
+        "disp_name": "Sediment Core Length (m)",
+        "description": "The total sediment core length decimal in meters.",
+        "units": "m",
+        "format": "double precision",
+        "grouping": "Sediment",
+        "valid": {
+            "validate": "decimal",
+            "criteria": ">=",
+            "value": 0,
+            "input_title": "Sediment Core Length (m)",
+            "input_message": "The total sediment core length decimal in meters.",
+            "error_title": "Error",
+            "error_message": "Float >= 0"
+        },
+        "id": "sedimentCoreLengthInMeters"
+    },
+    {
+        "disp_name": "Sediment Core Maximum Depth (cm)",
+        "description": "The sediment core maximum depth in centimeters.\nThis is measured from the top of the core.\nMaximum for multicores is 60 cm\nMaximum for gravity and piston cores is 3 000 cm.",
+        "units": "cm",
+        "format": "double precision",
+        "grouping": "Sediment",
+        "valid": {
+            "validate": "decimal",
+            "criteria": "between",
+            "minimum": 0,
+            "maximum": 3000,
+            "input_title": "Sediment Core Maximum Depth (m)",
+            "input_message": "The sediment core maximum depth in centimeters.\nThis is measured from the top of the core.\nMaximum for multicores is 60 cm\nMaximum for gravity and piston cores is 3 000 cm.",
+            "error_title": "Error",
+            "error_message": "Float[0, 3 000]"
+        },
+        "id": "sedimentCoreMaximumDepthInCentiMeters"
+    },
+    {
+        "disp_name": "Sediment Core Minimum Depth (cm)",
+        "description": "The sediment core minimum depth in centimeters.\nThis is measured from the top of the core.",
+        "units": "cm",
+        "format": "double precision",
+        "grouping": "Sediment",
+        "valid": {
+            "validate": "decimal",
+            "criteria": "between",
+            "minimum": 0,
+            "maximum": 3000,
+            "input_title": "Sediment Core Minimum Depth (m)",
+            "input_message": "The sediment core minimum depth in centimeters.\nThis is measured from the top of the core.",
+            "error_title": "Error",
+            "error_message": "Float[0, 3 000]"
+        },
+        "id": "sedimentCoreMinimumDepthInCentiMeters"
+    },
+    {
+        "disp_name": "Colour",
+        "description": "Colour of the sample or specimen",
+        "format": "text",
+        "grouping": "Measurements, Facts, Descriptions",
+        "valid": {
+            "validate": "any",
+            "input_title": "Colour",
+            "input_message": "Colour"
+        },
+        "id": "colour"
+    },
+    {
+        "disp_name": "Smell",
+        "description": "A descriptive word or term for the smell of the sample or specimen",
+        "format": "text",
+        "grouping": "Measurements, Facts, Descriptions",
+        "valid": {
+            "validate": "any",
+            "input_title": "Smell",
+            "input_message": "Smell"
+        },
+        "id": "smell"
+    },
+    {
+        "disp_name": "Recorded By (Name)",
+        "description": "Full name of who has recorded/analysed the data.\nCan be a concatenated list, separated by: '|'\nExample: John Doe | Ola Nordmann",
+        "dwcid": "http://rs.tdwg.org/dwc/terms/recordedBy",
+        "format": "text",
+        "grouping": "Personnel",
+        "valid": {
+            "validate": "any",
+            "input_title": "Recorded By",
+            "input_message": "Full name of who has recorded/analysed the data.\nCan be a concatenated list, separated by: '|'\nExample: John Doe | Ola Nordmann"
+        },
+        "id": "recordedBy_name"
+    },
+    {
+        "disp_name": "Recorded By (Email)",
+        "description": "Email of who has recorded/analysed the data.\nCan be a concatenated list, separated by: '|'\nExample: johnd@unis.no | olan@unis.no",
+        "dwcid": "http://rs.tdwg.org/dwc/terms/recordedBy",
+        "format": "text",
+        "grouping": "Personnel",
+        "valid": {
+            "validate": "any",
+            "input_title": "Recorded By (Email)",
+            "input_message": "Email of who has recorded/analysed the data.\nCan be a concatenated list, separated by: '|'\nExample: johnd@unis.no | olan@unis.no"
+        },
+        "id": "recordedBy_email"
+    },
+    {
+        "disp_name": "Recorded By (OrcID)",
+        "description": "OrcID(s) of who has recorded/analysed the data.\nCan be a concatenated list, separated by: '|'\nExample: https://orcid.org/0000-0002-9746-544X",
+        "dwcid": "http://rs.tdwg.org/dwc/terms/recordedBy",
+        "format": "text",
+        "grouping": "Personnel",
+        "valid": {
+            "validate": "any",
+            "input_title": "Recorded By (OrcID)",
+            "input_message": "OrcID(s) of who has recorded/analysed the data.\n    Can be a concatenated list, separated by: '|'\n    Example: https://orcid.org/0000-0002-9746-544X"
+        },
+        "id": "recordedBy_orcid"
+    },
+    {
+        "disp_name": "Recorded By (Institution)",
+        "description": "Institution of who has recorded/analysed the data.\nCan be a concatenated list, separated by: '|'. Please include for everyone listed, even if some are from the same institution.\nExample: University Centre in Svalbard | University Centre in Svalbard",
+        "dwcid": "http://rs.tdwg.org/dwc/terms/recordedBy",
+        "format": "text",
+        "grouping": "Personnel",
+        "valid": {
+            "validate": "any",
+            "input_title": "Recorded By",
+            "input_message": "Institution of who has recorded/analysed the data.\nCan be a concatenated list, separated by: '|'. Please include for everyone listed, even if some are from the same institution.\nExample: University Centre in Svalbard | University Centre in Svalbard"
+        },
+        "id": "recordedBy_institution"
+    },
+    {
+        "disp_name": "Recorded By",
+        "description": "Details of who has recorded/analysed the data.\nShould ideally include full name and email, e.g. Luke Marsden (lukem@unis.no).\nCan be a concatenated list, separated by: '|'.",
+        "dwcid": "http://rs.tdwg.org/dwc/terms/recordedBy",
+        "format": "text",
+        "grouping": "Personnel",
+        "long_list": true,
+        "valid": {
+            "validate": "list",
+            "source": "personnel",
+            "error_title": "Error",
+            "error_message": "Not a valid value, pick a value from the drop-down list.",
+            "input_title": "Recorded By",
+            "input_message": "Details of who has recorded/analysed the data.\n    Should ideally include full name and email, e.g. Luke Marsden (lukem@unis.no).\n    Can be a concatenated list, separated by: '|'."
+        },
+        "id": "recordedBy_details"
+    },
+    {
+        "disp_name": "PI name",
+        "description": "Full name of the principal investigator of the data.\nCan be a concatenated list, separated by: '|'\nExample: John Doe | Ola Nordmann",
+        "format": "text",
+        "grouping": "Personnel",
+        "valid": {
+            "validate": "any",
+            "input_title": "PI name",
+            "input_message": "Full name of the principal investigator of the data.\nCan be a concatenated list, separated by: '|'\nExample: John Doe | Ola Nordmann"
+        },
+        "id": "pi_name"
+    },
+    {
+        "disp_name": "PI email",
+        "description": "Email of the principal investigator of the data.\nCan be a concatenated list, separated by: '|'\nPlease include for every PI listed.\nExample: john.doe@unis.no | ola.nordmann@unis.no",
+        "format": "text",
+        "grouping": "Personnel",
+        "valid": {
+            "validate": "any",
+            "input_title": "PI email",
+            "input_message": "Email of the principal investigator of the data.\nCan be a concatenated list, separated by: '|'\nPlease include for every PI listed.\nExample: john.doe@unis.no | ola.nordmann@unis.no"
+        },
+        "id": "pi_email"
+    },
+    {
+        "disp_name": "PI institution",
+        "description": "Main institution of the principal investigator of the data.\nPlease include for every PI listed, even if the same.\nExample: University Centre in Svalbard | University Centre in Svalbard",
+        "format": "text",
+        "grouping": "Personnel",
+        "valid": {
+            "validate": "any",
+            "input_title": "PI institution",
+            "input_message": "Main institution of the principal investigator of the data.\nPlease include for every PI listed, even if the same.\nExample: University Centre in Svalbard | University Centre in Svalbard"
+        },
+        "id": "pi_institution"
+    },
+    {
+        "disp_name": "PI OrcID",
+        "description": "OrcID of the principal investigator(s) of the data.\nPlease include for every PI listed. Example: https://orcid.org/0000-0002-9746-544X",
+        "format": "text",
+        "grouping": "Personnel",
+        "valid": {
+            "validate": "any",
+            "input_title": "PI OrcID",
+            "input_message": "OrcID of the principal investigator(s) of the data.\n    Please include for every PI listed.  Example: https://orcid.org/0000-0002-9746-544X"
+        },
+        "id": "pi_orcid"
+    },
+    {
+        "disp_name": "PI Details",
+        "description": "Details of the principal investigator of the data.\nShould ideally include full name and email, e.g. Luke Marsden (lukem@unis.no).\nCan be a concatenated list, separated by: '|'\n",
+        "format": "text",
+        "grouping": "Personnel",
+        "long_list": true,
+        "valid": {
+            "validate": "list",
+            "source": "personnel",
+            "input_title": "PI Details",
+            "input_message": "Details of the principal investigator of the data.\n    Should ideally include full name and email, e.g. Luke Marsden (lukem@unis.no).\n    Can be a concatenated list, separated by: '|'\n    ",
+            "error_title": "Error",
+            "error_message": "Not a valid value, pick a value from the drop-down list."
+        },
+        "id": "pi_details"
+    },
+    {
+        "disp_name": "Storage temp",
+        "description": "Choose the storage temperature used",
+        "format": "text",
+        "grouping": "Storage",
+        "width": 15,
+        "long_list": true,
+        "valid": {
+            "validate": "list",
+            "source": "storage_temperatures",
+            "input_title": "Storage temperature",
+            "input_message": "Choose the storage temperature used",
+            "error_title": "Error",
+            "error_message": "Not a valid value, pick a value from the drop-down list."
+        },
+        "id": "storageTemp"
+    },
+    {
+        "disp_name": "Fixative",
+        "description": "Fixative used for sample",
+        "format": "text",
+        "grouping": "Storage",
+        "valid": {
+            "validate": "any",
+            "input_title": "Fixative",
+            "input_message": "Fixative used for sample "
+        },
+        "id": "fixative"
+    },
+    {
+        "disp_name": "Sample Location",
+        "description": "The long-term storage location onshore, immediately after the cruise.\nThis could for instance be an institution or something more specific.",
+        "format": "text",
+        "grouping": "Storage",
+        "valid": {
+            "validate": "any",
+            "input_title": "Sample Location",
+            "input_message": "The long-term storage location onshore, immediately after the cruise.\nThis could for instance be an institution or something more specific."
+        },
+        "id": "sampleLocation"
+    },
+    {
+        "disp_name": "Dilution factor",
+        "description": "Factor by which the sample has been diluted by",
+        "format": "double precision",
+        "grouping": "Filtering and Volumes",
+        "width": 20,
+        "valid": {
+            "validate": "decimal",
+            "criteria": ">",
+            "value": 0,
+            "input_title": "Dilution factor",
+            "input_message": "Positive integer",
+            "error_title": "Error",
+            "error_message": "Integer > 0"
+        },
+        "id": "dilution_factor"
+    },
+    {
+        "disp_name": "Sample Owner",
+        "description": "Person or institution who owns the sample",
+        "format": "text",
+        "grouping": "Storage",
+        "valid": {
+            "validate": "any",
+            "input_title": "Sample Owner",
+            "input_message": "Person who owns the sample"
+        },
+        "id": "sample_owner"
+    },
+    {
+        "disp_name": "Filter",
+        "description": "Choose the filter used.\nIf no filtering is being done choose None",
+        "format": "text",
+        "grouping": "Filtering and Volumes",
+        "width": 15,
+        "long_list": true,
+        "valid": {
+            "validate": "list",
+            "source": "filters",
+            "input_title": "Filter",
+            "input_message": "Choose the filter used. If no filtering is being done choose None",
+            "error_title": "Error",
+            "error_message": "Not a valid value, pick a value from the drop-down list."
+        },
+        "id": "filter"
+    },
+    {
+        "disp_name": "Filtered volume (mL)",
+        "description": "Filtered volume in decimal millilitres",
+        "format": "double precision",
+        "grouping": "Filtering and Volumes",
+        "valid": {
+            "validate": "decimal",
+            "criteria": ">",
+            "value": 0,
+            "input_title": "Filtered volume (mL)",
+            "input_message": "Filtered volume in decimal millilitres",
+            "error_title": "Error",
+            "error_message": "Decimal > 0"
+        },
+        "id": "filteredVolumeInMilliliters"
+    },
+    {
+        "disp_name": "Methanol volume (mL)",
+        "description": "Volume of methanol used in millilitres",
+        "format": "double precision",
+        "grouping": "Filtering and Volumes",
+        "units": "mL",
+        "valid": {
+            "validate": "decimal",
+            "criteria": ">",
+            "value": 0,
+            "input_title": "Methanol volume (mL)",
+            "input_message": "Volume of methanol used in millilitres",
+            "error_title": "Error",
+            "error_message": "Decimal > 0"
+        },
+        "id": "methanol_vol"
+    },
+    {
+        "disp_name": "Sample volume (mL)",
+        "description": "Sample volume in millilitres",
+        "format": "double precision",
+        "grouping": "Filtering and Volumes",
+        "units": "mL",
+        "valid": {
+            "validate": "decimal",
+            "criteria": ">",
+            "value": 0,
+            "input_title": "Sample volume (mL)",
+            "input_message": "Sample volume in millilitres",
+            "error_title": "Error",
+            "error_message": "Decimal > 0"
+        },
+        "id": "sampleVolumeInMilliliters"
+    },
+    {
+        "disp_name": "Subsample volume (mL)",
+        "description": "Subsample volume in millilitres",
+        "units": "mL",
+        "format": "double precision",
+        "grouping": "Filtering and Volumes",
+        "valid": {
+            "validate": "decimal",
+            "criteria": ">",
+            "value": 0,
+            "input_title": "Subsample volume (mL)",
+            "input_message": "Subsample volume in millilitres",
+            "error_title": "Error",
+            "error_message": "Decimal > 0"
+        },
+        "id": "subsample_vol"
+    },
+    {
+        "disp_name": "Weight (g)",
+        "description": "Weight of the sample or specimen in grams",
+        "format": "double precision",
+        "grouping": "Measurements, Facts, Descriptions",
+        "units": "g",
+        "valid": {
+            "validate": "decimal",
+            "criteria": ">",
+            "value": 0,
+            "input_title": "Weight in grams (g)",
+            "input_message": "Weight in grams",
+            "error_title": "Error",
+            "error_message": "Float > 0"
+        },
+        "id": "weightInGrams"
+    },
+    {
+        "disp_name": "Gonad Weight (g)",
+        "description": "Wet weight of the gonad in in grams",
+        "format": "double precision",
+        "grouping": "Measurements, Facts, Descriptions",
+        "units": "g",
+        "valid": {
+            "validate": "decimal",
+            "criteria": ">",
+            "value": 0,
+            "input_title": "Gonad Weight in grams (g)",
+            "input_message": "Wet weight of the gonad in in grams",
+            "error_title": "Error",
+            "error_message": "Float > 0"
+        },
+        "id": "gonadWeightInGrams"
+    },
+    {
+        "disp_name": "Liver Weight (g)",
+        "description": "Wet weight of the liver in in grams",
+        "format": "double precision",
+        "grouping": "Measurements, Facts, Descriptions",
+        "units": "g",
+        "valid": {
+            "validate": "decimal",
+            "criteria": ">",
+            "value": 0,
+            "input_title": "Liver Weight in grams (g)",
+            "input_message": "Wet weight of the liver in in grams",
+            "error_title": "Error",
+            "error_message": "Float > 0"
+        },
+        "id": "liverWeightInGrams"
+    },
+    {
+        "disp_name": "Somatic Weight (g)",
+        "description": "Wet weight of the fish when all inner organs are removed from the fish gonad in in grams",
+        "format": "double precision",
+        "grouping": "Measurements, Facts, Descriptions",
+        "units": "g",
+        "valid": {
+            "validate": "decimal",
+            "criteria": ">",
+            "value": 0,
+            "input_title": "Somatic Weight in grams (g)",
+            "input_message": "Wet weight of the fish when all inner organs are removed from the fish gonad in in grams",
+            "error_title": "Error",
+            "error_message": "Float > 0"
+        },
+        "id": "somaticWeightInGrams"
+    },
+    {
+        "disp_name": "Fork lenght (cm)",
+        "description": "The length of a fish measured from the most anterior part of the head to the deepest point of the notch in the tail fin in cm.\nPositive decimal number",
+        "format": "double precision",
+        "grouping": "Measurements, Facts, Descriptions",
+        "units": "cm",
+        "valid": {
+            "validate": "decimal",
+            "criteria": ">",
+            "value": 0,
+            "input_title": "Fork lenght (cm)",
+            "input_message": "The length of a fish measured from the most anterior part of the head to the deepest point of the notch in the tail fin in cm.\nPositive decimal number",
+            "error_title": "Error",
+            "error_message": "Float > 0"
+        },
+        "id": "forkLengthInMeters"
+    },
+    {
+        "disp_name": "Maturation Stage",
+        "description": "On the basis of shape, size, color of the gonads and other morphological featuers, at least six maturity stages can be recongnized\nValue in range [0, 7]",
+        "format": "int",
+        "grouping": "Measurements, Facts, Descriptions",
+        "units": "1",
+        "valid": {
+            "validate": "integer",
+            "criteria": "between",
+            "minimum": 0,
+            "maximum": 7,
+            "input_title": "Maturation Stage",
+            "input_message": "On the basis of shape, size, color of the gonads and other morphological featuers, at least six maturity stages can be recongnized\nValue in range [0, 7]",
+            "error_title": "Error",
+            "error_message": "Int range [0, 7]"
+        },
+        "id": "maturationStage"
+    },
+    {
+        "disp_name": "Ectoparasites",
+        "description": "Number of ectoparasites visible on the fins and gills of the fish\nInteger >= 0",
+        "format": "int",
+        "grouping": "Measurements, Facts, Descriptions",
+        "units": "1",
+        "valid": {
+            "validate": "integer",
+            "criteria": ">=",
+            "value": 0,
+            "input_title": "Ectoparasites",
+            "input_message": "Number of ectoparasites visible on the fins and gills of the fish\nInteger >= 0",
+            "error_title": "Error",
+            "error_message": "Int range [0, 7]"
+        },
+        "id": "ectoparasites"
+    },
+    {
+        "disp_name": "Endoparasites",
+        "description": "Number of endoparasites visible in the body cavity of the fish\nInteger >= 0",
+        "format": "int",
+        "grouping": "Measurements, Facts, Descriptions",
+        "units": "1",
+        "valid": {
+            "validate": "integer",
+            "criteria": ">=",
+            "value": 0,
+            "input_title": "Endoparasites",
+            "input_message": "Number of endoparasites visible in the body cavity of the fish\nInteger >= 0",
+            "error_title": "Error",
+            "error_message": "Int range [0, 7]"
+        },
+        "id": "endoparasites"
+    },
+    {
+        "disp_name": "Sea Ice Core Type",
+        "description": "The analysis the sea ice core is intended for",
+        "format": "text",
+        "grouping": "Ice",
+        "valid": {
+            "validate": "any",
+            "input_title": "Sea Ice Core Type",
+            "input_message": "The analysis the sea ice core is intended for"
+        },
+        "id": "seaIceCoreType"
+    },
+    {
+        "disp_name": "Sea Ice Core Length (cm)",
+        "description": "Sea ice core length in decimal centimeters.\nFloat number larger than 0 ",
+        "units": "cm",
+        "format": "double precision",
+        "grouping": "Ice",
+        "valid": {
+            "validate": "decimal",
+            "criteria": ">",
+            "value": 0,
+            "input_title": "Sea Ice Core length (cm)",
+            "input_message": "Sea ice core length in decimal centimeters.\n Float number larger than 0 ",
+            "error_title": "Error",
+            "error_message": "Float > 0"
+        },
+        "id": "seaIceCoreLengthInCentimeters"
+    },
+    {
+        "disp_name": "Sea Ice Meltpond Temperature (C)",
+        "description": "Sea ice meltpond temperature in Celsius.\nFloat number larger than -10 ",
+        "units": "Celsius",
+        "format": "double precision",
+        "grouping": "Ice",
+        "valid": {
+            "validate": "decimal",
+            "criteria": ">",
+            "value": -10,
+            "input_title": "Sea Ice Meltpond Temperature (C)",
+            "input_message": "Sea ice meltpond temperature in Celsius.\n Float number larger than -10 ",
+            "error_title": "Error",
+            "error:message": "Float > -10"
+        },
+        "id": "seaIceMeltpondTemperatureInCelsius"
+    },
+    {
+        "disp_name": "Sea Ice Meltpond Salinity (1e-3)",
+        "description": "Sea ice meltpond salinity in parts per thousand\nOften using the Practical Salinity Scale of 1978\nFloat number larger than or equal to 0\nExample: 0.029",
+        "units": "1e-3",
+        "format": "double precision",
+        "grouping": "Ice",
+        "valid": {
+            "validate": "decimal",
+            "criteria": ">=",
+            "value": 0,
+            "input_title": "Sea Ice Meltpond Salinity",
+            "input_message": "Sea ice meltpond salinity in parts per thousand\nOften using the Practical Salinity Scale of 1978\nFloat number larger than or equal to 0\nExample: 0.029",
+            "error_title": "Error",
+            "error_message": "Float >= 0"
+        },
+        "id": "seaIceMeltpondSalinity"
+    },
+    {
+        "disp_name": "Sediment pH  (total scale)",
+        "description": "\nIs the measure of acidity of seawater, defined as the negative logarithm of\nthe concentration of dissolved hydrogen ions plus bisulfate ions in a sea water\nmedium; it can be measured or calculated; when measured the scale is defined\naccording to a series of buffers prepared in artificial seawater containing\nbisulfate.\nFloat in range [-2, 16]",
+        "format": "double precision",
+        "grouping": "Sediment",
+        "units": "1",
+        "valid": {
+            "validate": "decimal",
+            "criteria": "between",
+            "minimum": -2,
+            "maximum": 16,
+            "input_title": "Sediment  pH  (total scale)",
+            "input_message": "\nIs the measure of acidity of seawater, defined as the negative logarithm of\nthe concentration of dissolved hydrogen ions plus bisulfate ions in a sea water\nmedium; it can be measured or calculated; when measured the scale is defined\naccording to a series of buffers prepared in artificial seawater containing\nbisulfate.\nFloat in range [-2, 16]",
+            "error_title": "Error",
+            "error_message": "Not in range [-2, 16]"
+        },
+        "id": "sedimentPH"
+    },
+    {
+        "disp_name": "Benthic Respiration (mmol/m^2)",
+        "description": "\nBenthic respiration of Oxygen in millimole per square meter\nPositive float number",
+        "format": "double precision",
+        "grouping": "Sediment",
+        "units": "mmol m-2",
+        "valid": {
+            "validate": "decimal",
+            "criteria": ">=",
+            "value": 0,
+            "input_title": "Benthic Respiration (mmol/m^2)",
+            "input_message": "\nBenthic respiration of Oxygen in millimole per square meter\nPositive float number",
+            "error_title": "Error",
+            "error_message": "Float >= 0"
+        },
+        "id": "benthicRespiration"
+    },
+    {
+        "disp_name": "Ice DIC (umol/kg)",
+        "description": "\nSea Ice Total dissolved inorganic carbon in umol per kg\nPositive float number",
+        "format": "double precision",
+        "grouping": "Ice",
+        "units": "umol kg-1",
+        "valid": {
+            "validate": "decimal",
+            "criteria": ">=",
+            "value": 0,
+            "input_title": "Sea Ice DIC (umol/kg)",
+            "input_message": "\nSea Ice Total dissolved inorganic carbon in umol per kg\nPositive float number",
+            "error_title": "Error",
+            "error_message": "Float >= 0"
+        },
+        "id": "seaIceTotalDIC"
+    },
+    {
+        "disp_name": "Sea delta-O-18 (1e-3)",
+        "description": "\nSea Water delta-O-18 in parts per thousand\nPositive float number",
+        "format": "double precision",
+        "grouping": "Water",
+        "units": "1e-3",
+        "valid": {
+            "validate": "decimal",
+            "criteria": ">=",
+            "value": 0,
+            "input_title": "Sea Water delta-O-18 (1e-3)",
+            "input_message": "\nSea Water delta-O-18 in parts per thousand\nPositive float number",
+            "error_title": "Error",
+            "error_message": "Float >= 0"
+        },
+        "id": "seaWaterDeltaO18"
+    },
+    {
+        "disp_name": "Ice delta-O-18 (1e-3)",
+        "description": "\nSea Ice delta-O-18 in parts per thousand\nPositive float number",
+        "format": "double precision",
+        "grouping": "Ice",
+        "units": "1e-3",
+        "valid": {
+            "validate": "decimal",
+            "criteria": ">=",
+            "value": 0,
+            "input_title": "Sea Ice delta-O-18 (1e-3)",
+            "input_message": "\nSea Ice delta-O-18 in parts per thousand\nPositive float number",
+            "error_title": "Error",
+            "error_message": "Float >= 0"
+        },
+        "id": "seaIceDeltaO18"
+    },
+    {
+        "disp_name": "Total Alkalinity (umol/kg)",
+        "description": "\nSea Water Total Alkalinity in micromols per kilogram\nPositive float number",
+        "format": "double precision",
+        "grouping": "Water",
+        "units": "umol kg-1",
+        "valid": {
+            "validate": "decimal",
+            "criteria": ">=",
+            "value": 0,
+            "input_title": "Sea Water Total Alkalinity (umol/kg)",
+            "input_message": "\nSea Water Total Alkalinity in micromols per kilogram\nPositive float number",
+            "error_title": "Error",
+            "error_message": "Float >= 0"
+        },
+        "id": "seaWaterAlkalinity"
+    },
+    {
+        "disp_name": "Sample Type",
+        "description": "Choose the sample type.\nListed at: https://github.com/SIOS-Svalbard/AeN_doc/blob/master/list_sample_types.csv",
+        "long_list": true,
+        "format": "text",
+        "grouping": "Sample Type/Intended Method",
+        "valid": {
+            "validate": "list",
+            "source": "sample_types",
+            "input_title": "Sample type",
+            "input_message": "Choose the sample type.\nListed at: https://github.com/SIOS-Svalbard/AeN_doc/blob/master/list_sample_types.csv",
+            "error_title": "Error",
+            "error_message": "Not a valid value, pick a value from the drop-down list."
+        },
+        "id": "sampleType"
+    },
+    {
+        "disp_name": "Intended Method",
+        "description": "The intended measurement or analysis method for the sample.\nIf multiple methods, separate with ';'.\nExamples: 'FCM', 'XCM', 'SEM' ",
+        "format": "text",
+        "grouping": "Sample Type/Intended Method",
+        "long_list": true,
+        "valid": {
+            "validate": "list",
+            "source": "intended_methods",
+            "input_title": "Intended Method",
+            "input_message": "The intended measurement or analysis method for the sample.\nIf multiple methods, separate with ';'.\nExamples: 'FCM', 'XCM', 'SEM' ",
+            "error_title": "Error",
+            "error_message": "Not a valid value, pick a value from the drop-down list."
+        },
+        "id": "intendedMethod"
+    },
+    {
+        "disp_name": "Tissue Type",
+        "description": "The type of tissue in the sample.\nIf multiple tissue types, organs etc. separate with ';'.\nExamples: 'heart', 'liver; brain', 'liver section' ",
+        "format": "text",
+        "grouping": "Sample Type/Intended Method",
+        "valid": {
+            "validate": "any",
+            "input_title": "Tissue Type",
+            "input_message": "The type of tissue in the sample.\nIf multiple tissue types, organs etc. separate with ';'.\nExamples: 'heart', 'liver; brain', 'liver section' "
+        },
+        "id": "tissueType"
+    },
+    {
+        "disp_name": "Gear Type",
+        "description": "Choose the gear used to retrieve the sample.\nListed at: https://github.com/SIOS-Svalbard/AeN_doc/blob/master/list_gear_types.csv",
+        "inherit": true,
+        "inherit_weak": true,
+        "format": "text",
+        "grouping": "Instrumentation",
+        "long_list": true,
+        "valid": {
+            "validate": "list",
+            "source": "gear_types",
+            "input_title": "Gear Type",
+            "input_message": "Choose the gear used to retrieve the sample.\nListed at: https://github.com/SIOS-Svalbard/AeN_doc/blob/master/list_gear_types.csv",
+            "error_title": "Error",
+            "error_message": "Not a valid value, pick a value from the drop-down list."
+        },
+        "id": "gearType"
+    },
+    {
+        "disp_name": "Serial Number",
+        "description": "The serial number of the instrument used",
+        "format": "text",
+        "grouping": "Numbering",
+        "valid": {
+            "validate": "any",
+            "input_title": "Instrument Serial Number",
+            "input_message": "The serial number of the instrument used"
+        },
+        "id": "serialNumber"
+    },
+    {
+        "disp_name": "Data filename",
+        "description": "The name of the file that contains the data",
+        "format": "text",
+        "grouping": "File Details",
+        "valid": {
+            "validate": "any",
+            "input_title": "Data filename",
+            "input_message": "The name of the file that contains the data"
+        },
+        "id": "dataFilename"
+    },
+    {
+        "disp_name": "Sampling protocol document",
+        "description": "This should be a reference to the document that contains the sampling protocol used.\nWhere possible, include the DOI of the document.",
+        "format": "text",
+        "grouping": "Sampling Protocol",
+        "dwcid": "https://dwc.tdwg.org/terms/#dwc:samplingProtocol",
+        "valid": {
+            "validate": "any",
+            "input_title": "Sampling Protocol Document",
+            "input_message": "This should be a reference to the document that contains the sampling protocol used.\nWhere possible, include the DOI of the document."
+        },
+        "id": "samplingProtocolDoc"
+    },
+    {
+        "disp_name": "Sampling protocol section",
+        "description": "This should be a reference to the section within sampling protocol document.",
+        "format": "text",
+        "grouping": "Sampling Protocol",
+        "dwcid": "https://dwc.tdwg.org/terms/#dwc:samplingProtocol",
+        "valid": {
+            "validate": "any",
+            "input_title": "Sampling Protocol Section",
+            "input_message": "This should be a reference to the section within sampling protocol document."
+        },
+        "id": "samplingProtocolSection"
+    },
+    {
+        "disp_name": "Sampling protocol version",
+        "description": "This should be a reference to the version of the sampling protocol document.\nThis is not neccessary if you have included the DOI in the sampling protocol document.",
+        "format": "text",
+        "grouping": "Sampling Protocol",
+        "dwcid": "https://dwc.tdwg.org/terms/#dwc:samplingProtocol",
+        "valid": {
+            "validate": "any",
+            "input_title": "Sampling Protocol Version",
+            "input_message": "This should be a reference to the version of the sampling protocol document.\n                        This is not neccessary if you have included the DOI in the sampling protocol document."
+        },
+        "id": "samplingProtocolVersion"
+    },
+    {
+        "disp_name": "Comments",
+        "description": "Main comments about the sample or event.",
+        "width": 40,
+        "format": "text",
+        "grouping": "Comments",
+        "valid": {
+            "validate": "any",
+            "input_title": "Comments",
+            "input_message": "Main comments about the sample or event."
+        },
+        "id": "comments1"
+    },
+    {
+        "disp_name": "Comments #2",
+        "description": "Additional comments about the sample or event.",
+        "width": 40,
+        "format": "text",
+        "grouping": "Comments",
+        "valid": {
+            "validate": "any",
+            "input_title": "Comments #2",
+            "input_message": "Additional comments about the sample or event."
+        },
+        "id": "comments2"
+    },
+    {
+        "disp_name": "Comments #3",
+        "description": "Additional comments about the sample or event.",
+        "width": 40,
+        "format": "text",
+        "grouping": "Comments",
+        "valid": {
+            "validate": "any",
+            "input_title": "Comments #3",
+            "input_message": "Additional comments about the sample or event."
+        },
+        "id": "comments3"
+    },
+    {
+        "disp_name": "Comments #4",
+        "description": "Additional comments about the sample or event.",
+        "width": 40,
+        "format": "text",
+        "grouping": "Comments",
+        "valid": {
+            "validate": "any",
+            "input_title": "Comments #4",
+            "input_message": "Additional comments about the sample or event."
+        },
+        "id": "comments4"
+    },
+    {
+        "disp_name": "Comments #5",
+        "description": "Additional comments about the sample or event.",
+        "width": 40,
+        "format": "text",
+        "grouping": "Comments",
+        "valid": {
+            "validate": "any",
+            "input_title": "Comments #5",
+            "input_message": "Additional comments about the sample or event."
+        },
+        "id": "comments5"
+    },
+    {
+        "disp_name": "history",
+        "description": "Additional comments about the sample or event.",
+        "width": 40,
+        "format": "text",
+        "grouping": "Record Details",
+        "valid": {
+            "validate": "any",
+            "input_title": "History",
+            "input_message": "History of when the sample was first logged and the record updated."
+        },
+        "id": "history"
+    },
+    {
+        "disp_name": "created",
+        "description": "Timestamp when the sample was first logged.",
+        "width": 40,
+        "format": "timestamp with time zone",
+        "grouping": "Record Details",
+        "valid": {
+            "validate": "any",
+            "input_title": "Created",
+            "input_message": "Timestamp when the sample was first logged."
+        },
+        "id": "created"
+    },
+    {
+        "disp_name": "modified",
+        "description": "Timestamp when the log of the sample was last modified.",
+        "width": 40,
+        "format": "timestamp with time zone",
+        "grouping": "Record Details",
+        "valid": {
+            "validate": "any",
+            "input_title": "Modified",
+            "input_message": "Timestamp when the log of the sample was last modified."
+        },
+        "id": "modified"
+    },
+    {
+        "disp_name": "source",
+        "description": "Where the source was logged (file or page).",
+        "width": 40,
+        "format": "text",
+        "grouping": "Record Details",
+        "valid": {
+            "validate": "any",
+            "input_title": "Source",
+            "input_message": "Where the source was logged (file or page)."
+        },
+        "id": "source"
+    }
+]

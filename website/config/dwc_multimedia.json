@@ -1,0 +1,302 @@
+[
+    {
+        "name": "type",
+        "namespace": "http://purl.org/dc/terms/",
+        "qualName": "http://purl.org/dc/terms/type",
+        "relation": NaN,
+        "description": "\n\nExamples: StillImage",
+        "examples": "StillImage",
+        "thesaurus": "http://rs.gbif.org/vocabulary/dcterms/type.xml",
+        "required": false,
+        "type": null,
+        "disp_name": "type",
+        "id": "type",
+        "grouping": "Darwin Core term",
+        "valid": {
+            "validate": "any",
+            "input_title": "type",
+            "input_message": "\n\nExamples: StillImage"
+        },
+        "format": "text"
+    },
+    {
+        "name": "format",
+        "namespace": "http://purl.org/dc/terms/",
+        "qualName": "http://purl.org/dc/terms/format",
+        "relation": null,
+        "description": "\n\nExamples: image/jpeg",
+        "examples": "image/jpeg",
+        "thesaurus": null,
+        "required": false,
+        "type": null,
+        "disp_name": "format",
+        "id": "format",
+        "grouping": "Darwin Core term",
+        "valid": {
+            "validate": "any",
+            "input_title": "format",
+            "input_message": "\n\nExamples: image/jpeg"
+        },
+        "format": "text"
+    },
+    {
+        "name": "identifier",
+        "namespace": "http://purl.org/dc/terms/",
+        "qualName": "http://purl.org/dc/terms/identifier",
+        "relation": null,
+        "description": "\n\nExamples: http://farm6.static.flickr.com/5127/5242866958_98afd8cbce_o.jpg",
+        "examples": "http://farm6.static.flickr.com/5127/5242866958_98afd8cbce_o.jpg",
+        "thesaurus": null,
+        "required": false,
+        "type": "uri",
+        "disp_name": "identifier",
+        "id": "identifier",
+        "grouping": "Darwin Core term",
+        "valid": {
+            "validate": "any",
+            "input_title": "identifier",
+            "input_message": "\n\nExamples: http://farm6.static.flickr.com/5127/5242866958_98afd8cbce_o.jpg"
+        },
+        "format": "text"
+    },
+    {
+        "name": "references",
+        "namespace": "http://purl.org/dc/terms/",
+        "qualName": "http://purl.org/dc/terms/references",
+        "relation": "http://rs.tdwg.org/dwc/terms/index.htm#dcterms:references",
+        "description": "\n\nExamples: http://www.flickr.com/photos/victorsaavedramartinez/1866107071/",
+        "examples": "http://www.flickr.com/photos/victorsaavedramartinez/1866107071/",
+        "thesaurus": null,
+        "required": false,
+        "type": "uri",
+        "disp_name": "references",
+        "id": "references",
+        "grouping": "Darwin Core term",
+        "valid": {
+            "validate": "any",
+            "input_title": "references",
+            "input_message": "\n\nExamples: http://www.flickr.com/photos/victorsaavedramartinez/1866107071/"
+        },
+        "format": "text"
+    },
+    {
+        "name": "title",
+        "namespace": "http://purl.org/dc/terms/",
+        "qualName": "http://purl.org/dc/terms/title",
+        "relation": null,
+        "description": "\n\nExamples: Andorinha-do-rio (Tachycineta albiventer)",
+        "examples": "Andorinha-do-rio (Tachycineta albiventer)",
+        "thesaurus": null,
+        "required": false,
+        "type": null,
+        "disp_name": "title",
+        "id": "title",
+        "grouping": "Darwin Core term",
+        "valid": {
+            "validate": "any",
+            "input_title": "title",
+            "input_message": "\n\nExamples: Andorinha-do-rio (Tachycineta albiventer)"
+        },
+        "format": "text"
+    },
+    {
+        "name": "description",
+        "namespace": "http://purl.org/dc/terms/",
+        "qualName": "http://purl.org/dc/terms/description",
+        "relation": null,
+        "description": "\n\nExamples: Female Tachycineta albiventer photographed in the Amazon, Brazil, in November 2010.",
+        "examples": "Female Tachycineta albiventer photographed in the Amazon, Brazil, in November 2010.",
+        "thesaurus": null,
+        "required": false,
+        "type": null,
+        "disp_name": "description",
+        "id": "description",
+        "grouping": "Darwin Core term",
+        "valid": {
+            "validate": "any",
+            "input_title": "description",
+            "input_message": "\n\nExamples: Female Tachycineta albiventer photographed in the Amazon, Brazil, in November 2010."
+        },
+        "format": "text"
+    },
+    {
+        "name": "created",
+        "namespace": "http://purl.org/dc/terms/",
+        "qualName": "http://purl.org/dc/terms/created",
+        "relation": null,
+        "description": "\n\nExamples: 2010-09-29",
+        "examples": "2010-09-29",
+        "thesaurus": null,
+        "required": false,
+        "type": "date",
+        "disp_name": "created",
+        "id": "created",
+        "grouping": "Darwin Core term",
+        "valid": {
+            "validate": "any",
+            "input_title": "created",
+            "input_message": "\n\nExamples: 2010-09-29"
+        },
+        "format": "text"
+    },
+    {
+        "name": "creator",
+        "namespace": "http://purl.org/dc/terms/",
+        "qualName": "http://purl.org/dc/terms/creator",
+        "relation": null,
+        "description": "\n\nExamples: David Remsen",
+        "examples": "David Remsen",
+        "thesaurus": null,
+        "required": false,
+        "type": null,
+        "disp_name": "creator",
+        "id": "creator",
+        "grouping": "Darwin Core term",
+        "valid": {
+            "validate": "any",
+            "input_title": "creator",
+            "input_message": "\n\nExamples: David Remsen"
+        },
+        "format": "text"
+    },
+    {
+        "name": "contributor",
+        "namespace": "http://purl.org/dc/terms/",
+        "qualName": "http://purl.org/dc/terms/contributor",
+        "relation": null,
+        "description": "\n\nExamples: Dana Mock",
+        "examples": "Dana Mock",
+        "thesaurus": null,
+        "required": false,
+        "type": null,
+        "disp_name": "contributor",
+        "id": "contributor",
+        "grouping": "Darwin Core term",
+        "valid": {
+            "validate": "any",
+            "input_title": "contributor",
+            "input_message": "\n\nExamples: Dana Mock"
+        },
+        "format": "text"
+    },
+    {
+        "name": "publisher",
+        "namespace": "http://purl.org/dc/terms/",
+        "qualName": "http://purl.org/dc/terms/publisher",
+        "relation": null,
+        "description": "\n\nExamples: Flickr",
+        "examples": "Flickr",
+        "thesaurus": null,
+        "required": false,
+        "type": null,
+        "disp_name": "publisher",
+        "id": "publisher",
+        "grouping": "Darwin Core term",
+        "valid": {
+            "validate": "any",
+            "input_title": "publisher",
+            "input_message": "\n\nExamples: Flickr"
+        },
+        "format": "text"
+    },
+    {
+        "name": "audience",
+        "namespace": "http://purl.org/dc/terms/",
+        "qualName": "http://purl.org/dc/terms/audience",
+        "relation": NaN,
+        "description": "\n\nExamples: \"experts\", \"general public\", \"children\"",
+        "examples": "\"experts\", \"general public\", \"children\"",
+        "thesaurus": null,
+        "required": false,
+        "type": null,
+        "disp_name": "audience",
+        "id": "audience",
+        "grouping": "Darwin Core term",
+        "valid": {
+            "validate": "any",
+            "input_title": "audience",
+            "input_message": "\n\nExamples: \"experts\", \"general public\", \"children\""
+        },
+        "format": "text"
+    },
+    {
+        "name": "source",
+        "namespace": "http://purl.org/dc/terms/",
+        "qualName": "http://purl.org/dc/terms/source",
+        "relation": null,
+        "description": "\n\nExamples: nan",
+        "examples": NaN,
+        "thesaurus": null,
+        "required": false,
+        "type": null,
+        "disp_name": "source",
+        "id": "source",
+        "grouping": "Darwin Core term",
+        "valid": {
+            "validate": "any",
+            "input_title": "source",
+            "input_message": "\n\nExamples: nan"
+        },
+        "format": "text"
+    },
+    {
+        "name": "license",
+        "namespace": "http://purl.org/dc/terms/",
+        "qualName": "http://purl.org/dc/terms/license",
+        "relation": null,
+        "description": "\n\nExamples: http://creativecommons.org/licenses/by-nc-sa/2.0/deed.en",
+        "examples": "http://creativecommons.org/licenses/by-nc-sa/2.0/deed.en",
+        "thesaurus": null,
+        "required": false,
+        "type": null,
+        "disp_name": "license",
+        "id": "license",
+        "grouping": "Darwin Core term",
+        "valid": {
+            "validate": "any",
+            "input_title": "license",
+            "input_message": "\n\nExamples: http://creativecommons.org/licenses/by-nc-sa/2.0/deed.en"
+        },
+        "format": "text"
+    },
+    {
+        "name": "rightsHolder",
+        "namespace": "http://purl.org/dc/terms/",
+        "qualName": "http://purl.org/dc/terms/rightsHolder",
+        "relation": NaN,
+        "description": "\n\nExamples: nan",
+        "examples": NaN,
+        "thesaurus": null,
+        "required": false,
+        "type": null,
+        "disp_name": "rightsHolder",
+        "id": "rightsHolder",
+        "grouping": "Darwin Core term",
+        "valid": {
+            "validate": "any",
+            "input_title": "rightsHolder",
+            "input_message": "\n\nExamples: nan"
+        },
+        "format": "text"
+    },
+    {
+        "name": "datasetID",
+        "namespace": "http://rs.tdwg.org/dwc/terms/",
+        "qualName": "http://rs.tdwg.org/dwc/terms/datasetID",
+        "relation": "http://rs.tdwg.org/dwc/terms/index.htm#datasetID",
+        "description": "\n\nExamples: nan",
+        "examples": NaN,
+        "thesaurus": null,
+        "required": false,
+        "type": null,
+        "disp_name": "datasetID",
+        "id": "datasetID",
+        "grouping": "Darwin Core term",
+        "valid": {
+            "validate": "any",
+            "input_title": "datasetID",
+            "input_message": "\n\nExamples: nan"
+        },
+        "format": "text"
+    }
+]
