@@ -67,6 +67,8 @@ def get_config_fields(config, subconfig=None):
 
     all_fields = other_fields + cf_standard_names + dwc_terms
 
+    cf_standard_names = [cf_standard_name for cf_standard_name in cf_standard_names if cf_standard_name['id'] not in fields_in_config_list]
+
     for field in all_fields:
         if field['id'] in fields_in_config_list:
             fields_in_config_dict[field['id']] = field
