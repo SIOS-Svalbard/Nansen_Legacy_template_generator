@@ -170,7 +170,7 @@ def home():
             for key in output_config_dict[sheet].keys():
                 if key not in ['Required CSV', 'Source']:
                     for field, values in output_config_dict[sheet][key].items():
-                        if field in request.form:
+                        if sheet + '__' + field in request.form:
                             output_config_dict[sheet][key][field]["checked"] = "yes"
 
         if request.form["submitbutton"] == "generateTemplate":
