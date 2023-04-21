@@ -1,4 +1,4 @@
-id,geartype,comment,IMR_name,vocabLabel,vocabURI,group,recommendedSampleTypes,recommendedChildren
+id,gearType,comment,IMR_name,vocabLabel,vocabURI,group,recommendedSampleTypes,recommendedChildren
 7c329aae-bfe1-11ec-9d64-0242ac120002,500 ml bottle,,,,,Water,,"{'sampleTypes': 'Sea water, Melt pond water, Under ice water'}"
 7c329de2-bfe1-11ec-9d64-0242ac120002,Active water sampler,In situ filtration of sea water,,,,Water,,{'sampleTypes': 'Sea water'}
 7c32a2f6-bfe1-11ec-9d64-0242ac120002,ADCP,,,,,Water,,{'sampleTypes': ''}

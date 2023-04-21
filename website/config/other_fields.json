@@ -248,14 +248,10 @@
         "width": 13,
         "format": "text",
         "grouping": "Station",
-        "long_list": true,
         "valid": {
-            "validate": "list",
-            "source": "stations",
+            "validate": "any",
             "input_title": "Station Name",
-            "input_message": "The full name of the station. e.g. P1 (NLEG01)",
-            "error_title": "Error",
-            "error_message": "Not a valid value, pick a value from the drop-down list."
+            "input_message": "The full name of the station. e.g. P1 (NLEG01)"
         },
         "id": "stationName"
     },
@@ -412,12 +408,8 @@
         "dwcid": "http://rs.tdwg.org/dwc/terms/recordedBy",
         "format": "text",
         "grouping": "Personnel",
-        "long_list": true,
         "valid": {
-            "validate": "list",
-            "source": "personnel",
-            "error_title": "Error",
-            "error_message": "Not a valid value, pick a value from the drop-down list.",
+            "validate": "any",
             "input_title": "Recorded By",
             "input_message": "Details of who has recorded/analysed the data.\n    Should ideally include full name and email, e.g. Luke Marsden (lukem@unis.no).\n    Can be a concatenated list, separated by: '|'."
         },
@@ -476,14 +468,10 @@
         "description": "Details of the principal investigator of the data.\nShould ideally include full name and email, e.g. Luke Marsden (lukem@unis.no).\nCan be a concatenated list, separated by: '|'\n",
         "format": "text",
         "grouping": "Personnel",
-        "long_list": true,
         "valid": {
-            "validate": "list",
-            "source": "personnel",
+            "validate": "any",
             "input_title": "PI Details",
-            "input_message": "Details of the principal investigator of the data.\n    Should ideally include full name and email, e.g. Luke Marsden (lukem@unis.no).\n    Can be a concatenated list, separated by: '|'\n    ",
-            "error_title": "Error",
-            "error_message": "Not a valid value, pick a value from the drop-down list."
+            "input_message": "Details of the principal investigator of the data.\n    Should ideally include full name and email, e.g. Luke Marsden (lukem@unis.no).\n    Can be a concatenated list, separated by: '|'\n    "
         },
         "id": "pi_details"
     },
@@ -946,7 +934,7 @@
     },
     {
         "disp_name": "Sample Type",
-        "description": "Choose the sample type.\nListed at: https://github.com/SIOS-Svalbard/AeN_doc/blob/master/list_sample_types.csv",
+        "description": "Choose the type of sample. What is it?",
         "long_list": true,
         "format": "text",
         "grouping": "Sample Type/Intended Method",
@@ -954,7 +942,7 @@
             "validate": "list",
             "source": "sample_types",
             "input_title": "Sample type",
-            "input_message": "Choose the sample type.\nListed at: https://github.com/SIOS-Svalbard/AeN_doc/blob/master/list_sample_types.csv",
+            "input_message": "Choose the type of sample. What is it?",
             "error_title": "Error",
             "error_message": "Not a valid value, pick a value from the drop-down list."
         },
