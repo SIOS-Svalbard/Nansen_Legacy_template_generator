@@ -47,6 +47,9 @@ class Template(object):
         self.workbook.formats[0].set_font_name(DEFAULT_FONT)
         self.workbook.formats[0].set_font_size(DEFAULT_SIZE)
 
+    def add_variables_sheet(self):
+        self.variables_sheet = Variables_Sheet(self)
+
     def add_metadata(self):
         metadata = Metadata_Sheet(self)
         metadata.add_acdd_metadata()
@@ -245,8 +248,8 @@ class Data_Sheet(object):
                     # Need to make sure that 'input_message' is not more than 255
                     valid_copy = vals['valid'].copy()
 
-                    if 'input_message' in vals:
-                        if len(vals['input_message']) > 252:
+                    if 'input_message' in valid_copy:
+                        if len(valid_copy['input_message']) > 252:
                             valid_copy['input_message'] = vals['input_message'][:249] + '...'
                     else:
                         if len(vals['description']) > 252:
@@ -260,10 +263,12 @@ class Data_Sheet(object):
                     else:
                         valid_copy['input_title'] = vals['disp_name']
 
-                    print('-----')
-                    if field == 'kingdom':
-                        print(valid_copy)
-                    print('-----')
+                    if 'long_list' in vals:
+                        ref = self.template.variables_sheet.add_row(
+                            vals['id']+str(duplication), valid_copy['source']
+                            )
+                        valid_copy.pop('source', None)
+                        valid_copy['value'] = ref
 
                     self.sheet.data_validation(first_row=start_row,
                                                first_col=ii,
@@ -555,6 +560,51 @@ class Readme_Sheet(object):
 
         self.sheet.activate()
 
+class Variables_Sheet(object):
+    """
+    For options that go in drop-down lists
+    This will be hidden
+    """
+    def __init__(self, template):
+        self.template = template
+        self.sheetname = 'Variables'
+        self.sheet = template.workbook.add_worksheet(self.sheetname)
+        self.current_column = 0
+        self.sheet.hide()
+
+    def add_row(self, variable, parameter_list):
+        """
+        Adds a row of parameters to a variable and returns the ref for the list
+        Parameters
+        ----------
+        variable : str
+            The name of the variable
+        parameter_list :
+            List of parameters to be added
+        Returns
+        ----------
+        ref : str
+            The range of the list in Excel format
+        """
+
+        self.sheet.write(0, self.current_column, variable)
+        name = 'Table_' + variable.replace(' ', '_').capitalize()
+
+        self.sheet.add_table(
+            1, self.current_column,
+            1 + len(parameter_list), self.current_column,
+            {'name': name,
+                'header_row': 0}
+        )
+
+        for ii, par in enumerate(sorted(parameter_list, key=str.lower)):
+            self.sheet.write(1 + ii, self.current_column, par)
+        ref = '=INDIRECT("' + name + '")'
+
+        # Increment row such that the next gets a new row
+        self.current_column = self.current_column + 1
+        return ref
+
 def create_template(filepath, template_fields_dict, config, subconfig=None, conversions=True, data=None, metadata_df=None):
     """
     Method for calling from other python programs
@@ -589,6 +639,7 @@ def create_template(filepath, template_fields_dict, config, subconfig=None, conv
     args.filepath = filepath
 
     template = Template(args.filepath, config, subconfig)
+    template.add_variables_sheet()
     template.add_metadata()
     for sheetname, content in template_fields_dict.items():
         template.add_data_sheet(sheetname, content)
