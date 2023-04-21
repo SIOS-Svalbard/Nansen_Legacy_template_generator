@@ -84,7 +84,7 @@ class CF_standard_names_json():
         f = open(self.filename)
         self.dic = json.load(f)
 
-PATH = 'website/config/cf_standard_names.json'
+PATH = 'website/config/fields/cf_standard_names.json'
 
 def cf_standard_names_update():
     cf_standard_names_json = CF_standard_names_json(PATH)

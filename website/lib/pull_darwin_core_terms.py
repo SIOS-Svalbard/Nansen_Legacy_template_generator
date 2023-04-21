@@ -255,31 +255,31 @@ class Darwin_Core_Extension():
         f = open(self.filename)
         self.dic = json.load(f)
 
-PATH = 'website/config/dwc_terms.json'
+PATH = 'website/config/fields/dwc_terms.json'
 
 extensions = {
     'Event Core': {
-        'filepath': 'website/config/dwc_event.json',
+        'filepath': 'website/config/fields/dwc_event.json',
         'source': 'https://rs.gbif.org/core/dwc_event_2022-02-02.xml',
         },
     'Occurrence Extension': {
-        'filepath': 'website/config/dwc_occurrence.json',
+        'filepath': 'website/config/fields/dwc_occurrence.json',
         'source': 'https://rs.gbif.org/core/dwc_occurrence_2022-02-02.xml',
         },
     'Extended MoF Extension': {
-        'filepath': 'website/config/dwc_emof.json',
+        'filepath': 'website/config/fields/dwc_emof.json',
         'source': 'https://rs.gbif.org/extension/obis/extended_measurement_or_fact.xml',
         },
     'Material Sample Extension': {
-        'filepath': 'website/config/dwc_materialsample.json',
+        'filepath': 'website/config/fields/dwc_materialsample.json',
         'source': 'https://rs.gbif.org/extension/ggbn/materialsample.xml',
         },
     'Resource Relationship Extension': {
-        'filepath': 'website/config/dwc_resourcerelationship.json',
+        'filepath': 'website/config/fields/dwc_resourcerelationship.json',
         'source': 'https://rs.gbif.org/extension/dwc/resource_relationship_2022-02-02.xml',
         },
     'Simple Multimedia Extension': {
-        'filepath': 'website/config/dwc_multimedia.json',
+        'filepath': 'website/config/fields/dwc_multimedia.json',
         'source': 'https://rs.gbif.org/extension/gbif/1.0/multimedia.xml',
         }
 }

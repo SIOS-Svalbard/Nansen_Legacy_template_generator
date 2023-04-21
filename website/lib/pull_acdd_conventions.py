@@ -32,7 +32,7 @@ class ACDD_conventions_df():
         filename: string
             The name of the json file to be written
         """
-        self.filename = 'website/config/acdd_conventions.csv'
+        self.filename = 'website/config/metadata_sheet_fields/acdd_conventions.csv'
 
 
     def pull_from_online(self):
