@@ -70,7 +70,7 @@ class CF_standard_names_json():
             if cf_standard_name['id'] == 'time':
                 cf_standard_name['description'] = '''
                 To encode time in CF standards, set "time" variable units using UDUNITS syntax (e.g. "days since 1970-01-01"),
-                
+
                 e.g. time = 0,1,2
                 for dates 1970-01-01, 1970-01-02, 1970-01-03
                 '''
@@ -92,7 +92,6 @@ def cf_standard_names_update():
         raise Exception("cannot update CF standard names, no internet")
     cf_standard_names_json.pull_from_online()
     cf_standard_names_json.create_json()
-
 
 def cf_standard_names_to_dic():
     cf_standard_names_json = CF_standard_names_json(PATH)
