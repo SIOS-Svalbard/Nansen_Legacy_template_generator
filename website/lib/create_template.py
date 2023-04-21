@@ -14,12 +14,6 @@ import math
 from argparse import Namespace
 import os.path
 from .get_configurations import get_field_requirements
-# import sys
-
-# config_dir = os.path.abspath(os.path.join(
-#     os.path.dirname(__file__), '..', 'config'))
-
-#sys.path.append(config_dir)
 
 DEFAULT_FONT = 'Calibri'
 DEFAULT_SIZE = 10
