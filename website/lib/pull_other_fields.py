@@ -31,7 +31,7 @@ class Other_fields_json():
         f = open(self.filename)
         self.dic = json.load(f)
 
-PATH = 'website/config/other_fields.json'
+PATH = 'website/config/fields/other_fields.json'
 
 def other_fields_to_dic():
     other_fields_json = Other_fields_json(PATH)

@@ -365,7 +365,7 @@ class Metadata_Sheet(object):
 
     def add_acdd_metadata(self):
 
-        df_metadata = pd.read_csv('website/config/acdd_conventions.csv')
+        df_metadata = pd.read_csv('website/config/metadata_sheet_fields/acdd_conventions.csv')
         df_metadata['Content'] = ''
 
         last_col = len(df_metadata.columns)-1
@@ -529,11 +529,11 @@ class Readme_Sheet(object):
         })
 
         if template.config == 'CF-NetCDF':
-            readme_file = 'website/config/cfnetcdf_readme.txt'
+            readme_file = 'website/config/readmes/cfnetcdf_readme.txt'
         elif template.config == 'Learnings from Nansen Legacy logging system':
-            readme_file = 'website/config/lfnl_readme.txt'
+            readme_file = 'website/config/readmes/lfnl_readme.txt'
         elif template.config == 'Darwin Core':
-            readme_file = 'website/config/dwc_readme.txt'
+            readme_file = 'website/config/readmes/dwc_readme.txt'
 
         with open(readme_file, 'r') as file:
             for idx, line in enumerate(file):
