@@ -946,7 +946,7 @@
     },
     {
         "disp_name": "Sample Type",
-        "description": "Choose the sample type.\nListed at: https://github.com/SIOS-Svalbard/AeN_doc/blob/master/list_sample_types.csv",
+        "description": "Choose the type of sample. What is it?",
         "long_list": true,
         "format": "text",
         "grouping": "Sample Type/Intended Method",
@@ -954,7 +954,7 @@
             "validate": "list",
             "source": "sample_types",
             "input_title": "Sample type",
-            "input_message": "Choose the sample type.\nListed at: https://github.com/SIOS-Svalbard/AeN_doc/blob/master/list_sample_types.csv",
+            "input_message": "Choose the type of sample. What is it?",
             "error_title": "Error",
             "error_message": "Not a valid value, pick a value from the drop-down list."
         },

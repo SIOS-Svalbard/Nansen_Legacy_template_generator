@@ -245,10 +245,12 @@ class Data_Sheet(object):
                     # Need to make sure that 'input_message' is not more than 255
                     valid_copy = vals['valid'].copy()
 
-                    if len(vals['description']) > 255:
-                        valid_copy['input_message'] = vals['description'][:240] + '...'
+                    if 'input_message' in vals:
+                        if len(vals['input_message']) > 252:
+                            valid_copy['input_message'] = vals['input_message'][:249] + '...'
                     else:
-                        valid_copy['input_message'] = vals['description']
+                        if len(vals['description']) > 252:
+                            valid_copy['input_message'] = vals['description'][:249] + '...'
 
                     valid_copy['input_message'] = add_line_breaks(valid_copy['input_message'], 35)
                     valid_copy['input_message'].replace('\n', '\n\r')
@@ -257,6 +259,11 @@ class Data_Sheet(object):
                         valid_copy['input_title'] = vals['disp_name'][:32]
                     else:
                         valid_copy['input_title'] = vals['disp_name']
+
+                    print('-----')
+                    if field == 'kingdom':
+                        print(valid_copy)
+                    print('-----')
 
                     self.sheet.data_validation(first_row=start_row,
                                                first_col=ii,

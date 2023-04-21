@@ -48,7 +48,7 @@ def get_config_fields(config, subconfig=None):
     initial_config_dict = get_config_fields_dic(config,subconfig)
 
     fields_in_config_list = []
-    
+
     if config == 'Darwin Core':
         config_dict = {} # Not used in this configuration
     else:
@@ -56,26 +56,27 @@ def get_config_fields(config, subconfig=None):
         list_of_lists = list(config_dict.values())
         for sublist in list_of_lists:
             fields_in_config_list.extend(sublist)
-    
+
     fields_in_config_dict = {}
     extra_fields_dict = {}
     groups = []
-    
+
     other_fields = other_fields_to_dic()
     cf_standard_names = cf_standard_names_to_dic()
     dwc_terms = dwc_terms_to_dic()
-    
+
     all_fields = other_fields + cf_standard_names + dwc_terms
-    
+
     for field in all_fields:
         if field['id'] in fields_in_config_list:
             fields_in_config_dict[field['id']] = field
-    
+
     for field in other_fields:
         if field['id'] not in fields_in_config_list:
             extra_fields_dict[field['id']] = field
             groups.append(field['grouping'])
-    
+    groups = sorted(list(set(groups)))
+
     if config == 'Darwin Core':
         dwc_subconfig = subconfig
     else:
@@ -90,11 +91,9 @@ def get_config_fields(config, subconfig=None):
             for requirement, ii in criteria.items():
                 if requirement not in ['Source', 'Required CSV']:
                     fields_in_config_list.extend(list(ii.keys()))
-        # THE DWC CONF DICT NEEDS TO BE ALL THE TERMS MINUS WHAT IS IN FIELDS_IN_CONFIG_LIST
-
     else:
         output_config_dict = {'Data': {'Required CSV': True}}
-    
+
         for key, value_list in config_dict.items():
             output_config_dict['Data'][key] = {}
             for value in value_list:
@@ -106,8 +105,8 @@ def get_config_fields(config, subconfig=None):
                         }
                 else:
                     output_config_dict['Data'][key][value] = fields_in_config_dict[value]
-    
-    return output_config_dict, fields_in_config_list, extra_fields_dict, cf_standard_names, groups, dwc_conf_dict, dwc_terms
+
+    return output_config_dict, fields_in_config_list, extra_fields_dict, cf_standard_names, groups, dwc_terms
 
 def get_dwc_config_dict(subconfig, dwc_terms):
 
@@ -122,20 +121,20 @@ def get_dwc_config_dict(subconfig, dwc_terms):
         output_config_dict[extension]['Required CSV'] = config_dict[extension]['Required CSV']
         output_config_dict[extension]['Source'] = source
 
-        dwc_extension = dwc_extension_to_dic(extension)        
+        dwc_extension = dwc_extension_to_dic(extension)
 
         for key, value in criteria.items():
             output_config_dict[extension][key] = {}
             if value != 'from source':
                 for term in value:
-                    # validation from extension, as extension has information about the type (integer, decimal..) 
+                    # validation from extension, as extension has information about the type (integer, decimal..)
                     # description from main as it contains more information more reliably.
                     # Sometimes the term is not in the extension or vice versa. This is possible when 'eventID' needs to be in an extension, for example.
                     try:
                         output_config_dict[extension][key][term] = get_dwc_term_dict_from_main(term,dwc_terms)
                     except:
                         output_config_dict[extension][key][term] = get_dwc_term_dict_from_extension(term,dwc_extension)
-                        
+
                     if output_config_dict[extension][key][term]['description'] == '':
                         output_config_dict[extension][key][term]['description'] = get_dwc_term_description_from_extension(term,dwc_extension)
                     try:
@@ -162,13 +161,13 @@ def get_dwc_config_dict(subconfig, dwc_terms):
     return output_config_dict
 
 def get_dwc_term_dict_from_main(term,dwc_terms):
-    
+
     terms_dict = [dic for dic in dwc_terms if dic['id'] == term][0]
 
     return terms_dict
 
 def get_dwc_term_dict_from_extension(term,dwc_extension):
-    
+
     terms_dict = [dic for dic in dwc_extension if dic['id'] == term][0]
 
     return terms_dict
@@ -177,20 +176,20 @@ def get_dwc_term_description_from_extension(term,dwc_extension):
 
     terms_dict = [dic for dic in dwc_extension if dic['id'] == term][0]
     description = terms_dict['description']
-    
-    return description 
+
+    return description
 
 def get_validation_from_extension(term,dwc_extension):
 
     terms_dict = [dic for dic in dwc_extension if dic['id'] == term]
     validation = terms_dict[0]['valid']
-    
+
     return validation
 
 def get_dwc_terms_from_extension(dwc_extension):
 
     terms_dict = {}
-    
+
     for term in dwc_extension:
         terms_dict[term['id']] = term
 

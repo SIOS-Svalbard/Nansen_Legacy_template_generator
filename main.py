@@ -9,6 +9,7 @@ from website.lib.get_configurations import *
 from website.lib.create_template import create_template
 from website.lib.pull_cf_standard_names import cf_standard_names_update
 from website.lib.pull_acdd_conventions import acdd_conventions_update
+from website.lib.dropdown_lists_from_static_config_files import populate_dropdown_lists
 
 app = create_app()
 
@@ -39,9 +40,18 @@ def home():
         extra_fields_dict,
         cf_standard_names,
         groups,
-        dwc_conf_dict,
         dwc_terms
     ) = get_config_fields(config=config, subconfig=subconfig)
+
+    for sheet in output_config_dict.keys():
+        for key in output_config_dict[sheet].keys():
+            if key not in ['Required CSV', 'Source']:
+                fields_dict = output_config_dict[sheet][key]
+                output_config_dict[sheet][key] = populate_dropdown_lists(fields_dict, config)
+
+    extra_fields_dict = populate_dropdown_lists(extra_fields_dict, config)
+    dwc_terms = populate_dropdown_lists(dwc_terms, config)
+    cf_standard_names = populate_dropdown_lists(cf_standard_names, config)
 
     # Creating a dictionary of all the fields.
     all_fields_dict = extra_fields_dict.copy()
