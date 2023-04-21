@@ -214,81 +214,66 @@ class Data_Sheet(object):
 
         for field, vals in self.content.items():
 
-            if field in ['pi_details','recordedBy_details']:# and DB:
-                # if type(data) == pd.core.frame.DataFrame:
-                #     data, duplication = split_personnel_df(data, field)
-                # else:
-                duplication = 3 # 3 copies of these columns
+            # Write title row
+            if field in required_fields:
+                self.sheet.write(self.title_row, ii, vals['disp_name'], self.required_field_format)
+            elif field in recommended_fields:
+                self.sheet.write(self.title_row, ii, vals['disp_name'], self.recommended_field_format)
+            elif field in cf_standard_names:
+                self.sheet.write(self.title_row, ii, vals['disp_name'], self.cf_field_format)
+            elif field in dwc_terms:
+                self.sheet.write(self.title_row, ii, vals['disp_name'], self.dwc_term_format)
             else:
-                duplication = 1 # One copy of all other columns
+                self.sheet.write(self.title_row, ii, vals['disp_name'], self.optional_field_format)
 
-            while duplication > 0:
+            # Write row below with parameter name
+            self.sheet.write(parameter_row, ii, field)
 
-                # Write title row
-                if field in required_fields:
-                    self.sheet.write(self.title_row, ii, vals['disp_name'], self.required_field_format)
-                elif field in recommended_fields:
-                    self.sheet.write(self.title_row, ii, vals['disp_name'], self.recommended_field_format)
-                elif field in cf_standard_names:
-                    self.sheet.write(self.title_row, ii, vals['disp_name'], self.cf_field_format)
-                elif field in dwc_terms:
-                    self.sheet.write(self.title_row, ii, vals['disp_name'], self.dwc_term_format)
+            # Write validations and cell restrictions
+            if 'valid' in vals:
+
+                # Need to make sure that 'input_message' is not more than 255
+                valid_copy = vals['valid'].copy()
+
+                if 'input_message' in valid_copy:
+                    if len(valid_copy['input_message']) > 252:
+                        valid_copy['input_message'] = vals['input_message'][:249] + '...'
                 else:
-                    self.sheet.write(self.title_row, ii, vals['disp_name'], self.optional_field_format)
+                    if len(vals['description']) > 252:
+                        valid_copy['input_message'] = vals['description'][:249] + '...'
 
-                # Write row below with parameter name
-                if field in ['pi_details','recordedBy_details']:
-                    self.sheet.write(parameter_row, ii, field+ '_' + str(3-duplication))
+                valid_copy['input_message'] = add_line_breaks(valid_copy['input_message'], 35)
+                valid_copy['input_message'].replace('\n', '\n\r')
+
+                if len(vals['disp_name']) > 32:
+                    valid_copy['input_title'] = vals['disp_name'][:32]
                 else:
-                    self.sheet.write(parameter_row, ii, field)
+                    valid_copy['input_title'] = vals['disp_name']
 
-                # Write validations and cell restrictions
-                if 'valid' in vals:
+                if 'long_list' in vals:
+                    ref = self.template.variables_sheet.add_row(
+                        vals['id'], valid_copy['source']
+                        )
+                    valid_copy.pop('source', None)
+                    valid_copy['value'] = ref
 
-                    # Need to make sure that 'input_message' is not more than 255
-                    valid_copy = vals['valid'].copy()
+                self.sheet.data_validation(first_row=start_row,
+                                           first_col=ii,
+                                           last_row=end_row,
+                                           last_col=ii,
+                                           options=valid_copy)
 
-                    if 'input_message' in valid_copy:
-                        if len(valid_copy['input_message']) > 252:
-                            valid_copy['input_message'] = vals['input_message'][:249] + '...'
-                    else:
-                        if len(vals['description']) > 252:
-                            valid_copy['input_message'] = vals['description'][:249] + '...'
+            if 'cell_format' in vals:
+                if 'font_name' not in vals['cell_format']:
+                    vals['cell_format']['font_name'] = DEFAULT_FONT
+                if 'font_size' not in vals['cell_format']:
+                    vals['cell_format']['font_size'] = DEFAULT_SIZE
+                cell_format = workbook.add_format(vals['cell_format'])
+                self.sheet.set_column(
+                    ii, ii, width=20, cell_format=cell_format)
 
-                    valid_copy['input_message'] = add_line_breaks(valid_copy['input_message'], 35)
-                    valid_copy['input_message'].replace('\n', '\n\r')
+            ii = ii + 1
 
-                    if len(vals['disp_name']) > 32:
-                        valid_copy['input_title'] = vals['disp_name'][:32]
-                    else:
-                        valid_copy['input_title'] = vals['disp_name']
-
-                    if 'long_list' in vals:
-                        ref = self.template.variables_sheet.add_row(
-                            vals['id']+str(duplication), valid_copy['source']
-                            )
-                        valid_copy.pop('source', None)
-                        valid_copy['value'] = ref
-
-                    self.sheet.data_validation(first_row=start_row,
-                                               first_col=ii,
-                                               last_row=end_row,
-                                               last_col=ii,
-                                               options=valid_copy)
-
-                if 'cell_format' in vals:
-                    if 'font_name' not in vals['cell_format']:
-                        vals['cell_format']['font_name'] = DEFAULT_FONT
-                    if 'font_size' not in vals['cell_format']:
-                        vals['cell_format']['font_size'] = DEFAULT_SIZE
-                    cell_format = workbook.add_format(vals['cell_format'])
-                    self.sheet.set_column(
-                        ii, ii, width=20, cell_format=cell_format)
-
-                # Cell formats
-
-                ii = ii + 1
-                duplication = duplication - 1
 
         # Set height of row
         self.sheet.set_row(0, height=24)
