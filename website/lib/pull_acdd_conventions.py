@@ -79,17 +79,28 @@ class ACDD_conventions_df():
         '''
         self.df = pd.read_csv(self.filename, index_col=False)
 
-
-
-
 def acdd_conventions_update():
+    errors = []
     acdd = ACDD_conventions_df()
     if not have_internet():
-        raise Exception("cannot update ACDD conventions, no internet")
-    acdd.pull_from_online()
-    acdd.add_recommendations_column()
-    acdd.output_to_csv()
-
+        errors.append('Could not update ACDD configuration. Not connected to the internet')
+        return errors
+    try:
+        acdd.pull_from_online()
+    except:
+        errors.append("Could not update ACDD configuration. Couldn't access data from source URL")
+        return errors
+    try:
+        acdd.add_recommendations_column()
+    except:
+        errors.append("Could not update ACDD configuration. Error adding recommendations column")
+        return errors
+    try:
+        acdd.output_to_csv()
+    except:
+        errors.append("Could not update ACDD configuration. Couldn't save the CSV file.")
+        return errors
+    return errors
 
 def acdd_to_df():
     acdd = ACDD_conventions_df()

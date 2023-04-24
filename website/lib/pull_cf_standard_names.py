@@ -87,11 +87,22 @@ class CF_standard_names_json():
 PATH = 'website/config/fields/cf_standard_names.json'
 
 def cf_standard_names_update():
+    errors = []
     cf_standard_names_json = CF_standard_names_json(PATH)
     if not have_internet():
-        raise Exception("cannot update CF standard names, no internet")
-    cf_standard_names_json.pull_from_online()
-    cf_standard_names_json.create_json()
+        errors.append('Could not update CF standard names. Not connected to the internet')
+        return errors
+    try:
+        cf_standard_names_json.pull_from_online()
+    except:
+        errors.append("Could not update CF standard names. Couldn't access data from source URL")
+        return errors
+    try:
+        cf_standard_names_json.create_json()
+    except:
+        errors.append("Could not update CF standard names. Issue creating JSON file")
+        return errors
+    return errors
 
 def cf_standard_names_to_dic():
     cf_standard_names_json = CF_standard_names_json(PATH)

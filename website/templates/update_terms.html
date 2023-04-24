@@ -1,0 +1,126 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
+%}
+
+<form method="POST" enctype="multipart/form-data">
+
+  <h1>Update terms</h1><br>
+
+  <p>Standards evolve; new terms get added to controlled vocabularies.</p>
+
+  <p>If you are online, you can click the button below to retrieve the latest versions
+  of the different vocabularies used in this template generator </p>
+
+  <h5 class="font-weight-bold">Warning: </h5>
+  <p>
+    By clicking the buttons below, you are overwriting files stored
+    locally that the template generator uses. This could cause problems
+    if, for example, the format of the source files harvested changes. Please test
+    that the template generator runs as expected after doing this, and
+    contact the system administrator if you encounter any problems.
+  </p><br>
+
+  <h2>Columns in template generator</h2><br>
+
+  <h3>CF standard names</h3><br>
+
+  <p>Source:
+    <a href="https://cfconventions.org/Data/cf-standard-names/current/src/cf-standard-name-table.xml">
+      https://cfconventions.org/Data/cf-standard-names/current/src/cf-standard-name-table.xml
+    </a>
+  </p>
+  <a href="https://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html">
+    Page displaying latest version of the CF standard names
+  </a>
+  <br><br>
+  <button class="btn btn-primary" type="submit" name="submitbutton" value="pullCF">Pull latest CF standard names</button>
+  <br><br>
+
+  <h3>Darwin core terms</h3><br>
+
+  <h5>All terms</h5>
+
+  <p>Source:
+    <a href="https://raw.githubusercontent.com/tdwg/rs.tdwg.org/master/terms/terms.csv">
+      https://raw.githubusercontent.com/tdwg/rs.tdwg.org/master/terms/terms.csv
+    </a>
+  </p>
+  <a href="https://dwc.tdwg.org/terms/">
+    Page displaying latest version of the Darwin Core terms
+  </a>
+  <br><br>
+  <button class="btn btn-success" type="submit" name="submitbutton" value="pullDwC">Pull latest Darwin Core terms</button>
+  <br><br><br>
+
+  <h5>Cores and extensions</h5>
+
+  <p> All cores/extensions
+    <a href="https://rs.gbif.org/extensions.html">
+      https://rs.gbif.org/extensions.html
+    </a>
+  </p>
+  <p>
+    The following cores/extensions are included in the template generator:
+    <ul>
+      <li>
+        <a href="https://rs.gbif.org/core/dwc_event_2022-02-02.xml">
+          https://rs.gbif.org/core/dwc_event_2022-02-02.xml
+        </a>
+      </li>
+      <li>
+        <a href="https://rs.gbif.org/core/dwc_occurrence_2022-02-02.xml">
+          https://rs.gbif.org/core/dwc_occurrence_2022-02-02.xml
+        </a>
+      </li>
+      <li>
+        <a href="https://rs.gbif.org/extension/obis/extended_measurement_or_fact.xml">
+          https://rs.gbif.org/extension/obis/extended_measurement_or_fact.xml
+        </a>
+      </li>
+      <li>
+        <a href="https://rs.gbif.org/extension/ggbn/materialsample.xml">
+          https://rs.gbif.org/extension/ggbn/materialsample.xml
+        </a>
+      </li>
+      <li>
+        <a href="https://rs.gbif.org/extension/dwc/resource_relationship_2022-02-02.xml">
+          https://rs.gbif.org/extension/dwc/resource_relationship_2022-02-02.xml
+        </a>
+      </li>
+      <li>
+        <a href="https://rs.gbif.org/extension/gbif/1.0/multimedia.xml">
+          https://rs.gbif.org/extension/gbif/1.0/multimedia.xml
+        </a>
+      </li>
+    </ul>
+  </p>
+
+  <p>
+    Unfortunately, the latest versions of the cores/extensions cannot be retrieved user this interface.
+    This is because each URL above points to a specific version.
+    There are no URLs that dynamically point to a <span class="font-italic">latest</span> versions of each core/extension.
+  </p>
+  <p>
+    These can be updated by changing the URL(s) in the following script and running it:
+  </p>
+  <p>
+    <a href="https://github.com/SIOS-Svalbard/Learnings_from_AeN_template_generator/blob/main/website/lib/pull_darwin_core_terms.py">
+      https://github.com/SIOS-Svalbard/Learnings_from_AeN_template_generator/blob/main/website/lib/pull_darwin_core_terms.py
+    </a>
+  </p>
+
+  <br>
+
+  <h2>Discovery metadata</h2><br>
+
+  <h3>ACDD conventions</h3><br>
+
+  <p>Source:
+    <a href="https://adc.met.no/node/4">
+      https://adc.met.no/node/4
+    </a>
+  </p>
+  <button class="btn btn-info" type="submit" name="submitbutton" value="pullACDD">Pull latest configuration for ACDD conventions</button>
+  <br><br>
+</form>
+
+{% endblock %}

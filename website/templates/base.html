@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="{{ url_for('static', filename='cropped-Logo-Nansen-Legacy_favicon.webp')}}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css')}}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='flatpickr.min.css')}}">
+    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <!--<link rel="icon" href="Learnings_from_AeN_template_generator/templates/cropped-Logo-Nansen-Legacy_favicon.webp"/>
+    <link rel="stylesheet" href="Learnings_from_AeN_template_generator/templates/bootstrap.min.css"/>
+    <link rel="stylesheet" href="Learnings_from_AeN_template_generator/templates/flatpickr.min.css">-->
+    <title>Learnings from Nansen Legacy template generator</title>
+  </head>
+
+  <body class="d-flex flex-column min-vh-100">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark  justify-content-between">
+
+      <a class="navbar-brand" style="padding-left:15px" href="/"><img src="{{ url_for('static', filename='cropped-Logo-Nansen-Legacy_favicon.webp')}}" alt="The Nansen Legacy" height="72"> Learnings from Nansen Legacy logging system</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Admin
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/update">Get latest terms</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %} {% for category, message in messages %} {% if category ==
+    'error' %}
+    <div class="alert alert-danger alter-dismissable fade show" role="alert">
+      {{ message }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% elif category == 'warning' %}
+    <div class="alert alert-warning alter-dismissable fade show" role="alert">
+      {{ message }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% else %}
+    <div class="alert alert-success alter-dismissable fade show" role="alert">
+      {{ message }}
+      <button type="button" class="close" data-dismiss="alert">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endif %} {% endfor %} {% endif %} {% endwith %}
+    <br>
+
+    <div class="container">
+      <br><br><br>
+
+      {% block content %} {% endblock %}
+
+      <br><br><br>
+    </div>
+
+    <footer class="mt-auto text-center text-lg-start bg-dark text-muted">
+      <div class="mt-5 pt-5 pb-5 footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-5 col-md-5 col-xs-12 about-company">
+              <h2>About</h2>
+              <p class="pr-5 text-white-50">Template generator developed to record data and metadata in a standardised way to facilitate data publishing.</p>
+              <p class="pr-5 text-white-50">Developed based on experience from the Nansen Legacy project as a version 2 of the template generator.</p>
+              <p><a href="#"><i class="fa fa-facebook-square mr-1"></i></a><a href="#"><i class="fa fa-linkedin-square"></i></a></p>
+            </div>
+            <div class="col-lg-3 col-md-3 col-xs-12 links">
+              <h4 class="mt-lg-0 mt-sm-3">Links</h4>
+                <ul class="m-0 p-0">
+                  <li> <a href="https://doi.org/10.7557/nlrs.6684">Nansen Legacy sampling protocols</a></li>
+                  <!--<li> <a href="#">User manual</a></li>-->
+                  <li> <a href="http://cfconventions.org/">CF conventions</a></li>
+                  <li> <a href="http://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html">CF standard name table</a></li>
+                  <li> <a href="https://wiki.esipfed.org/Attribute_Convention_for_Data_Discovery_1-3">ACDD conventions</a></li>
+                  <li> <a href="https://dwc.tdwg.org/terms/">Darwin Core terms</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-md-4 col-xs-12 location">
+              <h4 class="mt-lg-0 mt-sm-4">Contact</h4>
+              <p>Luke Marsden: Data Manager</p>
+              <p>The University Centre in Svalbard (UNIS)</p>
+              <p><a href="mailto: data.nleg@unis.no">data.nleg@unis.no</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="text-center col copyright">
+            <p><small class="text-white-50"> 2023. All Rights Reserved.</small></p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
+    <script>
+      $(document).ready(function(){
+          $('.search_select_box select').selectpicker();
+      })
+    </script>
+
+    <script>
+  		$(document).ready(function(){
+  			// Search functionality
+  			$('.search-box input[type="text"]').on('keyup', function() {
+  				var searchText = $(this).val().toLowerCase();
+  				var searchWords = searchText.split(' ');
+  				$('.list-group label').each(function() {
+  					var currentItemText = $(this).text().toLowerCase();
+  					var matchCount = 0;
+  					for(var i = 0; i < searchWords.length; i++) {
+  						if(currentItemText.indexOf(searchWords[i]) > -1) {
+  							matchCount++;
+  						}
+  					}
+  					if(matchCount == searchWords.length) {
+  						$(this).show();
+  					} else {
+  						$(this).hide();
+  					}
+  				});
+  			});
+  		});
+  	</script>
+  </body>
+</html>

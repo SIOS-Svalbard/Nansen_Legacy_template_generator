@@ -2,4 +2,4 @@ run:
 	./main.py
 
 update-config:
-	./update-config.py acdd cf
+	./update-config.py acdd cf dwc

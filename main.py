@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from flask import request, send_file
+from flask import request, send_file, render_template, flash
 import json
 from website import create_app
 from website.lib.template import print_html_template
@@ -10,6 +10,7 @@ from website.lib.create_template import create_template
 from website.lib.pull_cf_standard_names import cf_standard_names_update
 from website.lib.pull_acdd_conventions import acdd_conventions_update
 from website.lib.dropdown_lists_from_static_config_files import populate_dropdown_lists
+from website.lib.pull_darwin_core_terms import dwc_terms_update, dwc_extensions_update
 
 app = create_app()
 
@@ -220,18 +221,42 @@ def home():
             compulsary_sheets=compulsary_sheets
         )
 
-@app.route("/update", methods=["POST"])
+@app.route("/update", methods=["GET", "POST"])
 def update_config():
     """
-    updates the ACDD Conventions and the CF standard names
+    updates the DwC terms, ACDD Conventions and the CF standard names
     in the config directory.
     """
-    try:
-        acdd_conventions_update()
-        cf_standard_names_update()
-        return '"OK"'
-    except Exception as e:
-        return json.dumps(str(e)), 500
+
+    if request.method == "POST":
+
+        if request.form["submitbutton"] == "pullCF":
+            errors = cf_standard_names_update()
+            if len(errors) == 0:
+                flash('Pulled latest version of CF standard names', category='success')
+            else:
+                for error in errors:
+                    flash(error, category='error')
+
+        elif request.form["submitbutton"] == "pullDwC":
+            errors = dwc_terms_update()
+            if len(errors) == 0:
+                flash('Pulled latest version of Darwin Core terms', category='success')
+            else:
+                for error in errors:
+                    flash(error, category='error')
+
+        elif request.form["submitbutton"] == "pullACDD":
+            errors = acdd_conventions_update()
+            if len(errors) == 0:
+                flash('Pulled latest version of ACDD configuration', category='success')
+            else:
+                for error in errors:
+                    flash(error, category='error')
+
+    return render_template(
+        "update_terms.html"
+    )
 
 if __name__ == "__main__":
     app.run(debug=True)
