@@ -13,6 +13,7 @@ config_dir = os.path.abspath(os.path.join(
 
 sys.path.append(config_dir)
 from .check_internet import have_internet
+import threading
 
 class Darwin_Core_Terms_json():
     '''
@@ -283,9 +284,6 @@ extensions = {
         'source': 'https://rs.gbif.org/extension/gbif/1.0/multimedia.xml',
         }
 }
-
-
-import threading
 
 def dwc_terms_update():
     errors = []
