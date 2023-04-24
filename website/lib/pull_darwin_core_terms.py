@@ -284,12 +284,34 @@ extensions = {
         }
 }
 
+
+import threading
+
 def dwc_terms_update():
+    errors = []
     dwc_terms_json = Darwin_Core_Terms_json(PATH)
     if not have_internet():
-        raise Exception("cannot update Darwin Core terms, no internet")
-    dwc_terms_json.pull_from_online()
-    dwc_terms_json.create_json()
+        errors.append('Could not update Darwin Core terms. Not connected to the internet')
+        return errors
+
+    try:
+        t = threading.Thread(target=dwc_terms_json.pull_from_online)
+        t.start()
+        t.join(timeout=5)
+
+        if t.is_alive():
+            errors.append("Could not update Darwin Core terms. Couldn't access data from source URL. It took longer than it should.")
+            return errors
+
+    except TimeoutError:
+        errors.append("Could not update Darwin Core terms. Couldn't access data from source URL")
+        return errors
+
+    try:
+        dwc_terms_json.create_json()
+    except:
+        errors.append("Could not update Darwin Core terms. Issue creating JSON file")
+        return errors
 
 def dwc_terms_to_dic():
     dwc_terms_json = Darwin_Core_Terms_json(PATH)
