@@ -242,8 +242,6 @@ class Data_Sheet(object):
                                                last_col=ii,
                                                options=valid)
 
-                    self.sheet.set_column(first_col=ii, last_col=ii, width=20)
-
                     ii = ii + 1
                     duplication = duplication - 1
 
@@ -303,15 +301,15 @@ class Data_Sheet(object):
                         vals['cell_format']['font_name'] = DEFAULT_FONT
                     if 'font_size' not in vals['cell_format']:
                         vals['cell_format']['font_size'] = DEFAULT_SIZE
-                    cell_format = workbook.add_format(vals['cell_format'])
+                    cell_format = self.template.workbook.add_format(vals['cell_format'])
                     self.sheet.set_column(
                         ii, ii, width=20, cell_format=cell_format)
 
                 ii = ii + 1
 
-
         # Set height of row
         self.sheet.set_row(0, height=24)
+        self.sheet.set_column(0,ii-1,20)
 
         # Freeze the rows at the top
         self.sheet.freeze_panes(start_row, 0)
