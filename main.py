@@ -162,7 +162,7 @@ def home():
             for form_key in all_form_keys:
                 if form_key.startswith(sheet):
                     form_field = form_key.split('__')[1]
-                    if form_field not in added_cf_names_dic[sheet].keys():
+                    if form_field not in added_cf_names_dic[sheet].keys() and form_field not in added_dwc_terms_dic[sheet].keys():
                         template_fields_dict[sheet][form_field] = all_fields_dict[form_field] # fields to write to template
                         if form_field in extra_fields_dict.keys():
                             added_fields_dic[sheet][form_field] = extra_fields_dict[form_field] # Extra fields added to template generator interface by user
