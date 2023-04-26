@@ -237,7 +237,7 @@ class Data_Sheet(object):
 
                 if 'input_message' in valid_copy:
                     if len(valid_copy['input_message']) > 252:
-                        valid_copy['input_message'] = vals['input_message'][:249] + '...'
+                        valid_copy['input_message'] = valid_copy['input_message'][:249] + '...'
                 else:
                     if len(vals['description']) > 252:
                         valid_copy['input_message'] = vals['description'][:249] + '...'
