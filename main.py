@@ -155,6 +155,7 @@ def home():
                                 term["description"] = ""
                             template_fields_dict[sheet][term['id']]['description'] = term['description']
                             template_fields_dict[sheet][term['id']]['format'] = "double precision"
+                            template_fields_dict[sheet][term['id']]['valid'] = term['valid']
                             added_dwc_terms_dic[sheet][term['id']] = template_fields_dict[sheet][term['id']]
 
         # Other fields (not CF standard names or DwC terms - terms designed for the template generator and logging system)
