@@ -416,7 +416,7 @@
         "id": "recordedBy_details"
     },
     {
-        "disp_name": "PI name",
+        "disp_name": "PI (name)",
         "description": "Full name of the principal investigator of the data.\nCan be a concatenated list, separated by: '|'\nExample: John Doe | Ola Nordmann",
         "format": "text",
         "grouping": "Personnel",
@@ -428,7 +428,7 @@
         "id": "pi_name"
     },
     {
-        "disp_name": "PI email",
+        "disp_name": "PI (email)",
         "description": "Email of the principal investigator of the data.\nCan be a concatenated list, separated by: '|'\nPlease include for every PI listed.\nExample: john.doe@unis.no | ola.nordmann@unis.no",
         "format": "text",
         "grouping": "Personnel",
@@ -440,7 +440,7 @@
         "id": "pi_email"
     },
     {
-        "disp_name": "PI institution",
+        "disp_name": "PI (institution)",
         "description": "Main institution of the principal investigator of the data.\nPlease include for every PI listed, even if the same.\nExample: University Centre in Svalbard | University Centre in Svalbard",
         "format": "text",
         "grouping": "Personnel",
@@ -452,7 +452,7 @@
         "id": "pi_institution"
     },
     {
-        "disp_name": "PI OrcID",
+        "disp_name": "PI (OrcID)",
         "description": "OrcID of the principal investigator(s) of the data.\nPlease include for every PI listed. Example: https://orcid.org/0000-0002-9746-544X",
         "format": "text",
         "grouping": "Personnel",
