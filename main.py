@@ -56,7 +56,6 @@ def home():
 
     # Creating a dictionary of all the fields.
     all_fields_dict = extra_fields_dict.copy()
-    sheets = []
     compulsary_sheets = []
 
     for sheet in output_config_dict.keys():
@@ -74,8 +73,6 @@ def home():
             if key not in ['Required CSV', 'Source']:
                 for field, values in output_config_dict[sheet][key].items():
                     all_fields_dict[field] = values
-        if output_config_dict[sheet]['Required CSV'] == True:
-            sheets.append(sheet)
 
     cf_groups = ["sea_water", "sea_ice"]
     added_fields_dic = {}
@@ -155,6 +152,7 @@ def home():
                                 term["description"] = ""
                             template_fields_dict[sheet][term['id']]['description'] = term['description']
                             template_fields_dict[sheet][term['id']]['format'] = "double precision"
+                            template_fields_dict[sheet][term['id']]['valid'] = term['valid']
                             added_dwc_terms_dic[sheet][term['id']] = template_fields_dict[sheet][term['id']]
 
         # Other fields (not CF standard names or DwC terms - terms designed for the template generator and logging system)
@@ -162,7 +160,7 @@ def home():
             for form_key in all_form_keys:
                 if form_key.startswith(sheet):
                     form_field = form_key.split('__')[1]
-                    if form_field not in added_cf_names_dic[sheet].keys():
+                    if form_field not in added_cf_names_dic[sheet].keys() and form_field not in added_dwc_terms_dic[sheet].keys():
                         template_fields_dict[sheet][form_field] = all_fields_dict[form_field] # fields to write to template
                         if form_field in extra_fields_dict.keys():
                             added_fields_dic[sheet][form_field] = extra_fields_dict[form_field] # Extra fields added to template generator interface by user

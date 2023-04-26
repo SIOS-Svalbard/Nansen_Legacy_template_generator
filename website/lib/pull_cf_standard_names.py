@@ -54,6 +54,15 @@ class CF_standard_names_json():
 
         self.dic2 = []
         for cf_standard_name in self.dic1:
+
+            if cf_standard_name['id'] == 'time':
+                cf_standard_name['description'] = '''
+                To encode time in CF standards, set "time" variable units using UDUNITS syntax (e.g. "days since 1970-01-01"),
+
+                e.g. time = 0,1,2
+                for dates 1970-01-01, 1970-01-02, 1970-01-03
+                '''
+
             cf_standard_name['valid'] = {
                 'validate': 'decimal',
                 'input_title': cf_standard_name['id'],
@@ -66,14 +75,6 @@ class CF_standard_names_json():
             cf_standard_name['disp_name'] = cf_standard_name['id']
             cf_standard_name['format'] = 'double precision'
             cf_standard_name['grouping'] = 'CF standard name'
-
-            if cf_standard_name['id'] == 'time':
-                cf_standard_name['description'] = '''
-                To encode time in CF standards, set "time" variable units using UDUNITS syntax (e.g. "days since 1970-01-01"),
-
-                e.g. time = 0,1,2
-                for dates 1970-01-01, 1970-01-02, 1970-01-03
-                '''
 
             self.dic2.append(cf_standard_name)
 
