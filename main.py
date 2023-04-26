@@ -56,7 +56,6 @@ def home():
 
     # Creating a dictionary of all the fields.
     all_fields_dict = extra_fields_dict.copy()
-    sheets = []
     compulsary_sheets = []
 
     for sheet in output_config_dict.keys():
@@ -74,8 +73,6 @@ def home():
             if key not in ['Required CSV', 'Source']:
                 for field, values in output_config_dict[sheet][key].items():
                     all_fields_dict[field] = values
-        if output_config_dict[sheet]['Required CSV'] == True:
-            sheets.append(sheet)
 
     cf_groups = ["sea_water", "sea_ice"]
     added_fields_dic = {}
