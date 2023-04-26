@@ -121,4 +121,30 @@ setups:
           Recommended: 'from source'
         Source: 'https://rs.gbif.org/extension/gbif/1.0/multimedia.xml'
         Required CSV: False
+    Occurrence Core:
+      Occurrence Core:
+        fields:
+        - Required: [occurrenceID,basisOfRecord,scientificName]
+          Recommended: [eventID,eventDate,decimalLatitude,decimalLongitude,taxonRank,kingdom,individualCount,organismQuantity,organismQuantityType]
+          Suggestions: 'from source'
+        Source: 'https://rs.gbif.org/core/dwc_occurrence_2022-02-02.xml'
+        Required CSV: True
+      Extended MoF Extension:
+        fields:
+        - Required: [measurementID,occurrenceID,measurementType,measurementValue,measurementUnit]
+          Recommended: 'from source'
+        Source: 'https://rs.gbif.org/extension/obis/extended_measurement_or_fact.xml'
+        Required CSV: False
+      Material Sample Extension:
+        fields:
+        - Required: [materialSampleID,occurrenceID,materialSampleType]
+          Recommended: 'from source'
+        Source: 'https://rs.gbif.org/extension/ggbn/materialsample.xml'
+        Required CSV: False
+      Simple Multimedia Extension:
+        fields:
+        - Required: [type,format,identifier,occurrenceID]
+          Recommended: 'from source'
+        Source: 'https://rs.gbif.org/extension/gbif/1.0/multimedia.xml'
+        Required CSV: False
 ...

@@ -267,6 +267,10 @@ extensions = {
         'filepath': 'website/config/fields/dwc_occurrence.json',
         'source': 'https://rs.gbif.org/core/dwc_occurrence_2022-02-02.xml',
         },
+    'Occurrence Core': {
+        'filepath': 'website/config/fields/dwc_occurrence.json',
+        'source': 'https://rs.gbif.org/core/dwc_occurrence_2022-02-02.xml',
+        },
     'Extended MoF Extension': {
         'filepath': 'website/config/fields/dwc_emof.json',
         'source': 'https://rs.gbif.org/extension/obis/extended_measurement_or_fact.xml',
