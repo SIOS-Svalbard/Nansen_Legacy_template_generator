@@ -7,8 +7,8 @@ setups:
   Learnings from Nansen Legacy logging system:
     activity:
       fields:
-      - Required: [eventDate, eventTime, stationName, decimalLatitude, decimalLongitude, gearType, pi_details, recordedBy_details]
-        Recommended: [id, statID, catalogNumber, endDate, endTime, endDecimalLatitude, endDecimalLongitude, minimumDepthInMeters, maximumDepthInMeters, minimumElevationInMeters, maximumElevationInMeters,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion,comments1]
+      - Required: [eventDate, eventTime, stationName, decimalLatitude, decimalLongitude, gearType, pi_name, pi_email, pi_institution, recordedBy_name, recordedBy_email, recordedBy_institution]
+        Recommended: [id, statID, catalogNumber, pi_orcid,recordedBy_orcid, endDate, endTime, endDecimalLatitude, endDecimalLongitude, minimumDepthInMeters, maximumDepthInMeters, minimumElevationInMeters, maximumElevationInMeters,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion,comments1]
     default:
       fields:
       - Required: [parentID, sampleType, pi_name, pi_email, pi_institution, recordedBy_name, recordedBy_email, recordedBy_institution]
