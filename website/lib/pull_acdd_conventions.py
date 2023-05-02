@@ -24,7 +24,7 @@ class ACDD_conventions_df():
     So the CSV overwrites each time the script runs if online
     '''
 
-    def __init__(self):
+    def __init__(self, path):
         """
         Initialises the json file
         Parameters
@@ -32,7 +32,7 @@ class ACDD_conventions_df():
         filename: string
             The name of the json file to be written
         """
-        self.filename = 'website/config/metadata_sheet_fields/acdd_conventions.csv'
+        self.filename = path + '/acdd_conventions.csv'
 
 
     def pull_from_online(self):
@@ -79,9 +79,9 @@ class ACDD_conventions_df():
         '''
         self.df = pd.read_csv(self.filename, index_col=False)
 
-def acdd_conventions_update():
+def acdd_conventions_update(path):
     errors = []
-    acdd = ACDD_conventions_df()
+    acdd = ACDD_conventions_df(path)
     if not have_internet():
         errors.append('Could not update ACDD configuration. Not connected to the internet')
         return errors
@@ -102,7 +102,7 @@ def acdd_conventions_update():
         return errors
     return errors
 
-def acdd_to_df():
-    acdd = ACDD_conventions_df()
+def acdd_to_df(path):
+    acdd = ACDD_conventions_df(path)
     acdd.read_csv()
     return acdd.df

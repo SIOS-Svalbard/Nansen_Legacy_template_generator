@@ -24,7 +24,7 @@ class CF_standard_names_json():
     So the JSON overwrites each time the script runs if online
     '''
 
-    def __init__(self, filename):
+    def __init__(self, path):
         """
         Initialises the json file
         Parameters
@@ -32,7 +32,7 @@ class CF_standard_names_json():
         filename: string
             The name of the json file to be written
         """
-        self.filename = filename
+        self.filename = path + '/cf_standard_names.json'
 
 
     def pull_from_online(self):
@@ -85,11 +85,9 @@ class CF_standard_names_json():
         f = open(self.filename)
         self.dic = json.load(f)
 
-PATH = 'website/config/fields/cf_standard_names.json'
-
-def cf_standard_names_update():
+def cf_standard_names_update(path):
     errors = []
-    cf_standard_names_json = CF_standard_names_json(PATH)
+    cf_standard_names_json = CF_standard_names_json(path)
     if not have_internet():
         errors.append('Could not update CF standard names. Not connected to the internet')
         return errors
@@ -105,7 +103,7 @@ def cf_standard_names_update():
         return errors
     return errors
 
-def cf_standard_names_to_dic():
-    cf_standard_names_json = CF_standard_names_json(PATH)
+def cf_standard_names_to_dic(path):
+    cf_standard_names_json = CF_standard_names_json(path)
     cf_standard_names_json.load_json()
     return cf_standard_names_json.dic

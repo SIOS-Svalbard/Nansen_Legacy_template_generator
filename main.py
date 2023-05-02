@@ -34,6 +34,8 @@ def home():
     else:
         subconfig = None
 
+    fields_filepath='website/config/fields'
+
     # Getting setup specific to this configuration
     (
         output_config_dict,
@@ -42,7 +44,7 @@ def home():
         cf_standard_names,
         groups,
         dwc_terms
-    ) = get_config_fields(config=config, subconfig=subconfig)
+    ) = get_config_fields(fields_filepath=fields_filepath, config=config, subconfig=subconfig)
 
     for sheet in output_config_dict.keys():
         for key in output_config_dict[sheet].keys():
@@ -178,6 +180,7 @@ def home():
             create_template(
                 filepath,
                 template_fields_dict,
+                fields_filepath,
                 config,
                 subconfig,
                 conversions=True

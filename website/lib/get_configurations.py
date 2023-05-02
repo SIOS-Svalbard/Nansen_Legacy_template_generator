@@ -43,7 +43,7 @@ def get_config_fields_dic(config, subconfig=None):
 
     return config_dict
 
-def get_config_fields(config, subconfig=None):
+def get_config_fields(fields_filepath, config, subconfig=None):
 
     initial_config_dict = get_config_fields_dic(config,subconfig)
 
@@ -61,9 +61,9 @@ def get_config_fields(config, subconfig=None):
     extra_fields_dict = {}
     groups = []
 
-    other_fields = other_fields_to_dic()
-    cf_standard_names = cf_standard_names_to_dic()
-    dwc_terms = dwc_terms_to_dic()
+    other_fields = other_fields_to_dic(fields_filepath)
+    cf_standard_names = cf_standard_names_to_dic(fields_filepath)
+    dwc_terms = dwc_terms_to_dic(fields_filepath)
 
     all_fields = other_fields + cf_standard_names + dwc_terms
 
@@ -83,7 +83,7 @@ def get_config_fields(config, subconfig=None):
         dwc_subconfig = subconfig
     else:
         dwc_subconfig = 'Sampling Event'
-    dwc_conf_dict = get_dwc_config_dict(subconfig = dwc_subconfig, dwc_terms = dwc_terms)
+    dwc_conf_dict = get_dwc_config_dict(fields_filepath = fields_filepath, subconfig = dwc_subconfig, dwc_terms = dwc_terms)
 
     # Creating a dictionary for the configuration that I can use
     if config == 'Darwin Core':
@@ -110,7 +110,7 @@ def get_config_fields(config, subconfig=None):
 
     return output_config_dict, fields_in_config_list, extra_fields_dict, cf_standard_names, groups, dwc_terms
 
-def get_dwc_config_dict(subconfig, dwc_terms):
+def get_dwc_config_dict(fields_filepath, subconfig, dwc_terms):
 
     config_dict = yaml.safe_load(open(CONFIG_PATH, encoding='utf-8'))['setups']['Darwin Core'][subconfig]
 
@@ -123,7 +123,7 @@ def get_dwc_config_dict(subconfig, dwc_terms):
         output_config_dict[extension]['Required CSV'] = config_dict[extension]['Required CSV']
         output_config_dict[extension]['Source'] = source
 
-        dwc_extension = dwc_extension_to_dic(extension)
+        dwc_extension = dwc_extension_to_dic(fields_filepath, extension)
 
         for key, value in criteria.items():
             output_config_dict[extension][key] = {}
@@ -197,17 +197,17 @@ def get_dwc_terms_from_extension(dwc_extension):
 
     return terms_dict
 
-def get_field_requirements(config, subconfig, sheetname):
+def get_field_requirements(fields_filepath, config, subconfig, sheetname):
     '''
     Get field requirements for template generator
     Dictates how column headers are formatted (colour coded)
     '''
     config_dict = get_config_fields_dic(config=config, subconfig=subconfig)
 
-    cf_standard_names = cf_standard_names_to_dic()
+    cf_standard_names = cf_standard_names_to_dic(fields_filepath)
     cf_standard_names = [cf_standard_name['id'] for cf_standard_name in cf_standard_names]
 
-    dwc_terms_dic = dwc_terms_to_dic()
+    dwc_terms_dic = dwc_terms_to_dic(fields_filepath)
     dwc_terms = [term['term_localName'] for term in dwc_terms_dic]
 
     if config == 'Learnings from Nansen Legacy logging system':

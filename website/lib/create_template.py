@@ -37,11 +37,12 @@ class Template(object):
     Spreadsheet template object
     """
 
-    def __init__(self, filepath, config, subconfig):
+    def __init__(self, filepath, fields_filepath, config, subconfig):
         self.filepath = filepath
         self.config = config
         self.subconfig = subconfig
         self.workbook = xlsxwriter.Workbook(self.filepath)
+        self.fields_filepath = fields_filepath
 
         # Set font
         self.workbook.formats[0].set_font_name(DEFAULT_FONT)
@@ -207,7 +208,7 @@ class Data_Sheet(object):
         recommended_fields,
         dwc_terms,
         cf_standard_names
-        ) = get_field_requirements(config=self.template.config, subconfig=self.template.subconfig, sheetname=self.sheetname)
+        ) = get_field_requirements(fields_filepath=self.template.fields_filepath,config=self.template.config, subconfig=self.template.subconfig, sheetname=self.sheetname)
 
         # Loop over all the variables/columns needed
         ii = 0
@@ -623,7 +624,7 @@ class Variables_Sheet(object):
         self.current_column = self.current_column + 1
         return ref
 
-def create_template(filepath, template_fields_dict, config, subconfig=None, conversions=True, data=None, metadata_df=None):
+def create_template(filepath, template_fields_dict, fields_filepath, config, subconfig=None, conversions=True, data=None, metadata_df=None):
     """
     Method for calling from other python programs
     Parameters
@@ -656,7 +657,7 @@ def create_template(filepath, template_fields_dict, config, subconfig=None, conv
     args.dir = os.path.dirname(filepath)
     args.filepath = filepath
 
-    template = Template(args.filepath, config, subconfig)
+    template = Template(args.filepath, fields_filepath, config, subconfig)
     template.add_variables_sheet()
     template.add_metadata()
     for sheetname, content in template_fields_dict.items():

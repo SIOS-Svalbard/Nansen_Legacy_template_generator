@@ -20,7 +20,7 @@ class Darwin_Core_Terms_json():
     Class for pulling Darwin Core terms to a JSON
     '''
 
-    def __init__(self, filename):
+    def __init__(self, path):
         """
         Initialises the json file
         Parameters
@@ -28,7 +28,7 @@ class Darwin_Core_Terms_json():
         filename: string
             The name of the json file to be written
         """
-        self.filename = filename
+        self.filename = path + '/dwc_terms.json'
 
     def pull_from_online(self):
         '''
@@ -256,42 +256,41 @@ class Darwin_Core_Extension():
         f = open(self.filename)
         self.dic = json.load(f)
 
-PATH = 'website/config/fields/dwc_terms.json'
 
 extensions = {
     'Event Core': {
-        'filepath': 'website/config/fields/dwc_event.json',
+        'file': 'dwc_event.json',
         'source': 'https://rs.gbif.org/core/dwc_event_2022-02-02.xml',
         },
     'Occurrence Extension': {
-        'filepath': 'website/config/fields/dwc_occurrence.json',
+        'file': 'dwc_occurrence.json',
         'source': 'https://rs.gbif.org/core/dwc_occurrence_2022-02-02.xml',
         },
     'Occurrence Core': {
-        'filepath': 'website/config/fields/dwc_occurrence.json',
+        'file': 'dwc_occurrence.json',
         'source': 'https://rs.gbif.org/core/dwc_occurrence_2022-02-02.xml',
         },
     'Extended MoF Extension': {
-        'filepath': 'website/config/fields/dwc_emof.json',
+        'file': 'dwc_emof.json',
         'source': 'https://rs.gbif.org/extension/obis/extended_measurement_or_fact.xml',
         },
     'Material Sample Extension': {
-        'filepath': 'website/config/fields/dwc_materialsample.json',
+        'file': 'dwc_materialsample.json',
         'source': 'https://rs.gbif.org/extension/ggbn/materialsample.xml',
         },
     'Resource Relationship Extension': {
-        'filepath': 'website/config/fields/dwc_resourcerelationship.json',
+        'file': 'dwc_resourcerelationship.json',
         'source': 'https://rs.gbif.org/extension/dwc/resource_relationship_2022-02-02.xml',
         },
     'Simple Multimedia Extension': {
-        'filepath': 'website/config/fields/dwc_multimedia.json',
+        'file': 'dwc_multimedia.json',
         'source': 'https://rs.gbif.org/extension/gbif/1.0/multimedia.xml',
         }
 }
 
-def dwc_terms_update():
+def dwc_terms_update(path):
     errors = []
-    dwc_terms_json = Darwin_Core_Terms_json(PATH)
+    dwc_terms_json = Darwin_Core_Terms_json(path)
     if not have_internet():
         errors.append('Could not update Darwin Core terms. Not connected to the internet')
         return errors
@@ -315,19 +314,19 @@ def dwc_terms_update():
         errors.append("Could not update Darwin Core terms. Issue creating JSON file")
         return errors
 
-def dwc_terms_to_dic():
-    dwc_terms_json = Darwin_Core_Terms_json(PATH)
+def dwc_terms_to_dic(path):
+    dwc_terms_json = Darwin_Core_Terms_json(path)
     dwc_terms_json.load_json()
     return dwc_terms_json.dic
 
-def dwc_extensions_update():
+def dwc_extensions_update(path):
     for extension, vals in extensions.items():
-        dwc_extension = Darwin_Core_Extension(vals['source'], vals['filename'])
+        dwc_extension = Darwin_Core_Extension(vals['source'], path + '/' + vals['filename'])
         dwc_extension.pull_from_online()
         dwc_extension.create_json()
 
-def dwc_extension_to_dic(extension):
-    filepath = extensions[extension]['filepath']
-    dwc_extension = Darwin_Core_Terms_json(filepath)
+def dwc_extension_to_dic(path, extension):
+    filepath = path + '/' + extensions[extension]['file']
+    dwc_extension = Darwin_Core_Extension(extension, filepath)
     dwc_extension.load_json()
     return dwc_extension.dic
