@@ -18,7 +18,7 @@ def populate_dropdown_lists(fields_dict, config):
     if config == 'Learnings from Nansen Legacy logging system':
         fields_with_dropdown_list + [
             'storageTemp',
-            'filters'
+            'filter'
         ]
 
     if isinstance(fields_dict, list):
