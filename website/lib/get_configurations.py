@@ -1,15 +1,8 @@
 import yaml
-#import sys
-#from os.path import os
-# config_dir = os.path.abspath(os.path.join(
-#     os.path.dirname(__file__), '..', 'config'))
-
-# sys.path.append(config_dir)
 from .pull_cf_standard_names import cf_standard_names_to_dic
 from .pull_other_fields import other_fields_to_dic
 from .pull_darwin_core_terms import dwc_terms_to_dic, dwc_extension_to_dic
-
-CONFIG_PATH = 'website/config/template_configurations.yaml'
+from website import CONFIG_PATH
 
 def get_list_of_configs():
 
