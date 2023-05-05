@@ -476,7 +476,7 @@
         "id": "pi_details"
     },
     {
-        "disp_name": "Storage temp",
+        "disp_name": "Storage temperature",
         "description": "Choose the storage temperature used",
         "format": "text",
         "grouping": "Storage",
@@ -490,7 +490,7 @@
             "error_title": "Error",
             "error_message": "Not a valid value, pick a value from the drop-down list."
         },
-        "id": "storageTemp"
+        "id": "storageTemperature"
     },
     {
         "disp_name": "Fixative",
