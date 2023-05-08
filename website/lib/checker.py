@@ -39,7 +39,7 @@ def make_valid_dict(DB, CRUISE_NUMBER):
     # First we go through the fields.py
     field_dict = {}
     for field in fields.fields:
-        if field['name'] not in ['recordedBy_details', 'pi_details']:
+        if field['name'] not in ['recordedBy', 'pi_details']:
             new = Checker(DB, name=field['name'], disp_name=field['disp_name'])
             if 'valid' in field:
                 new.set_validation(DB, CRUISE_NUMBER, field['valid'])
@@ -69,7 +69,7 @@ def make_valid_dict_metadata(DB):
     # First we go through the metadata_fields.py
     metadata_field_dict = {}
     for metadata_field in metadata_fields.metadata_fields:
-        if metadata_field['name'] not in ['recordedBy_details', 'pi_details']:
+        if metadata_field['name'] not in ['recordedBy', 'pi_details']:
             new = Checker(DB, name=metadata_field['name'], disp_name=metadata_field['disp_name'])
             if 'valid' in metadata_field:
                 new.set_validation(DB, metadata_field['valid'])
@@ -677,7 +677,7 @@ def check_array(data, checker_list, registered_ids, required, new, firstrow, old
                     pi_field_count = pi_field_count + 1
             elif req in ['recordedBy_name', 'recordedBy_email', 'recordedBy_orcid', 'recordedBy_institution']:
                 if recordedBy_field_count == 0 and req != 'recordedBy_orcid':
-                    errors.append(f'Required field "recordedBy_details" is missing')
+                    errors.append(f'Required field "recordedBy" is missing')
                     recordedBy_field_count = recordedBy_field_count + 1
             else:
                 errors.append(f'Required field "{req}" is missing')

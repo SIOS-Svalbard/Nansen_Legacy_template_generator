@@ -413,7 +413,7 @@
             "input_title": "Recorded By",
             "input_message": "Details of who has recorded/analysed the data.\n    Should ideally include full name and email, e.g. Luke Marsden (lukem@unis.no).\n    Can be a concatenated list, separated by: '|'."
         },
-        "id": "recordedBy_details"
+        "id": "recordedBy"
     },
     {
         "disp_name": "PI (name)",
