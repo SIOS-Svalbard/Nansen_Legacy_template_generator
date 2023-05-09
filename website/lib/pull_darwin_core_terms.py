@@ -106,6 +106,19 @@ class Darwin_Core_Terms_json():
                 }
                 term['format'] = 'double precision'
 
+            elif term['id'] in ['minimumDepthInMeters', 'maximumDepthInMeters', 'minimumElevationInMeters', 'maximumElevationInMeters', 'minimumDistanceAboveSurfaceInMeters', 'maximumDistanceAboveSurfaceInMeters']:
+                term["valid"] = {
+                    "validate": "decimal",
+                    "criteria": "between",
+                    "minimum": 0,
+                    "maximum": 99999,
+                    "input_title": term['id'],
+                    "input_message": term['description'],
+                    "error_title": "Error",
+                    "error_message": "Enter a number in range [0, 99999]"
+                }
+                term['format'] = 'double precision'
+
             else:
                 term['valid'] = {
                     'validate': 'any',
@@ -198,6 +211,19 @@ class Darwin_Core_Extension():
                 }
                 term['cell_format'] = {
                     "num_format": "0.0000"
+                }
+                term['format'] = 'double precision'
+
+            elif term['id'] in ['minimumDepthInMeters', 'maximumDepthInMeters', 'minimumElevationInMeters', 'maximumElevationInMeters', 'minimumDistanceAboveSurfaceInMeters', 'maximumDistanceAboveSurfaceInMeters']:
+                term["valid"] = {
+                    "validate": "decimal",
+                    "criteria": "between",
+                    "minimum": 0,
+                    "maximum": 99999,
+                    "input_title": term['id'],
+                    "input_message": term['description'],
+                    "error_title": "Error",
+                    "error_message": "Enter a number in range [0, 99999]"
                 }
                 term['format'] = 'double precision'
 

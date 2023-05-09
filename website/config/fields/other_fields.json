@@ -1162,7 +1162,7 @@
         "id": "modified"
     },
     {
-        "disp_name": "source",
+        "disp_name": "Record source",
         "description": "Where the source was logged (file or page).",
         "width": 40,
         "format": "text",
@@ -1172,6 +1172,6 @@
             "input_title": "Source",
             "input_message": "Where the source was logged (file or page)."
         },
-        "id": "source"
+        "id": "recordSource"
     }
 ]

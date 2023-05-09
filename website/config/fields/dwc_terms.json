@@ -2980,9 +2980,14 @@
         "grouping": "Darwin Core term",
         "description": "The greater depth of a range of depth below the local surface, in meters.\n\nExamples: `0`, `200`",
         "valid": {
-            "validate": "any",
+            "validate": "decimal",
+            "criteria": "between",
+            "minimum": 0,
+            "maximum": 99999,
             "input_title": "maximumDepthInMeters",
-            "input_message": "The greater depth of a range of depth below the local surface, in meters.\n\nExamples: `0`, `200`"
+            "input_message": "The greater depth of a range of depth below the local surface, in meters.\n\nExamples: `0`, `200`",
+            "error_title": "Error",
+            "error_message": "Enter a number in range [0, 99999]"
         }
     },
     {
@@ -3010,9 +3015,14 @@
         "grouping": "Darwin Core term",
         "description": "The greater distance in a range of distance from a reference surface in the vertical direction, in meters. Use positive values for locations above the surface, negative values for locations below. If depth measures are given, the reference surface is the location given by the depth, otherwise the reference surface is the location given by the elevation.\n\nExamples: `-1.5` (below the surface). `4.2` (above the surface). For a 1.5 meter sediment core from the bottom of a lake (at depth 20m) at 300m elevation: verbatimElevation: `300m` minimumElevationInMeters: `300`, maximumElevationInMeters: `300`, verbatimDepth: `20m`, minimumDepthInMeters: `20`, maximumDepthInMeters: `20`, minimumDistanceAboveSurfaceInMeters: `0`, maximumDistanceAboveSurfaceInMeters: `-1.5`.",
         "valid": {
-            "validate": "any",
+            "validate": "decimal",
+            "criteria": "between",
+            "minimum": 0,
+            "maximum": 99999,
             "input_title": "maximumDistanceAboveSurfaceInMeters",
-            "input_message": "The greater distance in a range of distance from a reference surface in the vertical direction, in meters. Use positive values for locations above the surface, negative values for locations below. If depth measures are given, the reference surface is the location given by the depth, otherwise the reference surface is the location given by the elevation.\n\nExamples: `-1.5` (below the surface). `4.2` (above the surface). For a 1.5 meter sediment core from the bottom of a lake (at depth 20m) at 300m elevation: verbatimElevation: `300m` minimumElevationInMeters: `300`, maximumElevationInMeters: `300`, verbatimDepth: `20m`, minimumDepthInMeters: `20`, maximumDepthInMeters: `20`, minimumDistanceAboveSurfaceInMeters: `0`, maximumDistanceAboveSurfaceInMeters: `-1.5`."
+            "input_message": "The greater distance in a range of distance from a reference surface in the vertical direction, in meters. Use positive values for locations above the surface, negative values for locations below. If depth measures are given, the reference surface is the location given by the depth, otherwise the reference surface is the location given by the elevation.\n\nExamples: `-1.5` (below the surface). `4.2` (above the surface). For a 1.5 meter sediment core from the bottom of a lake (at depth 20m) at 300m elevation: verbatimElevation: `300m` minimumElevationInMeters: `300`, maximumElevationInMeters: `300`, verbatimDepth: `20m`, minimumDepthInMeters: `20`, maximumDepthInMeters: `20`, minimumDistanceAboveSurfaceInMeters: `0`, maximumDistanceAboveSurfaceInMeters: `-1.5`.",
+            "error_title": "Error",
+            "error_message": "Enter a number in range [0, 99999]"
         }
     },
     {
@@ -3040,9 +3050,14 @@
         "grouping": "Darwin Core term",
         "description": "The upper limit of the range of elevation (altitude, usually above sea level), in meters.\n\nExamples: `-205`, `1236`",
         "valid": {
-            "validate": "any",
+            "validate": "decimal",
+            "criteria": "between",
+            "minimum": 0,
+            "maximum": 99999,
             "input_title": "maximumElevationInMeters",
-            "input_message": "The upper limit of the range of elevation (altitude, usually above sea level), in meters.\n\nExamples: `-205`, `1236`"
+            "input_message": "The upper limit of the range of elevation (altitude, usually above sea level), in meters.\n\nExamples: `-205`, `1236`",
+            "error_title": "Error",
+            "error_message": "Enter a number in range [0, 99999]"
         }
     },
     {
@@ -3400,9 +3415,14 @@
         "grouping": "Darwin Core term",
         "description": "The lesser depth of a range of depth below the local surface, in meters.\n\nExamples: `0`, `100`",
         "valid": {
-            "validate": "any",
+            "validate": "decimal",
+            "criteria": "between",
+            "minimum": 0,
+            "maximum": 99999,
             "input_title": "minimumDepthInMeters",
-            "input_message": "The lesser depth of a range of depth below the local surface, in meters.\n\nExamples: `0`, `100`"
+            "input_message": "The lesser depth of a range of depth below the local surface, in meters.\n\nExamples: `0`, `100`",
+            "error_title": "Error",
+            "error_message": "Enter a number in range [0, 99999]"
         }
     },
     {
@@ -3430,9 +3450,14 @@
         "grouping": "Darwin Core term",
         "description": "The lesser distance in a range of distance from a reference surface in the vertical direction, in meters. Use positive values for locations above the surface, negative values for locations below. If depth measures are given, the reference surface is the location given by the depth, otherwise the reference surface is the location given by the elevation.\n\nExamples: `-1.5` (below the surface). `4.2` (above the surface). For a 1.5 meter sediment core from the bottom of a lake (at depth 20m) at 300m elevation: verbatimElevation: `300m` minimumElevationInMeters: `300`, maximumElevationInMeters: `300`, verbatimDepth: `20m`, minimumDepthInMeters: `20`, maximumDepthInMeters: `20`, minimumDistanceAboveSurfaceInMeters: `0`, maximumDistanceAboveSurfaceInMeters: `-1.5`.",
         "valid": {
-            "validate": "any",
+            "validate": "decimal",
+            "criteria": "between",
+            "minimum": 0,
+            "maximum": 99999,
             "input_title": "minimumDistanceAboveSurfaceInMeters",
-            "input_message": "The lesser distance in a range of distance from a reference surface in the vertical direction, in meters. Use positive values for locations above the surface, negative values for locations below. If depth measures are given, the reference surface is the location given by the depth, otherwise the reference surface is the location given by the elevation.\n\nExamples: `-1.5` (below the surface). `4.2` (above the surface). For a 1.5 meter sediment core from the bottom of a lake (at depth 20m) at 300m elevation: verbatimElevation: `300m` minimumElevationInMeters: `300`, maximumElevationInMeters: `300`, verbatimDepth: `20m`, minimumDepthInMeters: `20`, maximumDepthInMeters: `20`, minimumDistanceAboveSurfaceInMeters: `0`, maximumDistanceAboveSurfaceInMeters: `-1.5`."
+            "input_message": "The lesser distance in a range of distance from a reference surface in the vertical direction, in meters. Use positive values for locations above the surface, negative values for locations below. If depth measures are given, the reference surface is the location given by the depth, otherwise the reference surface is the location given by the elevation.\n\nExamples: `-1.5` (below the surface). `4.2` (above the surface). For a 1.5 meter sediment core from the bottom of a lake (at depth 20m) at 300m elevation: verbatimElevation: `300m` minimumElevationInMeters: `300`, maximumElevationInMeters: `300`, verbatimDepth: `20m`, minimumDepthInMeters: `20`, maximumDepthInMeters: `20`, minimumDistanceAboveSurfaceInMeters: `0`, maximumDistanceAboveSurfaceInMeters: `-1.5`.",
+            "error_title": "Error",
+            "error_message": "Enter a number in range [0, 99999]"
         }
     },
     {
@@ -3460,9 +3485,14 @@
         "grouping": "Darwin Core term",
         "description": "The lower limit of the range of elevation (altitude, usually above sea level), in meters.\n\nExamples: `-100`, `802`",
         "valid": {
-            "validate": "any",
+            "validate": "decimal",
+            "criteria": "between",
+            "minimum": 0,
+            "maximum": 99999,
             "input_title": "minimumElevationInMeters",
-            "input_message": "The lower limit of the range of elevation (altitude, usually above sea level), in meters.\n\nExamples: `-100`, `802`"
+            "input_message": "The lower limit of the range of elevation (altitude, usually above sea level), in meters.\n\nExamples: `-100`, `802`",
+            "error_title": "Error",
+            "error_message": "Enter a number in range [0, 99999]"
         }
     },
     {
