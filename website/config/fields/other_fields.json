@@ -61,7 +61,7 @@
             "validate": "date",
             "criteria": "between",
             "minimum": "2000-01-01",
-            "maximum": "=TODAY()+100",
+            "maximum": "=TODAY()+2",
             "input_title": "Start Date",
             "input_message": "Middle date for event, for instance for noting the deepest point of a trawl or net haul.\nShould be in ISO8601 format, in UTC time, e.g. 2022-04-10T09:46:24Z",
             "error_title": "Error",
@@ -484,7 +484,7 @@
         "long_list": true,
         "valid": {
             "validate": "list",
-            "source": "storage_temperatures",
+            "source": "storageTemperature",
             "input_title": "Storage temperature",
             "input_message": "Choose the storage temperature used",
             "error_title": "Error",
@@ -554,7 +554,7 @@
         "long_list": true,
         "valid": {
             "validate": "list",
-            "source": "filters",
+            "source": "filter",
             "input_title": "Filter",
             "input_message": "Choose the filter used. If no filtering is being done choose None",
             "error_title": "Error",
@@ -940,7 +940,7 @@
         "grouping": "Sample Type/Intended Method",
         "valid": {
             "validate": "list",
-            "source": "sample_types",
+            "source": "sampleType",
             "input_title": "Sample type",
             "input_message": "Choose the type of sample. What is it?",
             "error_title": "Error",
@@ -956,7 +956,7 @@
         "long_list": true,
         "valid": {
             "validate": "list",
-            "source": "intended_methods",
+            "source": "intendedMethod",
             "input_title": "Intended Method",
             "input_message": "The intended measurement or analysis method for the sample.\nIf multiple methods, separate with ';'.\nExamples: 'FCM', 'XCM', 'SEM' ",
             "error_title": "Error",
@@ -986,7 +986,7 @@
         "long_list": true,
         "valid": {
             "validate": "list",
-            "source": "gear_types",
+            "source": "gearType",
             "input_title": "Gear Type",
             "input_message": "Choose the gear used to retrieve the sample.\nListed at: https://github.com/SIOS-Svalbard/AeN_doc/blob/master/list_gear_types.csv",
             "error_title": "Error",
