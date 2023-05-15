@@ -14,6 +14,8 @@ import math
 from argparse import Namespace
 import os.path
 from .get_configurations import get_field_requirements
+from .pull_acdd_conventions import acdd_to_df
+import os
 
 DEFAULT_FONT = 'Calibri'
 DEFAULT_SIZE = 10
@@ -306,6 +308,10 @@ class Data_Sheet(object):
                     self.sheet.set_column(
                         ii, ii, width=20, cell_format=cell_format)
 
+                # Add optional data to sheet
+                if 'data' in vals.keys():
+                    self.sheet.write_column(start_row,ii,vals['data'])
+
                 ii = ii + 1
 
         # Set height of row
@@ -329,6 +335,7 @@ class Metadata_Sheet(object):
         self.sheet = template.workbook.add_worksheet(self.sheetname)
         self.header_row = 8
         self.start_row = self.header_row + 2
+        self.template = template
 
         self.header_format = template.workbook.add_format({
             'font_name': DEFAULT_FONT,
@@ -399,7 +406,8 @@ class Metadata_Sheet(object):
 
     def add_acdd_metadata(self):
 
-        df_metadata = pd.read_csv('website/config/metadata_sheet_fields/acdd_conventions.csv')
+        metadata_filepath = os.path.dirname(self.template.fields_filepath) + '/metadata_sheet_fields'
+        df_metadata = acdd_to_df(metadata_filepath)
         df_metadata['Content'] = ''
 
         last_col = len(df_metadata.columns)-1
@@ -553,6 +561,7 @@ class Readme_Sheet(object):
     def __init__(self, template):
         self.sheetname = 'README'
         self.sheet = template.workbook.add_worksheet(self.sheetname)
+        self.template = template
 
         self.sheet.set_column(0, 0, width=150)
 
@@ -562,12 +571,14 @@ class Readme_Sheet(object):
             'bg_color': '#ffffff',
         })
 
+        readme_filepath = os.path.dirname(self.template.fields_filepath) + '/readmes'
+
         if template.config == 'CF-NetCDF':
-            readme_file = 'website/config/readmes/cfnetcdf_readme.txt'
+            readme_file = readme_filepath + '/cfnetcdf_readme.txt'
         elif template.config == 'Learnings from Nansen Legacy logging system':
-            readme_file = 'website/config/readmes/lfnl_readme.txt'
+            readme_file = readme_filepath + '/lfnl_readme.txt'
         elif template.config == 'Darwin Core':
-            readme_file = 'website/config/readmes/dwc_readme.txt'
+            readme_file = readme_filepath + '/dwc_readme.txt'
 
         with open(readme_file, 'r') as file:
             for idx, line in enumerate(file):
@@ -624,7 +635,7 @@ class Variables_Sheet(object):
         self.current_column = self.current_column + 1
         return ref
 
-def create_template(filepath, template_fields_dict, fields_filepath, config, subconfig=None, conversions=True, data=None, metadata_df=None):
+def create_template(filepath, template_fields_dict, fields_filepath, config, subconfig=None, conversions=True, metadata=True, metadata_df=None):
     """
     Method for calling from other python programs
     Parameters
@@ -644,9 +655,6 @@ def create_template(filepath, template_fields_dict, fields_filepath, config, sub
     conversions: Boolean
         Should the conversions sheet be written
         Default: True
-    data: pandas.core.frame.DataFrame
-        Optional parameter. Option to add data from a dataframe to the 'data' sheet.
-        Default: False
     metadata_df: pandas.core.frame.DataFrame
         Optional parameter. Option to add metadata from a dataframe to the 'metadata' sheet.
         Default: False
@@ -659,9 +667,11 @@ def create_template(filepath, template_fields_dict, fields_filepath, config, sub
 
     template = Template(args.filepath, fields_filepath, config, subconfig)
     template.add_variables_sheet()
-    template.add_metadata()
+    if metadata == True:
+        template.add_metadata()
     for sheetname, content in template_fields_dict.items():
         template.add_data_sheet(sheetname, content)
-    template.add_conversions()
+    if conversions == True:
+        template.add_conversions()
     template.add_readme()
     template.close_and_save()
