@@ -82,8 +82,10 @@ class CF_standard_names_json():
            json.dump(self.dic2, f, ensure_ascii=False, indent=4)
 
     def load_json(self):
-        f = open(self.filename)
-        self.dic = json.load(f)
+        with open(self.filename, 'r', encoding='utf-8', errors='ignore') as f:
+           content = f.read()
+           cleaned_content = content.encode('utf-8').decode('utf-8', 'ignore')
+           self.dic = json.loads(cleaned_content)
 
 def cf_standard_names_update(path):
     errors = []

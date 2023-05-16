@@ -1,7 +1,10 @@
 import pandas as pd
+from website import DROPDOWNS_PATH
+import os
 
 def get_dropdown_list_from_csv(field):
-    df = pd.read_csv(f'website/config/dropdown_lists/{field}.csv')
+    filepath = os.path.join(DROPDOWNS_PATH, f'{field}.csv')
+    df = pd.read_csv(filepath)
     dropdown_list = list(df[field])
     return dropdown_list
 
