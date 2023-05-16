@@ -230,11 +230,13 @@ def update_config():
     updates the DwC terms, ACDD Conventions and the CF standard names
     in the config directory.
     """
+    BASE_PATH = os.path.dirname(os.path.abspath(__file__))
+    FIELDS_FILEPATH = os.path.join(BASE_PATH, 'website', 'config', 'fields')
 
     if request.method == "POST":
 
         if request.form["submitbutton"] == "pullCF":
-            errors = cf_standard_names_update()
+            errors = cf_standard_names_update(FIELDS_FILEPATH)
             if len(errors) == 0:
                 flash('Pulled latest version of CF standard names', category='success')
             else:
@@ -242,7 +244,7 @@ def update_config():
                     flash(error, category='error')
 
         elif request.form["submitbutton"] == "pullDwC":
-            errors = dwc_terms_update()
+            errors = dwc_terms_update(FIELDS_FILEPATH)
             if len(errors) == 0:
                 flash('Pulled latest version of Darwin Core terms', category='success')
             else:
@@ -250,7 +252,7 @@ def update_config():
                     flash(error, category='error')
 
         elif request.form["submitbutton"] == "pullACDD":
-            errors = acdd_conventions_update()
+            errors = acdd_conventions_update(FIELDS_FILEPATH)
             if len(errors) == 0:
                 flash('Pulled latest version of ACDD configuration', category='success')
             else:
