@@ -1,7 +1,9 @@
 from flask import Flask
 import uuid
+import os
 
-CONFIG_PATH = 'website/config/template_configurations.yaml'
+BASE_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CONFIG_PATH = os.path.join(BASE_PATH, 'website', 'config', 'template_configurations.yaml')
 
 def create_app():
     app = Flask(__name__)
