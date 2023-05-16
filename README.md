@@ -23,7 +23,7 @@ git clone <repo-url>
 pip install -r requirements.txt
 ```
 
-The field definitions are not updated automatically
+The field definitions are not updated automatically, but can be updated using the GUI.
 
 Either run
 ```sh
