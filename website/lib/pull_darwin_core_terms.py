@@ -133,8 +133,10 @@ class Darwin_Core_Terms_json():
 
 
     def load_json(self):
-        f = open(self.filename)
-        self.dic = json.load(f)
+        with open(self.filename, 'r', encoding='utf-8', errors='ignore') as f:
+           content = f.read()
+           cleaned_content = content.encode('utf-8').decode('utf-8', 'ignore')
+           self.dic = json.loads(cleaned_content)
 
 class Darwin_Core_Extension():
     '''
@@ -279,8 +281,10 @@ class Darwin_Core_Extension():
 
 
     def load_json(self):
-        f = open(self.filename)
-        self.dic = json.load(f)
+        with open(self.filename, 'r', encoding='utf-8', errors='ignore') as f:
+           content = f.read()
+           cleaned_content = content.encode('utf-8').decode('utf-8', 'ignore')
+           self.dic = json.loads(cleaned_content)
 
 
 extensions = {
