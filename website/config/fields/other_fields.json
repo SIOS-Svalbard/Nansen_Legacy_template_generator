@@ -1149,17 +1149,17 @@
         "id": "created"
     },
     {
-        "disp_name": "modified",
+        "disp_name": "Modified (timestamp)",
         "description": "Timestamp when the log of the sample was last modified.",
         "width": 40,
         "format": "timestamp with time zone",
         "grouping": "Record Details",
         "valid": {
             "validate": "any",
-            "input_title": "Modified",
+            "input_title": "Modified (timestamp)",
             "input_message": "Timestamp when the log of the sample was last modified."
         },
-        "id": "modified"
+        "id": "modifiedTimestamp"
     },
     {
         "disp_name": "Record source",
