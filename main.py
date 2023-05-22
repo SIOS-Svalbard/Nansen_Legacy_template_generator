@@ -245,6 +245,9 @@ def update_config():
 
         elif request.form["submitbutton"] == "pullDwC":
             errors = dwc_terms_update(FIELDS_FILEPATH)
+            print('****')
+            print(errors)
+            print('****')
             if len(errors) == 0:
                 flash('Pulled latest version of Darwin Core terms', category='success')
             else:

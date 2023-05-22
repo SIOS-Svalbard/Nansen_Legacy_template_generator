@@ -344,6 +344,8 @@ def dwc_terms_update(path):
         errors.append("Could not update Darwin Core terms. Issue creating JSON file")
         return errors
 
+    return errors
+
 def dwc_terms_to_dic(path):
     dwc_terms_json = Darwin_Core_Terms_json(path)
     dwc_terms_json.load_json()

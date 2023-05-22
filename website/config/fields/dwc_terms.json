@@ -2976,7 +2976,7 @@
         "tdwgutility_usageScope": "simple",
         "disp_name": "maximumDepthInMeters",
         "id": "maximumDepthInMeters",
-        "format": "text",
+        "format": "double precision",
         "grouping": "Darwin Core term",
         "description": "The greater depth of a range of depth below the local surface, in meters.\n\nExamples: `0`, `200`",
         "valid": {
@@ -3011,7 +3011,7 @@
         "tdwgutility_usageScope": "simple",
         "disp_name": "maximumDistanceAboveSurfaceInMeters",
         "id": "maximumDistanceAboveSurfaceInMeters",
-        "format": "text",
+        "format": "double precision",
         "grouping": "Darwin Core term",
         "description": "The greater distance in a range of distance from a reference surface in the vertical direction, in meters. Use positive values for locations above the surface, negative values for locations below. If depth measures are given, the reference surface is the location given by the depth, otherwise the reference surface is the location given by the elevation.\n\nExamples: `-1.5` (below the surface). `4.2` (above the surface). For a 1.5 meter sediment core from the bottom of a lake (at depth 20m) at 300m elevation: verbatimElevation: `300m` minimumElevationInMeters: `300`, maximumElevationInMeters: `300`, verbatimDepth: `20m`, minimumDepthInMeters: `20`, maximumDepthInMeters: `20`, minimumDistanceAboveSurfaceInMeters: `0`, maximumDistanceAboveSurfaceInMeters: `-1.5`.",
         "valid": {
@@ -3046,7 +3046,7 @@
         "tdwgutility_usageScope": "simple",
         "disp_name": "maximumElevationInMeters",
         "id": "maximumElevationInMeters",
-        "format": "text",
+        "format": "double precision",
         "grouping": "Darwin Core term",
         "description": "The upper limit of the range of elevation (altitude, usually above sea level), in meters.\n\nExamples: `-205`, `1236`",
         "valid": {
@@ -3411,7 +3411,7 @@
         "tdwgutility_usageScope": "simple",
         "disp_name": "minimumDepthInMeters",
         "id": "minimumDepthInMeters",
-        "format": "text",
+        "format": "double precision",
         "grouping": "Darwin Core term",
         "description": "The lesser depth of a range of depth below the local surface, in meters.\n\nExamples: `0`, `100`",
         "valid": {
@@ -3446,7 +3446,7 @@
         "tdwgutility_usageScope": "simple",
         "disp_name": "minimumDistanceAboveSurfaceInMeters",
         "id": "minimumDistanceAboveSurfaceInMeters",
-        "format": "text",
+        "format": "double precision",
         "grouping": "Darwin Core term",
         "description": "The lesser distance in a range of distance from a reference surface in the vertical direction, in meters. Use positive values for locations above the surface, negative values for locations below. If depth measures are given, the reference surface is the location given by the depth, otherwise the reference surface is the location given by the elevation.\n\nExamples: `-1.5` (below the surface). `4.2` (above the surface). For a 1.5 meter sediment core from the bottom of a lake (at depth 20m) at 300m elevation: verbatimElevation: `300m` minimumElevationInMeters: `300`, maximumElevationInMeters: `300`, verbatimDepth: `20m`, minimumDepthInMeters: `20`, maximumDepthInMeters: `20`, minimumDistanceAboveSurfaceInMeters: `0`, maximumDistanceAboveSurfaceInMeters: `-1.5`.",
         "valid": {
@@ -3481,7 +3481,7 @@
         "tdwgutility_usageScope": "simple",
         "disp_name": "minimumElevationInMeters",
         "id": "minimumElevationInMeters",
-        "format": "text",
+        "format": "double precision",
         "grouping": "Darwin Core term",
         "description": "The lower limit of the range of elevation (altitude, usually above sea level), in meters.\n\nExamples: `-100`, `802`",
         "valid": {
