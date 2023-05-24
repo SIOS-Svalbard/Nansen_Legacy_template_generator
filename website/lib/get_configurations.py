@@ -3,6 +3,7 @@ from .pull_cf_standard_names import cf_standard_names_to_dic
 from .pull_other_fields import other_fields_to_dic
 from .pull_darwin_core_terms import dwc_terms_to_dic, dwc_extension_to_dic
 from website import CONFIG_PATH
+import copy
 
 def get_list_of_configs():
 
@@ -76,7 +77,9 @@ def get_config_fields(fields_filepath, config, subconfig=None):
         dwc_subconfig = subconfig
     else:
         dwc_subconfig = 'Sampling Event'
-    dwc_conf_dict = get_dwc_config_dict(fields_filepath = fields_filepath, subconfig = dwc_subconfig, dwc_terms = dwc_terms)
+
+    dwc_terms_copy = copy.deepcopy(dwc_terms)
+    dwc_conf_dict = get_dwc_config_dict(fields_filepath = fields_filepath, subconfig = dwc_subconfig, dwc_terms = dwc_terms_copy)
 
     # Creating a dictionary for the configuration that I can use
     if config == 'Darwin Core':
@@ -129,7 +132,6 @@ def get_dwc_config_dict(fields_filepath, subconfig, dwc_terms):
                         output_config_dict[extension][key][term] = get_dwc_term_dict_from_main(term,dwc_terms)
                     except:
                         output_config_dict[extension][key][term] = get_dwc_term_dict_from_extension(term,dwc_extension)
-
                     if output_config_dict[extension][key][term]['description'] == '':
                         output_config_dict[extension][key][term]['description'] = get_dwc_term_description_from_extension(term,dwc_extension)
                     try:

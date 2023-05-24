@@ -60,6 +60,7 @@ def home():
 
     # Creating a dictionary of all the fields.
     all_fields_dict = extra_fields_dict.copy()
+
     compulsary_sheets = []
 
     for sheet in output_config_dict.keys():
@@ -245,9 +246,6 @@ def update_config():
 
         elif request.form["submitbutton"] == "pullDwC":
             errors = dwc_terms_update(FIELDS_FILEPATH)
-            print('****')
-            print(errors)
-            print('****')
             if len(errors) == 0:
                 flash('Pulled latest version of Darwin Core terms', category='success')
             else:
