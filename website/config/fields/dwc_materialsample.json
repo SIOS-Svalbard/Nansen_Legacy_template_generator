@@ -5,7 +5,7 @@
         "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
         "qualName": "http://data.ggbn.org/schemas/ggbn/terms/materialSampleType",
         "relation": "http://terms.tdwg.org/wiki/ggbn:materialSampleType",
-        "description": "\n\nExamples: tissue, culture strain, specimen, DNA, RNA, Protein. ",
+        "description": "Classification of kind of physical sample in addition to BasisOfRecord/RecordBasis and Preparation Type. Please use preparationType for further specification such as \"leg\",\"blood\",\"gDNA\",\"axenic culture\". Equal to KindOfUnit in ABCD!\n\nExamples: tissue, culture strain, specimen, DNA, RNA, Protein. ",
         "examples": "tissue, culture strain, specimen, DNA, RNA, Protein. ",
         "required": true,
         "type": null,
@@ -16,7 +16,7 @@
         "valid": {
             "validate": "any",
             "input_title": "materialSampleType",
-            "input_message": "\n\nExamples: tissue, culture strain, specimen, DNA, RNA, Protein. "
+            "input_message": "Classification of kind of physical sample in addition to BasisOfRecord/RecordBasis and Preparation Type. Please use preparationType for further specification such as \"leg\",\"blood\",\"gDNA\",\"axenic culture\". Equal to KindOfUnit in ABCD!\n\nExamples: tissue, culture strain, specimen, DNA, RNA, Protein. "
         },
         "format": "text"
     },
@@ -26,7 +26,7 @@
         "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
         "qualName": "http://data.ggbn.org/schemas/ggbn/terms/concentration",
         "relation": "http://terms.tdwg.org/wiki/ggbn:concentration",
-        "description": "\n\nExamples: 67.5",
+        "description": "Concentration of DNA (weight ng/volume µl)\n\nExamples: 67.5",
         "examples": "67.5",
         "required": false,
         "type": "decimal",
@@ -39,7 +39,7 @@
             "criteria": ">=",
             "value": "-1e100",
             "input_title": "concentration",
-            "input_message": "\n\nExamples: 67.5",
+            "input_message": "Concentration of DNA (weight ng/volume µl)\n\nExamples: 67.5",
             "error_title": "Error",
             "error_message": "Must be a number"
         },
@@ -54,7 +54,7 @@
         "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
         "qualName": "http://data.ggbn.org/schemas/ggbn/terms/concentrationUnit",
         "relation": "http://terms.tdwg.org/wiki/ggbn:concentrationUnit",
-        "description": "\n\nExamples: ng/µl",
+        "description": "Unit used for concentration measurement\n\nExamples: ng/µl",
         "examples": "ng/µl",
         "required": false,
         "type": null,
@@ -65,7 +65,7 @@
         "valid": {
             "validate": "any",
             "input_title": "concentrationUnit",
-            "input_message": "\n\nExamples: ng/µl"
+            "input_message": "Unit used for concentration measurement\n\nExamples: ng/µl"
         },
         "format": "text"
     },
@@ -75,7 +75,7 @@
         "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
         "qualName": "http://data.ggbn.org/schemas/ggbn/terms/methodDeterminationConcentrationAndRatios",
         "relation": "http://terms.tdwg.org/wiki/ggbn:methodDeterminationConcentrationAndRatios",
-        "description": "\n\nExamples: Nanodrop, Qubit",
+        "description": "Description of method used for concentration measurement\n\nExamples: Nanodrop, Qubit",
         "examples": "Nanodrop, Qubit",
         "required": false,
         "type": null,
@@ -86,7 +86,7 @@
         "valid": {
             "validate": "any",
             "input_title": "methodDeterminationConcentrationAndRatios",
-            "input_message": "\n\nExamples: Nanodrop, Qubit"
+            "input_message": "Description of method used for concentration measurement\n\nExamples: Nanodrop, Qubit"
         },
         "format": "text"
     },
@@ -96,7 +96,7 @@
         "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
         "qualName": "http://data.ggbn.org/schemas/ggbn/terms/ratioOfAbsorbance260_230",
         "relation": "http://terms.tdwg.org/wiki/ggbn:ratioOfAbsorbance260_230",
-        "description": "\n\nExamples: 1.89",
+        "description": "Ratio of absorbance at 260 nm and 230 nm assessing DNA purity (mostly secondary measure, indicates mainly EDTA, carbohydrates, phenol), (DNA samples only).\n\nExamples: 1.89",
         "examples": "1.89",
         "required": false,
         "type": "decimal",
@@ -109,7 +109,7 @@
             "criteria": ">=",
             "value": "-1e100",
             "input_title": "ratioOfAbsorbance260_230",
-            "input_message": "\n\nExamples: 1.89",
+            "input_message": "Ratio of absorbance at 260 nm and 230 nm assessing DNA purity (mostly secondary measure, indicates mainly EDTA, carbohydrates, phenol), (DNA samples only).\n\nExamples: 1.89",
             "error_title": "Error",
             "error_message": "Must be a number"
         },
@@ -124,7 +124,7 @@
         "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
         "qualName": "http://data.ggbn.org/schemas/ggbn/terms/ratioOfAbsorbance260_280",
         "relation": "http://terms.tdwg.org/wiki/ggbn:ratioOfAbsorbance260_280",
-        "description": "\n\nExamples: 1.91",
+        "description": "Ratio of absorbance at 280 nm and 230 nm assessing DNA purity (mostly secondary measure, indicates mainly EDTA, carbohydrates, phenol), (DNA samples only).\n\nExamples: 1.91",
         "examples": "1.91",
         "required": false,
         "type": "decimal",
@@ -137,7 +137,7 @@
             "criteria": ">=",
             "value": "-1e100",
             "input_title": "ratioOfAbsorbance260_280",
-            "input_message": "\n\nExamples: 1.91",
+            "input_message": "Ratio of absorbance at 280 nm and 230 nm assessing DNA purity (mostly secondary measure, indicates mainly EDTA, carbohydrates, phenol), (DNA samples only).\n\nExamples: 1.91",
             "error_title": "Error",
             "error_message": "Must be a number"
         },
@@ -152,7 +152,7 @@
         "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
         "qualName": "http://data.ggbn.org/schemas/ggbn/terms/volume",
         "relation": "http://terms.tdwg.org/wiki/ggbn:volume",
-        "description": "\n\nExamples: 30, 150",
+        "description": "Volume of sample\n\nExamples: 30, 150",
         "examples": "30, 150",
         "required": false,
         "type": "decimal",
@@ -165,7 +165,7 @@
             "criteria": ">=",
             "value": "-1e100",
             "input_title": "volume",
-            "input_message": "\n\nExamples: 30, 150",
+            "input_message": "Volume of sample\n\nExamples: 30, 150",
             "error_title": "Error",
             "error_message": "Must be a number"
         },
@@ -180,7 +180,7 @@
         "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
         "qualName": "http://data.ggbn.org/schemas/ggbn/terms/volumeUnit",
         "relation": "http://terms.tdwg.org/wiki/ggbn:volumeUnit",
-        "description": "\n\nExamples: µl, ml",
+        "description": "Unit used for volume measurement\n\nExamples: µl, ml",
         "examples": "µl, ml",
         "required": false,
         "type": null,
@@ -191,7 +191,7 @@
         "valid": {
             "validate": "any",
             "input_title": "volumeUnit",
-            "input_message": "\n\nExamples: µl, ml"
+            "input_message": "Unit used for volume measurement\n\nExamples: µl, ml"
         },
         "format": "text"
     },
@@ -201,7 +201,7 @@
         "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
         "qualName": "http://data.ggbn.org/schemas/ggbn/terms/weight",
         "relation": "http://terms.tdwg.org/wiki/ggbn:weight",
-        "description": "\n\nExamples: 10",
+        "description": "Weight of sample\n\nExamples: 10",
         "examples": "10",
         "required": false,
         "type": "decimal",
@@ -214,7 +214,7 @@
             "criteria": ">=",
             "value": "-1e100",
             "input_title": "weight",
-            "input_message": "\n\nExamples: 10",
+            "input_message": "Weight of sample\n\nExamples: 10",
             "error_title": "Error",
             "error_message": "Must be a number"
         },
@@ -229,7 +229,7 @@
         "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
         "qualName": "http://data.ggbn.org/schemas/ggbn/terms/weightUnit",
         "relation": "http://terms.tdwg.org/wiki/ggbn:weightUnit",
-        "description": "\n\nExamples: ng, g",
+        "description": "Unit used for weight measurement\n\nExamples: ng, g",
         "examples": "ng, g",
         "required": false,
         "type": null,
@@ -240,7 +240,7 @@
         "valid": {
             "validate": "any",
             "input_title": "weightUnit",
-            "input_message": "\n\nExamples: ng, g"
+            "input_message": "Unit used for weight measurement\n\nExamples: ng, g"
         },
         "format": "text"
     },
@@ -250,7 +250,7 @@
         "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
         "qualName": "http://data.ggbn.org/schemas/ggbn/terms/methodDeterminationWeight",
         "relation": "http://terms.tdwg.org/wiki/ggbn:methodDeterminationWeight",
-        "description": "\n\nExamples: Agarose gel, bioanalyzer, tape station",
+        "description": "Description of method used for weight measurement\n\nExamples: Agarose gel, bioanalyzer, tape station",
         "examples": "Agarose gel, bioanalyzer, tape station",
         "required": false,
         "type": null,
@@ -261,7 +261,7 @@
         "valid": {
             "validate": "any",
             "input_title": "methodDeterminationWeight",
-            "input_message": "\n\nExamples: Agarose gel, bioanalyzer, tape station"
+            "input_message": "Description of method used for weight measurement\n\nExamples: Agarose gel, bioanalyzer, tape station"
         },
         "format": "text"
     },
@@ -271,7 +271,7 @@
         "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
         "qualName": "http://data.ggbn.org/schemas/ggbn/terms/purificationMethod",
         "relation": "http://terms.tdwg.org/wiki/ggbn:purificationMethod",
-        "description": "\n\nExamples: QIAquick Purification Kit Qiagen",
+        "description": "DNA purification kit (company/product name) or protocol.\n\nExamples: QIAquick Purification Kit Qiagen",
         "examples": "QIAquick Purification Kit Qiagen",
         "required": false,
         "type": null,
@@ -282,7 +282,7 @@
         "valid": {
             "validate": "any",
             "input_title": "purificationMethod",
-            "input_message": "\n\nExamples: QIAquick Purification Kit Qiagen"
+            "input_message": "DNA purification kit (company/product name) or protocol.\n\nExamples: QIAquick Purification Kit Qiagen"
         },
         "format": "text"
     },
@@ -292,7 +292,7 @@
         "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
         "qualName": "http://data.ggbn.org/schemas/ggbn/terms/qualityCheckDate",
         "relation": "http://terms.tdwg.org/wiki/ggbn:qualityCheckDate",
-        "description": "\n\nExamples: 2008-11-27",
+        "description": "Date of quality check (e.g. Nanodrop measurement (DNA))\n\nExamples: 2008-11-27",
         "examples": "2008-11-27",
         "required": false,
         "type": null,
@@ -303,7 +303,7 @@
         "valid": {
             "validate": "any",
             "input_title": "qualityCheckDate",
-            "input_message": "\n\nExamples: 2008-11-27"
+            "input_message": "Date of quality check (e.g. Nanodrop measurement (DNA))\n\nExamples: 2008-11-27"
         },
         "format": "text"
     },
@@ -313,7 +313,7 @@
         "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
         "qualName": "http://data.ggbn.org/schemas/ggbn/terms/quality",
         "relation": "http://terms.tdwg.org/wiki/ggbn:quality",
-        "description": "\n\nExamples: low, medium, high",
+        "description": "Sample quality estimation based on parameters described at QualityRemarks\n\nExamples: low, medium, high",
         "examples": "low, medium, high",
         "required": false,
         "type": null,
@@ -324,7 +324,7 @@
         "valid": {
             "validate": "any",
             "input_title": "quality",
-            "input_message": "\n\nExamples: low, medium, high"
+            "input_message": "Sample quality estimation based on parameters described at QualityRemarks\n\nExamples: low, medium, high"
         },
         "format": "text"
     },
@@ -334,7 +334,7 @@
         "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
         "qualName": "http://data.ggbn.org/schemas/ggbn/terms/qualityRemarks",
         "relation": "http://terms.tdwg.org/wiki/ggbn:qualityRemarks",
-        "description": "\n\nExamples: nan",
+        "description": "Description of methods and parameters defining low, medium or high quality of a sample\n\nExamples: nan",
         "examples": NaN,
         "required": false,
         "type": null,
@@ -345,7 +345,7 @@
         "valid": {
             "validate": "any",
             "input_title": "qualityRemarks",
-            "input_message": "\n\nExamples: nan"
+            "input_message": "Description of methods and parameters defining low, medium or high quality of a sample\n\nExamples: nan"
         },
         "format": "text"
     },
@@ -355,7 +355,7 @@
         "namespace": "http://gensc.org/ns/mixs/",
         "qualName": "http://gensc.org/ns/mixs/samp_size",
         "relation": "http://gensc.org/ns/mixs/#sample_size",
-        "description": "\n\nExamples: nan",
+        "description": "Amount or size of sample (volume, mass or area) that was collected\n\nExamples: nan",
         "examples": NaN,
         "required": false,
         "type": null,
@@ -366,7 +366,7 @@
         "valid": {
             "validate": "any",
             "input_title": "samp_size",
-            "input_message": "\n\nExamples: nan"
+            "input_message": "Amount or size of sample (volume, mass or area) that was collected\n\nExamples: nan"
         },
         "format": "text"
     },
@@ -376,7 +376,7 @@
         "namespace": "http://gensc.org/ns/mixs/",
         "qualName": "http://gensc.org/ns/mixs/sieving",
         "relation": "http://gensc.org/ns/mixs/#sieving",
-        "description": "\n\nExamples: nan",
+        "description": "collection design of pooled samples and/or sieve size and amount of sample sieved\n\nExamples: nan",
         "examples": NaN,
         "required": false,
         "type": null,
@@ -387,7 +387,7 @@
         "valid": {
             "validate": "any",
             "input_title": "sieving",
-            "input_message": "\n\nExamples: nan"
+            "input_message": "collection design of pooled samples and/or sieve size and amount of sample sieved\n\nExamples: nan"
         },
         "format": "text"
     },
@@ -397,7 +397,7 @@
         "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
         "qualName": "http://data.ggbn.org/schemas/ggbn/terms/DNADNAHybridization",
         "relation": "http://terms.tdwg.org/wiki/ggbn:DNADNAHybridization",
-        "description": "\n\nExamples: nan",
+        "description": "Result of DNA-DNA hybridization, e.g. strain: measurement value percentage\n\nExamples: nan",
         "examples": NaN,
         "required": false,
         "type": null,
@@ -408,7 +408,7 @@
         "valid": {
             "validate": "any",
             "input_title": "DNADNAHybridization",
-            "input_message": "\n\nExamples: nan"
+            "input_message": "Result of DNA-DNA hybridization, e.g. strain: measurement value percentage\n\nExamples: nan"
         },
         "format": "text"
     },
@@ -418,7 +418,7 @@
         "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
         "qualName": "http://data.ggbn.org/schemas/ggbn/terms/DNAMeltingPoint",
         "relation": "http://terms.tdwg.org/wiki/ggbn:DNAMeltingPoint",
-        "description": "\n\nExamples: nan",
+        "description": "result of melting temperature (Tm) analysis, e.g. measurement value unit\n\nExamples: nan",
         "examples": NaN,
         "required": false,
         "type": null,
@@ -429,7 +429,7 @@
         "valid": {
             "validate": "any",
             "input_title": "DNAMeltingPoint",
-            "input_message": "\n\nExamples: nan"
+            "input_message": "result of melting temperature (Tm) analysis, e.g. measurement value unit\n\nExamples: nan"
         },
         "format": "text"
     },
@@ -439,7 +439,7 @@
         "namespace": "http://gensc.org/ns/mixs/",
         "qualName": "http://gensc.org/ns/mixs/estimated_size",
         "relation": "http://gensc.org/ns/mixs/#estimated_size",
-        "description": "\n\nExamples: 300000 bp",
+        "description": "The estimated size of the genome prior to sequencing. Of particular importance in the sequencing of (eukaryotic) genome which could remain in draft form for a long or unspecified period\n\nExamples: 300000 bp",
         "examples": "300000 bp",
         "required": false,
         "type": null,
@@ -450,7 +450,7 @@
         "valid": {
             "validate": "any",
             "input_title": "estimated_size",
-            "input_message": "\n\nExamples: 300000 bp"
+            "input_message": "The estimated size of the genome prior to sequencing. Of particular importance in the sequencing of (eukaryotic) genome which could remain in draft form for a long or unspecified period\n\nExamples: 300000 bp"
         },
         "format": "text"
     },
@@ -460,7 +460,7 @@
         "namespace": "http://gensc.org/ns/mixs/",
         "qualName": "http://gensc.org/ns/mixs/pool_dna_extracts",
         "relation": "http://gensc.org/ns/mixs/#pool_dna_extracts",
-        "description": "\n\nExamples: nan",
+        "description": "Pooling of DNA extracts (if done). Were multiple DNA extractions mixed? How many?\n\nExamples: nan",
         "examples": NaN,
         "required": false,
         "type": null,
@@ -471,7 +471,7 @@
         "valid": {
             "validate": "any",
             "input_title": "pool_dna_extracts",
-            "input_message": "\n\nExamples: nan"
+            "input_message": "Pooling of DNA extracts (if done). Were multiple DNA extractions mixed? How many?\n\nExamples: nan"
         },
         "format": "text"
     },
@@ -481,7 +481,7 @@
         "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
         "qualName": "http://data.ggbn.org/schemas/ggbn/terms/sampleDesignation",
         "relation": "http://terms.tdwg.org/wiki/ggbn:DNADNAHybridization",
-        "description": "\n\nExamples: CAM123;CrCro456",
+        "description": "Additional lab or project numbers used for the DNA or tissue sample\n\nExamples: CAM123;CrCro456",
         "examples": "CAM123;CrCro456",
         "required": false,
         "type": null,
@@ -492,7 +492,7 @@
         "valid": {
             "validate": "any",
             "input_title": "sampleDesignation",
-            "input_message": "\n\nExamples: CAM123;CrCro456"
+            "input_message": "Additional lab or project numbers used for the DNA or tissue sample\n\nExamples: CAM123;CrCro456"
         },
         "format": "text"
     }

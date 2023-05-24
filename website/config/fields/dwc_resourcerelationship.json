@@ -5,7 +5,7 @@
         "namespace": "http://rs.tdwg.org/dwc/terms/",
         "qualName": "http://rs.tdwg.org/dwc/terms/resourceRelationshipID",
         "relation": "https://dwc.tdwg.org/terms/#dwc:resourceRelationshipID",
-        "description": "\n\nnan\n\nExamples: `04b16710-b09c-11e8-96f8-529269fb1459`",
+        "description": "An identifier for an instance of relationship between one resource (the subject) and another (relatedResource, the object).\n\nExamples: `04b16710-b09c-11e8-96f8-529269fb1459`",
         "comments": NaN,
         "examples": "`04b16710-b09c-11e8-96f8-529269fb1459`",
         "required": false,
@@ -15,7 +15,7 @@
         "valid": {
             "validate": "any",
             "input_title": "resourceRelationshipID",
-            "input_message": "\n\nnan\n\nExamples: `04b16710-b09c-11e8-96f8-529269fb1459`"
+            "input_message": "An identifier for an instance of relationship between one resource (the subject) and another (relatedResource, the object).\n\nExamples: `04b16710-b09c-11e8-96f8-529269fb1459`"
         },
         "format": "text"
     },
@@ -25,7 +25,7 @@
         "namespace": "http://rs.tdwg.org/dwc/terms/",
         "qualName": "http://rs.tdwg.org/dwc/terms/resourceID",
         "relation": "https://dwc.tdwg.org/terms/#dwc:resourceID",
-        "description": "\n\nnan\n\nExamples: `f809b9e0-b09b-11e8-96f8-529269fb1459`",
+        "description": "An identifier for the resource that is the subject of the relationship.\n\nExamples: `f809b9e0-b09b-11e8-96f8-529269fb1459`",
         "comments": NaN,
         "examples": "`f809b9e0-b09b-11e8-96f8-529269fb1459`",
         "required": true,
@@ -35,7 +35,7 @@
         "valid": {
             "validate": "any",
             "input_title": "resourceID",
-            "input_message": "\n\nnan\n\nExamples: `f809b9e0-b09b-11e8-96f8-529269fb1459`"
+            "input_message": "An identifier for the resource that is the subject of the relationship.\n\nExamples: `f809b9e0-b09b-11e8-96f8-529269fb1459`"
         },
         "format": "text"
     },
@@ -45,7 +45,7 @@
         "namespace": "http://rs.tdwg.org/dwc/terms/",
         "qualName": "http://rs.tdwg.org/dwc/terms/relationshipOfResourceID",
         "relation": "https://dwc.tdwg.org/terms/#dwc:relationshipOfResourceID",
-        "description": "\n\nRecommended best practice is to use the identifiers of the terms in a controlled vocabulary, such as the OBO Relation Ontology.\n\nExamples: `http://purl.obolibrary.org/obo/RO_0002456` (for the relation \"pollinated by\"), `http://purl.obolibrary.org/obo/RO_0002455` (for the relation \"pollinates\"), `https://www.inaturalist.org/observation_fields/879` (for the relation \"eaten by\")",
+        "description": "An identifier for the relationship type (predicate) that connects the subject identified by resourceID to its object identified by relatedResourceID.\n\nRecommended best practice is to use the identifiers of the terms in a controlled vocabulary, such as the OBO Relation Ontology.\n\nExamples: `http://purl.obolibrary.org/obo/RO_0002456` (for the relation \"pollinated by\"), `http://purl.obolibrary.org/obo/RO_0002455` (for the relation \"pollinates\"), `https://www.inaturalist.org/observation_fields/879` (for the relation \"eaten by\")",
         "comments": "Recommended best practice is to use the identifiers of the terms in a controlled vocabulary, such as the OBO Relation Ontology.",
         "examples": "`http://purl.obolibrary.org/obo/RO_0002456` (for the relation \"pollinated by\"), `http://purl.obolibrary.org/obo/RO_0002455` (for the relation \"pollinates\"), `https://www.inaturalist.org/observation_fields/879` (for the relation \"eaten by\")",
         "required": false,
@@ -55,7 +55,7 @@
         "valid": {
             "validate": "any",
             "input_title": "relationshipOfResourceID",
-            "input_message": "\n\nRecommended best practice is to use the identifiers of the terms in a controlled vocabulary, such as the OBO Relation Ontology.\n\nExamples: `http://purl.obolibrary.org/obo/RO_0002456` (for the relation \"pollinated by\"), `http://purl.obolibrary.org/obo/RO_0002455` (for the relation \"pollinates\"), `https://www.inaturalist.org/observation_fields/879` (for the relation \"eaten by\")"
+            "input_message": "An identifier for the relationship type (predicate) that connects the subject identified by resourceID to its object identified by relatedResourceID.\n\nRecommended best practice is to use the identifiers of the terms in a controlled vocabulary, such as the OBO Relation Ontology.\n\nExamples: `http://purl.obolibrary.org/obo/RO_0002456` (for the relation \"pollinated by\"), `http://purl.obolibrary.org/obo/RO_0002455` (for the relation \"pollinates\"), `https://www.inaturalist.org/observation_fields/879` (for the relation \"eaten by\")"
         },
         "format": "text"
     },
@@ -65,7 +65,7 @@
         "namespace": "http://rs.tdwg.org/dwc/terms/",
         "qualName": "http://rs.tdwg.org/dwc/terms/relatedResourceID",
         "relation": "https://dwc.tdwg.org/terms/#dwc:relatedResourceID",
-        "description": "\n\nnan\n\nExamples: `dc609808-b09b-11e8-96f8-529269fb1459`",
+        "description": "An identifier for a related resource (the object, rather than the subject of the relationship).\n\nExamples: `dc609808-b09b-11e8-96f8-529269fb1459`",
         "comments": NaN,
         "examples": "`dc609808-b09b-11e8-96f8-529269fb1459`",
         "required": true,
@@ -75,7 +75,7 @@
         "valid": {
             "validate": "any",
             "input_title": "relatedResourceID",
-            "input_message": "\n\nnan\n\nExamples: `dc609808-b09b-11e8-96f8-529269fb1459`"
+            "input_message": "An identifier for a related resource (the object, rather than the subject of the relationship).\n\nExamples: `dc609808-b09b-11e8-96f8-529269fb1459`"
         },
         "format": "text"
     },
@@ -85,7 +85,7 @@
         "namespace": "http://rs.tdwg.org/dwc/terms/",
         "qualName": "http://rs.tdwg.org/dwc/terms/relationshipOfResource",
         "relation": "https://dwc.tdwg.org/terms/#dwc:relationshipOfResource",
-        "description": "\n\nRecommended best practice is to use a controlled vocabulary.\n\nExamples: `sameAs`, `duplicate of`, `mother of`, `offspring of`, `sibling of`, `parasite of`, `host of`, `valid synonym of`, `located within`, `pollinator of members of taxon`, `pollinated specific plant`, `pollinated by members of taxon`",
+        "description": "The relationship of the subject (identified by resourceID) to the object (identified by relatedResourceID).\n\nRecommended best practice is to use a controlled vocabulary.\n\nExamples: `sameAs`, `duplicate of`, `mother of`, `offspring of`, `sibling of`, `parasite of`, `host of`, `valid synonym of`, `located within`, `pollinator of members of taxon`, `pollinated specific plant`, `pollinated by members of taxon`",
         "comments": "Recommended best practice is to use a controlled vocabulary.",
         "examples": "`sameAs`, `duplicate of`, `mother of`, `offspring of`, `sibling of`, `parasite of`, `host of`, `valid synonym of`, `located within`, `pollinator of members of taxon`, `pollinated specific plant`, `pollinated by members of taxon`",
         "required": false,
@@ -95,7 +95,7 @@
         "valid": {
             "validate": "any",
             "input_title": "relationshipOfResource",
-            "input_message": "\n\nRecommended best practice is to use a controlled vocabulary.\n\nExamples: `sameAs`, `duplicate of`, `mother of`, `offspring of`, `sibling of`, `parasite of`, `host of`, `valid synonym of`, `located within`, `pollinator of members of taxon`, `pollinated specific plant`, `pollinated by members of taxon`"
+            "input_message": "The relationship of the subject (identified by resourceID) to the object (identified by relatedResourceID).\n\nRecommended best practice is to use a controlled vocabulary.\n\nExamples: `sameAs`, `duplicate of`, `mother of`, `offspring of`, `sibling of`, `parasite of`, `host of`, `valid synonym of`, `located within`, `pollinator of members of taxon`, `pollinated specific plant`, `pollinated by members of taxon`"
         },
         "format": "text"
     },
@@ -105,7 +105,7 @@
         "namespace": "http://rs.tdwg.org/dwc/terms/",
         "qualName": "http://rs.tdwg.org/dwc/terms/relationshipAccordingTo",
         "relation": "https://dwc.tdwg.org/terms/#dwc:relationshipAccordingTo",
-        "description": "\n\nnan\n\nExamples: `Julie Woodruff`",
+        "description": "The source (person, organization, publication, reference) establishing the relationship between the two resources.\n\nExamples: `Julie Woodruff`",
         "comments": NaN,
         "examples": "`Julie Woodruff`",
         "required": false,
@@ -115,7 +115,7 @@
         "valid": {
             "validate": "any",
             "input_title": "relationshipAccordingTo",
-            "input_message": "\n\nnan\n\nExamples: `Julie Woodruff`"
+            "input_message": "The source (person, organization, publication, reference) establishing the relationship between the two resources.\n\nExamples: `Julie Woodruff`"
         },
         "format": "text"
     },
@@ -125,7 +125,7 @@
         "namespace": "http://rs.tdwg.org/dwc/terms/",
         "qualName": "http://rs.tdwg.org/dwc/terms/relationshipEstablishedDate",
         "relation": "https://dwc.tdwg.org/terms/#dwc:relationshipEstablishedDate",
-        "description": "\n\nRecommended best practice is to use a date that conforms to ISO 8601-1:2019.\n\nExamples: `1963-03-08T14:07-0600` (8 Mar 1963 at 2:07pm in the time zone six hours earlier than UTC). `2009-02-20T08:40Z` (20 February 2009 8:40am UTC). `2018-08-29T15:19` (3:19pm local time on 29 August 2018). `1809-02-12` (some time during 12 February 1809). `1906-06` (some time in June 1906). `1971` (some time in the year 1971). `2007-03-01T13:00:00Z/2008-05-11T15:30:00Z` (some time during the interval between 1 March 2007 1pm UTC and 11 May 2008 3:30pm UTC). `1900/1909` (some time during the interval between the beginning of the year 1900 and the end of the year 1909). `2007-11-13/15` (some time in the interval between 13 November 2007 and 15 November 2007).",
+        "description": "The date-time on which the relationship between the two resources was established.\n\nRecommended best practice is to use a date that conforms to ISO 8601-1:2019.\n\nExamples: `1963-03-08T14:07-0600` (8 Mar 1963 at 2:07pm in the time zone six hours earlier than UTC). `2009-02-20T08:40Z` (20 February 2009 8:40am UTC). `2018-08-29T15:19` (3:19pm local time on 29 August 2018). `1809-02-12` (some time during 12 February 1809). `1906-06` (some time in June 1906). `1971` (some time in the year 1971). `2007-03-01T13:00:00Z/2008-05-11T15:30:00Z` (some time during the interval between 1 March 2007 1pm UTC and 11 May 2008 3:30pm UTC). `1900/1909` (some time during the interval between the beginning of the year 1900 and the end of the year 1909). `2007-11-13/15` (some time in the interval between 13 November 2007 and 15 November 2007).",
         "comments": "Recommended best practice is to use a date that conforms to ISO 8601-1:2019.",
         "examples": "`1963-03-08T14:07-0600` (8 Mar 1963 at 2:07pm in the time zone six hours earlier than UTC). `2009-02-20T08:40Z` (20 February 2009 8:40am UTC). `2018-08-29T15:19` (3:19pm local time on 29 August 2018). `1809-02-12` (some time during 12 February 1809). `1906-06` (some time in June 1906). `1971` (some time in the year 1971). `2007-03-01T13:00:00Z/2008-05-11T15:30:00Z` (some time during the interval between 1 March 2007 1pm UTC and 11 May 2008 3:30pm UTC). `1900/1909` (some time during the interval between the beginning of the year 1900 and the end of the year 1909). `2007-11-13/15` (some time in the interval between 13 November 2007 and 15 November 2007).",
         "required": false,
@@ -135,7 +135,7 @@
         "valid": {
             "validate": "any",
             "input_title": "relationshipEstablishedDate",
-            "input_message": "\n\nRecommended best practice is to use a date that conforms to ISO 8601-1:2019.\n\nExamples: `1963-03-08T14:07-0600` (8 Mar 1963 at 2:07pm in the time zone six hours earlier than UTC). `2009-02-20T08:40Z` (20 February 2009 8:40am UTC). `2018-08-29T15:19` (3:19pm local time on 29 August 2018). `1809-02-12` (some time during 12 February 1809). `1906-06` (some time in June 1906). `1971` (some time in the year 1971). `2007-03-01T13:00:00Z/2008-05-11T15:30:00Z` (some time during the interval between 1 March 2007 1pm UTC and 11 May 2008 3:30pm UTC). `1900/1909` (some time during the interval between the beginning of the year 1900 and the end of the year 1909). `2007-11-13/15` (some time in the interval between 13 November 2007 and 15 November 2007)."
+            "input_message": "The date-time on which the relationship between the two resources was established.\n\nRecommended best practice is to use a date that conforms to ISO 8601-1:2019.\n\nExamples: `1963-03-08T14:07-0600` (8 Mar 1963 at 2:07pm in the time zone six hours earlier than UTC). `2009-02-20T08:40Z` (20 February 2009 8:40am UTC). `2018-08-29T15:19` (3:19pm local time on 29 August 2018). `1809-02-12` (some time during 12 February 1809). `1906-06` (some time in June 1906). `1971` (some time in the year 1971). `2007-03-01T13:00:00Z/2008-05-11T15:30:00Z` (some time during the interval between 1 March 2007 1pm UTC and 11 May 2008 3:30pm UTC). `1900/1909` (some time during the interval between the beginning of the year 1900 and the end of the year 1909). `2007-11-13/15` (some time in the interval between 13 November 2007 and 15 November 2007)."
         },
         "format": "text"
     },
@@ -145,7 +145,7 @@
         "namespace": "http://rs.tdwg.org/dwc/terms/",
         "qualName": "http://rs.tdwg.org/dwc/terms/relationshipRemarks",
         "relation": "https://dwc.tdwg.org/terms/#dwc:relationshipRemarks",
-        "description": "\n\nnan\n\nExamples: `mother and offspring collected from the same nest`, `pollinator captured in the act`",
+        "description": "Comments or notes about the relationship between the two resources.\n\nExamples: `mother and offspring collected from the same nest`, `pollinator captured in the act`",
         "comments": NaN,
         "examples": "`mother and offspring collected from the same nest`, `pollinator captured in the act`",
         "required": false,
@@ -155,7 +155,7 @@
         "valid": {
             "validate": "any",
             "input_title": "relationshipRemarks",
-            "input_message": "\n\nnan\n\nExamples: `mother and offspring collected from the same nest`, `pollinator captured in the act`"
+            "input_message": "Comments or notes about the relationship between the two resources.\n\nExamples: `mother and offspring collected from the same nest`, `pollinator captured in the act`"
         },
         "format": "text"
     }

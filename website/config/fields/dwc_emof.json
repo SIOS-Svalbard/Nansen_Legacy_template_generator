@@ -4,7 +4,7 @@
         "namespace": "http://rs.tdwg.org/dwc/terms/",
         "qualName": "http://rs.tdwg.org/dwc/terms/measurementID",
         "relation": "http://rs.tdwg.org/dwc/terms/index.htm#measurementID",
-        "description": "\n\nExamples: nan",
+        "description": "An identifier for the MeasurementOrFact (information pertaining to measurements, facts, characteristics, or assertions). May be a global unique identifier or an identifier specific to the data set.\n\nExamples: nan",
         "examples": NaN,
         "required": false,
         "disp_name": "measurementID",
@@ -13,7 +13,7 @@
         "valid": {
             "validate": "any",
             "input_title": "measurementID",
-            "input_message": "\n\nExamples: nan"
+            "input_message": "An identifier for the MeasurementOrFact (information pertaining to measurements, facts, characteristics, or assertions). May be a global unique identifier or an identifier specific to the data set.\n\nExamples: nan"
         },
         "format": "text"
     },
@@ -22,7 +22,7 @@
         "namespace": "http://rs.tdwg.org/dwc/terms/",
         "qualName": "http://rs.tdwg.org/dwc/terms/occurrenceID",
         "relation": "http://rs.tdwg.org/dwc/terms/index.htm#occurrenceID",
-        "description": "\n\nExamples: nan",
+        "description": "The identifier of the occurrence the measurement or fact refers to. If not applicable, it should be left empty.\n\nExamples: nan",
         "examples": NaN,
         "required": false,
         "disp_name": "occurrenceID",
@@ -31,7 +31,7 @@
         "valid": {
             "validate": "any",
             "input_title": "occurrenceID",
-            "input_message": "\n\nExamples: nan"
+            "input_message": "The identifier of the occurrence the measurement or fact refers to. If not applicable, it should be left empty.\n\nExamples: nan"
         },
         "format": "text"
     },
@@ -40,7 +40,7 @@
         "namespace": "http://rs.tdwg.org/dwc/terms/",
         "qualName": "http://rs.tdwg.org/dwc/terms/measurementType",
         "relation": "http://rs.tdwg.org/dwc/terms/index.htm#measurementType",
-        "description": "\n\nExamples: \"tail length\", \"temperature\", \"trap line length\", \"survey area\", \"trap type\", \"Dry weight biomass\", \"Sampling instrument name\"  ",
+        "description": "The nature of the measurement, fact, characteristic, or assertion. Recommended best practice is to use a controlled vocabulary.\n\nExamples: \"tail length\", \"temperature\", \"trap line length\", \"survey area\", \"trap type\", \"Dry weight biomass\", \"Sampling instrument name\"  ",
         "examples": "\"tail length\", \"temperature\", \"trap line length\", \"survey area\", \"trap type\", \"Dry weight biomass\", \"Sampling instrument name\"  ",
         "required": false,
         "disp_name": "measurementType",
@@ -49,7 +49,7 @@
         "valid": {
             "validate": "any",
             "input_title": "measurementType",
-            "input_message": "\n\nExamples: \"tail length\", \"temperature\", \"trap line length\", \"survey area\", \"trap type\", \"Dry weight biomass\", \"Sampling instrument name\"  "
+            "input_message": "The nature of the measurement, fact, characteristic, or assertion. Recommended best practice is to use a controlled vocabulary.\n\nExamples: \"tail length\", \"temperature\", \"trap line length\", \"survey area\", \"trap type\", \"Dry weight biomass\", \"Sampling instrument name\"  "
         },
         "format": "text"
     },
@@ -58,7 +58,7 @@
         "namespace": "http://rs.iobis.org/obis/terms/",
         "qualName": "http://rs.iobis.org/obis/terms/measurementTypeID",
         "relation": NaN,
-        "description": "\n\nExamples: \"http://vocab.nerc.ac.uk/collection/P01/current/ODRYBM01/\"",
+        "description": "An identifier for the measurementType (global unique identifier, URI). The identifier should reference the measurementType in a vocabulary.\n\nExamples: \"http://vocab.nerc.ac.uk/collection/P01/current/ODRYBM01/\"",
         "examples": "\"http://vocab.nerc.ac.uk/collection/P01/current/ODRYBM01/\"",
         "required": false,
         "disp_name": "measurementTypeID",
@@ -67,7 +67,7 @@
         "valid": {
             "validate": "any",
             "input_title": "measurementTypeID",
-            "input_message": "\n\nExamples: \"http://vocab.nerc.ac.uk/collection/P01/current/ODRYBM01/\""
+            "input_message": "An identifier for the measurementType (global unique identifier, URI). The identifier should reference the measurementType in a vocabulary.\n\nExamples: \"http://vocab.nerc.ac.uk/collection/P01/current/ODRYBM01/\""
         },
         "format": "text"
     },
@@ -76,7 +76,7 @@
         "namespace": "http://rs.tdwg.org/dwc/terms/",
         "qualName": "http://rs.tdwg.org/dwc/terms/measurementValue",
         "relation": "http://rs.tdwg.org/dwc/terms/index.htm#measurementValue",
-        "description": "\n\nExamples: \"45\", \"20\", \"1\", \"14.5\", \"UV-light\", \"Van Veen grab\"",
+        "description": "The value of the measurement, fact, characteristic, or assertion.\n\nExamples: \"45\", \"20\", \"1\", \"14.5\", \"UV-light\", \"Van Veen grab\"",
         "examples": "\"45\", \"20\", \"1\", \"14.5\", \"UV-light\", \"Van Veen grab\"",
         "required": false,
         "disp_name": "measurementValue",
@@ -85,7 +85,7 @@
         "valid": {
             "validate": "any",
             "input_title": "measurementValue",
-            "input_message": "\n\nExamples: \"45\", \"20\", \"1\", \"14.5\", \"UV-light\", \"Van Veen grab\""
+            "input_message": "The value of the measurement, fact, characteristic, or assertion.\n\nExamples: \"45\", \"20\", \"1\", \"14.5\", \"UV-light\", \"Van Veen grab\""
         },
         "format": "text"
     },
@@ -94,7 +94,7 @@
         "namespace": "http://rs.iobis.org/obis/terms/",
         "qualName": "http://rs.iobis.org/obis/terms/measurementValueID",
         "relation": NaN,
-        "description": "\n\nExamples: \"http://vocab.nerc.ac.uk/collection/L22/current/TOOL0653/\", \"http://vocab.nerc.ac.uk/collection/B07/current/NDT023/\", \"http://vocab.nerc.ac.uk/collection/S11/current/S1116/\"",
+        "description": "An identifier for facts stored in the column measurementValue (global unique identifier, URI). This identifier can reference a controlled vocabulary (e.g. for sampling instrument names, methodologies, life stages) or reference a methodology paper with a DOI. When the measurementValue refers to a value and not to a fact, the measurementvalueID has no meaning and should remain empty.\n\nExamples: \"http://vocab.nerc.ac.uk/collection/L22/current/TOOL0653/\", \"http://vocab.nerc.ac.uk/collection/B07/current/NDT023/\", \"http://vocab.nerc.ac.uk/collection/S11/current/S1116/\"",
         "examples": "\"http://vocab.nerc.ac.uk/collection/L22/current/TOOL0653/\", \"http://vocab.nerc.ac.uk/collection/B07/current/NDT023/\", \"http://vocab.nerc.ac.uk/collection/S11/current/S1116/\"",
         "required": false,
         "disp_name": "measurementValueID",
@@ -103,7 +103,7 @@
         "valid": {
             "validate": "any",
             "input_title": "measurementValueID",
-            "input_message": "\n\nExamples: \"http://vocab.nerc.ac.uk/collection/L22/current/TOOL0653/\", \"http://vocab.nerc.ac.uk/collection/B07/current/NDT023/\", \"http://vocab.nerc.ac.uk/collection/S11/current/S1116/\""
+            "input_message": "An identifier for facts stored in the column measurementValue (global unique identifier, URI). This identifier can reference a controlled vocabulary (e.g. for sampling instrument names, methodologies, life stages) or reference a methodology paper with a DOI. When the measurementValue refers to a value and not to a fact, the measurementvalueID has no meaning and should remain empty.\n\nExamples: \"http://vocab.nerc.ac.uk/collection/L22/current/TOOL0653/\", \"http://vocab.nerc.ac.uk/collection/B07/current/NDT023/\", \"http://vocab.nerc.ac.uk/collection/S11/current/S1116/\""
         },
         "format": "text"
     },
@@ -112,7 +112,7 @@
         "namespace": "http://rs.tdwg.org/dwc/terms/",
         "qualName": "http://rs.tdwg.org/dwc/terms/measurementAccuracy",
         "relation": "http://rs.tdwg.org/dwc/terms/index.htm#measurementAccuracy",
-        "description": "\n\nExamples: \"0.01\", \"normal distribution with variation of 2 m\"",
+        "description": "The description of the potential error associated with the measurementValue.\n\nExamples: \"0.01\", \"normal distribution with variation of 2 m\"",
         "examples": "\"0.01\", \"normal distribution with variation of 2 m\"",
         "required": false,
         "disp_name": "measurementAccuracy",
@@ -121,7 +121,7 @@
         "valid": {
             "validate": "any",
             "input_title": "measurementAccuracy",
-            "input_message": "\n\nExamples: \"0.01\", \"normal distribution with variation of 2 m\""
+            "input_message": "The description of the potential error associated with the measurementValue.\n\nExamples: \"0.01\", \"normal distribution with variation of 2 m\""
         },
         "format": "text"
     },
@@ -130,7 +130,7 @@
         "namespace": "http://rs.tdwg.org/dwc/terms/",
         "qualName": "http://rs.tdwg.org/dwc/terms/measurementUnit",
         "relation": "http://rs.tdwg.org/dwc/terms/index.htm#measurementUnit",
-        "description": "\n\nExamples: \"mm\", \"C\", \"km\", \"ha\"",
+        "description": "The units associated with the measurementValue. Recommended best practice is to use the International System of Units (SI).\n\nExamples: \"mm\", \"C\", \"km\", \"ha\"",
         "examples": "\"mm\", \"C\", \"km\", \"ha\"",
         "required": false,
         "disp_name": "measurementUnit",
@@ -139,7 +139,7 @@
         "valid": {
             "validate": "any",
             "input_title": "measurementUnit",
-            "input_message": "\n\nExamples: \"mm\", \"C\", \"km\", \"ha\""
+            "input_message": "The units associated with the measurementValue. Recommended best practice is to use the International System of Units (SI).\n\nExamples: \"mm\", \"C\", \"km\", \"ha\""
         },
         "format": "text"
     },
@@ -148,7 +148,7 @@
         "namespace": "http://rs.iobis.org/obis/terms/",
         "qualName": "http://rs.iobis.org/obis/terms/measurementUnitID",
         "relation": NaN,
-        "description": "\n\nExamples: \"http://vocab.nerc.ac.uk/collection/P06/current/UMSQ/\", “http://vocab.nerc.ac.uk/collection/P06/current/UCPL/”, “http://vocab.nerc.ac.uk/collection/P06/current/CMCM/”",
+        "description": "An identifier for the measurementUnit (global unique identifier, URI). The identifier should reference the measurementUnit in a vocabulary.\n\nExamples: \"http://vocab.nerc.ac.uk/collection/P06/current/UMSQ/\", “http://vocab.nerc.ac.uk/collection/P06/current/UCPL/”, “http://vocab.nerc.ac.uk/collection/P06/current/CMCM/”",
         "examples": "\"http://vocab.nerc.ac.uk/collection/P06/current/UMSQ/\", “http://vocab.nerc.ac.uk/collection/P06/current/UCPL/”, “http://vocab.nerc.ac.uk/collection/P06/current/CMCM/”",
         "required": false,
         "disp_name": "measurementUnitID",
@@ -157,7 +157,7 @@
         "valid": {
             "validate": "any",
             "input_title": "measurementUnitID",
-            "input_message": "\n\nExamples: \"http://vocab.nerc.ac.uk/collection/P06/current/UMSQ/\", “http://vocab.nerc.ac.uk/collection/P06/current/UCPL/”, “http://vocab.nerc.ac.uk/collection/P06/current/CMCM/”"
+            "input_message": "An identifier for the measurementUnit (global unique identifier, URI). The identifier should reference the measurementUnit in a vocabulary.\n\nExamples: \"http://vocab.nerc.ac.uk/collection/P06/current/UMSQ/\", “http://vocab.nerc.ac.uk/collection/P06/current/UCPL/”, “http://vocab.nerc.ac.uk/collection/P06/current/CMCM/”"
         },
         "format": "text"
     },
@@ -166,7 +166,7 @@
         "namespace": "http://rs.tdwg.org/dwc/terms/",
         "qualName": "http://rs.tdwg.org/dwc/terms/measurementDeterminedDate",
         "relation": "http://rs.tdwg.org/dwc/terms/index.htm#measurementDeterminedDate",
-        "description": "\n\nExamples: \"1963-03-08T14:07-0600\", \"2009-02-20T08:40Z\", \"1809-02-12\", \"1906-06\", \"1971\", \"2007-03-01T13:00:00Z/2008-05-11T15:30:00Z\", \"2007-11-13/15\"",
+        "description": "The date on which the MeasurementOrFact was made. Recommended best practice is to use an encoding scheme, such as ISO 8601:2004(E).\n\nExamples: \"1963-03-08T14:07-0600\", \"2009-02-20T08:40Z\", \"1809-02-12\", \"1906-06\", \"1971\", \"2007-03-01T13:00:00Z/2008-05-11T15:30:00Z\", \"2007-11-13/15\"",
         "examples": "\"1963-03-08T14:07-0600\", \"2009-02-20T08:40Z\", \"1809-02-12\", \"1906-06\", \"1971\", \"2007-03-01T13:00:00Z/2008-05-11T15:30:00Z\", \"2007-11-13/15\"",
         "required": false,
         "disp_name": "measurementDeterminedDate",
@@ -175,7 +175,7 @@
         "valid": {
             "validate": "any",
             "input_title": "measurementDeterminedDate",
-            "input_message": "\n\nExamples: \"1963-03-08T14:07-0600\", \"2009-02-20T08:40Z\", \"1809-02-12\", \"1906-06\", \"1971\", \"2007-03-01T13:00:00Z/2008-05-11T15:30:00Z\", \"2007-11-13/15\""
+            "input_message": "The date on which the MeasurementOrFact was made. Recommended best practice is to use an encoding scheme, such as ISO 8601:2004(E).\n\nExamples: \"1963-03-08T14:07-0600\", \"2009-02-20T08:40Z\", \"1809-02-12\", \"1906-06\", \"1971\", \"2007-03-01T13:00:00Z/2008-05-11T15:30:00Z\", \"2007-11-13/15\""
         },
         "format": "text"
     },
@@ -184,7 +184,7 @@
         "namespace": "http://rs.tdwg.org/dwc/terms/",
         "qualName": "http://rs.tdwg.org/dwc/terms/measurementDeterminedBy",
         "relation": "http://rs.tdwg.org/dwc/terms/index.htm#measurementDeterminedBy",
-        "description": "\n\nExamples: \"Javier de la Torre\", \"Julie Woodruff; Eileen Lacey\"",
+        "description": "A list (concatenated and separated) of names of people, groups, or organizations who determined the value of the MeasurementOrFact.\n\nExamples: \"Javier de la Torre\", \"Julie Woodruff; Eileen Lacey\"",
         "examples": "\"Javier de la Torre\", \"Julie Woodruff; Eileen Lacey\"",
         "required": false,
         "disp_name": "measurementDeterminedBy",
@@ -193,7 +193,7 @@
         "valid": {
             "validate": "any",
             "input_title": "measurementDeterminedBy",
-            "input_message": "\n\nExamples: \"Javier de la Torre\", \"Julie Woodruff; Eileen Lacey\""
+            "input_message": "A list (concatenated and separated) of names of people, groups, or organizations who determined the value of the MeasurementOrFact.\n\nExamples: \"Javier de la Torre\", \"Julie Woodruff; Eileen Lacey\""
         },
         "format": "text"
     },
@@ -202,7 +202,7 @@
         "namespace": "http://rs.tdwg.org/dwc/terms/",
         "qualName": "http://rs.tdwg.org/dwc/terms/measurementMethod",
         "relation": "http://rs.tdwg.org/dwc/terms/index.htm#measurementMethod",
-        "description": "\n\nExamples: \"minimum convex polygon around burrow entrances\" for a home range area, \"barometric altimeter\" for an elevation",
+        "description": "A description of or reference to (publication, URI) the method or protocol used to determine the measurement, fact, characteristic, or assertion.\n\nExamples: \"minimum convex polygon around burrow entrances\" for a home range area, \"barometric altimeter\" for an elevation",
         "examples": "\"minimum convex polygon around burrow entrances\" for a home range area, \"barometric altimeter\" for an elevation",
         "required": false,
         "disp_name": "measurementMethod",
@@ -211,7 +211,7 @@
         "valid": {
             "validate": "any",
             "input_title": "measurementMethod",
-            "input_message": "\n\nExamples: \"minimum convex polygon around burrow entrances\" for a home range area, \"barometric altimeter\" for an elevation"
+            "input_message": "A description of or reference to (publication, URI) the method or protocol used to determine the measurement, fact, characteristic, or assertion.\n\nExamples: \"minimum convex polygon around burrow entrances\" for a home range area, \"barometric altimeter\" for an elevation"
         },
         "format": "text"
     },
@@ -220,7 +220,7 @@
         "namespace": "http://rs.tdwg.org/dwc/terms/",
         "qualName": "http://rs.tdwg.org/dwc/terms/measurementRemarks",
         "relation": "http://rs.tdwg.org/dwc/terms/index.htm#measurementRemarks",
-        "description": "\n\nExamples: tip of tail missing",
+        "description": "Comments or notes accompanying the MeasurementOrFact.\n\nExamples: tip of tail missing",
         "examples": "tip of tail missing",
         "required": false,
         "disp_name": "measurementRemarks",
@@ -229,7 +229,7 @@
         "valid": {
             "validate": "any",
             "input_title": "measurementRemarks",
-            "input_message": "\n\nExamples: tip of tail missing"
+            "input_message": "Comments or notes accompanying the MeasurementOrFact.\n\nExamples: tip of tail missing"
         },
         "format": "text"
     }

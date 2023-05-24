@@ -4,7 +4,7 @@
         "namespace": "http://purl.org/dc/terms/",
         "qualName": "http://purl.org/dc/terms/type",
         "relation": NaN,
-        "description": "\n\nExamples: StillImage",
+        "description": "The kind of media object. Recommended terms from the DCMI Type Vocabulary are StillImage, Sound or MovingImage for GBIF to index and show the media files.\n\nExamples: StillImage",
         "examples": "StillImage",
         "thesaurus": "http://rs.gbif.org/vocabulary/dcterms/type.xml",
         "required": false,
@@ -15,7 +15,7 @@
         "valid": {
             "validate": "any",
             "input_title": "type",
-            "input_message": "\n\nExamples: StillImage"
+            "input_message": "The kind of media object. Recommended terms from the DCMI Type Vocabulary are StillImage, Sound or MovingImage for GBIF to index and show the media files.\n\nExamples: StillImage"
         },
         "format": "text"
     },
@@ -24,7 +24,7 @@
         "namespace": "http://purl.org/dc/terms/",
         "qualName": "http://purl.org/dc/terms/format",
         "relation": null,
-        "description": "\n\nExamples: image/jpeg",
+        "description": "The format the image is exposed in. It is recommended to use a IANA registered media type, but known file suffices are permissible too. See http://www.iana.org/assignments/media-types/media-types.xhtml\n\nExamples: image/jpeg",
         "examples": "image/jpeg",
         "thesaurus": null,
         "required": false,
@@ -35,7 +35,7 @@
         "valid": {
             "validate": "any",
             "input_title": "format",
-            "input_message": "\n\nExamples: image/jpeg"
+            "input_message": "The format the image is exposed in. It is recommended to use a IANA registered media type, but known file suffices are permissible too. See http://www.iana.org/assignments/media-types/media-types.xhtml\n\nExamples: image/jpeg"
         },
         "format": "text"
     },
@@ -44,7 +44,7 @@
         "namespace": "http://purl.org/dc/terms/",
         "qualName": "http://purl.org/dc/terms/identifier",
         "relation": null,
-        "description": "\n\nExamples: http://farm6.static.flickr.com/5127/5242866958_98afd8cbce_o.jpg",
+        "description": "The public URL that identifies and locates the media file directly, not the html page it might be shown on. It is highly recommended that a URL to a media file of good resolution is provided or at least dc:reference in cases no public URI exists.\n\nExamples: http://farm6.static.flickr.com/5127/5242866958_98afd8cbce_o.jpg",
         "examples": "http://farm6.static.flickr.com/5127/5242866958_98afd8cbce_o.jpg",
         "thesaurus": null,
         "required": false,
@@ -55,7 +55,7 @@
         "valid": {
             "validate": "any",
             "input_title": "identifier",
-            "input_message": "\n\nExamples: http://farm6.static.flickr.com/5127/5242866958_98afd8cbce_o.jpg"
+            "input_message": "The public URL that identifies and locates the media file directly, not the html page it might be shown on. It is highly recommended that a URL to a media file of good resolution is provided or at least dc:reference in cases no public URI exists.\n\nExamples: http://farm6.static.flickr.com/5127/5242866958_98afd8cbce_o.jpg"
         },
         "format": "text"
     },
@@ -64,7 +64,7 @@
         "namespace": "http://purl.org/dc/terms/",
         "qualName": "http://purl.org/dc/terms/references",
         "relation": "http://rs.tdwg.org/dwc/terms/index.htm#dcterms:references",
-        "description": "\n\nExamples: http://www.flickr.com/photos/victorsaavedramartinez/1866107071/",
+        "description": "An html webpage that shows the image or its metadata. This link should be used for html based image viewers like FSI and should be used as a source link wherever the media item is shown. It is recommended to provide this url even if a media file exists as it will be used for linking out.\n\nExamples: http://www.flickr.com/photos/victorsaavedramartinez/1866107071/",
         "examples": "http://www.flickr.com/photos/victorsaavedramartinez/1866107071/",
         "thesaurus": null,
         "required": false,
@@ -75,7 +75,7 @@
         "valid": {
             "validate": "any",
             "input_title": "references",
-            "input_message": "\n\nExamples: http://www.flickr.com/photos/victorsaavedramartinez/1866107071/"
+            "input_message": "An html webpage that shows the image or its metadata. This link should be used for html based image viewers like FSI and should be used as a source link wherever the media item is shown. It is recommended to provide this url even if a media file exists as it will be used for linking out.\n\nExamples: http://www.flickr.com/photos/victorsaavedramartinez/1866107071/"
         },
         "format": "text"
     },
@@ -84,7 +84,7 @@
         "namespace": "http://purl.org/dc/terms/",
         "qualName": "http://purl.org/dc/terms/title",
         "relation": null,
-        "description": "\n\nExamples: Andorinha-do-rio (Tachycineta albiventer)",
+        "description": "The media items title. Strongly recommended as in many cases this will be used as the hyperlink text, and should be used accrodingly.\n\nExamples: Andorinha-do-rio (Tachycineta albiventer)",
         "examples": "Andorinha-do-rio (Tachycineta albiventer)",
         "thesaurus": null,
         "required": false,
@@ -95,7 +95,7 @@
         "valid": {
             "validate": "any",
             "input_title": "title",
-            "input_message": "\n\nExamples: Andorinha-do-rio (Tachycineta albiventer)"
+            "input_message": "The media items title. Strongly recommended as in many cases this will be used as the hyperlink text, and should be used accrodingly.\n\nExamples: Andorinha-do-rio (Tachycineta albiventer)"
         },
         "format": "text"
     },
@@ -104,7 +104,7 @@
         "namespace": "http://purl.org/dc/terms/",
         "qualName": "http://purl.org/dc/terms/description",
         "relation": null,
-        "description": "\n\nExamples: Female Tachycineta albiventer photographed in the Amazon, Brazil, in November 2010.",
+        "description": "A textual description of the content of the media item\n\nExamples: Female Tachycineta albiventer photographed in the Amazon, Brazil, in November 2010.",
         "examples": "Female Tachycineta albiventer photographed in the Amazon, Brazil, in November 2010.",
         "thesaurus": null,
         "required": false,
@@ -115,7 +115,7 @@
         "valid": {
             "validate": "any",
             "input_title": "description",
-            "input_message": "\n\nExamples: Female Tachycineta albiventer photographed in the Amazon, Brazil, in November 2010."
+            "input_message": "A textual description of the content of the media item\n\nExamples: Female Tachycineta albiventer photographed in the Amazon, Brazil, in November 2010."
         },
         "format": "text"
     },
@@ -124,7 +124,7 @@
         "namespace": "http://purl.org/dc/terms/",
         "qualName": "http://purl.org/dc/terms/created",
         "relation": null,
-        "description": "\n\nExamples: 2010-09-29",
+        "description": "The date and time this media item was taken\n\nExamples: 2010-09-29",
         "examples": "2010-09-29",
         "thesaurus": null,
         "required": false,
@@ -135,7 +135,7 @@
         "valid": {
             "validate": "any",
             "input_title": "created",
-            "input_message": "\n\nExamples: 2010-09-29"
+            "input_message": "The date and time this media item was taken\n\nExamples: 2010-09-29"
         },
         "format": "text"
     },
@@ -144,7 +144,7 @@
         "namespace": "http://purl.org/dc/terms/",
         "qualName": "http://purl.org/dc/terms/creator",
         "relation": null,
-        "description": "\n\nExamples: David Remsen",
+        "description": "The person that took the image, recorded the video or sound\n\nExamples: David Remsen",
         "examples": "David Remsen",
         "thesaurus": null,
         "required": false,
@@ -155,7 +155,7 @@
         "valid": {
             "validate": "any",
             "input_title": "creator",
-            "input_message": "\n\nExamples: David Remsen"
+            "input_message": "The person that took the image, recorded the video or sound\n\nExamples: David Remsen"
         },
         "format": "text"
     },
@@ -164,7 +164,7 @@
         "namespace": "http://purl.org/dc/terms/",
         "qualName": "http://purl.org/dc/terms/contributor",
         "relation": null,
-        "description": "\n\nExamples: Dana Mock",
+        "description": "Any contributor in addition to the creator that helped in recording the media item\n\nExamples: Dana Mock",
         "examples": "Dana Mock",
         "thesaurus": null,
         "required": false,
@@ -175,7 +175,7 @@
         "valid": {
             "validate": "any",
             "input_title": "contributor",
-            "input_message": "\n\nExamples: Dana Mock"
+            "input_message": "Any contributor in addition to the creator that helped in recording the media item\n\nExamples: Dana Mock"
         },
         "format": "text"
     },
@@ -184,7 +184,7 @@
         "namespace": "http://purl.org/dc/terms/",
         "qualName": "http://purl.org/dc/terms/publisher",
         "relation": null,
-        "description": "\n\nExamples: Flickr",
+        "description": "An entity responsible for making the image available.\n\nExamples: Flickr",
         "examples": "Flickr",
         "thesaurus": null,
         "required": false,
@@ -195,7 +195,7 @@
         "valid": {
             "validate": "any",
             "input_title": "publisher",
-            "input_message": "\n\nExamples: Flickr"
+            "input_message": "An entity responsible for making the image available.\n\nExamples: Flickr"
         },
         "format": "text"
     },
@@ -204,7 +204,7 @@
         "namespace": "http://purl.org/dc/terms/",
         "qualName": "http://purl.org/dc/terms/audience",
         "relation": NaN,
-        "description": "\n\nExamples: \"experts\", \"general public\", \"children\"",
+        "description": "A class or description for whom the image is intended or useful\n\nExamples: \"experts\", \"general public\", \"children\"",
         "examples": "\"experts\", \"general public\", \"children\"",
         "thesaurus": null,
         "required": false,
@@ -215,7 +215,7 @@
         "valid": {
             "validate": "any",
             "input_title": "audience",
-            "input_message": "\n\nExamples: \"experts\", \"general public\", \"children\""
+            "input_message": "A class or description for whom the image is intended or useful\n\nExamples: \"experts\", \"general public\", \"children\""
         },
         "format": "text"
     },
@@ -224,7 +224,7 @@
         "namespace": "http://purl.org/dc/terms/",
         "qualName": "http://purl.org/dc/terms/source",
         "relation": null,
-        "description": "\n\nExamples: nan",
+        "description": "If the media item was derived or taken from another source this is the reference to that resource. For example a book from which an image was scanned or the original provider of a photo/graphic, such as photography agencies.\n\nExamples: nan",
         "examples": NaN,
         "thesaurus": null,
         "required": false,
@@ -235,7 +235,7 @@
         "valid": {
             "validate": "any",
             "input_title": "source",
-            "input_message": "\n\nExamples: nan"
+            "input_message": "If the media item was derived or taken from another source this is the reference to that resource. For example a book from which an image was scanned or the original provider of a photo/graphic, such as photography agencies.\n\nExamples: nan"
         },
         "format": "text"
     },
@@ -244,7 +244,7 @@
         "namespace": "http://purl.org/dc/terms/",
         "qualName": "http://purl.org/dc/terms/license",
         "relation": null,
-        "description": "\n\nExamples: http://creativecommons.org/licenses/by-nc-sa/2.0/deed.en",
+        "description": "License for this media object. Can be text or a url like creative commons uses\n\nExamples: http://creativecommons.org/licenses/by-nc-sa/2.0/deed.en",
         "examples": "http://creativecommons.org/licenses/by-nc-sa/2.0/deed.en",
         "thesaurus": null,
         "required": false,
@@ -255,7 +255,7 @@
         "valid": {
             "validate": "any",
             "input_title": "license",
-            "input_message": "\n\nExamples: http://creativecommons.org/licenses/by-nc-sa/2.0/deed.en"
+            "input_message": "License for this media object. Can be text or a url like creative commons uses\n\nExamples: http://creativecommons.org/licenses/by-nc-sa/2.0/deed.en"
         },
         "format": "text"
     },
@@ -264,7 +264,7 @@
         "namespace": "http://purl.org/dc/terms/",
         "qualName": "http://purl.org/dc/terms/rightsHolder",
         "relation": NaN,
-        "description": "\n\nExamples: nan",
+        "description": "A person or organization owning or managing rights over the media item.\n\nExamples: nan",
         "examples": NaN,
         "thesaurus": null,
         "required": false,
@@ -275,7 +275,7 @@
         "valid": {
             "validate": "any",
             "input_title": "rightsHolder",
-            "input_message": "\n\nExamples: nan"
+            "input_message": "A person or organization owning or managing rights over the media item.\n\nExamples: nan"
         },
         "format": "text"
     },
@@ -284,7 +284,7 @@
         "namespace": "http://rs.tdwg.org/dwc/terms/",
         "qualName": "http://rs.tdwg.org/dwc/terms/datasetID",
         "relation": "http://rs.tdwg.org/dwc/terms/index.htm#datasetID",
-        "description": "\n\nExamples: nan",
+        "description": "An identifier for a subset of data.\n\nExamples: nan",
         "examples": NaN,
         "thesaurus": null,
         "required": false,
@@ -295,7 +295,7 @@
         "valid": {
             "validate": "any",
             "input_title": "datasetID",
-            "input_message": "\n\nExamples: nan"
+            "input_message": "An identifier for a subset of data.\n\nExamples: nan"
         },
         "format": "text"
     }

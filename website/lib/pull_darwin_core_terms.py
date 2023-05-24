@@ -168,22 +168,20 @@ class Darwin_Core_Extension():
         self.df = pd.read_xml(self.source)
 
     def create_json(self):
-        self.dic1 = self.df.to_dict(orient='records')
+        self.dic1 = self.df.to_dict('records')
         columns = self.df.columns
-
         self.dic2 = []
         for term in self.dic1:
             term['disp_name'] = term['id'] = term['name']
-            print(term['id'])
             term['grouping'] = 'Darwin Core term'
-            term['description'] = ''
-            if 'dc:description' in columns:
-                term['description'] = str(term['dc:description'])
-            if 'comments' in columns:
+            if 'description' in columns:
+                term['description'] = str(term['description'])
+            else:
+                term['description'] = ''
+            if 'comments' in columns and isinstance(term['comments'], str):
                 term['description'] = term['description'] + '\n\n' + str(term['comments'])
             if 'examples' in columns:
                 term['description'] = term['description'] + '\n\nExamples: ' + str(term['examples'])
-
             if term['id'] == 'decimalLatitude':
                 term["valid"] = {
                     "validate": "decimal",
@@ -353,7 +351,7 @@ def dwc_terms_to_dic(path):
 
 def dwc_extensions_update(path):
     for extension, vals in extensions.items():
-        dwc_extension = Darwin_Core_Extension(vals['source'], path + '/' + vals['filename'])
+        dwc_extension = Darwin_Core_Extension(vals['source'], path + '/' + vals['file'])
         dwc_extension.pull_from_online()
         dwc_extension.create_json()
 
