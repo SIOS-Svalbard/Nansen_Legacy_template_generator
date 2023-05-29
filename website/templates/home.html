@@ -39,7 +39,14 @@
   </div>
   <br>
 
-  <p>{{description}}</p><br><br>
+  <p>{{description}}</p>
+
+  {% if config == 'Darwin Core' %}
+    <p>Tutorial video: <a href="https://yotu.be/DbvlwnYXuPU">https://yotu.be/DbvlwnYXuPU</a></p>
+  {% elif config == 'CF-NetCDF' %}
+    <p>Tutorial video: <a href="https://yotu.be/d_5v7riMiDY">https://yotu.be/d_5v7riMiDY</a></p>
+  {% endif %}
+  <br>
 
   {% for sheet in output_config_dict.keys() %}
     {% if output_config_dict[sheet]['Required CSV'] == False %}
@@ -47,7 +54,7 @@
       <button class="btn btn-outline-success btn-sm" type="submit" name="submitbutton" value="add_{{sheet}}">Add {{sheet}}</button>
     {% endif %}
   {% endfor %}
-  
+
   <hr class="bg-dark">
   {% for sheet in output_config_dict.keys() %}
 
