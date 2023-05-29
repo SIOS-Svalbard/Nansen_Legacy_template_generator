@@ -187,13 +187,19 @@ def home():
         if request.form["submitbutton"] == "generateTemplate":
             filepath = "/tmp/LFNL_template.xlsx"
 
+            if config == 'Darwin Core':
+                metadata = False
+            else:
+                metadata = True
+
             create_template(
                 filepath,
                 template_fields_dict,
                 FIELDS_FILEPATH,
                 config,
                 subconfig,
-                conversions=True
+                conversions=True,
+                metadata = metadata
             )
             return send_file(filepath, as_attachment=True)
 
