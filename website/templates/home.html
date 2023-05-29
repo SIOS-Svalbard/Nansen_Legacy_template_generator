@@ -39,7 +39,14 @@
   </div>
   <br>
 
-  <p>{{description}}</p><br><br>
+  <p>{{description}}</p>
+
+  {% if config == 'Darwin Core' %}
+    <p>Tutorial video: <a href="https://www.youtube.com/watch?v=DbvlwnYXuPU">https://www.youtube.com/watch?v=DbvlwnYXuPU</a></p>
+  {% elif config == 'CF-NetCDF' %}
+    <p>Tutorial video: <a href="https://www.youtube.com/watch?v=d_5v7riMiDY">https://www.youtube.com/watch?v=d_5v7riMiDY</a></p>
+  {% endif %}
+  <br>
 
   {% for sheet in output_config_dict.keys() %}
     {% if output_config_dict[sheet]['Required CSV'] == False %}
@@ -47,12 +54,18 @@
       <button class="btn btn-outline-success btn-sm" type="submit" name="submitbutton" value="add_{{sheet}}">Add {{sheet}}</button>
     {% endif %}
   {% endfor %}
-  <br>
-  <hr class="bg-dark"><br>
+
+  <hr class="bg-dark">
   {% for sheet in output_config_dict.keys() %}
 
     {% if output_config_dict[sheet]['Required CSV'] == True %}
-      <h3>Sheet: {{sheet}}</h3>
+      {% if sheet != 'Data' %}
+        <br><h3>Sheet: {{sheet}}</h3>
+      {% endif %}
+
+      {% if sheets_descriptions[sheet] %}
+        {{sheets_descriptions[sheet]}} <br>
+      {% endif %}
 
       {% if 'Source' in output_config_dict[sheet].keys() %}
         <a href="{{output_config_dict[sheet]['Source']}}">{{output_config_dict[sheet]['Source']}}</a><br>

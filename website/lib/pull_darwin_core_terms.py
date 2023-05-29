@@ -14,6 +14,8 @@ config_dir = os.path.abspath(os.path.join(
 sys.path.append(config_dir)
 from .check_internet import have_internet
 import threading
+import requests
+import xml.etree.ElementTree as ET
 
 class Darwin_Core_Terms_json():
     '''
@@ -170,7 +172,7 @@ class Darwin_Core_Extension():
     def create_json(self):
         self.dic1 = self.df.to_dict('records')
         columns = self.df.columns
-        self.dic2 = []
+        self.dic2 = {'terms': []}
         for term in self.dic1:
             term['disp_name'] = term['id'] = term['name']
             term['grouping'] = 'Darwin Core term'
@@ -272,7 +274,16 @@ class Darwin_Core_Extension():
                 }
                 term['format'] = 'text'
 
-            self.dic2.append(term)
+            self.dic2['terms'].append(term)
+
+            response = requests.get(self.source)
+            xml_content = response.text
+
+            # Parse the XML content
+            root = ET.fromstring(xml_content)
+
+            # Find the description element
+            self.dic2['description'] = root.attrib.get('{http://purl.org/dc/terms/}description')
 
         with open(self.filename, 'w', encoding='utf-8') as f:
            json.dump(self.dic2, f, ensure_ascii=False, indent=4)
@@ -282,8 +293,13 @@ class Darwin_Core_Extension():
         with open(self.filename, 'r', encoding='utf-8', errors='ignore') as f:
            content = f.read()
            cleaned_content = content.encode('utf-8').decode('utf-8', 'ignore')
-           self.dic = json.loads(cleaned_content)
+           self.dic = json.loads(cleaned_content)['terms']
 
+    def get_description(self):
+        with open(self.filename, 'r', encoding='utf-8', errors='ignore') as f:
+           content = f.read()
+           cleaned_content = content.encode('utf-8').decode('utf-8', 'ignore')
+           self.description = json.loads(cleaned_content)['description']
 
 extensions = {
     'Event Core': {
@@ -360,3 +376,9 @@ def dwc_extension_to_dic(path, extension):
     dwc_extension = Darwin_Core_Extension(extension, filepath)
     dwc_extension.load_json()
     return dwc_extension.dic
+
+def get_dwc_extension_description(path, extension):
+    filepath = path + '/' + extensions[extension]['file']
+    dwc_extension = Darwin_Core_Extension(extension, filepath)
+    dwc_extension.get_description()
+    return dwc_extension.description

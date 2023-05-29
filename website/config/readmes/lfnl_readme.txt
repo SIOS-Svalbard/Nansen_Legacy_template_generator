@@ -18,13 +18,6 @@ Use these in the 'standard_name' variable attribute for each variable if creatin
 A list of CF standard names is available here:
 https://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html
 
-The 'bounds' columns should be used where a data value spans a spatial or temporal range (a cell).
-The bounds should be stored in a separate 2-dimensional variable that has no standard name.
-Instead, the coordinate variable should include a 'bounds' variable attribute that refers
-to the bounds variable.
-There are examples in the CF conventions documentation.
-https://cfconventions.org/Data/cf-conventions/cf-conventions-1.10/cf-conventions.html#_data_representative_of_cells
-
 Use the attributes in the 'metadata' sheet as global attributes in your CF-NetCDF file.
 They are terms from the ACDD conventions in most cases.
 https://adc.met.no/node/4
@@ -52,3 +45,10 @@ Check you NetCDF file against the CF conventions and the ACDD conventions
 https://sios-svalbard.org/dataset_validation/form
 or
 https://compliance.ioos.us/index.html
+
+You can create a Darwin Core Archive using GBIF's Integrated Publishing Toolkit (IPT).
+In the link below there is a map of places where this is installed.
+Contact a relevant one of these and ask if you can use their node.
+They can provide you with login details.
+It is also possible to configure a node at your own institution.
+https://www.gbif.org/ipt
