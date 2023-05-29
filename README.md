@@ -15,7 +15,7 @@ https://adc.met.no/node/4
 
 ## Setup and Installation
 
-This application was developed with Python version 3.8.10
+This application was developed with Python version 3.8.10.
 
 ```
 git clone <repo-url>
@@ -23,7 +23,7 @@ git clone <repo-url>
 pip install -r requirements.txt
 ```
 
-The field definitions are not updated automatically, but can be updated using the GUI.
+The field definitions are not updated automatically, but can be updated using the GUI (Admin - get latest terms).
 
 Either run
 ```sh
@@ -34,3 +34,5 @@ or when the source is not available but the Flask server is running
 ```sh
 curl -X POST http://localhost:5000/update
 ```
+
+The application can be run using WSGI (flaskapp.wsgi) and has been developed using apache2.  
