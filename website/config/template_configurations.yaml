@@ -93,7 +93,7 @@ setups:
       Occurrence Extension:
         fields:
         - Required: [occurrenceID,eventID,basisOfRecord,scientificName]
-          Recommended: [taxonRank,kingdom,individualCount,organismQuantity,organismQuantityType]
+          Recommended: [taxonRank,kingdom,individualCount,organismQuantity,organismQuantityType,occurrenceStatus]
           Suggestions: 'from source'
         Source: 'https://rs.gbif.org/core/dwc_occurrence_2022-02-02.xml'
         Required CSV: True
@@ -125,7 +125,7 @@ setups:
       Occurrence Core:
         fields:
         - Required: [occurrenceID,basisOfRecord,scientificName]
-          Recommended: [eventID,eventDate,decimalLatitude,decimalLongitude,taxonRank,kingdom,individualCount,organismQuantity,organismQuantityType]
+          Recommended: [eventID,eventDate,decimalLatitude,decimalLongitude,taxonRank,kingdom,individualCount,organismQuantity,organismQuantityType,occurrenceStatus]
           Suggestions: 'from source'
         Source: 'https://rs.gbif.org/core/dwc_occurrence_2022-02-02.xml'
         Required CSV: True
