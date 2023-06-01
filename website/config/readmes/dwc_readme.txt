@@ -18,3 +18,7 @@ Contact a relevant one of these and ask if you can use their node.
 They can provide you with login details.
 It is also possible to configure a node at your own institution.
 https://www.gbif.org/ipt
+
+Consider citing this template generator as:
+
+Luke Marsden, & Olaf Schneider. (2023). SIOS-Svalbard/Learnings_from_AeN_template_generator: Learnings from Nansen Legacy template generator (v1.00). Zenodo. https://doi.org/10.5281/zenodo.7993323

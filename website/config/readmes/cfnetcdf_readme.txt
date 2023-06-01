@@ -45,3 +45,7 @@ Check you NetCDF file against the CF conventions and the ACDD conventions
 https://sios-svalbard.org/dataset_validation/form
 or
 https://compliance.ioos.us/index.html
+
+Consider citing this template generator as:
+
+Luke Marsden, & Olaf Schneider. (2023). SIOS-Svalbard/Learnings_from_AeN_template_generator: Learnings from Nansen Legacy template generator (v1.00). Zenodo. https://doi.org/10.5281/zenodo.7993323
