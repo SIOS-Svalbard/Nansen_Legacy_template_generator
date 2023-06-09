@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from flask import request, send_file, render_template, flash
+from flask import request, send_file, render_template, flash, redirect
 import json
 from website import create_app
 from website.lib.template import print_html_template
@@ -16,10 +16,14 @@ import os
 app = create_app()
 
 @app.route("/", methods=["GET", "POST"])
-def home():
+def home_redirect():
+    return redirect("/config=CF-NetCDF")
+
+@app.route("/config=<config>", methods=["GET", "POST"])
+def home(config):
 
     # Select or change configuration
-    config = request.form.get("select-config", "CF-NetCDF")
+    config = request.form.get("select-config", config)
 
     list_of_configs = get_list_of_configs()
     list_of_subconfigs = get_list_of_subconfigs(config=config)
@@ -130,6 +134,9 @@ def home():
             compulsary_sheets=compulsary_sheets,
             sheets_descriptions = sheets_descriptions
         )
+
+    if request.form["submitbutton"] == "selectConfig":
+        return redirect(f"/config={config}")
 
     if request.form["submitbutton"] not in ["selectConfig", "selectSubConfig"]:
 
