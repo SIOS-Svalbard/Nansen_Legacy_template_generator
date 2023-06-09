@@ -57,10 +57,10 @@ class Template(object):
         metadata = Metadata_Sheet(self)
         metadata.add_acdd_metadata()
 
-    def add_data_sheet(self, sheetname, content):
+    def add_data_sheet(self, sheetname, content, split_personnel_columns):
         data_sheet = Data_Sheet(sheetname, content, self)
         data_sheet.write_key()
-        data_sheet.write_columns()
+        data_sheet.write_columns(split_personnel_columns)
 
     def add_conversions(self):
         Conversions_Sheet(self)
@@ -197,7 +197,7 @@ class Data_Sheet(object):
             self.sheet.merge_range('A6:D6', 'Darwin Core term', self.dwc_term_format)
             self.sheet.merge_range('A7:D7', paste_message)
 
-    def write_columns(self):
+    def write_columns(self, split_personnel_columns):
         '''
         Writing one column for each field
         '''
@@ -249,70 +249,87 @@ class Data_Sheet(object):
                     duplication = duplication - 1
 
             else:
-
-                # Write title row
-                if field in required_fields:
-                    self.sheet.write(self.title_row, ii, vals['disp_name'], self.required_field_format)
-                elif field in recommended_fields:
-                    self.sheet.write(self.title_row, ii, vals['disp_name'], self.recommended_field_format)
-                elif field in cf_standard_names:
-                    self.sheet.write(self.title_row, ii, vals['disp_name'], self.cf_field_format)
-                elif field in dwc_terms:
-                    self.sheet.write(self.title_row, ii, vals['disp_name'], self.dwc_term_format)
+                if field in ['recordedBy', 'pi_details'] and split_personnel_columns == True:
+                    duplication = 3
                 else:
-                    self.sheet.write(self.title_row, ii, vals['disp_name'], self.optional_field_format)
+                    duplication = 1
 
-                # Write row below with parameter name
-                self.sheet.write(parameter_row, ii, field)
+                while duplication > 0:
 
-                # Write validations and cell restrictions
-                if 'valid' in vals:
-
-                    # Need to make sure that 'input_message' is not more than 255
-                    valid_copy = vals['valid'].copy()
-
-                    if 'input_message' in valid_copy:
-                        if len(valid_copy['input_message']) > 252:
-                            valid_copy['input_message'] = valid_copy['input_message'][:249] + '...'
+                    # Write title row
+                    if self.template.config == 'Learnings from Nansen Legacy logging system' and field in ['recordedBy', 'pi_details'] and duplication == 3:
+                        self.sheet.write(self.title_row, ii, vals['disp_name'], self.required_field_format)
+                    elif field in required_fields:
+                        self.sheet.write(self.title_row, ii, vals['disp_name'], self.required_field_format)
+                    elif field in recommended_fields:
+                        self.sheet.write(self.title_row, ii, vals['disp_name'], self.recommended_field_format)
+                    elif field in cf_standard_names:
+                        self.sheet.write(self.title_row, ii, vals['disp_name'], self.cf_field_format)
+                    elif field in dwc_terms:
+                        self.sheet.write(self.title_row, ii, vals['disp_name'], self.dwc_term_format)
                     else:
-                        if len(vals['description']) > 252:
-                            valid_copy['input_message'] = vals['description'][:249] + '...'
+                        self.sheet.write(self.title_row, ii, vals['disp_name'], self.optional_field_format)
 
-                    valid_copy['input_message'] = add_line_breaks(valid_copy['input_message'], 35)
-                    valid_copy['input_message'].replace('\n', '\n\r')
-
-                    if len(vals['disp_name']) > 32:
-                        valid_copy['input_title'] = vals['disp_name'][:32]
+                    # Write row below with parameter name
+                    if field in ['recordedBy', 'pi_details'] and split_personnel_columns == True:
+                        self.sheet.write(parameter_row, ii, field+ '_' + str(3-duplication))
                     else:
-                        valid_copy['input_title'] = vals['disp_name']
+                        self.sheet.write(parameter_row, ii, field)
 
-                    if 'long_list' in vals:
-                        ref = self.template.variables_sheet.add_row(
-                            vals['id'], valid_copy['source']
-                            )
-                        valid_copy.pop('source', None)
-                        valid_copy['value'] = ref
+                    # Write validations and cell restrictions
+                    if 'valid' in vals:
 
-                    self.sheet.data_validation(first_row=start_row,
-                                               first_col=ii,
-                                               last_row=end_row,
-                                               last_col=ii,
-                                               options=valid_copy)
+                        # Need to make sure that 'input_message' is not more than 255
+                        valid_copy = vals['valid'].copy()
 
-                if 'cell_format' in vals:
-                    if 'font_name' not in vals['cell_format']:
-                        vals['cell_format']['font_name'] = DEFAULT_FONT
-                    if 'font_size' not in vals['cell_format']:
-                        vals['cell_format']['font_size'] = DEFAULT_SIZE
-                    cell_format = self.template.workbook.add_format(vals['cell_format'])
-                    self.sheet.set_column(
-                        ii, ii, width=20, cell_format=cell_format)
+                        if 'input_message' in valid_copy:
+                            if len(valid_copy['input_message']) > 252:
+                                valid_copy['input_message'] = valid_copy['input_message'][:249] + '...'
+                        else:
+                            if len(vals['description']) > 252:
+                                valid_copy['input_message'] = vals['description'][:249] + '...'
 
-                # Add optional data to sheet
-                if 'data' in vals.keys():
-                    self.sheet.write_column(start_row,ii,vals['data'])
+                        valid_copy['input_message'] = add_line_breaks(valid_copy['input_message'], 35)
+                        valid_copy['input_message'].replace('\n', '\n\r')
 
-                ii = ii + 1
+                        if len(vals['disp_name']) > 32:
+                            valid_copy['input_title'] = vals['disp_name'][:32]
+                        else:
+                            valid_copy['input_title'] = vals['disp_name']
+
+                        if 'long_list' in vals:
+                            if field in ['recordedBy', 'pi_details'] and split_personnel_columns == True:
+                                ref = self.template.variables_sheet.add_row(
+                                    vals['id']+str(duplication), valid_copy['source']
+                                    )
+                            else:
+                                ref = self.template.variables_sheet.add_row(
+                                    vals['id'], valid_copy['source']
+                                    )
+                            valid_copy.pop('source', None)
+                            valid_copy['value'] = ref
+
+                        self.sheet.data_validation(first_row=start_row,
+                                                   first_col=ii,
+                                                   last_row=end_row,
+                                                   last_col=ii,
+                                                   options=valid_copy)
+
+                    if 'cell_format' in vals:
+                        if 'font_name' not in vals['cell_format']:
+                            vals['cell_format']['font_name'] = DEFAULT_FONT
+                        if 'font_size' not in vals['cell_format']:
+                            vals['cell_format']['font_size'] = DEFAULT_SIZE
+                        cell_format = self.template.workbook.add_format(vals['cell_format'])
+                        self.sheet.set_column(
+                            ii, ii, width=20, cell_format=cell_format)
+
+                    # Add optional data to sheet
+                    if 'data' in vals.keys():
+                        self.sheet.write_column(start_row,ii,vals['data'])
+
+                    ii = ii + 1
+                    duplication = duplication - 1
 
         # Set height of row
         self.sheet.set_row(0, height=24)
@@ -635,7 +652,8 @@ class Variables_Sheet(object):
         self.current_column = self.current_column + 1
         return ref
 
-def create_template(filepath, template_fields_dict, fields_filepath, config, subconfig=None, conversions=True, metadata=True, metadata_df=None):
+def create_template(filepath, template_fields_dict, fields_filepath, config, subconfig=None, conversions=True, metadata=True, metadata_df=None,
+split_personnel_columns=False):
     """
     Method for calling from other python programs
     Parameters
@@ -658,6 +676,11 @@ def create_template(filepath, template_fields_dict, fields_filepath, config, sub
     metadata_df: pandas.core.frame.DataFrame
         Optional parameter. Option to add metadata from a dataframe to the 'metadata' sheet.
         Default: False
+    split_personnel_columns: boolean
+        Option to split personnel columns into multiple columns.
+        Columns included: recordedBy, pi_details
+        This is useful if you want to record multiple people in different columns
+        Default: False
     """
 
     args = Namespace()
@@ -670,7 +693,7 @@ def create_template(filepath, template_fields_dict, fields_filepath, config, sub
     if metadata == True:
         template.add_metadata()
     for sheetname, content in template_fields_dict.items():
-        template.add_data_sheet(sheetname, content)
+        template.add_data_sheet(sheetname, content, split_personnel_columns)
     if conversions == True:
         template.add_conversions()
     template.add_readme()
