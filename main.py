@@ -10,7 +10,7 @@ from website.lib.create_template import create_template
 from website.lib.pull_cf_standard_names import cf_standard_names_update
 from website.lib.pull_acdd_conventions import acdd_conventions_update
 from website.lib.dropdown_lists_from_static_config_files import populate_dropdown_lists
-from website.lib.pull_darwin_core_terms import dwc_terms_update, dwc_extensions_update
+from website.lib.pull_darwin_core_terms import dwc_terms_update, dwc_extensions_update, get_dwc_extension_description
 import os
 
 app = create_app()
@@ -48,11 +48,17 @@ def home():
         dwc_terms
     ) = get_config_fields(fields_filepath=FIELDS_FILEPATH, config=config, subconfig=subconfig)
 
+    sheets_descriptions = {}
     for sheet in output_config_dict.keys():
         for key in output_config_dict[sheet].keys():
             if key not in ['Required CSV', 'Source']:
                 fields_dict = output_config_dict[sheet][key]
                 output_config_dict[sheet][key] = populate_dropdown_lists(fields_dict, config)
+
+        if config == 'Darwin Core':
+            sheets_descriptions[sheet] = get_dwc_extension_description(FIELDS_FILEPATH, sheet)
+        else:
+            sheets_descriptions[sheet] = None
 
     extra_fields_dict = populate_dropdown_lists(extra_fields_dict, config)
     dwc_terms = populate_dropdown_lists(dwc_terms, config)
@@ -60,6 +66,7 @@ def home():
 
     # Creating a dictionary of all the fields.
     all_fields_dict = extra_fields_dict.copy()
+
     compulsary_sheets = []
 
     for sheet in output_config_dict.keys():
@@ -120,7 +127,8 @@ def home():
             list_of_subconfigs=list_of_subconfigs,
             config=config,
             subconfig=subconfig,
-            compulsary_sheets=compulsary_sheets
+            compulsary_sheets=compulsary_sheets,
+            sheets_descriptions = sheets_descriptions
         )
 
     if request.form["submitbutton"] not in ["selectConfig", "selectSubConfig"]:
@@ -179,13 +187,19 @@ def home():
         if request.form["submitbutton"] == "generateTemplate":
             filepath = "/tmp/LFNL_template.xlsx"
 
+            if config == 'Darwin Core':
+                metadata = False
+            else:
+                metadata = True
+
             create_template(
                 filepath,
                 template_fields_dict,
                 FIELDS_FILEPATH,
                 config,
                 subconfig,
-                conversions=True
+                conversions=True,
+                metadata = metadata
             )
             return send_file(filepath, as_attachment=True)
 
@@ -204,7 +218,8 @@ def home():
                 list_of_subconfigs=list_of_subconfigs,
                 config=config,
                 subconfig=subconfig,
-                compulsary_sheets=compulsary_sheets
+                compulsary_sheets=compulsary_sheets,
+                sheets_descriptions = sheets_descriptions
             )
     else:
         return print_html_template(
@@ -221,7 +236,8 @@ def home():
             list_of_subconfigs=list_of_subconfigs,
             config=config,
             subconfig=subconfig,
-            compulsary_sheets=compulsary_sheets
+            compulsary_sheets=compulsary_sheets,
+            sheets_descriptions = sheets_descriptions
         )
 
 @app.route("/update", methods=["GET", "POST"])

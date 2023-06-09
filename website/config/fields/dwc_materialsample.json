@@ -1,499 +1,502 @@
-[
-    {
-        "group": "MaterialSample",
-        "name": "materialSampleType",
-        "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
-        "qualName": "http://data.ggbn.org/schemas/ggbn/terms/materialSampleType",
-        "relation": "http://terms.tdwg.org/wiki/ggbn:materialSampleType",
-        "description": "\n\nExamples: tissue, culture strain, specimen, DNA, RNA, Protein. ",
-        "examples": "tissue, culture strain, specimen, DNA, RNA, Protein. ",
-        "required": true,
-        "type": null,
-        "thesaurus": null,
-        "disp_name": "materialSampleType",
-        "id": "materialSampleType",
-        "grouping": "Darwin Core term",
-        "valid": {
-            "validate": "any",
-            "input_title": "materialSampleType",
-            "input_message": "\n\nExamples: tissue, culture strain, specimen, DNA, RNA, Protein. "
+{
+    "terms": [
+        {
+            "group": "MaterialSample",
+            "name": "materialSampleType",
+            "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
+            "qualName": "http://data.ggbn.org/schemas/ggbn/terms/materialSampleType",
+            "relation": "http://terms.tdwg.org/wiki/ggbn:materialSampleType",
+            "description": "Classification of kind of physical sample in addition to BasisOfRecord/RecordBasis and Preparation Type. Please use preparationType for further specification such as \"leg\",\"blood\",\"gDNA\",\"axenic culture\". Equal to KindOfUnit in ABCD!\n\nExamples: tissue, culture strain, specimen, DNA, RNA, Protein. ",
+            "examples": "tissue, culture strain, specimen, DNA, RNA, Protein. ",
+            "required": true,
+            "type": null,
+            "thesaurus": null,
+            "disp_name": "materialSampleType",
+            "id": "materialSampleType",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "any",
+                "input_title": "materialSampleType",
+                "input_message": "Classification of kind of physical sample in addition to BasisOfRecord/RecordBasis and Preparation Type. Please use preparationType for further specification such as \"leg\",\"blood\",\"gDNA\",\"axenic culture\". Equal to KindOfUnit in ABCD!\n\nExamples: tissue, culture strain, specimen, DNA, RNA, Protein. "
+            },
+            "format": "text"
         },
-        "format": "text"
-    },
-    {
-        "group": "MaterialSample",
-        "name": "concentration",
-        "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
-        "qualName": "http://data.ggbn.org/schemas/ggbn/terms/concentration",
-        "relation": "http://terms.tdwg.org/wiki/ggbn:concentration",
-        "description": "\n\nExamples: 67.5",
-        "examples": "67.5",
-        "required": false,
-        "type": "decimal",
-        "thesaurus": null,
-        "disp_name": "concentration",
-        "id": "concentration",
-        "grouping": "Darwin Core term",
-        "valid": {
-            "validate": "integer",
-            "criteria": ">=",
-            "value": "-1e100",
-            "input_title": "concentration",
-            "input_message": "\n\nExamples: 67.5",
-            "error_title": "Error",
-            "error_message": "Must be a number"
+        {
+            "group": "MaterialSample",
+            "name": "concentration",
+            "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
+            "qualName": "http://data.ggbn.org/schemas/ggbn/terms/concentration",
+            "relation": "http://terms.tdwg.org/wiki/ggbn:concentration",
+            "description": "Concentration of DNA (weight ng/volume µl)\n\nExamples: 67.5",
+            "examples": "67.5",
+            "required": false,
+            "type": "decimal",
+            "thesaurus": null,
+            "disp_name": "concentration",
+            "id": "concentration",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "integer",
+                "criteria": ">=",
+                "value": "-1e100",
+                "input_title": "concentration",
+                "input_message": "Concentration of DNA (weight ng/volume µl)\n\nExamples: 67.5",
+                "error_title": "Error",
+                "error_message": "Must be a number"
+            },
+            "cell_format": {
+                "num_format": "0.0000"
+            },
+            "format": "double precision"
         },
-        "cell_format": {
-            "num_format": "0.0000"
+        {
+            "group": "MaterialSample",
+            "name": "concentrationUnit",
+            "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
+            "qualName": "http://data.ggbn.org/schemas/ggbn/terms/concentrationUnit",
+            "relation": "http://terms.tdwg.org/wiki/ggbn:concentrationUnit",
+            "description": "Unit used for concentration measurement\n\nExamples: ng/µl",
+            "examples": "ng/µl",
+            "required": false,
+            "type": null,
+            "thesaurus": null,
+            "disp_name": "concentrationUnit",
+            "id": "concentrationUnit",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "any",
+                "input_title": "concentrationUnit",
+                "input_message": "Unit used for concentration measurement\n\nExamples: ng/µl"
+            },
+            "format": "text"
         },
-        "format": "double precision"
-    },
-    {
-        "group": "MaterialSample",
-        "name": "concentrationUnit",
-        "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
-        "qualName": "http://data.ggbn.org/schemas/ggbn/terms/concentrationUnit",
-        "relation": "http://terms.tdwg.org/wiki/ggbn:concentrationUnit",
-        "description": "\n\nExamples: ng/µl",
-        "examples": "ng/µl",
-        "required": false,
-        "type": null,
-        "thesaurus": null,
-        "disp_name": "concentrationUnit",
-        "id": "concentrationUnit",
-        "grouping": "Darwin Core term",
-        "valid": {
-            "validate": "any",
-            "input_title": "concentrationUnit",
-            "input_message": "\n\nExamples: ng/µl"
+        {
+            "group": "MaterialSample",
+            "name": "methodDeterminationConcentrationAndRatios",
+            "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
+            "qualName": "http://data.ggbn.org/schemas/ggbn/terms/methodDeterminationConcentrationAndRatios",
+            "relation": "http://terms.tdwg.org/wiki/ggbn:methodDeterminationConcentrationAndRatios",
+            "description": "Description of method used for concentration measurement\n\nExamples: Nanodrop, Qubit",
+            "examples": "Nanodrop, Qubit",
+            "required": false,
+            "type": null,
+            "thesaurus": null,
+            "disp_name": "methodDeterminationConcentrationAndRatios",
+            "id": "methodDeterminationConcentrationAndRatios",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "any",
+                "input_title": "methodDeterminationConcentrationAndRatios",
+                "input_message": "Description of method used for concentration measurement\n\nExamples: Nanodrop, Qubit"
+            },
+            "format": "text"
         },
-        "format": "text"
-    },
-    {
-        "group": "MaterialSample",
-        "name": "methodDeterminationConcentrationAndRatios",
-        "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
-        "qualName": "http://data.ggbn.org/schemas/ggbn/terms/methodDeterminationConcentrationAndRatios",
-        "relation": "http://terms.tdwg.org/wiki/ggbn:methodDeterminationConcentrationAndRatios",
-        "description": "\n\nExamples: Nanodrop, Qubit",
-        "examples": "Nanodrop, Qubit",
-        "required": false,
-        "type": null,
-        "thesaurus": null,
-        "disp_name": "methodDeterminationConcentrationAndRatios",
-        "id": "methodDeterminationConcentrationAndRatios",
-        "grouping": "Darwin Core term",
-        "valid": {
-            "validate": "any",
-            "input_title": "methodDeterminationConcentrationAndRatios",
-            "input_message": "\n\nExamples: Nanodrop, Qubit"
+        {
+            "group": "MaterialSample",
+            "name": "ratioOfAbsorbance260_230",
+            "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
+            "qualName": "http://data.ggbn.org/schemas/ggbn/terms/ratioOfAbsorbance260_230",
+            "relation": "http://terms.tdwg.org/wiki/ggbn:ratioOfAbsorbance260_230",
+            "description": "Ratio of absorbance at 260 nm and 230 nm assessing DNA purity (mostly secondary measure, indicates mainly EDTA, carbohydrates, phenol), (DNA samples only).\n\nExamples: 1.89",
+            "examples": "1.89",
+            "required": false,
+            "type": "decimal",
+            "thesaurus": null,
+            "disp_name": "ratioOfAbsorbance260_230",
+            "id": "ratioOfAbsorbance260_230",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "integer",
+                "criteria": ">=",
+                "value": "-1e100",
+                "input_title": "ratioOfAbsorbance260_230",
+                "input_message": "Ratio of absorbance at 260 nm and 230 nm assessing DNA purity (mostly secondary measure, indicates mainly EDTA, carbohydrates, phenol), (DNA samples only).\n\nExamples: 1.89",
+                "error_title": "Error",
+                "error_message": "Must be a number"
+            },
+            "cell_format": {
+                "num_format": "0.0000"
+            },
+            "format": "double precision"
         },
-        "format": "text"
-    },
-    {
-        "group": "MaterialSample",
-        "name": "ratioOfAbsorbance260_230",
-        "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
-        "qualName": "http://data.ggbn.org/schemas/ggbn/terms/ratioOfAbsorbance260_230",
-        "relation": "http://terms.tdwg.org/wiki/ggbn:ratioOfAbsorbance260_230",
-        "description": "\n\nExamples: 1.89",
-        "examples": "1.89",
-        "required": false,
-        "type": "decimal",
-        "thesaurus": null,
-        "disp_name": "ratioOfAbsorbance260_230",
-        "id": "ratioOfAbsorbance260_230",
-        "grouping": "Darwin Core term",
-        "valid": {
-            "validate": "integer",
-            "criteria": ">=",
-            "value": "-1e100",
-            "input_title": "ratioOfAbsorbance260_230",
-            "input_message": "\n\nExamples: 1.89",
-            "error_title": "Error",
-            "error_message": "Must be a number"
+        {
+            "group": "MaterialSample",
+            "name": "ratioOfAbsorbance260_280",
+            "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
+            "qualName": "http://data.ggbn.org/schemas/ggbn/terms/ratioOfAbsorbance260_280",
+            "relation": "http://terms.tdwg.org/wiki/ggbn:ratioOfAbsorbance260_280",
+            "description": "Ratio of absorbance at 280 nm and 230 nm assessing DNA purity (mostly secondary measure, indicates mainly EDTA, carbohydrates, phenol), (DNA samples only).\n\nExamples: 1.91",
+            "examples": "1.91",
+            "required": false,
+            "type": "decimal",
+            "thesaurus": null,
+            "disp_name": "ratioOfAbsorbance260_280",
+            "id": "ratioOfAbsorbance260_280",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "integer",
+                "criteria": ">=",
+                "value": "-1e100",
+                "input_title": "ratioOfAbsorbance260_280",
+                "input_message": "Ratio of absorbance at 280 nm and 230 nm assessing DNA purity (mostly secondary measure, indicates mainly EDTA, carbohydrates, phenol), (DNA samples only).\n\nExamples: 1.91",
+                "error_title": "Error",
+                "error_message": "Must be a number"
+            },
+            "cell_format": {
+                "num_format": "0.0000"
+            },
+            "format": "double precision"
         },
-        "cell_format": {
-            "num_format": "0.0000"
+        {
+            "group": "MaterialSample",
+            "name": "volume",
+            "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
+            "qualName": "http://data.ggbn.org/schemas/ggbn/terms/volume",
+            "relation": "http://terms.tdwg.org/wiki/ggbn:volume",
+            "description": "Volume of sample\n\nExamples: 30, 150",
+            "examples": "30, 150",
+            "required": false,
+            "type": "decimal",
+            "thesaurus": null,
+            "disp_name": "volume",
+            "id": "volume",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "integer",
+                "criteria": ">=",
+                "value": "-1e100",
+                "input_title": "volume",
+                "input_message": "Volume of sample\n\nExamples: 30, 150",
+                "error_title": "Error",
+                "error_message": "Must be a number"
+            },
+            "cell_format": {
+                "num_format": "0.0000"
+            },
+            "format": "double precision"
         },
-        "format": "double precision"
-    },
-    {
-        "group": "MaterialSample",
-        "name": "ratioOfAbsorbance260_280",
-        "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
-        "qualName": "http://data.ggbn.org/schemas/ggbn/terms/ratioOfAbsorbance260_280",
-        "relation": "http://terms.tdwg.org/wiki/ggbn:ratioOfAbsorbance260_280",
-        "description": "\n\nExamples: 1.91",
-        "examples": "1.91",
-        "required": false,
-        "type": "decimal",
-        "thesaurus": null,
-        "disp_name": "ratioOfAbsorbance260_280",
-        "id": "ratioOfAbsorbance260_280",
-        "grouping": "Darwin Core term",
-        "valid": {
-            "validate": "integer",
-            "criteria": ">=",
-            "value": "-1e100",
-            "input_title": "ratioOfAbsorbance260_280",
-            "input_message": "\n\nExamples: 1.91",
-            "error_title": "Error",
-            "error_message": "Must be a number"
+        {
+            "group": "MaterialSample",
+            "name": "volumeUnit",
+            "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
+            "qualName": "http://data.ggbn.org/schemas/ggbn/terms/volumeUnit",
+            "relation": "http://terms.tdwg.org/wiki/ggbn:volumeUnit",
+            "description": "Unit used for volume measurement\n\nExamples: µl, ml",
+            "examples": "µl, ml",
+            "required": false,
+            "type": null,
+            "thesaurus": null,
+            "disp_name": "volumeUnit",
+            "id": "volumeUnit",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "any",
+                "input_title": "volumeUnit",
+                "input_message": "Unit used for volume measurement\n\nExamples: µl, ml"
+            },
+            "format": "text"
         },
-        "cell_format": {
-            "num_format": "0.0000"
+        {
+            "group": "MaterialSample",
+            "name": "weight",
+            "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
+            "qualName": "http://data.ggbn.org/schemas/ggbn/terms/weight",
+            "relation": "http://terms.tdwg.org/wiki/ggbn:weight",
+            "description": "Weight of sample\n\nExamples: 10",
+            "examples": "10",
+            "required": false,
+            "type": "decimal",
+            "thesaurus": null,
+            "disp_name": "weight",
+            "id": "weight",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "integer",
+                "criteria": ">=",
+                "value": "-1e100",
+                "input_title": "weight",
+                "input_message": "Weight of sample\n\nExamples: 10",
+                "error_title": "Error",
+                "error_message": "Must be a number"
+            },
+            "cell_format": {
+                "num_format": "0.0000"
+            },
+            "format": "double precision"
         },
-        "format": "double precision"
-    },
-    {
-        "group": "MaterialSample",
-        "name": "volume",
-        "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
-        "qualName": "http://data.ggbn.org/schemas/ggbn/terms/volume",
-        "relation": "http://terms.tdwg.org/wiki/ggbn:volume",
-        "description": "\n\nExamples: 30, 150",
-        "examples": "30, 150",
-        "required": false,
-        "type": "decimal",
-        "thesaurus": null,
-        "disp_name": "volume",
-        "id": "volume",
-        "grouping": "Darwin Core term",
-        "valid": {
-            "validate": "integer",
-            "criteria": ">=",
-            "value": "-1e100",
-            "input_title": "volume",
-            "input_message": "\n\nExamples: 30, 150",
-            "error_title": "Error",
-            "error_message": "Must be a number"
+        {
+            "group": "MaterialSample",
+            "name": "weightUnit",
+            "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
+            "qualName": "http://data.ggbn.org/schemas/ggbn/terms/weightUnit",
+            "relation": "http://terms.tdwg.org/wiki/ggbn:weightUnit",
+            "description": "Unit used for weight measurement\n\nExamples: ng, g",
+            "examples": "ng, g",
+            "required": false,
+            "type": null,
+            "thesaurus": null,
+            "disp_name": "weightUnit",
+            "id": "weightUnit",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "any",
+                "input_title": "weightUnit",
+                "input_message": "Unit used for weight measurement\n\nExamples: ng, g"
+            },
+            "format": "text"
         },
-        "cell_format": {
-            "num_format": "0.0000"
+        {
+            "group": "MaterialSample",
+            "name": "methodDeterminationWeight",
+            "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
+            "qualName": "http://data.ggbn.org/schemas/ggbn/terms/methodDeterminationWeight",
+            "relation": "http://terms.tdwg.org/wiki/ggbn:methodDeterminationWeight",
+            "description": "Description of method used for weight measurement\n\nExamples: Agarose gel, bioanalyzer, tape station",
+            "examples": "Agarose gel, bioanalyzer, tape station",
+            "required": false,
+            "type": null,
+            "thesaurus": null,
+            "disp_name": "methodDeterminationWeight",
+            "id": "methodDeterminationWeight",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "any",
+                "input_title": "methodDeterminationWeight",
+                "input_message": "Description of method used for weight measurement\n\nExamples: Agarose gel, bioanalyzer, tape station"
+            },
+            "format": "text"
         },
-        "format": "double precision"
-    },
-    {
-        "group": "MaterialSample",
-        "name": "volumeUnit",
-        "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
-        "qualName": "http://data.ggbn.org/schemas/ggbn/terms/volumeUnit",
-        "relation": "http://terms.tdwg.org/wiki/ggbn:volumeUnit",
-        "description": "\n\nExamples: µl, ml",
-        "examples": "µl, ml",
-        "required": false,
-        "type": null,
-        "thesaurus": null,
-        "disp_name": "volumeUnit",
-        "id": "volumeUnit",
-        "grouping": "Darwin Core term",
-        "valid": {
-            "validate": "any",
-            "input_title": "volumeUnit",
-            "input_message": "\n\nExamples: µl, ml"
+        {
+            "group": "MaterialSample",
+            "name": "purificationMethod",
+            "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
+            "qualName": "http://data.ggbn.org/schemas/ggbn/terms/purificationMethod",
+            "relation": "http://terms.tdwg.org/wiki/ggbn:purificationMethod",
+            "description": "DNA purification kit (company/product name) or protocol.\n\nExamples: QIAquick Purification Kit Qiagen",
+            "examples": "QIAquick Purification Kit Qiagen",
+            "required": false,
+            "type": null,
+            "thesaurus": null,
+            "disp_name": "purificationMethod",
+            "id": "purificationMethod",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "any",
+                "input_title": "purificationMethod",
+                "input_message": "DNA purification kit (company/product name) or protocol.\n\nExamples: QIAquick Purification Kit Qiagen"
+            },
+            "format": "text"
         },
-        "format": "text"
-    },
-    {
-        "group": "MaterialSample",
-        "name": "weight",
-        "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
-        "qualName": "http://data.ggbn.org/schemas/ggbn/terms/weight",
-        "relation": "http://terms.tdwg.org/wiki/ggbn:weight",
-        "description": "\n\nExamples: 10",
-        "examples": "10",
-        "required": false,
-        "type": "decimal",
-        "thesaurus": null,
-        "disp_name": "weight",
-        "id": "weight",
-        "grouping": "Darwin Core term",
-        "valid": {
-            "validate": "integer",
-            "criteria": ">=",
-            "value": "-1e100",
-            "input_title": "weight",
-            "input_message": "\n\nExamples: 10",
-            "error_title": "Error",
-            "error_message": "Must be a number"
+        {
+            "group": "MaterialSample",
+            "name": "qualityCheckDate",
+            "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
+            "qualName": "http://data.ggbn.org/schemas/ggbn/terms/qualityCheckDate",
+            "relation": "http://terms.tdwg.org/wiki/ggbn:qualityCheckDate",
+            "description": "Date of quality check (e.g. Nanodrop measurement (DNA))\n\nExamples: 2008-11-27",
+            "examples": "2008-11-27",
+            "required": false,
+            "type": null,
+            "thesaurus": null,
+            "disp_name": "qualityCheckDate",
+            "id": "qualityCheckDate",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "any",
+                "input_title": "qualityCheckDate",
+                "input_message": "Date of quality check (e.g. Nanodrop measurement (DNA))\n\nExamples: 2008-11-27"
+            },
+            "format": "text"
         },
-        "cell_format": {
-            "num_format": "0.0000"
+        {
+            "group": "MaterialSample",
+            "name": "quality",
+            "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
+            "qualName": "http://data.ggbn.org/schemas/ggbn/terms/quality",
+            "relation": "http://terms.tdwg.org/wiki/ggbn:quality",
+            "description": "Sample quality estimation based on parameters described at QualityRemarks\n\nExamples: low, medium, high",
+            "examples": "low, medium, high",
+            "required": false,
+            "type": null,
+            "thesaurus": "http://rs.gbif.org/vocabulary/ggbn/quality.xml",
+            "disp_name": "quality",
+            "id": "quality",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "any",
+                "input_title": "quality",
+                "input_message": "Sample quality estimation based on parameters described at QualityRemarks\n\nExamples: low, medium, high"
+            },
+            "format": "text"
         },
-        "format": "double precision"
-    },
-    {
-        "group": "MaterialSample",
-        "name": "weightUnit",
-        "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
-        "qualName": "http://data.ggbn.org/schemas/ggbn/terms/weightUnit",
-        "relation": "http://terms.tdwg.org/wiki/ggbn:weightUnit",
-        "description": "\n\nExamples: ng, g",
-        "examples": "ng, g",
-        "required": false,
-        "type": null,
-        "thesaurus": null,
-        "disp_name": "weightUnit",
-        "id": "weightUnit",
-        "grouping": "Darwin Core term",
-        "valid": {
-            "validate": "any",
-            "input_title": "weightUnit",
-            "input_message": "\n\nExamples: ng, g"
+        {
+            "group": "MaterialSample",
+            "name": "qualityRemarks",
+            "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
+            "qualName": "http://data.ggbn.org/schemas/ggbn/terms/qualityRemarks",
+            "relation": "http://terms.tdwg.org/wiki/ggbn:qualityRemarks",
+            "description": "Description of methods and parameters defining low, medium or high quality of a sample\n\nExamples: nan",
+            "examples": NaN,
+            "required": false,
+            "type": null,
+            "thesaurus": null,
+            "disp_name": "qualityRemarks",
+            "id": "qualityRemarks",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "any",
+                "input_title": "qualityRemarks",
+                "input_message": "Description of methods and parameters defining low, medium or high quality of a sample\n\nExamples: nan"
+            },
+            "format": "text"
         },
-        "format": "text"
-    },
-    {
-        "group": "MaterialSample",
-        "name": "methodDeterminationWeight",
-        "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
-        "qualName": "http://data.ggbn.org/schemas/ggbn/terms/methodDeterminationWeight",
-        "relation": "http://terms.tdwg.org/wiki/ggbn:methodDeterminationWeight",
-        "description": "\n\nExamples: Agarose gel, bioanalyzer, tape station",
-        "examples": "Agarose gel, bioanalyzer, tape station",
-        "required": false,
-        "type": null,
-        "thesaurus": null,
-        "disp_name": "methodDeterminationWeight",
-        "id": "methodDeterminationWeight",
-        "grouping": "Darwin Core term",
-        "valid": {
-            "validate": "any",
-            "input_title": "methodDeterminationWeight",
-            "input_message": "\n\nExamples: Agarose gel, bioanalyzer, tape station"
+        {
+            "group": "MaterialSample",
+            "name": "samp_size",
+            "namespace": "http://gensc.org/ns/mixs/",
+            "qualName": "http://gensc.org/ns/mixs/samp_size",
+            "relation": "http://gensc.org/ns/mixs/#sample_size",
+            "description": "Amount or size of sample (volume, mass or area) that was collected\n\nExamples: nan",
+            "examples": NaN,
+            "required": false,
+            "type": null,
+            "thesaurus": null,
+            "disp_name": "samp_size",
+            "id": "samp_size",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "any",
+                "input_title": "samp_size",
+                "input_message": "Amount or size of sample (volume, mass or area) that was collected\n\nExamples: nan"
+            },
+            "format": "text"
         },
-        "format": "text"
-    },
-    {
-        "group": "MaterialSample",
-        "name": "purificationMethod",
-        "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
-        "qualName": "http://data.ggbn.org/schemas/ggbn/terms/purificationMethod",
-        "relation": "http://terms.tdwg.org/wiki/ggbn:purificationMethod",
-        "description": "\n\nExamples: QIAquick Purification Kit Qiagen",
-        "examples": "QIAquick Purification Kit Qiagen",
-        "required": false,
-        "type": null,
-        "thesaurus": null,
-        "disp_name": "purificationMethod",
-        "id": "purificationMethod",
-        "grouping": "Darwin Core term",
-        "valid": {
-            "validate": "any",
-            "input_title": "purificationMethod",
-            "input_message": "\n\nExamples: QIAquick Purification Kit Qiagen"
+        {
+            "group": "MaterialSample",
+            "name": "sieving",
+            "namespace": "http://gensc.org/ns/mixs/",
+            "qualName": "http://gensc.org/ns/mixs/sieving",
+            "relation": "http://gensc.org/ns/mixs/#sieving",
+            "description": "collection design of pooled samples and/or sieve size and amount of sample sieved\n\nExamples: nan",
+            "examples": NaN,
+            "required": false,
+            "type": null,
+            "thesaurus": null,
+            "disp_name": "sieving",
+            "id": "sieving",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "any",
+                "input_title": "sieving",
+                "input_message": "collection design of pooled samples and/or sieve size and amount of sample sieved\n\nExamples: nan"
+            },
+            "format": "text"
         },
-        "format": "text"
-    },
-    {
-        "group": "MaterialSample",
-        "name": "qualityCheckDate",
-        "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
-        "qualName": "http://data.ggbn.org/schemas/ggbn/terms/qualityCheckDate",
-        "relation": "http://terms.tdwg.org/wiki/ggbn:qualityCheckDate",
-        "description": "\n\nExamples: 2008-11-27",
-        "examples": "2008-11-27",
-        "required": false,
-        "type": null,
-        "thesaurus": null,
-        "disp_name": "qualityCheckDate",
-        "id": "qualityCheckDate",
-        "grouping": "Darwin Core term",
-        "valid": {
-            "validate": "any",
-            "input_title": "qualityCheckDate",
-            "input_message": "\n\nExamples: 2008-11-27"
+        {
+            "group": "MaterialSample",
+            "name": "DNADNAHybridization",
+            "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
+            "qualName": "http://data.ggbn.org/schemas/ggbn/terms/DNADNAHybridization",
+            "relation": "http://terms.tdwg.org/wiki/ggbn:DNADNAHybridization",
+            "description": "Result of DNA-DNA hybridization, e.g. strain: measurement value percentage\n\nExamples: nan",
+            "examples": NaN,
+            "required": false,
+            "type": null,
+            "thesaurus": null,
+            "disp_name": "DNADNAHybridization",
+            "id": "DNADNAHybridization",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "any",
+                "input_title": "DNADNAHybridization",
+                "input_message": "Result of DNA-DNA hybridization, e.g. strain: measurement value percentage\n\nExamples: nan"
+            },
+            "format": "text"
         },
-        "format": "text"
-    },
-    {
-        "group": "MaterialSample",
-        "name": "quality",
-        "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
-        "qualName": "http://data.ggbn.org/schemas/ggbn/terms/quality",
-        "relation": "http://terms.tdwg.org/wiki/ggbn:quality",
-        "description": "\n\nExamples: low, medium, high",
-        "examples": "low, medium, high",
-        "required": false,
-        "type": null,
-        "thesaurus": "http://rs.gbif.org/vocabulary/ggbn/quality.xml",
-        "disp_name": "quality",
-        "id": "quality",
-        "grouping": "Darwin Core term",
-        "valid": {
-            "validate": "any",
-            "input_title": "quality",
-            "input_message": "\n\nExamples: low, medium, high"
+        {
+            "group": "MaterialSample",
+            "name": "DNAMeltingPoint",
+            "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
+            "qualName": "http://data.ggbn.org/schemas/ggbn/terms/DNAMeltingPoint",
+            "relation": "http://terms.tdwg.org/wiki/ggbn:DNAMeltingPoint",
+            "description": "result of melting temperature (Tm) analysis, e.g. measurement value unit\n\nExamples: nan",
+            "examples": NaN,
+            "required": false,
+            "type": null,
+            "thesaurus": null,
+            "disp_name": "DNAMeltingPoint",
+            "id": "DNAMeltingPoint",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "any",
+                "input_title": "DNAMeltingPoint",
+                "input_message": "result of melting temperature (Tm) analysis, e.g. measurement value unit\n\nExamples: nan"
+            },
+            "format": "text"
         },
-        "format": "text"
-    },
-    {
-        "group": "MaterialSample",
-        "name": "qualityRemarks",
-        "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
-        "qualName": "http://data.ggbn.org/schemas/ggbn/terms/qualityRemarks",
-        "relation": "http://terms.tdwg.org/wiki/ggbn:qualityRemarks",
-        "description": "\n\nExamples: nan",
-        "examples": NaN,
-        "required": false,
-        "type": null,
-        "thesaurus": null,
-        "disp_name": "qualityRemarks",
-        "id": "qualityRemarks",
-        "grouping": "Darwin Core term",
-        "valid": {
-            "validate": "any",
-            "input_title": "qualityRemarks",
-            "input_message": "\n\nExamples: nan"
+        {
+            "group": "MaterialSample",
+            "name": "estimated_size",
+            "namespace": "http://gensc.org/ns/mixs/",
+            "qualName": "http://gensc.org/ns/mixs/estimated_size",
+            "relation": "http://gensc.org/ns/mixs/#estimated_size",
+            "description": "The estimated size of the genome prior to sequencing. Of particular importance in the sequencing of (eukaryotic) genome which could remain in draft form for a long or unspecified period\n\nExamples: 300000 bp",
+            "examples": "300000 bp",
+            "required": false,
+            "type": null,
+            "thesaurus": null,
+            "disp_name": "estimated_size",
+            "id": "estimated_size",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "any",
+                "input_title": "estimated_size",
+                "input_message": "The estimated size of the genome prior to sequencing. Of particular importance in the sequencing of (eukaryotic) genome which could remain in draft form for a long or unspecified period\n\nExamples: 300000 bp"
+            },
+            "format": "text"
         },
-        "format": "text"
-    },
-    {
-        "group": "MaterialSample",
-        "name": "samp_size",
-        "namespace": "http://gensc.org/ns/mixs/",
-        "qualName": "http://gensc.org/ns/mixs/samp_size",
-        "relation": "http://gensc.org/ns/mixs/#sample_size",
-        "description": "\n\nExamples: nan",
-        "examples": NaN,
-        "required": false,
-        "type": null,
-        "thesaurus": null,
-        "disp_name": "samp_size",
-        "id": "samp_size",
-        "grouping": "Darwin Core term",
-        "valid": {
-            "validate": "any",
-            "input_title": "samp_size",
-            "input_message": "\n\nExamples: nan"
+        {
+            "group": "MaterialSample",
+            "name": "pool_dna_extracts",
+            "namespace": "http://gensc.org/ns/mixs/",
+            "qualName": "http://gensc.org/ns/mixs/pool_dna_extracts",
+            "relation": "http://gensc.org/ns/mixs/#pool_dna_extracts",
+            "description": "Pooling of DNA extracts (if done). Were multiple DNA extractions mixed? How many?\n\nExamples: nan",
+            "examples": NaN,
+            "required": false,
+            "type": null,
+            "thesaurus": null,
+            "disp_name": "pool_dna_extracts",
+            "id": "pool_dna_extracts",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "any",
+                "input_title": "pool_dna_extracts",
+                "input_message": "Pooling of DNA extracts (if done). Were multiple DNA extractions mixed? How many?\n\nExamples: nan"
+            },
+            "format": "text"
         },
-        "format": "text"
-    },
-    {
-        "group": "MaterialSample",
-        "name": "sieving",
-        "namespace": "http://gensc.org/ns/mixs/",
-        "qualName": "http://gensc.org/ns/mixs/sieving",
-        "relation": "http://gensc.org/ns/mixs/#sieving",
-        "description": "\n\nExamples: nan",
-        "examples": NaN,
-        "required": false,
-        "type": null,
-        "thesaurus": null,
-        "disp_name": "sieving",
-        "id": "sieving",
-        "grouping": "Darwin Core term",
-        "valid": {
-            "validate": "any",
-            "input_title": "sieving",
-            "input_message": "\n\nExamples: nan"
-        },
-        "format": "text"
-    },
-    {
-        "group": "MaterialSample",
-        "name": "DNADNAHybridization",
-        "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
-        "qualName": "http://data.ggbn.org/schemas/ggbn/terms/DNADNAHybridization",
-        "relation": "http://terms.tdwg.org/wiki/ggbn:DNADNAHybridization",
-        "description": "\n\nExamples: nan",
-        "examples": NaN,
-        "required": false,
-        "type": null,
-        "thesaurus": null,
-        "disp_name": "DNADNAHybridization",
-        "id": "DNADNAHybridization",
-        "grouping": "Darwin Core term",
-        "valid": {
-            "validate": "any",
-            "input_title": "DNADNAHybridization",
-            "input_message": "\n\nExamples: nan"
-        },
-        "format": "text"
-    },
-    {
-        "group": "MaterialSample",
-        "name": "DNAMeltingPoint",
-        "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
-        "qualName": "http://data.ggbn.org/schemas/ggbn/terms/DNAMeltingPoint",
-        "relation": "http://terms.tdwg.org/wiki/ggbn:DNAMeltingPoint",
-        "description": "\n\nExamples: nan",
-        "examples": NaN,
-        "required": false,
-        "type": null,
-        "thesaurus": null,
-        "disp_name": "DNAMeltingPoint",
-        "id": "DNAMeltingPoint",
-        "grouping": "Darwin Core term",
-        "valid": {
-            "validate": "any",
-            "input_title": "DNAMeltingPoint",
-            "input_message": "\n\nExamples: nan"
-        },
-        "format": "text"
-    },
-    {
-        "group": "MaterialSample",
-        "name": "estimated_size",
-        "namespace": "http://gensc.org/ns/mixs/",
-        "qualName": "http://gensc.org/ns/mixs/estimated_size",
-        "relation": "http://gensc.org/ns/mixs/#estimated_size",
-        "description": "\n\nExamples: 300000 bp",
-        "examples": "300000 bp",
-        "required": false,
-        "type": null,
-        "thesaurus": null,
-        "disp_name": "estimated_size",
-        "id": "estimated_size",
-        "grouping": "Darwin Core term",
-        "valid": {
-            "validate": "any",
-            "input_title": "estimated_size",
-            "input_message": "\n\nExamples: 300000 bp"
-        },
-        "format": "text"
-    },
-    {
-        "group": "MaterialSample",
-        "name": "pool_dna_extracts",
-        "namespace": "http://gensc.org/ns/mixs/",
-        "qualName": "http://gensc.org/ns/mixs/pool_dna_extracts",
-        "relation": "http://gensc.org/ns/mixs/#pool_dna_extracts",
-        "description": "\n\nExamples: nan",
-        "examples": NaN,
-        "required": false,
-        "type": null,
-        "thesaurus": null,
-        "disp_name": "pool_dna_extracts",
-        "id": "pool_dna_extracts",
-        "grouping": "Darwin Core term",
-        "valid": {
-            "validate": "any",
-            "input_title": "pool_dna_extracts",
-            "input_message": "\n\nExamples: nan"
-        },
-        "format": "text"
-    },
-    {
-        "group": "MaterialSample",
-        "name": "sampleDesignation",
-        "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
-        "qualName": "http://data.ggbn.org/schemas/ggbn/terms/sampleDesignation",
-        "relation": "http://terms.tdwg.org/wiki/ggbn:DNADNAHybridization",
-        "description": "\n\nExamples: CAM123;CrCro456",
-        "examples": "CAM123;CrCro456",
-        "required": false,
-        "type": null,
-        "thesaurus": null,
-        "disp_name": "sampleDesignation",
-        "id": "sampleDesignation",
-        "grouping": "Darwin Core term",
-        "valid": {
-            "validate": "any",
-            "input_title": "sampleDesignation",
-            "input_message": "\n\nExamples: CAM123;CrCro456"
-        },
-        "format": "text"
-    }
-]
+        {
+            "group": "MaterialSample",
+            "name": "sampleDesignation",
+            "namespace": "http://data.ggbn.org/schemas/ggbn/terms/",
+            "qualName": "http://data.ggbn.org/schemas/ggbn/terms/sampleDesignation",
+            "relation": "http://terms.tdwg.org/wiki/ggbn:DNADNAHybridization",
+            "description": "Additional lab or project numbers used for the DNA or tissue sample\n\nExamples: CAM123;CrCro456",
+            "examples": "CAM123;CrCro456",
+            "required": false,
+            "type": null,
+            "thesaurus": null,
+            "disp_name": "sampleDesignation",
+            "id": "sampleDesignation",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "any",
+                "input_title": "sampleDesignation",
+                "input_message": "Additional lab or project numbers used for the DNA or tissue sample\n\nExamples: CAM123;CrCro456"
+            },
+            "format": "text"
+        }
+    ],
+    "description": "Support for material sample properties (e.g. tissues, DNA, RNA) as an extension to a Material Sample core. Intended to be a one to one relation to the Material Sample core."
+}

@@ -5,7 +5,7 @@ Spreadsheet template to record metadata and data.
 Please do not publish data in this format. This template should make it easier for you to create a CF-NetCDF file.
 This will help make your data FAIR.
 
-The column headers in the 'data' sheet are mostly CF standard names.
+The column headers in the 'data' sheet should be mostly CF standard names, except for other fields you might have added and the 'bounds' fields.
 Use these in the 'standard_name' variable attribute for each variable.
 A list of CF standard names is available here:
 https://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html
@@ -19,6 +19,7 @@ https://cfconventions.org/Data/cf-conventions/cf-conventions-1.10/cf-conventions
 
 Use the attributes in the 'metadata' sheet as global attributes in your CF-NetCDF file.
 They are terms from the ACDD conventions in most cases.
+These are the recommendations of the Arctic Data Centre and SIOS, based on ACDD.
 https://adc.met.no/node/4
 https://wiki.esipfed.org/Attribute_Convention_for_Data_Discovery_1-3
 
@@ -44,3 +45,7 @@ Check you NetCDF file against the CF conventions and the ACDD conventions
 https://sios-svalbard.org/dataset_validation/form
 or
 https://compliance.ioos.us/index.html
+
+Consider citing this template generator as:
+
+Luke Marsden, & Olaf Schneider. (2023). SIOS-Svalbard/Learnings_from_AeN_template_generator: Learnings from Nansen Legacy template generator (v1.00). Zenodo. https://doi.org/10.5281/zenodo.7993323

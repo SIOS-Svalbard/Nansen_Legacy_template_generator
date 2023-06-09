@@ -28,8 +28,8 @@ class Other_fields_json():
 
 
     def load_json(self):
-        f = open(self.filename)
-        self.dic = json.load(f, encoding='utf-8')
+        f = open(self.filename, encoding='utf-8')
+        self.dic = json.load(f)
 
 def other_fields_to_dic(path):
     other_fields_json = Other_fields_json(path)
