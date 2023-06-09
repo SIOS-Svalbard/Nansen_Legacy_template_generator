@@ -34,6 +34,22 @@
         "id": "parentID"
     },
     {
+        "disp_name": "Sample Replicate Number",
+        "description": "The sample replicate number.\nPositive integer",
+        "format": "int",
+        "grouping": "Numbering",
+        "valid": {
+            "validate": "integer",
+            "criteria": ">",
+            "value": 0,
+            "input_title": "Sample Replicate Number",
+            "input_message": "The sample replicate number.\nPositive integer",
+            "error_title": "Error",
+            "error_message": "Integer > 0"
+        },
+        "id": "sampleReplicateNumber"
+    },
+    {
         "disp_name": "Bottle Number",
         "description": "The bottle number\nCould be for instance the niskin bottle number.\nPositive integer",
         "inherit": true,
