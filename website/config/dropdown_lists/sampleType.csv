@@ -1,37 +1,37 @@
-id,sampleType,comment,group,vocabLabel,vocabURI
-bf989c9a-3e34-11ed-8634-0ddd4d8cfeb3,Algae,,Organism,,
-ff6b63de-bfe5-11ec-9d64-0242ac120002,Biogenic silica,,Not grouped,,
-ff6b66cc-bfe5-11ec-9d64-0242ac120002,Brine,Brine type Ice-cores,"Water, Ice and Snow",,
-ff6b6aa0-bfe5-11ec-9d64-0242ac120002,Data: no physical sample,To be used when no physical sample is taken,Data,,
-ff6b6c62-bfe5-11ec-9d64-0242ac120002,Fish,,Organism,,
-ff6b6dfc-bfe5-11ec-9d64-0242ac120002,Fecal pellets,,Associated with Organism,,
-ff6b74fa-bfe5-11ec-9d64-0242ac120002,Ice algae,,Organism,,
-ff6b76b2-bfe5-11ec-9d64-0242ac120002,Ice core,,"Water, Ice and Snow",,
-ff6b967e-bfe5-11ec-9d64-0242ac120002,Image,,Media,,
-7c32dd16-bfe1-11ec-9d64-0242ac120002,L-ADCP,,Gear,,
-ff6b7874-bfe5-11ec-9d64-0242ac120002,Macrofauna,,Organism,,
-ff6b7a36-bfe5-11ec-9d64-0242ac120002,Macrozooplankton,,Organism,,
-ff6b7fae-bfe5-11ec-9d64-0242ac120002,Megafauna,,Organism,,
-ff6b82ce-bfe5-11ec-9d64-0242ac120002,Meiofauna,,Organism,,
-ff6b847c-bfe5-11ec-9d64-0242ac120002,Melt pond,Used to log an entire meltpond that was sampled,"Water, Ice and Snow",,
-ba577088-506a-11ed-8714-b1a8bc7db69f,Melt pond water,Used to join multiple samples from one melt pond,"Water, Ice and Snow",,
-ff6b862a-bfe5-11ec-9d64-0242ac120002,Meroplankton,,Organism,,
-ff6b8800-bfe5-11ec-9d64-0242ac120002,Mesozooplankton,,Organism,,
-ff6b8968-bfe5-11ec-9d64-0242ac120002,Microzooplankton,,Organism,,
-ff6b8d64-bfe5-11ec-9d64-0242ac120002,Multicore archive half,Half a multicore,,,
-ff6b8ecc-bfe5-11ec-9d64-0242ac120002,Multicore work half,Half a multicore,,,
-ff6b905c-bfe5-11ec-9d64-0242ac120002,Multicore,One core from a multicore (i.e. a sample),,,
-7c32ed6a-bfe1-11ec-9d64-0242ac120002,Niskin,,Gear,Niskin bottle,http://vocab.nerc.ac.uk/collection/L22/current/TOOL0412/
-ff6b94bc-bfe5-11ec-9d64-0242ac120002,Piston core section,Piston core section,,,
-ff6b985e-bfe5-11ec-9d64-0242ac120002,Protist,,Organism,,
-ff6b9a52-bfe5-11ec-9d64-0242ac120002,Sea water,,"Water, Snow and Ice",,
-ff6b9e76-bfe5-11ec-9d64-0242ac120002,Sediment,,Sediment,,
-ff6ba1a0-bfe5-11ec-9d64-0242ac120002,Sediment core,,Sediment,,
-ff6ba33a-bfe5-11ec-9d64-0242ac120002,Sediment slice,Part of a sediment core used for further splitting,Sediment,,
-ff6ba4b6-bfe5-11ec-9d64-0242ac120002,Single cell isolate,,Not grouped,,
-ff6ba632-bfe5-11ec-9d64-0242ac120002,Small meiofauna,,Organism,,
-ff6ba8da-bfe5-11ec-9d64-0242ac120002,Small mesozooplankton,,Organism,,
-ff6bab6e-bfe5-11ec-9d64-0242ac120002,Snow,,"Water, Snow and Ice",,
-ff6bad08-bfe5-11ec-9d64-0242ac120002,Tissue,Specify type in tissueType,Associated with Organism,,
-ff6bae84-bfe5-11ec-9d64-0242ac120002,Under ice water,,"Water, Snow and Ice",,
-ff6bb000-bfe5-11ec-9d64-0242ac120002,Video,,Media,,
+id,sampleType,comment,group,vocabLabel,vocabURI,LFNL_subconfig
+bf989c9a-3e34-11ed-8634-0ddd4d8cfeb3,Algae,,Organism,,,Organisms
+ff6b63de-bfe5-11ec-9d64-0242ac120002,Biogenic silica,,Not grouped,,,Other
+ff6b66cc-bfe5-11ec-9d64-0242ac120002,Brine,Brine type Ice-cores,"Water, Ice and Snow",,,Water samples
+ff6b6aa0-bfe5-11ec-9d64-0242ac120002,Data: no physical sample,To be used when no physical sample is taken,Data,,,Other
+ff6b6c62-bfe5-11ec-9d64-0242ac120002,Fish,,Organism,,,Organisms
+ff6b6dfc-bfe5-11ec-9d64-0242ac120002,Fecal pellets,,Associated with Organism,,,Other
+ff6b74fa-bfe5-11ec-9d64-0242ac120002,Ice algae,,Organism,,,Organisms
+ff6b76b2-bfe5-11ec-9d64-0242ac120002,Ice core,,"Water, Ice and Snow",,,Ice cores
+ff6b967e-bfe5-11ec-9d64-0242ac120002,Image,,Media,,,Other
+7c32dd16-bfe1-11ec-9d64-0242ac120002,L-ADCP,,Gear,,,Other
+ff6b7874-bfe5-11ec-9d64-0242ac120002,Macrofauna,,Organism,,,Organisms
+ff6b7a36-bfe5-11ec-9d64-0242ac120002,Macrozooplankton,,Organism,,,Organisms
+ff6b7fae-bfe5-11ec-9d64-0242ac120002,Megafauna,,Organism,,,Organisms
+ff6b82ce-bfe5-11ec-9d64-0242ac120002,Meiofauna,,Organism,,,Organisms
+ff6b847c-bfe5-11ec-9d64-0242ac120002,Melt pond,Used to log an entire meltpond that was sampled,"Water, Ice and Snow",,,Melt ponds
+ba577088-506a-11ed-8714-b1a8bc7db69f,Melt pond water,Used to join multiple samples from one melt pond,"Water, Ice and Snow",,,Water samples
+ff6b862a-bfe5-11ec-9d64-0242ac120002,Meroplankton,,Organism,,,Organisms
+ff6b8800-bfe5-11ec-9d64-0242ac120002,Mesozooplankton,,Organism,,,Organisms
+ff6b8968-bfe5-11ec-9d64-0242ac120002,Microzooplankton,,Organism,,,Organisms
+ff6b8d64-bfe5-11ec-9d64-0242ac120002,Multicore archive half,Half a multicore,,,,Other
+ff6b8ecc-bfe5-11ec-9d64-0242ac120002,Multicore work half,Half a multicore,,,,Other
+ff6b905c-bfe5-11ec-9d64-0242ac120002,Multicore,One core from a multicore (i.e. a sample),,,,Other
+7c32ed6a-bfe1-11ec-9d64-0242ac120002,Niskin,,Gear,Niskin bottle,http://vocab.nerc.ac.uk/collection/L22/current/TOOL0412/,Niskin bottles
+ff6b94bc-bfe5-11ec-9d64-0242ac120002,Piston core section,Piston core section,,,,Other
+ff6b985e-bfe5-11ec-9d64-0242ac120002,Protist,,Organism,,,Organisms
+ff6b9a52-bfe5-11ec-9d64-0242ac120002,Sea water,,"Water, Snow and Ice",,,Water samples
+ff6b9e76-bfe5-11ec-9d64-0242ac120002,Sediment,,Sediment,,,Other
+ff6ba1a0-bfe5-11ec-9d64-0242ac120002,Sediment core,,Sediment,,,Other
+ff6ba33a-bfe5-11ec-9d64-0242ac120002,Sediment slice,Part of a sediment core used for further splitting,Sediment,,,Other
+ff6ba4b6-bfe5-11ec-9d64-0242ac120002,Single cell isolate,,Not grouped,,,Other
+ff6ba632-bfe5-11ec-9d64-0242ac120002,Small meiofauna,,Organism,,,Organisms
+ff6ba8da-bfe5-11ec-9d64-0242ac120002,Small mesozooplankton,,Organism,,,Organisms
+ff6bab6e-bfe5-11ec-9d64-0242ac120002,Snow,,"Water, Snow and Ice",,,Other
+ff6bad08-bfe5-11ec-9d64-0242ac120002,Tissue,Specify type in tissueType,Associated with Organism,,,Other
+ff6bae84-bfe5-11ec-9d64-0242ac120002,Under ice water,,"Water, Snow and Ice",,,Water samples
+ff6bb000-bfe5-11ec-9d64-0242ac120002,Video,,Media,,,Other
