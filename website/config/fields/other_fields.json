@@ -1175,7 +1175,7 @@
             "input_title": "Modified (timestamp)",
             "input_message": "Timestamp when the log of the sample was last modified."
         },
-        "id": "modifiedTimestamp"
+        "id": "modified"
     },
     {
         "disp_name": "Record source",
