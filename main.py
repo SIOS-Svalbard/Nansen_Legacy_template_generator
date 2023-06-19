@@ -31,7 +31,7 @@ def home(config):
     if config == "Learnings from Nansen Legacy logging system":
         subconfig = request.form.get("select-subconfig", "default")
         if subconfig not in list_of_subconfigs:
-            subconfig = 'default'
+            subconfig = 'Activities'
     elif config == 'Darwin Core':
         subconfig = request.form.get("select-subconfig", "Sampling Event")
         if subconfig not in list_of_subconfigs:

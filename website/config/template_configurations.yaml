@@ -5,79 +5,31 @@ setups:
     - Coordinate variables: [time, latitude, longitude, depth, altitude, air_pressure, sea_water_pressure]
       Coordinate bounds: [time_bounds, latitude_bounds, longitude_bounds, depth_bounds, altitude_bounds, air_pressure_bounds, sea_water_pressure_bounds]
   Learnings from Nansen Legacy logging system:
-    activity:
+    Activities:
       fields:
       - Required: [eventDate, eventTime, stationName, decimalLatitude, decimalLongitude, gearType, pi_name, pi_email, pi_institution, recordedBy_name, recordedBy_email, recordedBy_institution]
         Recommended: [id, statID, catalogNumber, pi_orcid,recordedBy_orcid, endDate, endTime, endDecimalLatitude, endDecimalLongitude, minimumDepthInMeters, maximumDepthInMeters, minimumElevationInMeters, maximumElevationInMeters,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion,eventRemarks]
-    default:
-      fields:
-      - Required: [parentID, sampleType, pi_name, pi_email, pi_institution, recordedBy_name, recordedBy_email, recordedBy_institution]
-        Recommended: [id, catalogNumber,pi_orcid,recordedBy_orcid, samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion, comments1]
-    Fish:
-      fields:
-      - Required: [parentID, sampleType, pi_name, pi_email, pi_institution, recordedBy_name, recordedBy_email, recordedBy_institution]
-        Recommended: [id, catalogNumber,pi_orcid,recordedBy_orcid,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion,scientificName,comments1]
-    Ice core:
+    Ice cores:
       fields:
       - Required: [parentID, sampleType, pi_name, pi_email, pi_institution, recordedBy_name, recordedBy_email, recordedBy_institution, seaIceCoreType]
-        Recommended: [id, catalogNumber,pi_orcid,recordedBy_orcid,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion,seaIceCoreLengthInCentimeters,seaIceThicknessInCentimeters,seaIceFreeboardInCentimeters,comments1]
-    Macrofauna:
-      fields:
-      - Required: [parentID, sampleType, pi_name, pi_email, pi_institution, recordedBy_name, recordedBy_email, recordedBy_institution]
-        Recommended: [id, catalogNumber,pi_orcid,recordedBy_orcid,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion,scientificName,comments1]
-    Macrozooplankton:
-      fields:
-      - Required: [parentID, sampleType, pi_name, pi_email, pi_institution, recordedBy_name, recordedBy_email, recordedBy_institution]
-        Recommended: [id, catalogNumber,pi_orcid,recordedBy_orcid,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion,scientificName,comments1]
-    Megafauna:
-      fields:
-      - Required: [parentID, sampleType, pi_name, pi_email, pi_institution, recordedBy_name, recordedBy_email, recordedBy_institution]
-        Recommended: [id, catalogNumber,pi_orcid,recordedBy_orcid,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion,scientificName,comments1]
-    Meiofauna:
-      fields:
-      - Required: [parentID, sampleType, pi_name, pi_email, pi_institution, recordedBy_name, recordedBy_email, recordedBy_institution]
-        Recommended: [id, catalogNumber,pi_orcid,recordedBy_orcid,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion,scientificName,comments1]
-    Melt pond water:
-      fields:
-      - Required: [parentID, sampleType, pi_name, pi_email, pi_institution, recordedBy_name, recordedBy_email, recordedBy_institution, sampleVolumeInMilliliters]
-        Recommended: [id, catalogNumber,pi_orcid,recordedBy_orcid,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion,filteredVolumeInMilliliters,filter,comments1]
-    Melt pond:
+        Recommended: [id, catalogNumber,pi_orcid,recordedBy_orcid,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion,seaIceCoreLengthInCentimeters,sea_ice_thickness,sea_ice_freeboard,comments1]
+    Melt ponds:
       fields:
       - Required: [parentID, sampleType, pi_name, pi_email, pi_institution, recordedBy_name, recordedBy_email, recordedBy_institution]
         Recommended: [id, catalogNumber,pi_orcid,recordedBy_orcid,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion,seaIceMeltpondTemperatureInCelsius,seaIceMeltpondSalinity,comments1]
-    Meroplankton:
-      fields:
-      - Required: [parentID, sampleType, pi_name, pi_email, pi_institution, recordedBy_name, recordedBy_email, recordedBy_institution]
-        Recommended: [id, catalogNumber,pi_orcid,recordedBy_orcid,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion,scientificName,comments1]
-    Mesozooplankton:
-      fields:
-      - Required: [parentID, sampleType, pi_name, pi_email, pi_institution, recordedBy_name, recordedBy_email, recordedBy_institution]
-        Recommended: [id, catalogNumber,pi_orcid,recordedBy_orcid,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion,scientificName,comments1]
-    Microzooplankton:
-      fields:
-      - Required: [parentID, sampleType, pi_name, pi_email, pi_institution, recordedBy_name, recordedBy_email, recordedBy_institution]
-        Recommended: [id, catalogNumber,pi_orcid,recordedBy_orcid,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion,scientificName,comments1]
-    Niskin:
+    Niskin bottles:
       fields:
       - Required: [parentID, gearType, sampleType, bottleNumber, minimumDepthInMeters, maximumDepthInMeters, pi_name, pi_email, pi_institution, recordedBy_name, recordedBy_email, recordedBy_institution]
         Recommended: [id, catalogNumber,pi_orcid,recordedBy_orcid,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion,dataFilename, comments1]
-    Protist:
+    Other:
+      fields:
+      - Required: [parentID, sampleType, pi_name, pi_email, pi_institution, recordedBy_name, recordedBy_email, recordedBy_institution]
+        Recommended: [id, catalogNumber,pi_orcid,recordedBy_orcid, samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion, comments1]
+    Organisms:
       fields:
       - Required: [parentID, sampleType, pi_name, pi_email, pi_institution, recordedBy_name, recordedBy_email, recordedBy_institution]
         Recommended: [id, catalogNumber,pi_orcid,recordedBy_orcid,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion,scientificName,comments1]
-    Sea water:
-      fields:
-      - Required: [parentID, sampleType, pi_name, pi_email, pi_institution, recordedBy_name, recordedBy_email, recordedBy_institution, sampleVolumeInMilliliters]
-        Recommended: [id, catalogNumber,pi_orcid,recordedBy_orcid,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion,filteredVolumeInMilliliters,filter,comments1]
-    Small meiofauna:
-      fields:
-      - Required: [parentID, sampleType, pi_name, pi_email, pi_institution, recordedBy_name, recordedBy_email, recordedBy_institution]
-        Recommended: [id, catalogNumber,pi_orcid,recordedBy_orcid,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion,scientificName,comments1]
-    Small mesozooplankton:
-      fields:
-      - Required: [parentID, sampleType, pi_name, pi_email, pi_institution, recordedBy_name, recordedBy_email, recordedBy_institution]
-        Recommended: [id, catalogNumber,pi_orcid,recordedBy_orcid,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion,scientificName,comments1]
-    Under ice water:
+    Water samples:
       fields:
       - Required: [parentID, sampleType, pi_name, pi_email, pi_institution, recordedBy_name, recordedBy_email, recordedBy_institution, sampleVolumeInMilliliters]
         Recommended: [id, catalogNumber,pi_orcid,recordedBy_orcid,samplingProtocolDoc,samplingProtocolSection,samplingProtocolVersion,filteredVolumeInMilliliters,filter,comments1]
