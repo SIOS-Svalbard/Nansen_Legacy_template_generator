@@ -8,6 +8,6 @@ DROPDOWNS_PATH = os.path.join(BASE_PATH, 'website', 'config', 'dropdown_lists')
 
 def create_app():
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = str(uuid.uuid1())
+    app.config['SECRET_KEY'] = str(uuid.uuid4())
 
     return app
