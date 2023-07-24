@@ -212,10 +212,45 @@ class Data_Sheet(object):
         cf_standard_names
         ) = get_field_requirements(fields_filepath=self.template.fields_filepath,config=self.template.config, subconfig=self.template.subconfig, sheetname=self.sheetname)
 
+        # Sort the fields to determine the order of the columns
+        # Fields ordered based on fields_order list
+        # Fields not included in list are in random order at the end
+        fields_order = []
+        if self.sheetname == 'Data':
+            fields_order = [
+                'id',
+                'parentID',
+                'catalogNumber',
+                'eventDate',
+                'eventTime',
+                'endDate',
+                'endTime',
+                'stationName',
+                'statID',
+                'decimalLatitude',
+                'decimalLongitude',
+                'endDecimalLatitude',
+                'endDecimalLongitude',
+                'minimumDepthInMeters',
+                'maximumDepthInMeters',
+                'minimumElevationInMeters',
+                'maximumElevationInMeters',
+                'gearType',
+                'sampleType'
+                ]
+
+        sorted_dict = {}
+        for field in fields_order:
+            if field in self.content:
+                sorted_dict[field] = self.content[field]
+        for field, vals in self.content.items():
+            if field not in fields_order:
+                sorted_dict[field] = vals
+
         # Loop over all the variables/columns needed
         ii = 0
 
-        for field, vals in self.content.items():
+        for field, vals in sorted_dict.items():
 
             if 'bounds' in field:
                 duplication = 2
@@ -340,7 +375,6 @@ class Data_Sheet(object):
 
         # Hide ID row
         self.sheet.set_row(parameter_row, None, None, {'hidden': True})
-
 
 class Metadata_Sheet(object):
     """
