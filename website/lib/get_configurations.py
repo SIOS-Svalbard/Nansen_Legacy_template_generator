@@ -154,6 +154,13 @@ def get_dwc_config_dict(fields_filepath, subconfig, dwc_terms):
                 output_config_dict[extension]['Suggestions'].pop(field, None)
             for field in output_config_dict[extension]['Recommended'].keys():
                 output_config_dict[extension]['Suggestions'].pop(field, None)
+            # Sorting suggestions into alphabetical order
+            suggested_fields = list(output_config_dict[extension]['Suggestions'].keys())
+            suggested_fields_sorted = sorted(suggested_fields)
+            suggested_fields_dict = {}
+            for field in suggested_fields_sorted:
+                suggested_fields_dict[field] = output_config_dict[extension]['Suggestions'][field]
+            output_config_dict[extension]['Suggestions'] = suggested_fields_dict
 
     return output_config_dict
 
