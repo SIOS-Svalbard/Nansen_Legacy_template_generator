@@ -15,7 +15,9 @@ def populate_dropdown_lists(fields_dict, config):
         'sex',
         'sampleType',
         'gearType',
-        'intendedMethod'
+        'intendedMethod',
+        'filter',
+        'storageTemperature'
     ]
 
     if config == 'Learnings from Nansen Legacy logging system':
