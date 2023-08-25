@@ -11,15 +11,24 @@
 
   <body class="d-flex flex-column min-vh-100">
 
+    <div class="container-fluid">
+      <a href="https://www.nordatanet.no/" class="d-inline-block p-4">
+        <img src="{{ url_for('static', filename='NorDataNet-logo-forslag-small.png')}}" alt="NorDataNet" height="150">
+      </a>
+    </div>    
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark  justify-content-between">
 
-      <a class="navbar-brand" style="padding-left:15px" href="/"><img src="{{ url_for('static', filename='cropped-Logo-Nansen-Legacy_favicon.webp')}}" alt="The Nansen Legacy" height="72"> Learnings from Nansen Legacy template generator</a>
+      <a class="navbar-brand" style="padding-left:15px" href="https://arvenetternansen.com/">
+        <img src="{{ url_for('static', filename='cropped-Logo-Nansen-Legacy_favicon.webp')}}" alt="The Nansen Legacy" height="72"> 
+        Learnings from Nansen Legacy template generator
+      </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav">          
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Admin
@@ -85,24 +94,49 @@
                   https://doi.org/10.5281/zenodo.7993323
                 </a>
               </p>
-              <p><a href="#"><i class="fa fa-facebook-square mr-1"></i></a><a href="#"><i class="fa fa-linkedin-square"></i></a></p>
             </div>
-            <div class="col-lg-3 col-md-3 col-xs-12 links">
-              <h4 class="mt-lg-0 mt-sm-3">Links</h4>
-                <ul class="m-0 p-0">
-                  <li> <a href="https://doi.org/10.7557/nlrs.6684">Nansen Legacy sampling protocols</a></li>
-                  <!--<li> <a href="#">User manual</a></li>-->
-                  <li> <a href="http://cfconventions.org/">CF conventions</a></li>
-                  <li> <a href="http://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html">CF standard name table</a></li>
-                  <li> <a href="https://wiki.esipfed.org/Attribute_Convention_for_Data_Discovery_1-3">ACDD conventions</a></li>
-                  <li> <a href="https://dwc.tdwg.org/terms/">Darwin Core terms</a></li>
-                </ul>
-            </div>
-            <div class="col-lg-4 col-md-4 col-xs-12 location">
-              <h4 class="mt-lg-0 mt-sm-4">Contact</h4>
-              <p>Luke Marsden: Data Manager</p>
-              <p>The University Centre in Svalbard (UNIS)</p>
-              <p><a href="mailto: data.nleg@unis.no">data.nleg@unis.no</a></p>
+            <div class="col-lg-7 col-md-7 col-xs-12">
+              <div class="row">
+                <div class="col-lg-6 col-md-6 col-xs-12 links">
+                  <h4 class="mt-lg-0 mt-sm-3">Links</h4>
+                    <ul class="m-0 p-0">
+                      <li> <a href="https://doi.org/10.7557/nlrs.6684">Nansen Legacy sampling protocols</a></li>
+                      <!--<li> <a href="#">User manual</a></li>-->
+                      <li> <a href="http://cfconventions.org/">CF conventions</a></li>
+                      <li> <a href="http://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html">CF standard name table</a></li>
+                      <li> <a href="https://wiki.esipfed.org/Attribute_Convention_for_Data_Discovery_1-3">ACDD conventions</a></li>
+                      <li> <a href="https://dwc.tdwg.org/terms/">Darwin Core terms</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-12 location">
+                  <h4 class="mt-lg-0 mt-sm-4">Contact</h4>
+                  <p>Luke Marsden: Data Manager</p>
+                  <p>Norwegian Meteorological Institute</p>
+                  <p><a href="mailto: lukem@met.no">lukem@met.no</a></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="row">
+                  <h4><br>Contributing institutions</h4>
+                </div>
+                <div class="row">
+                  <div class="col-4">
+                    <a href="https://www.unis.no/" class="d-inline-block p-4">
+                      <img src="{{ url_for('static', filename='unis.webp')}}" alt="The University Centre in Svalbard" height="90">
+                    </a>
+                  </div>
+                  <div class="col-4">
+                    <a href="https://www.met.no/" class="d-inline-block p-4">
+                      <img src="{{ url_for('static', filename='METNO.png')}}" alt="Norwegian Meteorological Institute" height="90">
+                    </a>
+                  </div>
+                  <div class="col-4">
+                    <a href="https://www.npolar.no/" class="d-inline-block p-4">
+                      <img src="{{ url_for('static', filename='NPI.png')}}" alt="Norwegian Polar Institute" height="90">
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
