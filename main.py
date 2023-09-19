@@ -140,7 +140,21 @@ def home(config):
 
     if request.form["submitbutton"] not in ["selectConfig", "selectSubConfig"]:
 
-        all_form_keys = request.form.keys()
+        all_form_keys = list(request.form.keys())
+        
+        # Removing bounds key if coordinate not selected
+        keys_to_remove = []
+        key_set = set(all_form_keys)
+
+        for key in all_form_keys:
+            if key.endswith('_bounds'):
+                # Check if a corresponding key without '_bounds' exists
+                base_key = key[:-len('_bounds')]
+                if base_key not in key_set:
+                    keys_to_remove.append(key)
+
+        for key in keys_to_remove:
+            all_form_keys.remove(key)
 
         # CF standard names
         for field in cf_standard_names:
@@ -192,6 +206,7 @@ def home(config):
                             output_config_dict[sheet][key][field]["checked"] = "yes"
 
         if request.form["submitbutton"] == "generateTemplate":
+
             filepath = "/tmp/LFNL_template.xlsx"
 
             if config == 'Darwin Core':

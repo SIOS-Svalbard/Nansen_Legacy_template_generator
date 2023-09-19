@@ -81,53 +81,100 @@
         <!--Configuration required/recommended fields-->
         {% for col, fields in output_config_dict[sheet].items() %}
           {% if col not in ['Required CSV', 'Source'] %}
-            <div class="col-md-3">
 
-              <h4>{{col}}</h4><br>
-
-              {% if col == 'Suggestions' %}
-                <button type="button" class="btn btn-outline-primary btn-lg dropdown-toggle" data-toggle="dropdown">
-                  Suggestions
-                </button>
-                <div class="dropdown-menu pre-scrollable">
-                   {% for key, field in fields.items() %}
-                     <div class="form-check">
-                       <label title='{{field["description"]}}' class="form-check-label">
-                         <input
-                           class="form-check-input form-control-lg"
-                           type="checkbox"
-                           id="{{sheet}}__{{key}}"
-                           name="{{sheet}}__{{key}}"
-                           {% if col == 'Required' or 'checked' in field.keys() %}
-                           checked
-                           {% endif %}
-                           >
-                         {{field['disp_name']}}
-                       </label>
-                     </div>
-                   {% endfor %}
-                 </div>
-
-              {% else %}
+            {% if col == 'Coordinate variables' %}
+              <div class="col-md-6">
+                <h4>{{col}}</h4><br>
                 {% for key, field in fields.items() %}
-                  <div class="form-check">
-                    <label title='{{field["description"]}}' class="form-check-label">
-                      <input
-                        class="form-check-input form-control-lg"
-                        type="checkbox"
-                        id="{{sheet}}__{{key}}"
-                        name="{{sheet}}__{{key}}"
-                        {% if col == 'Required' or 'checked' in field.keys() %}
-                        checked
-                        {% endif %}
-                        >
-                      {{field['disp_name']}}
-                    </label>
+                  <div class="row">
+
+                    <div class="col-4">
+                      <br>
+                      <div class="form-check">
+                        <label title='{{field["description"]}}' class="form-check-label">
+                          <input
+                            class="form-check-input form-control-lg"
+                            type="checkbox"
+                            id="{{sheet}}__{{key}}"
+                            name="{{sheet}}__{{key}}"
+                            {% if col == 'Required' or 'checked' in field.keys() %}
+                            checked
+                            {% endif %}
+                            >
+                          {{field['disp_name']}}
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="col-6">
+                      <label 
+                        title='For use when a data point does not represent a single point in space or time, but a cell of finite size. Use this variable to encode the extent of the cell (e.g. the minimum and maximum {{key}} that a data point is representative of).' 
+                        class="switch switch-yes-no"
+                      >
+                        <input class="switch-input" type="checkbox" id="{{sheet}}__{{key}}_bounds" name="{{sheet}}__{{key}}_bounds"/>
+                        <span class="switch-label" data-on="Cells" data-off="Discrete Points"></span> 
+                        <span class="switch-handle"></span> 
+                      </label>
+                    </div>
+
                   </div>
+                
                   <br>
                 {% endfor %}
-              {% endif %}
-            </div>
+              </div>
+
+
+            {% elif col == 'Coordinate bounds' %}
+              
+
+            {% else %}
+              <div class="col-md-3">
+                <h4>{{col}}</h4><br>
+
+                {% if col == 'Suggestions' %}
+                  <button type="button" class="btn btn-outline-primary btn-lg dropdown-toggle" data-toggle="dropdown">
+                    Suggestions
+                  </button>
+                  <div class="dropdown-menu pre-scrollable">
+                    {% for key, field in fields.items() %}
+                      <div class="form-check">
+                        <label title='{{field["description"]}}' class="form-check-label">
+                          <input
+                            class="form-check-input form-control-lg"
+                            type="checkbox"
+                            id="{{sheet}}__{{key}}"
+                            name="{{sheet}}__{{key}}"
+                            {% if col == 'Required' or 'checked' in field.keys() %}
+                            checked
+                            {% endif %}
+                            >
+                          {{field['disp_name']}}
+                        </label>
+                      </div>
+                    {% endfor %}
+                  </div>
+
+                {% else %}
+                  {% for key, field in fields.items() %}
+                    <div class="form-check">
+                      <label title='{{field["description"]}}' class="form-check-label">
+                        <input
+                          class="form-check-input form-control-lg"
+                          type="checkbox"
+                          id="{{sheet}}__{{key}}"
+                          name="{{sheet}}__{{key}}"
+                          {% if col == 'Required' or 'checked' in field.keys() %}
+                          checked
+                          {% endif %}
+                          >
+                        {{field['disp_name']}}
+                      </label>
+                    </div>
+                    <br>
+                  {% endfor %}
+                {% endif %}
+              </div>
+            {% endif %}
           {% endif %}
         {% endfor %}
 
