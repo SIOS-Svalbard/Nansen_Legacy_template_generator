@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from flask import request, send_file, render_template, flash, redirect
+from flask import request, send_file, render_template, flash, redirect, url_for
 import json
 from website import create_app
 from website.lib.template import print_html_template
@@ -17,7 +17,7 @@ app = create_app()
 
 @app.route("/", methods=["GET", "POST"])
 def home_redirect():
-    return redirect("/config=CF-NetCDF")
+    return redirect(url_for("home", config='CF-NetCDF'))
 
 @app.route("/config=<config>", methods=["GET", "POST"])
 def home(config):
@@ -136,7 +136,7 @@ def home(config):
         )
 
     if request.form["submitbutton"] == "selectConfig":
-        return redirect(f"/config={config}")
+        return redirect(url_for("home", config=config))
 
     if request.form["submitbutton"] not in ["selectConfig", "selectSubConfig"]:
 
