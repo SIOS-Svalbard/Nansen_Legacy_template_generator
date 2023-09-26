@@ -48,4 +48,4 @@ https://compliance.ioos.us/index.html
 
 Consider citing this template generator as:
 
-Luke Marsden, & Olaf Schneider. (2023). SIOS-Svalbard/Learnings_from_AeN_template_generator: Learnings from Nansen Legacy template generator (v1.00). Zenodo. https://doi.org/10.5281/zenodo.7993323
+Luke Marsden, & Olaf Schneider. (2023). SIOS-Svalbard/Nansen_Legacy_template_generator: Nansen Legacy template generator (v1.01). Zenodo. https://doi.org/10.5281/zenodo.8362212
