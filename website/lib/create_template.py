@@ -361,7 +361,10 @@ class Data_Sheet(object):
 
                     # Add optional data to sheet
                     if 'data' in vals.keys():
-                        self.sheet.write_column(start_row,ii,vals['data'])
+                        if 'cell_format' in vals:
+                            self.sheet.write_column(start_row,ii,vals['data'], cell_format)
+                        else:
+                            self.sheet.write_column(start_row,ii,vals['data'])
 
                     ii = ii + 1
                     duplication = duplication - 1
