@@ -210,7 +210,12 @@ class Data_Sheet(object):
         recommended_fields,
         dwc_terms,
         cf_standard_names
-        ) = get_field_requirements(fields_filepath=self.template.fields_filepath,config=self.template.config, subconfig=self.template.subconfig, sheetname=self.sheetname)
+        ) = get_field_requirements(
+            fields_filepath=self.template.fields_filepath,
+            config=self.template.config, 
+            subconfig=self.template.subconfig, 
+            sheetname=self.sheetname
+            )
 
         # Sort the fields to determine the order of the columns
         # Fields ordered based on fields_order list
@@ -274,11 +279,13 @@ class Data_Sheet(object):
                     valid['input_message'] = add_line_breaks('For use when a data point does not represent a single point in space or time, but a cell of finite size. Use this variable to encode the extent of the cell (e.g. the minimum and maximum depth that a data point is representative of).', 35)
                     valid['input_message'].replace('\n', '\n\r')
 
-                    self.sheet.data_validation(first_row=start_row,
-                                               first_col=ii,
-                                               last_row=end_row,
-                                               last_col=ii,
-                                               options=valid)
+                    self.sheet.data_validation(
+                        first_row=start_row,
+                        first_col=ii,
+                        last_row=end_row,
+                        last_col=ii,
+                        options=valid
+                        )
 
                     ii = ii + 1
                     duplication = duplication - 1
@@ -344,11 +351,13 @@ class Data_Sheet(object):
                             valid_copy.pop('source', None)
                             valid_copy['value'] = ref
 
-                        self.sheet.data_validation(first_row=start_row,
-                                                   first_col=ii,
-                                                   last_row=end_row,
-                                                   last_col=ii,
-                                                   options=valid_copy)
+                        self.sheet.data_validation(
+                            first_row=start_row,
+                            first_col=ii,
+                            last_row=end_row,
+                            last_col=ii,
+                            options=valid_copy
+                            )
 
                     if 'cell_format' in vals:
                         if 'font_name' not in vals['cell_format']:
@@ -361,6 +370,7 @@ class Data_Sheet(object):
 
                     # Add optional data to sheet
                     if 'data' in vals.keys():
+                        vals['data'] = ['' if x == 'NULL' or (isinstance(x, float) and math.isnan(x)) else x for x in vals['data']]
                         if 'cell_format' in vals:
                             self.sheet.write_column(start_row,ii,vals['data'], cell_format)
                         else:
@@ -517,11 +527,13 @@ class Metadata_Sheet(object):
                     else:
                         valid['validate'] = 'any'
 
-                    self.sheet.data_validation(first_row=row_num,
-                                      first_col=col,
-                                      last_row=row_num,
-                                      last_col=col,
-                                      options=valid)
+                    self.sheet.data_validation(
+                        first_row=row_num,
+                        first_col=col,
+                        last_row=row_num,
+                        last_col=col,
+                        options=valid
+                        )
 
             length = len(row['Description'])
 
