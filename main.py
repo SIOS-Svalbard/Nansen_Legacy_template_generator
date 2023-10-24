@@ -28,11 +28,7 @@ def home(config):
     list_of_configs = get_list_of_configs()
     list_of_subconfigs = get_list_of_subconfigs(config=config)
 
-<<<<<<< HEAD
     if config == "Nansen Legacy logging system":
-=======
-    if config == "Nansen Legacy logging system":
->>>>>>> ae0ef6d7bb9eebd7f03fd6cef1f05ca185652b79
         subconfig = request.form.get("select-subconfig", "default")
         if subconfig not in list_of_subconfigs:
             subconfig = 'Activities'
