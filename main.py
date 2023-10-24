@@ -29,7 +29,7 @@ def home(config):
     list_of_subconfigs = get_list_of_subconfigs(config=config)
 
 <<<<<<< HEAD
-    if config == " Nansen Legacy logging system":
+    if config == "Nansen Legacy logging system":
 =======
     if config == "Nansen Legacy logging system":
 >>>>>>> ae0ef6d7bb9eebd7f03fd6cef1f05ca185652b79
