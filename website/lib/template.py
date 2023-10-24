@@ -27,11 +27,7 @@ def print_html_template(output_config_dict, extra_fields_dict, groups, added_fie
 
     if config == 'CF-NetCDF':
         description = 'Create spreadsheet templates that are easy to convert to CF-NetCDF files.'
-<<<<<<< HEAD
-    elif config == ' Nansen Legacy logging system':
-=======
     elif config == 'Nansen Legacy logging system':
->>>>>>> ae0ef6d7bb9eebd7f03fd6cef1f05ca185652b79
         description = 'Create spreadsheet templates that can be used in combination with the  Nansen Legacy logging system.'
     elif config == 'Darwin Core':
         description = 'Create spreadsheet templates that can be used to create Darwin Core cores and extension CSVs. Each sheet below represents one core or extension.'
