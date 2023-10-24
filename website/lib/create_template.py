@@ -173,7 +173,7 @@ class Data_Sheet(object):
         paste_message = "Use 'paste special' / 'paste only' so not to overwrite cell restrictions"
 
         # Key
-        if self.template.config == 'Learnings from Nansen Legacy logging system':
+        if self.template.config == ' Nansen Legacy logging system':
             self.title_row = 8  # starting row
             self.sheet.merge_range('A2:D2', 'Required', self.required_field_format)
             self.sheet.merge_range('A3:D3', 'Recommended', self.recommended_field_format)
@@ -299,7 +299,7 @@ class Data_Sheet(object):
                 while duplication > 0:
 
                     # Write title row
-                    if self.template.config == 'Learnings from Nansen Legacy logging system' and field in ['recordedBy', 'pi_details'] and duplication == 3:
+                    if self.template.config == ' Nansen Legacy logging system' and field in ['recordedBy', 'pi_details'] and duplication == 3:
                         self.sheet.write(self.title_row, ii, vals['disp_name'], self.required_field_format)
                     elif field in required_fields:
                         self.sheet.write(self.title_row, ii, vals['disp_name'], self.required_field_format)
@@ -641,7 +641,7 @@ class Readme_Sheet(object):
 
         if template.config == 'CF-NetCDF':
             readme_file = readme_filepath + '/cfnetcdf_readme.txt'
-        elif template.config == 'Learnings from Nansen Legacy logging system':
+        elif template.config == ' Nansen Legacy logging system':
             readme_file = readme_filepath + '/lfnl_readme.txt'
         elif template.config == 'Darwin Core':
             readme_file = readme_filepath + '/dwc_readme.txt'
@@ -712,11 +712,11 @@ split_personnel_columns=False):
     template_fields_dict : dictionary
         A dictionary of the fields to include in the template. Divided first by sheet. Includes descriptions, formats and validations
     config: string
-        Configuration is either 'Darwin Core', 'CF-NetCDF', or 'Learnings from Nansen Legacy logging system'
+        Configuration is either 'Darwin Core', 'CF-NetCDF', or ' Nansen Legacy logging system'
         Dictates what is included in the metadata sheet and readme sheet
         Also used to check if fields are required or recommended
     subconfig: string
-        Configuration is either 'Darwin Core', 'CF-NetCDF', or 'Learnings from Nansen Legacy logging system'
+        Configuration is either 'Darwin Core', 'CF-NetCDF', or ' Nansen Legacy logging system'
         Dictates what is included in the metadata sheet and readme sheet
         Used to check if fields are required or recommended
     conversions: Boolean

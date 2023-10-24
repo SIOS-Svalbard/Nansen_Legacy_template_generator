@@ -20,7 +20,7 @@ def populate_dropdown_lists(fields_dict, config):
         'storageTemperature'
     ]
 
-    if config == 'Learnings from Nansen Legacy logging system':
+    if config == ' Nansen Legacy logging system':
         fields_with_dropdown_list + [
             'storageTemp',
             'filter'

@@ -5,7 +5,7 @@ Spreadsheet template to record metadata and data.
 Please do not publish data in this format. This template should make it easier for you to create a CF-NetCDF file or Darwin Core Archive.
 This will help make your data FAIR.
 
-This configuration has been designed to work with the 'Learnings from Nansen Legacy logging system'.
+This configuration has been designed to work with the ' Nansen Legacy logging system'.
 Some of the fields are required for use in this logging system.
 
 Some of the column headers in the 'data' sheet are Darwin Core terms.

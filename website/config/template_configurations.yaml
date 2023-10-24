@@ -4,7 +4,7 @@ setups:
     fields:
     - Coordinate variables: [time, latitude, longitude, depth, altitude, air_pressure, sea_water_pressure]
       Coordinate bounds: [time_bounds, latitude_bounds, longitude_bounds, depth_bounds, altitude_bounds, air_pressure_bounds, sea_water_pressure_bounds]
-  Learnings from Nansen Legacy logging system:
+  Nansen Legacy logging system:
     Activities:
       fields:
       - Required: [eventDate, eventTime, stationName, decimalLatitude, decimalLongitude, gearType, pi_name, pi_email, pi_institution, recordedBy_name, recordedBy_email, recordedBy_institution]
