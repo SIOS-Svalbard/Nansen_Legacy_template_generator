@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # encoding: utf-8
 '''
- -- Creates xlsx files for logging samples or sampling activities
+-- Creates xlsx files for logging samples or sampling activities
 @author:     Luke Marsden
 @contact:    lukem@unis.no
 
@@ -642,7 +642,7 @@ class Readme_Sheet(object):
         if template.config == 'CF-NetCDF':
             readme_file = readme_filepath + '/cfnetcdf_readme.txt'
         elif template.config == ' Nansen Legacy logging system':
-            readme_file = readme_filepath + '/lfnl_readme.txt'
+            readme_file = readme_filepath + '/nl_readme.txt'
         elif template.config == 'Darwin Core':
             readme_file = readme_filepath + '/dwc_readme.txt'
 
