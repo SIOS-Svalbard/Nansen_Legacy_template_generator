@@ -28,7 +28,7 @@ def home(config):
     list_of_configs = get_list_of_configs()
     list_of_subconfigs = get_list_of_subconfigs(config=config)
 
-    if config == " Nansen Legacy logging system":
+    if config == "Nansen Legacy logging system":
         subconfig = request.form.get("select-subconfig", "default")
         if subconfig not in list_of_subconfigs:
             subconfig = 'Activities'
@@ -207,7 +207,7 @@ def home(config):
 
         if request.form["submitbutton"] == "generateTemplate":
 
-            filepath = "/tmp/LFNL_template.xlsx"
+            filepath = "/tmp/Nansen_Legacy_template.xlsx"
 
             if config == 'Darwin Core':
                 metadata = False

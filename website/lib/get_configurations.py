@@ -20,7 +20,7 @@ def get_list_of_subconfigs(config):
     configs = yaml.safe_load(open(CONFIG_PATH, encoding='utf-8'))['setups']
     subconfigs = []
 
-    if config in [' Nansen Legacy logging system', 'Darwin Core']:
+    if config in ['Nansen Legacy logging system', 'Darwin Core']:
         for subconfig in configs[config]:
             subconfigs.append(subconfig)
 
@@ -212,7 +212,7 @@ def get_field_requirements(fields_filepath, config, subconfig, sheetname):
     dwc_terms_dic = dwc_terms_to_dic(fields_filepath)
     dwc_terms = [term['term_localName'] for term in dwc_terms_dic]
 
-    if config == ' Nansen Legacy logging system':
+    if config == 'Nansen Legacy logging system':
         required_fields = config_dict['fields'][0]['Required']
         recommended_fields = config_dict['fields'][0]['Recommended']
         dwc_terms = [term for term in dwc_terms if term not in required_fields and term not in recommended_fields]
