@@ -53,7 +53,7 @@ setups:
         fields:
         - Required: [measurementID,occurrenceID,eventID,measurementType,measurementValue,measurementUnit]
           Recommended: 'from source'
-        Source: 'https://rs.gbif.org/extension/obis/extended_measurement_or_fact.xml'
+        Source: 'https://rs.gbif.org/extension/obis/extended_measurement_or_fact_2023-08-28.xml'
         Required CSV: False
       Material Sample Extension:
         fields:
@@ -73,6 +73,25 @@ setups:
           Recommended: 'from source'
         Source: 'https://rs.gbif.org/extension/gbif/1.0/multimedia.xml'
         Required CSV: False
+      DNA Derived Data Extension:
+        fields:
+        - Required: [source_mat_id, occurrenceID, eventID, sop, target_gene, target_subfragment, pcr_primer_forward, pcr_primer_reverse, pcr_primer_name_forward, pcr_primer_name_reverse, pcr_primer_reference, pcr_cond]
+          Recommended: [DNA_sequence, annealingTemp, annealingTempUnit, ampliconSize, env_broad_scale, env_local_scale, env_medium, seq_meth, otu_class_appr, otu_seq_comp_appr, otu_db, baselineValue, automaticThresholdQuantificationCycle, quantificationCycle, concentration, concentrationUnit, methodDeterminationConcentrationAndRatios, ratioOfAbsorbance260_230, ratioOfAbsorbance260_280, probeQuencher, probeReporter]
+          Suggestions: 'from source'
+        Source: 'https://rs.gbif.org/extension/gbif/1.0/dna_derived_data_2022-02-23.xml'
+        Required CSV: False
+      Literature References Extension:
+        fields:
+        - Required: [identifier, occurrenceID, eventID]
+          Recommended: 'from source'
+        Source: 'https://rs.gbif.org/extension/gbif/1.0/references.xml'
+        Required CSV: False
+      Chronometric Age Extension:
+        fields:
+        - Required: [chronometricAgeID, occurrenceID, eventID]
+          Recommended: 'from source'
+        Source: 'https://rs.gbif.org/extension/dwc/ChronometricAge_2021-03-27.xml'
+        Required CSV: False
     Occurrence Core:
       Occurrence Core:
         fields:
@@ -85,7 +104,7 @@ setups:
         fields:
         - Required: [measurementID,occurrenceID,measurementType,measurementValue,measurementUnit]
           Recommended: 'from source'
-        Source: 'https://rs.gbif.org/extension/obis/extended_measurement_or_fact.xml'
+        Source: 'https://rs.gbif.org/extension/obis/extended_measurement_or_fact_2023-08-28.xml'
         Required CSV: False
       Material Sample Extension:
         fields:
@@ -98,5 +117,24 @@ setups:
         - Required: [type,format,identifier,occurrenceID]
           Recommended: 'from source'
         Source: 'https://rs.gbif.org/extension/gbif/1.0/multimedia.xml'
+        Required CSV: False
+      DNA Derived Data Extension:
+        fields:
+        - Required: [source_mat_id, occurrenceID, sop, target_gene, target_subfragment, pcr_primer_forward, pcr_primer_reverse, pcr_primer_name_forward, pcr_primer_name_reverse, pcr_primer_reference, pcr_cond]
+          Recommended: [DNA_sequence, annealingTemp, annealingTempUnit, ampliconSize, env_broad_scale, env_local_scale, env_medium, seq_meth, otu_class_appr, otu_seq_comp_appr, otu_db, baselineValue, automaticThresholdQuantificationCycle, quantificationCycle, concentration, concentrationUnit, methodDeterminationConcentrationAndRatios, ratioOfAbsorbance260_230, ratioOfAbsorbance260_280, probeQuencher, probeReporter]
+          Suggestions: 'from source'
+        Source: 'https://rs.gbif.org/extension/gbif/1.0/dna_derived_data_2022-02-23.xml'
+        Required CSV: False
+      Literature References Extension:
+        fields:
+        - Required: [identifier, occurrenceID]
+          Recommended: 'from source'
+        Source: 'https://rs.gbif.org/extension/gbif/1.0/references.xml'
+        Required CSV: False
+      Chronometric Age Extension:
+        fields:
+        - Required: [chronometricAgeID, occurrenceID]
+          Recommended: 'from source'
+        Source: 'https://rs.gbif.org/extension/dwc/ChronometricAge_2021-03-27.xml'
         Required CSV: False
 ...
