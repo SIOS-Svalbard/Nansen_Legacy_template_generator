@@ -92,6 +92,13 @@ setups:
           Recommended: 'from source'
         Source: 'https://rs.gbif.org/extension/dwc/ChronometricAge_2021-03-27.xml'
         Required CSV: False
+      Taxon Extension:
+        fields:
+        - Required: [taxonID,scientificName, taxonRank]
+          Recommended: [kingdom, parentNameUsageID, acceptedNameUsageID, vernacularName]
+          Suggestions: 'from source'
+        Source: 'https://rs.gbif.org/core/dwc_taxon_2022-02-02.xml'
+        Required CSV: False
     Occurrence Core:
       Occurrence Core:
         fields:
@@ -134,6 +141,71 @@ setups:
       Chronometric Age Extension:
         fields:
         - Required: [chronometricAgeID, occurrenceID]
+          Recommended: 'from source'
+        Source: 'https://rs.gbif.org/extension/dwc/ChronometricAge_2021-03-27.xml'
+        Required CSV: False
+      Taxon Extension:
+        fields:
+        - Required: [taxonID,scientificName, taxonRank]
+          Recommended: [kingdom, parentNameUsageID, acceptedNameUsageID, vernacularName]
+          Suggestions: 'from source'
+        Source: 'https://rs.gbif.org/core/dwc_taxon_2022-02-02.xml'
+        Required CSV: False
+    Taxon Core:
+      Taxon Core:
+        fields:
+        - Required: [taxonID,scientificName, taxonRank]
+          Recommended: [kingdom, parentNameUsageID, acceptedNameUsageID, vernacularName]
+          Suggestions: 'from source'
+        Source: 'https://rs.gbif.org/core/dwc_taxon_2022-02-02.xml'
+        Required CSV: True
+      Occurrence Extension:
+        fields:
+        - Required: [occurrenceID,eventID,basisOfRecord,scientificName]
+          Recommended: [taxonRank,kingdom,individualCount,organismQuantity,organismQuantityType,occurrenceStatus]
+          Suggestions: 'from source'
+        Source: 'https://rs.gbif.org/core/dwc_occurrence_2022-02-02.xml'
+        Required CSV: False
+      Extended MoF Extension:
+        fields:
+        - Required: [measurementID,occurrenceID,eventID,measurementType,measurementValue,measurementUnit]
+          Recommended: 'from source'
+        Source: 'https://rs.gbif.org/extension/obis/extended_measurement_or_fact_2023-08-28.xml'
+        Required CSV: False
+      Material Sample Extension:
+        fields:
+        - Required: [materialSampleID,eventID,materialSampleType]
+          Recommended: 'from source'
+        Source: 'https://rs.gbif.org/extension/ggbn/materialsample.xml'
+        Required CSV: False
+      Resource Relationship Extension:
+        fields:
+        - Required: [resourceRelationshipID,resourceID,relatedResourceID, eventID]
+          Recommended: 'from source'
+        Source: 'https://rs.gbif.org/extension/dwc/resource_relationship_2022-02-02.xml'
+        Required CSV: False
+      Simple Multimedia Extension:
+        fields:
+        - Required: [type,format,identifier,eventID,occurrenceID]
+          Recommended: 'from source'
+        Source: 'https://rs.gbif.org/extension/gbif/1.0/multimedia.xml'
+        Required CSV: False
+      DNA Derived Data Extension:
+        fields:
+        - Required: [source_mat_id, occurrenceID, eventID, sop, target_gene, target_subfragment, pcr_primer_forward, pcr_primer_reverse, pcr_primer_name_forward, pcr_primer_name_reverse, pcr_primer_reference, pcr_cond]
+          Recommended: [DNA_sequence, annealingTemp, annealingTempUnit, ampliconSize, env_broad_scale, env_local_scale, env_medium, seq_meth, otu_class_appr, otu_seq_comp_appr, otu_db, baselineValue, automaticThresholdQuantificationCycle, quantificationCycle, concentration, concentrationUnit, methodDeterminationConcentrationAndRatios, ratioOfAbsorbance260_230, ratioOfAbsorbance260_280, probeQuencher, probeReporter]
+          Suggestions: 'from source'
+        Source: 'https://rs.gbif.org/extension/gbif/1.0/dna_derived_data_2022-02-23.xml'
+        Required CSV: False
+      Literature References Extension:
+        fields:
+        - Required: [identifier, occurrenceID, eventID]
+          Recommended: 'from source'
+        Source: 'https://rs.gbif.org/extension/gbif/1.0/references.xml'
+        Required CSV: False
+      Chronometric Age Extension:
+        fields:
+        - Required: [chronometricAgeID, occurrenceID, eventID]
           Recommended: 'from source'
         Source: 'https://rs.gbif.org/extension/dwc/ChronometricAge_2021-03-27.xml'
         Required CSV: False

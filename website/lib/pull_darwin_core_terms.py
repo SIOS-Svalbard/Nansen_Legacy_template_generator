@@ -311,11 +311,15 @@ extensions = {
         'source': 'https://rs.gbif.org/core/dwc_occurrence_2022-02-02.xml',
         },
     'Occurrence Core': {
-        'file': 'dwc_taxon.json',
+        'file': 'dwc_occurrence.json',
         'source': 'https://rs.gbif.org/core/dwc_occurrence_2022-02-02.xml',
         },
     'Taxon Core': {
-        'file': 'dwc_occurrence.json',
+        'file': 'dwc_taxon.json',
+        'source': 'https://rs.gbif.org/core/dwc_taxon_2022-02-02.xml',
+        },
+    'Taxon Extension': {
+        'file': 'dwc_taxon.json',
         'source': 'https://rs.gbif.org/core/dwc_taxon_2022-02-02.xml',
         },
     'Extended MoF Extension': {

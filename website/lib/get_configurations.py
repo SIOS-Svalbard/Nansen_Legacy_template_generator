@@ -172,8 +172,6 @@ def get_dwc_term_dict_from_main(term,dwc_terms):
 
 def get_dwc_term_dict_from_extension(term,dwc_extension):
 
-    print(term)
-
     terms_dict = [dic for dic in dwc_extension if dic['id'] == term][0]
 
     return terms_dict
