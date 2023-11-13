@@ -314,9 +314,17 @@ extensions = {
         'file': 'dwc_occurrence.json',
         'source': 'https://rs.gbif.org/core/dwc_occurrence_2022-02-02.xml',
         },
+    'Taxon Core': {
+        'file': 'dwc_taxon.json',
+        'source': 'https://rs.gbif.org/core/dwc_taxon_2022-02-02.xml',
+        },
+    'Taxon Extension': {
+        'file': 'dwc_taxon.json',
+        'source': 'https://rs.gbif.org/core/dwc_taxon_2022-02-02.xml',
+        },
     'Extended MoF Extension': {
         'file': 'dwc_emof.json',
-        'source': 'https://rs.gbif.org/extension/obis/extended_measurement_or_fact.xml',
+        'source': 'https://rs.gbif.org/extension/obis/extended_measurement_or_fact_2023-08-28.xml',
         },
     'Material Sample Extension': {
         'file': 'dwc_materialsample.json',
@@ -329,6 +337,18 @@ extensions = {
     'Simple Multimedia Extension': {
         'file': 'dwc_multimedia.json',
         'source': 'https://rs.gbif.org/extension/gbif/1.0/multimedia.xml',
+        },
+    'DNA Derived Data Extension': {
+        'file': 'dwc_dna_derived_data.json',
+        'source': 'https://rs.gbif.org/extension/gbif/1.0/dna_derived_data_2022-02-23.xml',
+        },
+    'Literature References Extension': {
+        'file': 'references.json',
+        'source': 'https://rs.gbif.org/extension/gbif/1.0/references.xml',
+        },
+    'Chronometric Age Extension': {
+        'file': 'chronometric_age.json',
+        'source': 'https://rs.gbif.org/extension/dwc/ChronometricAge_2021-03-27.xml',
         }
 }
 
@@ -367,6 +387,7 @@ def dwc_terms_to_dic(path):
 
 def dwc_extensions_update(path):
     for extension, vals in extensions.items():
+        print('Pulling', extension)
         dwc_extension = Darwin_Core_Extension(vals['source'], path + '/' + vals['file'])
         dwc_extension.pull_from_online()
         dwc_extension.create_json()

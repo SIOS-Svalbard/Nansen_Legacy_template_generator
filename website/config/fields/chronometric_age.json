@@ -1,0 +1,347 @@
+{
+    "terms": [
+        {
+            "name": "chronometricAgeID",
+            "namespace": "http://rs.tdwg.org/chrono/terms/",
+            "qualName": "http://rs.tdwg.org/chrono/terms/chronometricAgeID",
+            "description": "An identifier for the set of information associated with a ChronometricAge.\n\nMay be a global unique identifier or an identifier specific to the dataset. This can be used to link this record to another repository where more information about the dataset is shared.\n\nExamples: `https://www.canadianarchaeology.ca/samples/70673`",
+            "comments": "May be a global unique identifier or an identifier specific to the dataset. This can be used to link this record to another repository where more information about the dataset is shared.",
+            "examples": "`https://www.canadianarchaeology.ca/samples/70673`",
+            "type": "string",
+            "required": false,
+            "disp_name": "chronometricAgeID",
+            "id": "chronometricAgeID",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "any",
+                "input_title": "chronometricAgeID",
+                "input_message": "An identifier for the set of information associated with a ChronometricAge.\n\nMay be a global unique identifier or an identifier specific to the dataset. This can be used to link this record to another repository where more information about the dataset is shared.\n\nExamples: `https://www.canadianarchaeology.ca/samples/70673`"
+            },
+            "format": "text"
+        },
+        {
+            "name": "verbatimChronometricAge",
+            "namespace": "http://rs.tdwg.org/chrono/terms/",
+            "qualName": "http://rs.tdwg.org/chrono/terms/verbatimChronometricAge",
+            "description": "The verbatim age for a specimen, whether reported by a dating assay, associated references, or legacy information.\n\nFor example, this could be the radiocarbon age as given in an AMS dating report. This could also be simply what is reported as the age of a specimen in legacy collections data.\n\nExamples: `27 BC to 14 AD`, `stratigraphically pre-1104`",
+            "comments": "For example, this could be the radiocarbon age as given in an AMS dating report. This could also be simply what is reported as the age of a specimen in legacy collections data.",
+            "examples": "`27 BC to 14 AD`, `stratigraphically pre-1104`",
+            "type": "string",
+            "required": false,
+            "disp_name": "verbatimChronometricAge",
+            "id": "verbatimChronometricAge",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "any",
+                "input_title": "verbatimChronometricAge",
+                "input_message": "The verbatim age for a specimen, whether reported by a dating assay, associated references, or legacy information.\n\nFor example, this could be the radiocarbon age as given in an AMS dating report. This could also be simply what is reported as the age of a specimen in legacy collections data.\n\nExamples: `27 BC to 14 AD`, `stratigraphically pre-1104`"
+            },
+            "format": "text"
+        },
+        {
+            "name": "chronometricAgeProtocol",
+            "namespace": "http://rs.tdwg.org/chrono/terms/",
+            "qualName": "http://rs.tdwg.org/chrono/terms/chronometricAgeProtocol",
+            "description": "A description of or reference to the methods used to determine the chronometric age.\n\nExamples: `radiocarbon AMS`, `K-Ar dates for the lower most marker tuff`, `historic documentation`, `ceramic seriation`",
+            "comments": null,
+            "examples": "`radiocarbon AMS`, `K-Ar dates for the lower most marker tuff`, `historic documentation`, `ceramic seriation`",
+            "type": "string",
+            "required": false,
+            "disp_name": "chronometricAgeProtocol",
+            "id": "chronometricAgeProtocol",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "any",
+                "input_title": "chronometricAgeProtocol",
+                "input_message": "A description of or reference to the methods used to determine the chronometric age.\n\nExamples: `radiocarbon AMS`, `K-Ar dates for the lower most marker tuff`, `historic documentation`, `ceramic seriation`"
+            },
+            "format": "text"
+        },
+        {
+            "name": "uncalibratedChronometricAge",
+            "namespace": "http://rs.tdwg.org/chrono/terms/",
+            "qualName": "http://rs.tdwg.org/chrono/terms/uncalibratedChronometricAge",
+            "description": "The output of a dating assay before it is calibrated into an age using a specific conversion protocol.\n\nExamples: `1510 +/- 25 14C yr BP`, `16.26 Ma +/- 0.016`",
+            "comments": null,
+            "examples": "`1510 +/- 25 14C yr BP`, `16.26 Ma +/- 0.016`",
+            "type": "string",
+            "required": false,
+            "disp_name": "uncalibratedChronometricAge",
+            "id": "uncalibratedChronometricAge",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "any",
+                "input_title": "uncalibratedChronometricAge",
+                "input_message": "The output of a dating assay before it is calibrated into an age using a specific conversion protocol.\n\nExamples: `1510 +/- 25 14C yr BP`, `16.26 Ma +/- 0.016`"
+            },
+            "format": "text"
+        },
+        {
+            "name": "chronometricAgeConversionProtocol",
+            "namespace": "http://rs.tdwg.org/chrono/terms/",
+            "qualName": "http://rs.tdwg.org/chrono/terms/chronometricAgeConversionProtocol",
+            "description": "The method used for converting the uncalibratedChronometricAge into a chronometric age in years, as captured in the earliestChronometricAge, earliestChronometricAgeReferenceSystem, latestChronometricAge, and latestChronometricAgeReferenceSystem fields.\n\nFor example, calibration of conventional radiocarbon age or the currently accepted age range of a cultural or geological period.\n\nExamples: `INTCAL13`, `sequential 6 phase Bayesian model and IntCal13 calibration`",
+            "comments": "For example, calibration of conventional radiocarbon age or the currently accepted age range of a cultural or geological period.",
+            "examples": "`INTCAL13`, `sequential 6 phase Bayesian model and IntCal13 calibration`",
+            "type": "string",
+            "required": false,
+            "disp_name": "chronometricAgeConversionProtocol",
+            "id": "chronometricAgeConversionProtocol",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "any",
+                "input_title": "chronometricAgeConversionProtocol",
+                "input_message": "The method used for converting the uncalibratedChronometricAge into a chronometric age in years, as captured in the earliestChronometricAge, earliestChronometricAgeReferenceSystem, latestChronometricAge, and latestChronometricAgeReferenceSystem fields.\n\nFor example, calibration of conventional radiocarbon age or the currently accepted age range of a cultural or geological period.\n\nExamples: `INTCAL13`, `sequential 6 phase Bayesian model and IntCal13 calibration`"
+            },
+            "format": "text"
+        },
+        {
+            "name": "earliestChronometricAge",
+            "namespace": "http://rs.tdwg.org/chrono/terms/",
+            "qualName": "http://rs.tdwg.org/chrono/terms/earliestChronometricAge",
+            "description": "The maximum/earliest/oldest possible age of a specimen as determined by a dating method.\n\nThe expected unit for this field is years. This field, if populated, must have an associated earliestChronometricAgeReferenceSystem.\n\nExamples: 100",
+            "comments": "The expected unit for this field is years. This field, if populated, must have an associated earliestChronometricAgeReferenceSystem.",
+            "examples": "100",
+            "type": "string",
+            "required": false,
+            "disp_name": "earliestChronometricAge",
+            "id": "earliestChronometricAge",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "any",
+                "input_title": "earliestChronometricAge",
+                "input_message": "The maximum/earliest/oldest possible age of a specimen as determined by a dating method.\n\nThe expected unit for this field is years. This field, if populated, must have an associated earliestChronometricAgeReferenceSystem.\n\nExamples: 100"
+            },
+            "format": "text"
+        },
+        {
+            "name": "earliestChronometricAgeReferenceSystem",
+            "namespace": "http://rs.tdwg.org/chrono/terms/",
+            "qualName": "http://rs.tdwg.org/chrono/terms/earlliestChronometricAgeReferenceSystem",
+            "description": "The reference system associated with the earliestChronometricAge.\n\nRecommended best practice is to use a controlled vocabulary.\n\nExamples: `kya`,`mya`,`BP`,`AD`,`BCE`,`ka`,`Ma`,`Ga`",
+            "comments": "Recommended best practice is to use a controlled vocabulary.",
+            "examples": "`kya`,`mya`,`BP`,`AD`,`BCE`,`ka`,`Ma`,`Ga`",
+            "type": "string",
+            "required": false,
+            "disp_name": "earliestChronometricAgeReferenceSystem",
+            "id": "earliestChronometricAgeReferenceSystem",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "any",
+                "input_title": "earliestChronometricAgeReferenceSystem",
+                "input_message": "The reference system associated with the earliestChronometricAge.\n\nRecommended best practice is to use a controlled vocabulary.\n\nExamples: `kya`,`mya`,`BP`,`AD`,`BCE`,`ka`,`Ma`,`Ga`"
+            },
+            "format": "text"
+        },
+        {
+            "name": "latestChronometricAge",
+            "namespace": "http://rs.tdwg.org/chrono/terms/",
+            "qualName": "http://rs.tdwg.org/chrono/terms/latestChronometricAge",
+            "description": "The minimum/latest/youngest possible age of a specimen as determined by a dating method.\n\nThe expected unit for this field is years. This field, if populated, must have an associated latestChronometricAgeReferenceSystem.\n\nExamples: 27",
+            "comments": "The expected unit for this field is years. This field, if populated, must have an associated latestChronometricAgeReferenceSystem.",
+            "examples": "27",
+            "type": "string",
+            "required": false,
+            "disp_name": "latestChronometricAge",
+            "id": "latestChronometricAge",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "any",
+                "input_title": "latestChronometricAge",
+                "input_message": "The minimum/latest/youngest possible age of a specimen as determined by a dating method.\n\nThe expected unit for this field is years. This field, if populated, must have an associated latestChronometricAgeReferenceSystem.\n\nExamples: 27"
+            },
+            "format": "text"
+        },
+        {
+            "name": "latestChronometricAgeReferenceSystem",
+            "namespace": "http://rs.tdwg.org/chrono/terms/",
+            "qualName": "http://rs.tdwg.org/chrono/terms/lattestChronometricAgeReferenceSystem",
+            "description": "The reference system associated with the latestChronometricAge.\n\nRecommended best practice is to use a controlled vocabulary.\n\nExamples: `kya`,`mya`,`BP`,`AD`,`BCE`,`ka`,`Ma`,`Ga`",
+            "comments": "Recommended best practice is to use a controlled vocabulary.",
+            "examples": "`kya`,`mya`,`BP`,`AD`,`BCE`,`ka`,`Ma`,`Ga`",
+            "type": "string",
+            "required": false,
+            "disp_name": "latestChronometricAgeReferenceSystem",
+            "id": "latestChronometricAgeReferenceSystem",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "any",
+                "input_title": "latestChronometricAgeReferenceSystem",
+                "input_message": "The reference system associated with the latestChronometricAge.\n\nRecommended best practice is to use a controlled vocabulary.\n\nExamples: `kya`,`mya`,`BP`,`AD`,`BCE`,`ka`,`Ma`,`Ga`"
+            },
+            "format": "text"
+        },
+        {
+            "name": "chronometricAgeUncertaintyInYears",
+            "namespace": "http://rs.tdwg.org/chrono/terms/",
+            "qualName": "http://rs.tdwg.org/chrono/terms/chronometricAgeUncertaintyInYears",
+            "description": "The temporal uncertainty of the earliestChronometricAge and latestChronometicAge in years.\n\nThe expected unit for this field is years. The value in this field is number of years before and after the values given in the earliest and latest chronometric age fields within which the actual values are estimated to be.\n\nExamples: 100",
+            "comments": "The expected unit for this field is years. The value in this field is number of years before and after the values given in the earliest and latest chronometric age fields within which the actual values are estimated to be.",
+            "examples": "100",
+            "type": "string",
+            "required": false,
+            "disp_name": "chronometricAgeUncertaintyInYears",
+            "id": "chronometricAgeUncertaintyInYears",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "any",
+                "input_title": "chronometricAgeUncertaintyInYears",
+                "input_message": "The temporal uncertainty of the earliestChronometricAge and latestChronometicAge in years.\n\nThe expected unit for this field is years. The value in this field is number of years before and after the values given in the earliest and latest chronometric age fields within which the actual values are estimated to be.\n\nExamples: 100"
+            },
+            "format": "text"
+        },
+        {
+            "name": "chronometricAgeUncertaintyMethod",
+            "namespace": "http://rs.tdwg.org/chrono/terms/",
+            "qualName": "http://rs.tdwg.org/chrono/terms/chronometricAgeUncertaintyMethod",
+            "description": "The method used to generate the value of chronometricAgeUncertaintyInYears.\n\nExamples: `2-sigma calibrated range`, `Half of 95% confidence interval`",
+            "comments": null,
+            "examples": "`2-sigma calibrated range`, `Half of 95% confidence interval`",
+            "type": "string",
+            "required": false,
+            "disp_name": "chronometricAgeUncertaintyMethod",
+            "id": "chronometricAgeUncertaintyMethod",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "any",
+                "input_title": "chronometricAgeUncertaintyMethod",
+                "input_message": "The method used to generate the value of chronometricAgeUncertaintyInYears.\n\nExamples: `2-sigma calibrated range`, `Half of 95% confidence interval`"
+            },
+            "format": "text"
+        },
+        {
+            "name": "materialDated",
+            "namespace": "http://rs.tdwg.org/chrono/terms/",
+            "qualName": "http://rs.tdwg.org/chrono/terms/materialDated",
+            "description": "A description of the material on which the chronometricAgeProtocol was actually performed, if known.\n\nExamples: `Double Tuff`, `Charcoal found in Stratum V`, `charred wood`, `tooth`",
+            "comments": null,
+            "examples": "`Double Tuff`, `Charcoal found in Stratum V`, `charred wood`, `tooth`",
+            "type": "string",
+            "required": false,
+            "disp_name": "materialDated",
+            "id": "materialDated",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "any",
+                "input_title": "materialDated",
+                "input_message": "A description of the material on which the chronometricAgeProtocol was actually performed, if known.\n\nExamples: `Double Tuff`, `Charcoal found in Stratum V`, `charred wood`, `tooth`"
+            },
+            "format": "text"
+        },
+        {
+            "name": "materialDatedID",
+            "namespace": "http://rs.tdwg.org/chrono/terms/",
+            "qualName": "http://rs.tdwg.org/chrono/terms/materialDatedID",
+            "description": "An identifier for the MaterialSample on which the chronometricAgeProtocol was performed, if applicable.\n\nExamples: `dwc:materialSampleID: https://www.ebi.ac.uk/metagenomics/samples/SRS1930158`",
+            "comments": null,
+            "examples": "`dwc:materialSampleID: https://www.ebi.ac.uk/metagenomics/samples/SRS1930158`",
+            "type": "string",
+            "required": false,
+            "disp_name": "materialDatedID",
+            "id": "materialDatedID",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "any",
+                "input_title": "materialDatedID",
+                "input_message": "An identifier for the MaterialSample on which the chronometricAgeProtocol was performed, if applicable.\n\nExamples: `dwc:materialSampleID: https://www.ebi.ac.uk/metagenomics/samples/SRS1930158`"
+            },
+            "format": "text"
+        },
+        {
+            "name": "materialDatedRelationship",
+            "namespace": "http://rs.tdwg.org/chrono/terms/",
+            "qualName": "http://rs.tdwg.org/chrono/terms/materialDatedRelationship",
+            "description": "The relationship of the materialDated to the subject of the ChronometricAge record, from which the ChronometricAge of the subject is inferred.\n\nRecommended best practice is to use a controlled vocabulary.\n\nExamples: `sameAs` (cases where the subject material was completely destructively subsampled to get the ChronometricAge), `subsampleOf` (cases where part of the original specimen was extracted as the material used to determine the ChronometricAge), `inContextWith` (cases where the ChronometricAge is inferred from materialDated, such as sediments or cultural objects, in related temporal context), `stratigraphicallyCorrelatedWith` (cases where the ChronometricAge is inferred from materialDated in a stratigraphically correlated context)",
+            "comments": "Recommended best practice is to use a controlled vocabulary.",
+            "examples": "`sameAs` (cases where the subject material was completely destructively subsampled to get the ChronometricAge), `subsampleOf` (cases where part of the original specimen was extracted as the material used to determine the ChronometricAge), `inContextWith` (cases where the ChronometricAge is inferred from materialDated, such as sediments or cultural objects, in related temporal context), `stratigraphicallyCorrelatedWith` (cases where the ChronometricAge is inferred from materialDated in a stratigraphically correlated context)",
+            "type": "string",
+            "required": false,
+            "disp_name": "materialDatedRelationship",
+            "id": "materialDatedRelationship",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "any",
+                "input_title": "materialDatedRelationship",
+                "input_message": "The relationship of the materialDated to the subject of the ChronometricAge record, from which the ChronometricAge of the subject is inferred.\n\nRecommended best practice is to use a controlled vocabulary.\n\nExamples: `sameAs` (cases where the subject material was completely destructively subsampled to get the ChronometricAge), `subsampleOf` (cases where part of the original specimen was extracted as the material used to determine the ChronometricAge), `inContextWith` (cases where the ChronometricAge is inferred from materialDated, such as sediments or cultural objects, in related temporal context), `stratigraphicallyCorrelatedWith` (cases where the ChronometricAge is inferred from materialDated in a stratigraphically correlated context)"
+            },
+            "format": "text"
+        },
+        {
+            "name": "chronometricAgeDeterminedBy",
+            "namespace": "http://rs.tdwg.org/chrono/terms/",
+            "qualName": "http://rs.tdwg.org/chrono/terms/chronometricAgeDeterminedBy",
+            "description": "A list (concatenated and separated) of names of people, groups, or organizations who determined the ChronometricAge.\n\nRecommended best practice is to separate the values in a list with space vertical bar space ( | ).\n\nExamples: `Michelle LeFebvre | Neill Wallis`",
+            "comments": "Recommended best practice is to separate the values in a list with space vertical bar space ( | ).",
+            "examples": "`Michelle LeFebvre | Neill Wallis`",
+            "type": "string",
+            "required": false,
+            "disp_name": "chronometricAgeDeterminedBy",
+            "id": "chronometricAgeDeterminedBy",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "any",
+                "input_title": "chronometricAgeDeterminedBy",
+                "input_message": "A list (concatenated and separated) of names of people, groups, or organizations who determined the ChronometricAge.\n\nRecommended best practice is to separate the values in a list with space vertical bar space ( | ).\n\nExamples: `Michelle LeFebvre | Neill Wallis`"
+            },
+            "format": "text"
+        },
+        {
+            "name": "chronometricAgeDeterminedDate",
+            "namespace": "http://rs.tdwg.org/chrono/terms/",
+            "qualName": "http://rs.tdwg.org/chrono/terms/chronometricAgeDeterminedDate",
+            "description": "The date on which the ChronometricAge was determined.\n\nRecommended best practice is to use a date that conforms to ISO 8601-1:2019.\n\nExamples: `1963-03-08T14:07-0600` (8 Mar 1963 at 2:07pm in the time zone six hours earlier than UTC). `2009-02-20T08:40Z` (20 February 2009 8:40am UTC). `2018-08-29T15:19` (3:19pm local time on 29 August 2018). `1809-02-12` (some time during 12 February 1809). `1906-06` (some time in June 1906). `1971` (some time in the year 1971).",
+            "comments": "Recommended best practice is to use a date that conforms to ISO 8601-1:2019.",
+            "examples": "`1963-03-08T14:07-0600` (8 Mar 1963 at 2:07pm in the time zone six hours earlier than UTC). `2009-02-20T08:40Z` (20 February 2009 8:40am UTC). `2018-08-29T15:19` (3:19pm local time on 29 August 2018). `1809-02-12` (some time during 12 February 1809). `1906-06` (some time in June 1906). `1971` (some time in the year 1971).",
+            "type": "string",
+            "required": false,
+            "disp_name": "chronometricAgeDeterminedDate",
+            "id": "chronometricAgeDeterminedDate",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "any",
+                "input_title": "chronometricAgeDeterminedDate",
+                "input_message": "The date on which the ChronometricAge was determined.\n\nRecommended best practice is to use a date that conforms to ISO 8601-1:2019.\n\nExamples: `1963-03-08T14:07-0600` (8 Mar 1963 at 2:07pm in the time zone six hours earlier than UTC). `2009-02-20T08:40Z` (20 February 2009 8:40am UTC). `2018-08-29T15:19` (3:19pm local time on 29 August 2018). `1809-02-12` (some time during 12 February 1809). `1906-06` (some time in June 1906). `1971` (some time in the year 1971)."
+            },
+            "format": "text"
+        },
+        {
+            "name": "chronometricAgeReferences",
+            "namespace": "http://rs.tdwg.org/chrono/terms/",
+            "qualName": "http://rs.tdwg.org/chrono/terms/chronometricAgeReferences",
+            "description": "A list (concatenated and separated) of identifiers (publication, bibliographic reference, global unique identifier, URI) of literature associated with the ChronometricAge.\n\nRecommended best practice is to separate the values in a list with space vertical bar space ( | ).\n\nExamples: `Pluckhahn, Thomas J., Neill J. Wallis, and Victor D. Thompson. 2020  The History and Future of Migrationist Explanation in the Archaeology of the Eastern Woodlands: A Review and Case Study of the Woodland Period Gulf Coast. Journal of Archaeological Research. https://doi.org/10.1007/s10814-019-09140-x`",
+            "comments": "Recommended best practice is to separate the values in a list with space vertical bar space ( | ).",
+            "examples": "`Pluckhahn, Thomas J., Neill J. Wallis, and Victor D. Thompson. 2020  The History and Future of Migrationist Explanation in the Archaeology of the Eastern Woodlands: A Review and Case Study of the Woodland Period Gulf Coast. Journal of Archaeological Research. https://doi.org/10.1007/s10814-019-09140-x`",
+            "type": "string",
+            "required": false,
+            "disp_name": "chronometricAgeReferences",
+            "id": "chronometricAgeReferences",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "any",
+                "input_title": "chronometricAgeReferences",
+                "input_message": "A list (concatenated and separated) of identifiers (publication, bibliographic reference, global unique identifier, URI) of literature associated with the ChronometricAge.\n\nRecommended best practice is to separate the values in a list with space vertical bar space ( | ).\n\nExamples: `Pluckhahn, Thomas J., Neill J. Wallis, and Victor D. Thompson. 2020  The History and Future of Migrationist Explanation in the Archaeology of the Eastern Woodlands: A Review and Case Study of the Woodland Period Gulf Coast. Journal of Archaeological Research. https://doi.org/10.1007/s10814-019-09140-x`"
+            },
+            "format": "text"
+        },
+        {
+            "name": "chronometricAgeRemarks",
+            "namespace": "http://rs.tdwg.org/chrono/terms/",
+            "qualName": "http://rs.tdwg.org/chrono/terms/chronometricAgeRemarks",
+            "description": "Notes or comments about the ChronometricAge.\n\nExamples: `Beta Analytic number: 323913 | One of the Crassostrea virginica right valve specimens from North Midden Feature 17 was chosen for AMS dating, but it is unclear exactly which specimen it was.`",
+            "comments": null,
+            "examples": "`Beta Analytic number: 323913 | One of the Crassostrea virginica right valve specimens from North Midden Feature 17 was chosen for AMS dating, but it is unclear exactly which specimen it was.`",
+            "type": "string",
+            "required": false,
+            "disp_name": "chronometricAgeRemarks",
+            "id": "chronometricAgeRemarks",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "any",
+                "input_title": "chronometricAgeRemarks",
+                "input_message": "Notes or comments about the ChronometricAge.\n\nExamples: `Beta Analytic number: 323913 | One of the Crassostrea virginica right valve specimens from North Midden Feature 17 was chosen for AMS dating, but it is unclear exactly which specimen it was.`"
+            },
+            "format": "text"
+        }
+    ],
+    "description": "Extension to Occurrence Core to capture chronometric age information to be used only in cases where the collecting event is not contemporaneous with the time when the dwc:Organism was alive in its context. Collection event information can be reported in dwc:eventDate. See also the normative term list document at https://tdwg.github.io/chrono/list/ and the human-friendly Quick Reference Guide at https://tdwg.github.io/chrono/terms/."
+}
