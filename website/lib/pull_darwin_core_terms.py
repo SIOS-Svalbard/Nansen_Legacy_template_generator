@@ -49,6 +49,8 @@ class Darwin_Core_Terms_json():
 
         # Remove depricated terms
         self.df = self.df[self.df['term_deprecated'] != True]
+        # Remove rows where 'term_localName' starts with a capital letter
+        self.df = self.df[~self.df['term_localName'].str.match(r'^[A-Z]')]
         self.df.reset_index(inplace=True, drop=True)
 
     def create_json(self):

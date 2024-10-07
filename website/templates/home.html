@@ -268,7 +268,11 @@
           <!--Darwin Core terms-->
           <!-- Button trigger modal for fields -->
           <button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#{{sheet}}_dwcModal">
+            {% if config == 'Darwin Core' %}
+            DwC terms other extensions
+            {% else %}
             Add Darwin Core terms
+            {% endif %}
           </button>
           <!-- Modal -->
 

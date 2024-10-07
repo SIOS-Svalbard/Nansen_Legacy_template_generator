@@ -24,8 +24,8 @@ for scope in scopes:
     elif scope == CF:
         cf_standard_names_update(FIELDS_FILEPATH)
     elif scope == DWC:
-        #dwc_terms_update(FIELDS_FILEPATH)
-        dwc_extensions_update(FIELDS_FILEPATH)
+        dwc_terms_update(FIELDS_FILEPATH)
+        #dwc_extensions_update(FIELDS_FILEPATH)
     else:
         print("Ignore unknown scope", scope)
 
