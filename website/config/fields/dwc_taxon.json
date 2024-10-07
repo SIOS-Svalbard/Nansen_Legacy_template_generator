@@ -6,9 +6,9 @@
             "namespace": "http://rs.tdwg.org/dwc/terms/",
             "qualName": "http://rs.tdwg.org/dwc/terms/taxonID",
             "relation": "https://dwc.tdwg.org/terms/#dwc:taxonID",
-            "description": "An identifier for the set of taxon information (data associated with the Taxon class). May be a global unique identifier or an identifier specific to the data set.\n\nExamples: `8fa58e08-08de-4ac1-b69c-1235340b7001`, `32567`, `https://www.gbif.org/species/212`",
+            "description": "An identifier for the set of dwc:Taxon information. May be a global unique identifier or an identifier specific to the data set.\n\nExamples: `8fa58e08-08de-4ac1-b69c-1235340b7001`; `32567`; `https://www.gbif.org/species/212`",
             "comments": NaN,
-            "examples": "`8fa58e08-08de-4ac1-b69c-1235340b7001`, `32567`, `https://www.gbif.org/species/212`",
+            "examples": "`8fa58e08-08de-4ac1-b69c-1235340b7001`; `32567`; `https://www.gbif.org/species/212`",
             "required": false,
             "type": null,
             "thesaurus": null,
@@ -18,7 +18,7 @@
             "valid": {
                 "validate": "any",
                 "input_title": "taxonID",
-                "input_message": "An identifier for the set of taxon information (data associated with the Taxon class). May be a global unique identifier or an identifier specific to the data set.\n\nExamples: `8fa58e08-08de-4ac1-b69c-1235340b7001`, `32567`, `https://www.gbif.org/species/212`"
+                "input_message": "An identifier for the set of dwc:Taxon information. May be a global unique identifier or an identifier specific to the data set.\n\nExamples: `8fa58e08-08de-4ac1-b69c-1235340b7001`; `32567`; `https://www.gbif.org/species/212`"
             },
             "format": "text"
         },
@@ -50,9 +50,9 @@
             "namespace": "http://rs.tdwg.org/dwc/terms/",
             "qualName": "http://rs.tdwg.org/dwc/terms/acceptedNameUsageID",
             "relation": "https://dwc.tdwg.org/terms/#dwc:acceptedNameUsageID",
-            "description": "An identifier for the name usage (documented meaning of the name according to a source) of the currently valid (zoological) or accepted (botanical) taxon.\n\nThis term should be used for synonyms or misapplied names to refer to the taxonID of a Taxon record that represents the accepted (botanical) or valid (zoological) name. For Darwin Core Archives the related record should be present locally in the same archive.\n\nExamples: `tsn:41107` (ITIS), `urn:lsid:ipni.org:names:320035-2` (IPNI), `2704179` (GBIF), `6W3C4` (COL)",
-            "comments": "This term should be used for synonyms or misapplied names to refer to the taxonID of a Taxon record that represents the accepted (botanical) or valid (zoological) name. For Darwin Core Archives the related record should be present locally in the same archive.",
-            "examples": "`tsn:41107` (ITIS), `urn:lsid:ipni.org:names:320035-2` (IPNI), `2704179` (GBIF), `6W3C4` (COL)",
+            "description": "An identifier for the name usage (documented meaning of the name according to a source) of the currently valid (zoological) or accepted (botanical) taxon.\n\nThis term should be used for synonyms or misapplied names to refer to the dwc:taxonID of a dwc:Taxon record that represents the accepted (botanical) or valid (zoological) name. For Darwin Core Archives the related record should be present locally in the same archive.\n\nExamples: `tsn:41107` (ITIS); `urn:lsid:ipni.org:names:320035-2` (IPNI); `2704179` (GBIF); `6W3C4` (COL)",
+            "comments": "This term should be used for synonyms or misapplied names to refer to the dwc:taxonID of a dwc:Taxon record that represents the accepted (botanical) or valid (zoological) name. For Darwin Core Archives the related record should be present locally in the same archive.",
+            "examples": "`tsn:41107` (ITIS); `urn:lsid:ipni.org:names:320035-2` (IPNI); `2704179` (GBIF); `6W3C4` (COL)",
             "required": false,
             "type": null,
             "thesaurus": null,
@@ -62,7 +62,7 @@
             "valid": {
                 "validate": "any",
                 "input_title": "acceptedNameUsageID",
-                "input_message": "An identifier for the name usage (documented meaning of the name according to a source) of the currently valid (zoological) or accepted (botanical) taxon.\n\nThis term should be used for synonyms or misapplied names to refer to the taxonID of a Taxon record that represents the accepted (botanical) or valid (zoological) name. For Darwin Core Archives the related record should be present locally in the same archive.\n\nExamples: `tsn:41107` (ITIS), `urn:lsid:ipni.org:names:320035-2` (IPNI), `2704179` (GBIF), `6W3C4` (COL)"
+                "input_message": "An identifier for the name usage (documented meaning of the name according to a source) of the currently valid (zoological) or accepted (botanical) taxon.\n\nThis term should be used for synonyms or misapplied names to refer to the dwc:taxonID of a dwc:Taxon record that represents the accepted (botanical) or valid (zoological) name. For Darwin Core Archives the related record should be present locally in the same archive.\n\nExamples: `tsn:41107` (ITIS); `urn:lsid:ipni.org:names:320035-2` (IPNI); `2704179` (GBIF); `6W3C4` (COL)"
             },
             "format": "text"
         },
@@ -72,9 +72,9 @@
             "namespace": "http://rs.tdwg.org/dwc/terms/",
             "qualName": "http://rs.tdwg.org/dwc/terms/parentNameUsageID",
             "relation": "https://dwc.tdwg.org/terms/#dwc:parentNameUsageID",
-            "description": "An identifier for the name usage (documented meaning of the name according to a source) of the direct, most proximate higher-rank parent taxon (in a classification) of the most specific element of the scientificName.\n\nThis term should be used for accepted names to refer to the taxonID of a Taxon record that represents the next higher taxon rank in the same taxonomic classification. For Darwin Core Archives the related record should be present locally in the same archive.\n\nExamples: `tsn:41074` (ITIS), `urn:lsid:ipni.org:names:30001404-2` (IPNI), `2704173` (GBIF), `6T8N` (COL)",
-            "comments": "This term should be used for accepted names to refer to the taxonID of a Taxon record that represents the next higher taxon rank in the same taxonomic classification. For Darwin Core Archives the related record should be present locally in the same archive.",
-            "examples": "`tsn:41074` (ITIS), `urn:lsid:ipni.org:names:30001404-2` (IPNI), `2704173` (GBIF), `6T8N` (COL)",
+            "description": "An identifier for the name usage (documented meaning of the name according to a source) of the direct, most proximate higher-rank parent taxon (in a classification) of the most specific element of the dwc:scientificName.\n\nThis term should be used for accepted names to refer to the dwc:taxonID of a dwc:Taxon record that represents the next higher taxon rank in the same taxonomic classification. For Darwin Core Archives the related record should be present locally in the same archive.\n\nExamples: `tsn:41074` (ITIS); `urn:lsid:ipni.org:names:30001404-2` (IPNI); `2704173` (GBIF); `6T8N` (COL)",
+            "comments": "This term should be used for accepted names to refer to the dwc:taxonID of a dwc:Taxon record that represents the next higher taxon rank in the same taxonomic classification. For Darwin Core Archives the related record should be present locally in the same archive.",
+            "examples": "`tsn:41074` (ITIS); `urn:lsid:ipni.org:names:30001404-2` (IPNI); `2704173` (GBIF); `6T8N` (COL)",
             "required": false,
             "type": null,
             "thesaurus": null,
@@ -84,7 +84,7 @@
             "valid": {
                 "validate": "any",
                 "input_title": "parentNameUsageID",
-                "input_message": "An identifier for the name usage (documented meaning of the name according to a source) of the direct, most proximate higher-rank parent taxon (in a classification) of the most specific element of the scientificName.\n\nThis term should be used for accepted names to refer to the taxonID of a Taxon record that represents the next higher taxon rank in the same taxonomic classification. For Darwin Core Archives the related record should be present locally in the same archive.\n\nExamples: `tsn:41074` (ITIS), `urn:lsid:ipni.org:names:30001404-2` (IPNI), `2704173` (GBIF), `6T8N` (COL)"
+                "input_message": "An identifier for the name usage (documented meaning of the name according to a source) of the direct, most proximate higher-rank parent taxon (in a classification) of the most specific element of the dwc:scientificName.\n\nThis term should be used for accepted names to refer to the dwc:taxonID of a dwc:Taxon record that represents the next higher taxon rank in the same taxonomic classification. For Darwin Core Archives the related record should be present locally in the same archive.\n\nExamples: `tsn:41074` (ITIS); `urn:lsid:ipni.org:names:30001404-2` (IPNI); `2704173` (GBIF); `6T8N` (COL)"
             },
             "format": "text"
         },
@@ -94,9 +94,9 @@
             "namespace": "http://rs.tdwg.org/dwc/terms/",
             "qualName": "http://rs.tdwg.org/dwc/terms/originalNameUsageID",
             "relation": "https://dwc.tdwg.org/terms/#dwc:originalNameUsageID",
-            "description": "An identifier for the name usage (documented meaning of the name according to a source) in which the terminal element of the scientificName was originally established under the rules of the associated nomenclaturalCode.\n\nThis term should be used to refer to the taxonID of a Taxon record that represents the usage of the terminal element of the scientificName as originally established under the rules of the associated nomenclaturalCode. For example, for names governed by the ICNafp, this term would establish the relationship between a record representing a subsequent combination and the record for its corresponding basionym. Unlike basionyms, however, this term can apply to scientific names at all ranks. For Darwin Core Archives the related record should be present locally in the same archive.\n\nExamples: `tsn:41107` (ITIS), `urn:lsid:ipni.org:names:320035-2` (IPNI), `2704179` (GBIF), `6W3C4` (COL)",
-            "comments": "This term should be used to refer to the taxonID of a Taxon record that represents the usage of the terminal element of the scientificName as originally established under the rules of the associated nomenclaturalCode. For example, for names governed by the ICNafp, this term would establish the relationship between a record representing a subsequent combination and the record for its corresponding basionym. Unlike basionyms, however, this term can apply to scientific names at all ranks. For Darwin Core Archives the related record should be present locally in the same archive.",
-            "examples": "`tsn:41107` (ITIS), `urn:lsid:ipni.org:names:320035-2` (IPNI), `2704179` (GBIF), `6W3C4` (COL)",
+            "description": "An identifier for the name usage (documented meaning of the name according to a source) in which the terminal element of the dwc:scientificName was originally established under the rules of the associated dwc:nomenclaturalCode.\n\nThis term should be used to refer to the dwc:taxonID of a dwc:Taxon record that represents the usage of the terminal element of the dwc:scientificName as originally established under the rules of the associated dwc:nomenclaturalCode. For example, for names governed by the ICNafp, this term would establish the relationship between a record representing a subsequent combination and the record for its corresponding basionym. Unlike basionyms, however, this term can apply to scientific names at all ranks. For Darwin Core Archives the related record should be present locally in the same archive.\n\nExamples: `tsn:41107` (ITIS); `urn:lsid:ipni.org:names:320035-2` (IPNI); `2704179` (GBIF); `6W3C4` (COL)",
+            "comments": "This term should be used to refer to the dwc:taxonID of a dwc:Taxon record that represents the usage of the terminal element of the dwc:scientificName as originally established under the rules of the associated dwc:nomenclaturalCode. For example, for names governed by the ICNafp, this term would establish the relationship between a record representing a subsequent combination and the record for its corresponding basionym. Unlike basionyms, however, this term can apply to scientific names at all ranks. For Darwin Core Archives the related record should be present locally in the same archive.",
+            "examples": "`tsn:41107` (ITIS); `urn:lsid:ipni.org:names:320035-2` (IPNI); `2704179` (GBIF); `6W3C4` (COL)",
             "required": false,
             "type": null,
             "thesaurus": null,
@@ -106,7 +106,7 @@
             "valid": {
                 "validate": "any",
                 "input_title": "originalNameUsageID",
-                "input_message": "An identifier for the name usage (documented meaning of the name according to a source) in which the terminal element of the scientificName was originally established under the rules of the associated nomenclaturalCode.\n\nThis term should be used to refer to the taxonID of a Taxon record that represents the usage of the terminal element of the scientificName as originally established under the rules of the associated nomenclaturalCode. For example, for names governed by the ICNafp, this term would establish the relationship between a record representing a subsequent combination and the record for its corresponding basionym. Unlike basionyms, however, this term can apply to scientific names at all ranks. For Darwin Core Archives the related record should be present locally in the same archive.\n\nExamples: `tsn:41107` (ITIS), `urn:lsid:ipni.org:names:320035-2` (IPNI), `2704179` (GBIF), `6W3C4` (COL)"
+                "input_message": "An identifier for the name usage (documented meaning of the name according to a source) in which the terminal element of the dwc:scientificName was originally established under the rules of the associated dwc:nomenclaturalCode.\n\nThis term should be used to refer to the dwc:taxonID of a dwc:Taxon record that represents the usage of the terminal element of the dwc:scientificName as originally established under the rules of the associated dwc:nomenclaturalCode. For example, for names governed by the ICNafp, this term would establish the relationship between a record representing a subsequent combination and the record for its corresponding basionym. Unlike basionyms, however, this term can apply to scientific names at all ranks. For Darwin Core Archives the related record should be present locally in the same archive.\n\nExamples: `tsn:41107` (ITIS); `urn:lsid:ipni.org:names:320035-2` (IPNI); `2704179` (GBIF); `6W3C4` (COL)"
             },
             "format": "text"
         },
@@ -116,7 +116,7 @@
             "namespace": "http://rs.tdwg.org/dwc/terms/",
             "qualName": "http://rs.tdwg.org/dwc/terms/nameAccordingToID",
             "relation": "https://dwc.tdwg.org/terms/#dwc:nameAccordingToID",
-            "description": "An identifier for the source in which the specific taxon concept circumscription is defined or implied. See nameAccordingTo.\n\nExamples: `https://doi.org/10.1016/S0269-915X(97)80026-2`",
+            "description": "An identifier for the source in which the specific taxon concept circumscription is defined or implied. See dwc:nameAccordingTo.\n\nExamples: `https://doi.org/10.1016/S0269-915X(97)80026-2`",
             "comments": NaN,
             "examples": "`https://doi.org/10.1016/S0269-915X(97)80026-2`",
             "required": false,
@@ -128,7 +128,7 @@
             "valid": {
                 "validate": "any",
                 "input_title": "nameAccordingToID",
-                "input_message": "An identifier for the source in which the specific taxon concept circumscription is defined or implied. See nameAccordingTo.\n\nExamples: `https://doi.org/10.1016/S0269-915X(97)80026-2`"
+                "input_message": "An identifier for the source in which the specific taxon concept circumscription is defined or implied. See dwc:nameAccordingTo.\n\nExamples: `https://doi.org/10.1016/S0269-915X(97)80026-2`"
             },
             "format": "text"
         },
@@ -138,8 +138,8 @@
             "namespace": "http://rs.tdwg.org/dwc/terms/",
             "qualName": "http://rs.tdwg.org/dwc/terms/namePublishedInID",
             "relation": "https://dwc.tdwg.org/terms/#dwc:namePublishedInID",
-            "description": "An identifier for the publication in which the scientificName was originally established under the rules of the associated nomenclaturalCode.\n\nExamples: nan",
-            "comments": NaN,
+            "description": "An identifier for the publication in which the dwc:scientificName was originally established under the rules of the associated dwc:nomenclaturalCode.\n\nA citation of the first publication of the name in its given combination, not the basionym / original name. Recombinations are often not published in zoology, in which case dwc:namePublishedInID should be empty.\n\nExamples: nan",
+            "comments": "A citation of the first publication of the name in its given combination, not the basionym / original name. Recombinations are often not published in zoology, in which case dwc:namePublishedInID should be empty.",
             "examples": NaN,
             "required": false,
             "type": null,
@@ -150,7 +150,7 @@
             "valid": {
                 "validate": "any",
                 "input_title": "namePublishedInID",
-                "input_message": "An identifier for the publication in which the scientificName was originally established under the rules of the associated nomenclaturalCode.\n\nExamples: nan"
+                "input_message": "An identifier for the publication in which the dwc:scientificName was originally established under the rules of the associated dwc:nomenclaturalCode.\n\nA citation of the first publication of the name in its given combination, not the basionym / original name. Recombinations are often not published in zoology, in which case dwc:namePublishedInID should be empty.\n\nExamples: nan"
             },
             "format": "text"
         },
@@ -160,7 +160,7 @@
             "namespace": "http://rs.tdwg.org/dwc/terms/",
             "qualName": "http://rs.tdwg.org/dwc/terms/taxonConceptID",
             "relation": "https://dwc.tdwg.org/terms/#dwc:taxonConceptID",
-            "description": "An identifier for the taxonomic concept to which the record refers - not for the nomenclatural details of a taxon.\n\nExamples: `8fa58e08-08de-4ac1-b69c-1235340b7001`",
+            "description": "An identifier for the taxonomic concept to which the record refers - not for the nomenclatural details of a dwc:Taxon.\n\nExamples: `8fa58e08-08de-4ac1-b69c-1235340b7001`",
             "comments": NaN,
             "examples": "`8fa58e08-08de-4ac1-b69c-1235340b7001`",
             "required": false,
@@ -172,7 +172,7 @@
             "valid": {
                 "validate": "any",
                 "input_title": "taxonConceptID",
-                "input_message": "An identifier for the taxonomic concept to which the record refers - not for the nomenclatural details of a taxon.\n\nExamples: `8fa58e08-08de-4ac1-b69c-1235340b7001`"
+                "input_message": "An identifier for the taxonomic concept to which the record refers - not for the nomenclatural details of a dwc:Taxon.\n\nExamples: `8fa58e08-08de-4ac1-b69c-1235340b7001`"
             },
             "format": "text"
         },
@@ -182,9 +182,9 @@
             "namespace": "http://rs.tdwg.org/dwc/terms/",
             "qualName": "http://rs.tdwg.org/dwc/terms/scientificName",
             "relation": "https://dwc.tdwg.org/terms/#dwc:scientificName",
-            "description": "The full scientific name, with authorship and date information if known. When forming part of an Identification, this should be the name in lowest level taxonomic rank that can be determined. This term should not contain identification qualifications, which should instead be supplied in the IdentificationQualifier term.\n\nThis term should not contain identification qualifications, which should instead be supplied in the IdentificationQualifier term. When applied to an Organism or Occurrence, this term should be used to represent the scientific name that was applied to the associated Organism in accordance with the Taxon to which it was or is currently identified.\n\nExamples: `Coleoptera` (order). `Vespertilionidae` (family). `Manis` (genus). `Ctenomys sociabilis` (genus + specificEpithet). `Ambystoma tigrinum diaboli` (genus + specificEpithet + infraspecificEpithet). `Roptrocerus typographi (Györfi, 1952)` (genus + specificEpithet + scientificNameAuthorship), `Quercus agrifolia var. oxyadenia (Torr.) J.T. Howell` (genus + specificEpithet + taxonRank + infraspecificEpithet + scientificNameAuthorship).",
-            "comments": "This term should not contain identification qualifications, which should instead be supplied in the IdentificationQualifier term. When applied to an Organism or Occurrence, this term should be used to represent the scientific name that was applied to the associated Organism in accordance with the Taxon to which it was or is currently identified.",
-            "examples": "`Coleoptera` (order). `Vespertilionidae` (family). `Manis` (genus). `Ctenomys sociabilis` (genus + specificEpithet). `Ambystoma tigrinum diaboli` (genus + specificEpithet + infraspecificEpithet). `Roptrocerus typographi (Györfi, 1952)` (genus + specificEpithet + scientificNameAuthorship), `Quercus agrifolia var. oxyadenia (Torr.) J.T. Howell` (genus + specificEpithet + taxonRank + infraspecificEpithet + scientificNameAuthorship).",
+            "description": "The full scientific name, with authorship and date information if known. When forming part of a dwc:Identification, this should be the name in lowest level taxonomic rank that can be determined. This term should not contain identification qualifications, which should instead be supplied in the dwc:identificationQualifier term.\n\nThis term should not contain identification qualifications, which should instead be supplied in the IdentificationQualifier term. When applied to an Organism or Occurrence, this term should be used to represent the scientific name that was applied to the associated Organism in accordance with the Taxon to which it was or is currently identified. Names should be compliant to the most recent nomenclatural code. For example, names of hybrids for algae, fungi and plants should follow the rules of the International Code of Nomenclature for algae, fungi, and plants (Schenzhen Code Articles H.1, H.2 and H.3). Thus, use the multiplication sign `×` (Unicode `U+00D7`, HTML `&times;`) to identify a hybrid, not `x` or `X`, if possible.\n\nExamples: `Coleoptera` (order); `Vespertilionidae` (family); `Manis` (genus); `Ctenomys sociabilis` (genus + specificEpithet); `Ambystoma tigrinum diaboli` (genus + specificEpithet + infraspecificEpithet); `Roptrocerus typographi (Györfi, 1952)` (genus + specificEpithet + scientificNameAuthorship); `Quercus agrifolia var. oxyadenia (Torr.) J.T. Howell` (genus + specificEpithet + taxonRank + infraspecificEpithet + scientificNameAuthorship); `×Agropogon littoralis (Sm.) C. E. Hubb.`; `Mentha ×smithiana R. A. Graham`; `Agrostis stolonifera L. × Polypogon monspeliensis (L.) Desf.`",
+            "comments": "This term should not contain identification qualifications, which should instead be supplied in the IdentificationQualifier term. When applied to an Organism or Occurrence, this term should be used to represent the scientific name that was applied to the associated Organism in accordance with the Taxon to which it was or is currently identified. Names should be compliant to the most recent nomenclatural code. For example, names of hybrids for algae, fungi and plants should follow the rules of the International Code of Nomenclature for algae, fungi, and plants (Schenzhen Code Articles H.1, H.2 and H.3). Thus, use the multiplication sign `×` (Unicode `U+00D7`, HTML `&times;`) to identify a hybrid, not `x` or `X`, if possible.",
+            "examples": "`Coleoptera` (order); `Vespertilionidae` (family); `Manis` (genus); `Ctenomys sociabilis` (genus + specificEpithet); `Ambystoma tigrinum diaboli` (genus + specificEpithet + infraspecificEpithet); `Roptrocerus typographi (Györfi, 1952)` (genus + specificEpithet + scientificNameAuthorship); `Quercus agrifolia var. oxyadenia (Torr.) J.T. Howell` (genus + specificEpithet + taxonRank + infraspecificEpithet + scientificNameAuthorship); `×Agropogon littoralis (Sm.) C. E. Hubb.`; `Mentha ×smithiana R. A. Graham`; `Agrostis stolonifera L. × Polypogon monspeliensis (L.) Desf.`",
             "required": false,
             "type": null,
             "thesaurus": null,
@@ -194,7 +194,7 @@
             "valid": {
                 "validate": "any",
                 "input_title": "scientificName",
-                "input_message": "The full scientific name, with authorship and date information if known. When forming part of an Identification, this should be the name in lowest level taxonomic rank that can be determined. This term should not contain identification qualifications, which should instead be supplied in the IdentificationQualifier term.\n\nThis term should not contain identification qualifications, which should instead be supplied in the IdentificationQualifier term. When applied to an Organism or Occurrence, this term should be used to represent the scientific name that was applied to the associated Organism in accordance with the Taxon to which it was or is currently identified.\n\nExamples: `Coleoptera` (order). `Vespertilionidae` (family). `Manis` (genus). `Ctenomys sociabilis` (genus + specificEpithet). `Ambystoma tigrinum diaboli` (genus + specificEpithet + infraspecificEpithet). `Roptrocerus typographi (Györfi, 1952)` (genus + specificEpithet + scientificNameAuthorship), `Quercus agrifolia var. oxyadenia (Torr.) J.T. Howell` (genus + specificEpithet + taxonRank + infraspecificEpithet + scientificNameAuthorship)."
+                "input_message": "The full scientific name, with authorship and date information if known. When forming part of a dwc:Identification, this should be the name in lowest level taxonomic rank that can be determined. This term should not contain identification qualifications, which should instead be supplied in the dwc:identificationQualifier term.\n\nThis term should not contain identification qualifications, which should instead be supplied in the IdentificationQualifier term. When applied to an Organism or Occurrence, this term should be used to represent the scientific name that was applied to the associated Organism in accordance with the Taxon to which it was or is currently identified. Names should be compliant to the most recent nomenclatural code. For example, names of hybrids for algae, fungi and plants should follow the rules of the International Code of Nomenclature for algae, fungi, and plants (Schenzhen Code Articles H.1, H.2 and H.3). Thus, use the multiplication sign `×` (Unicode `U+00D7`, HTML `&times;`) to identify a hybrid, not `x` or `X`, if possible.\n\nExamples: `Coleoptera` (order); `Vespertilionidae` (family); `Manis` (genus); `Ctenomys sociabilis` (genus + specificEpithet); `Ambystoma tigrinum diaboli` (genus + specificEpithet + infraspecificEpithet); `Roptrocerus typographi (Györfi, 1952)` (genus + specificEpithet + scientificNameAuthorship); `Quercus agrifolia var. oxyadenia (Torr.) J.T. Howell` (genus + specificEpithet + taxonRank + infraspecificEpithet + scientificNameAuthorship); `×Agropogon littoralis (Sm.) C. E. Hubb.`; `Mentha ×smithiana R. A. Graham`; `Agrostis stolonifera L. × Polypogon monspeliensis (L.) Desf.`"
             },
             "format": "text"
         },
@@ -204,9 +204,9 @@
             "namespace": "http://rs.tdwg.org/dwc/terms/",
             "qualName": "http://rs.tdwg.org/dwc/terms/acceptedNameUsage",
             "relation": "https://dwc.tdwg.org/terms/#dwc:acceptedNameUsage",
-            "description": "The full name, with authorship and date information if known, of the currently valid (zoological) or accepted (botanical) taxon.\n\nThe full scientific name, with authorship and date information if known, of the accepted (botanical) or valid (zoological) name in cases where the provided scientificName is considered by the reference indicated in the accordingTo property, or of the content provider, to be a synonym or misapplied name. When applied to an Organism or Occurrence, this term should be used in cases where a content provider regards the provided scientificName to be inconsistent with the taxonomic perspective of the content provider. For example, there are many discrepancies within specimen collections and observation datasets between the recorded name (e.g., the most recent identification from an expert who examined a specimen, or a field identification for an observed organism), and the name asserted by the content provider to be taxonomically accepted.\n\nExamples: `Tamias minimus` (valid name for Eutamias minimus).",
-            "comments": "The full scientific name, with authorship and date information if known, of the accepted (botanical) or valid (zoological) name in cases where the provided scientificName is considered by the reference indicated in the accordingTo property, or of the content provider, to be a synonym or misapplied name. When applied to an Organism or Occurrence, this term should be used in cases where a content provider regards the provided scientificName to be inconsistent with the taxonomic perspective of the content provider. For example, there are many discrepancies within specimen collections and observation datasets between the recorded name (e.g., the most recent identification from an expert who examined a specimen, or a field identification for an observed organism), and the name asserted by the content provider to be taxonomically accepted.",
-            "examples": "`Tamias minimus` (valid name for Eutamias minimus).",
+            "description": "The full name, with authorship and date information if known, of the currently valid (zoological) or accepted (botanical) dwc:Taxon.\n\nThe full scientific name, with authorship and date information if known, of the accepted (botanical) or valid (zoological) name in cases where the provided dwc:scientificName is considered by the reference indicated in the dwc:accordingTo property, or of the content provider, to be a synonym or misapplied name. When applied to a dwc:Organism or dwc:Occurrence, this term should be used in cases where a content provider regards the provided dwc:scientificName to be inconsistent with the taxonomic perspective of the content provider. For example, there are many discrepancies within specimen collections and observation datasets between the recorded name (e.g., the most recent identification from an expert who examined a specimen, or a field identification for an observed dwc:Organism), and the name asserted by the content provider to be taxonomically accepted.\n\nExamples: `Tamias minimus` (valid name for `Eutamias minimus`)",
+            "comments": "The full scientific name, with authorship and date information if known, of the accepted (botanical) or valid (zoological) name in cases where the provided dwc:scientificName is considered by the reference indicated in the dwc:accordingTo property, or of the content provider, to be a synonym or misapplied name. When applied to a dwc:Organism or dwc:Occurrence, this term should be used in cases where a content provider regards the provided dwc:scientificName to be inconsistent with the taxonomic perspective of the content provider. For example, there are many discrepancies within specimen collections and observation datasets between the recorded name (e.g., the most recent identification from an expert who examined a specimen, or a field identification for an observed dwc:Organism), and the name asserted by the content provider to be taxonomically accepted.",
+            "examples": "`Tamias minimus` (valid name for `Eutamias minimus`)",
             "required": false,
             "type": null,
             "thesaurus": null,
@@ -216,7 +216,7 @@
             "valid": {
                 "validate": "any",
                 "input_title": "acceptedNameUsage",
-                "input_message": "The full name, with authorship and date information if known, of the currently valid (zoological) or accepted (botanical) taxon.\n\nThe full scientific name, with authorship and date information if known, of the accepted (botanical) or valid (zoological) name in cases where the provided scientificName is considered by the reference indicated in the accordingTo property, or of the content provider, to be a synonym or misapplied name. When applied to an Organism or Occurrence, this term should be used in cases where a content provider regards the provided scientificName to be inconsistent with the taxonomic perspective of the content provider. For example, there are many discrepancies within specimen collections and observation datasets between the recorded name (e.g., the most recent identification from an expert who examined a specimen, or a field identification for an observed organism), and the name asserted by the content provider to be taxonomically accepted.\n\nExamples: `Tamias minimus` (valid name for Eutamias minimus)."
+                "input_message": "The full name, with authorship and date information if known, of the currently valid (zoological) or accepted (botanical) dwc:Taxon.\n\nThe full scientific name, with authorship and date information if known, of the accepted (botanical) or valid (zoological) name in cases where the provided dwc:scientificName is considered by the reference indicated in the dwc:accordingTo property, or of the content provider, to be a synonym or misapplied name. When applied to a dwc:Organism or dwc:Occurrence, this term should be used in cases where a content provider regards the provided dwc:scientificName to be inconsistent with the taxonomic perspective of the content provider. For example, there are many discrepancies within specimen collections and observation datasets between the recorded name (e.g., the most recent identification from an expert who examined a specimen, or a field identification for an observed dwc:Organism), and the name asserted by the content provider to be taxonomically accepted.\n\nExamples: `Tamias minimus` (valid name for `Eutamias minimus`)"
             },
             "format": "text"
         },
@@ -226,9 +226,9 @@
             "namespace": "http://rs.tdwg.org/dwc/terms/",
             "qualName": "http://rs.tdwg.org/dwc/terms/parentNameUsage",
             "relation": "https://dwc.tdwg.org/terms/#dwc:parentNameUsage",
-            "description": "The full name, with authorship and date information if known, of the direct, most proximate higher-rank parent taxon (in a classification) of the most specific element of the scientificName.\n\nExamples: `Rubiaceae`, `Gruiformes`, `Testudinae`",
+            "description": "The full name, with authorship and date information if known, of the direct, most proximate higher-rank parent dwc:Taxon (in a classification) of the most specific element of the dwc:scientificName.\n\nExamples: `Rubiaceae`; `Gruiformes`; `Testudinae`",
             "comments": NaN,
-            "examples": "`Rubiaceae`, `Gruiformes`, `Testudinae`",
+            "examples": "`Rubiaceae`; `Gruiformes`; `Testudinae`",
             "required": false,
             "type": null,
             "thesaurus": null,
@@ -238,7 +238,7 @@
             "valid": {
                 "validate": "any",
                 "input_title": "parentNameUsage",
-                "input_message": "The full name, with authorship and date information if known, of the direct, most proximate higher-rank parent taxon (in a classification) of the most specific element of the scientificName.\n\nExamples: `Rubiaceae`, `Gruiformes`, `Testudinae`"
+                "input_message": "The full name, with authorship and date information if known, of the direct, most proximate higher-rank parent dwc:Taxon (in a classification) of the most specific element of the dwc:scientificName.\n\nExamples: `Rubiaceae`; `Gruiformes`; `Testudinae`"
             },
             "format": "text"
         },
@@ -248,9 +248,9 @@
             "namespace": "http://rs.tdwg.org/dwc/terms/",
             "qualName": "http://rs.tdwg.org/dwc/terms/originalNameUsage",
             "relation": "https://dwc.tdwg.org/terms/#dwc:originalNameUsage",
-            "description": "The taxon name, with authorship and date information if known, as it originally appeared when first established under the rules of the associated nomenclaturalCode. The basionym (botany) or basonym (bacteriology) of the scientificName or the senior/earlier homonym for replaced names.\n\nThe full scientific name, with authorship and date information if known, of the name usage in which the terminal element of the scientificName was originally established under the rules of the associated nomenclaturalCode. For example, for names governed by the ICNafp, this term would indicate the basionym of a record representing a subsequent combination. Unlike basionyms, however, this term can apply to scientific names at all ranks.\n\nExamples: `Pinus abies`, `Gasterosteus saltatrix Linnaeus 1768`",
-            "comments": "The full scientific name, with authorship and date information if known, of the name usage in which the terminal element of the scientificName was originally established under the rules of the associated nomenclaturalCode. For example, for names governed by the ICNafp, this term would indicate the basionym of a record representing a subsequent combination. Unlike basionyms, however, this term can apply to scientific names at all ranks.",
-            "examples": "`Pinus abies`, `Gasterosteus saltatrix Linnaeus 1768`",
+            "description": "The taxon name, with authorship and date information if known, as it originally appeared when first established under the rules of the associated dwc:nomenclaturalCode. The basionym (botany) or basonym (bacteriology) of the dwc:scientificName or the senior/earlier homonym for replaced names.\n\nThe full scientific name, with authorship and date information if known, of the name usage in which the terminal element of the dwc:scientificName was originally established under the rules of the associated dwc:nomenclaturalCode. For example, for names governed by the ICNafp, this term would indicate the basionym of a record representing a subsequent combination. Unlike basionyms, however, this term can apply to scientific names at all ranks.\n\nExamples: `Pinus abies`; `Gasterosteus saltatrix Linnaeus 1768`",
+            "comments": "The full scientific name, with authorship and date information if known, of the name usage in which the terminal element of the dwc:scientificName was originally established under the rules of the associated dwc:nomenclaturalCode. For example, for names governed by the ICNafp, this term would indicate the basionym of a record representing a subsequent combination. Unlike basionyms, however, this term can apply to scientific names at all ranks.",
+            "examples": "`Pinus abies`; `Gasterosteus saltatrix Linnaeus 1768`",
             "required": false,
             "type": null,
             "thesaurus": null,
@@ -260,7 +260,7 @@
             "valid": {
                 "validate": "any",
                 "input_title": "originalNameUsage",
-                "input_message": "The taxon name, with authorship and date information if known, as it originally appeared when first established under the rules of the associated nomenclaturalCode. The basionym (botany) or basonym (bacteriology) of the scientificName or the senior/earlier homonym for replaced names.\n\nThe full scientific name, with authorship and date information if known, of the name usage in which the terminal element of the scientificName was originally established under the rules of the associated nomenclaturalCode. For example, for names governed by the ICNafp, this term would indicate the basionym of a record representing a subsequent combination. Unlike basionyms, however, this term can apply to scientific names at all ranks.\n\nExamples: `Pinus abies`, `Gasterosteus saltatrix Linnaeus 1768`"
+                "input_message": "The taxon name, with authorship and date information if known, as it originally appeared when first established under the rules of the associated dwc:nomenclaturalCode. The basionym (botany) or basonym (bacteriology) of the dwc:scientificName or the senior/earlier homonym for replaced names.\n\nThe full scientific name, with authorship and date information if known, of the name usage in which the terminal element of the dwc:scientificName was originally established under the rules of the associated dwc:nomenclaturalCode. For example, for names governed by the ICNafp, this term would indicate the basionym of a record representing a subsequent combination. Unlike basionyms, however, this term can apply to scientific names at all ranks.\n\nExamples: `Pinus abies`; `Gasterosteus saltatrix Linnaeus 1768`"
             },
             "format": "text"
         },
@@ -270,8 +270,8 @@
             "namespace": "http://rs.tdwg.org/dwc/terms/",
             "qualName": "http://rs.tdwg.org/dwc/terms/nameAccordingTo",
             "relation": "https://dwc.tdwg.org/terms/#dwc:nameAccordingTo",
-            "description": "The reference to the source in which the specific taxon concept circumscription is defined or implied - traditionally signified by the Latin \"sensu\" or \"sec.\" (from secundum, meaning \"according to\"). For taxa that result from identifications, a reference to the keys, monographs, experts and other sources should be given.\n\nThis term provides context to the `scientificName`. Together with the `scientificName`, separated by ‘sensu’ or ‘sec.’, it forms the taxon concept label, which may be seen as having the same relationship to `taxonConceptID` as, for example, `acceptedNameUsage` has to `acceptedNameUsageID`. When not provided, in Taxon Core data sets the `nameAccordingTo` can be taken to be the data set. In this case the data set mostly provides sufficient context to infer the delimitation of the taxon and its relationship with other taxa. In Occurrence Core data sets, when not provided, `nameAccordingTo` can be an underlying taxonomy of the data set, e.g. Plants of the World Online (http://powo.science.kew.org/) for vascular plant records in iNaturalist (in which case it should be provided), or, which is the case for most `PreservedSpecimen` data sets, the `Identification`, in which case there is no further context.\n\nExamples: `Franz NM, Cardona-Duque J (2013) Description of two new species and phylogenetic reassessment of Perelleschus Wibmer & O’Brien, 1986 (Coleoptera: Curculionidae), with a complete taxonomic concept history of Perelleschus sec. Franz & Cardona-Duque, 2013. Syst Biodivers. 11: 209–236.` (as the full citation of the Franz & Cardona-Duque (2013) in Perelleschus splendida sec. Franz & Cardona-Duque (2013))",
-            "comments": "This term provides context to the `scientificName`. Together with the `scientificName`, separated by ‘sensu’ or ‘sec.’, it forms the taxon concept label, which may be seen as having the same relationship to `taxonConceptID` as, for example, `acceptedNameUsage` has to `acceptedNameUsageID`. When not provided, in Taxon Core data sets the `nameAccordingTo` can be taken to be the data set. In this case the data set mostly provides sufficient context to infer the delimitation of the taxon and its relationship with other taxa. In Occurrence Core data sets, when not provided, `nameAccordingTo` can be an underlying taxonomy of the data set, e.g. Plants of the World Online (http://powo.science.kew.org/) for vascular plant records in iNaturalist (in which case it should be provided), or, which is the case for most `PreservedSpecimen` data sets, the `Identification`, in which case there is no further context.",
+            "description": "The reference to the source in which the specific taxon concept circumscription is defined or implied - traditionally signified by the Latin \"sensu\" or \"sec.\" (from secundum, meaning \"according to\"). For taxa that result from identifications, a reference to the keys, monographs, experts and other sources should be given.\n\nThis term provides context to the dwc:scientificName. Together with the dwc:scientificName, separated by `sensu` or `sec.`, it forms the taxon concept label, which may be seen as having the same relationship to dwc:taxonConceptID as, for example, dwc:acceptedNameUsage has to dwc:acceptedNameUsageID. When not provided, in Taxon Core data sets the dwc:nameAccordingTo can be taken to be the data set. In this case the data set mostly provides sufficient context to infer the delimitation of the taxon and its relationship with other taxa. In Occurrence Core data sets, when not provided, dwc:nameAccordingTo can be an underlying taxonomy of the data set, e.g. Plants of the World Online (http://powo.science.kew.org/) for vascular plant records in iNaturalist (in which case it should be provided), or, which is the case for most dwc:PreservedSpecimen data sets, the dwc:Identification, in which case there is no further context.\n\nExamples: `Franz NM, Cardona-Duque J (2013) Description of two new species and phylogenetic reassessment of Perelleschus Wibmer & O’Brien, 1986 (Coleoptera: Curculionidae), with a complete taxonomic concept history of Perelleschus sec. Franz & Cardona-Duque, 2013. Syst Biodivers. 11: 209–236.` (as the full citation of the Franz & Cardona-Duque (2013) in Perelleschus splendida sec. Franz & Cardona-Duque (2013))",
+            "comments": "This term provides context to the dwc:scientificName. Together with the dwc:scientificName, separated by `sensu` or `sec.`, it forms the taxon concept label, which may be seen as having the same relationship to dwc:taxonConceptID as, for example, dwc:acceptedNameUsage has to dwc:acceptedNameUsageID. When not provided, in Taxon Core data sets the dwc:nameAccordingTo can be taken to be the data set. In this case the data set mostly provides sufficient context to infer the delimitation of the taxon and its relationship with other taxa. In Occurrence Core data sets, when not provided, dwc:nameAccordingTo can be an underlying taxonomy of the data set, e.g. Plants of the World Online (http://powo.science.kew.org/) for vascular plant records in iNaturalist (in which case it should be provided), or, which is the case for most dwc:PreservedSpecimen data sets, the dwc:Identification, in which case there is no further context.",
             "examples": "`Franz NM, Cardona-Duque J (2013) Description of two new species and phylogenetic reassessment of Perelleschus Wibmer & O’Brien, 1986 (Coleoptera: Curculionidae), with a complete taxonomic concept history of Perelleschus sec. Franz & Cardona-Duque, 2013. Syst Biodivers. 11: 209–236.` (as the full citation of the Franz & Cardona-Duque (2013) in Perelleschus splendida sec. Franz & Cardona-Duque (2013))",
             "required": false,
             "type": null,
@@ -282,7 +282,7 @@
             "valid": {
                 "validate": "any",
                 "input_title": "nameAccordingTo",
-                "input_message": "The reference to the source in which the specific taxon concept circumscription is defined or implied - traditionally signified by the Latin \"sensu\" or \"sec.\" (from secundum, meaning \"according to\"). For taxa that result from identifications, a reference to the keys, monographs, experts and other sources should be given.\n\nThis term provides context to the `scientificName`. Together with the `scientificName`, separated by ‘sensu’ or ‘sec.’, it forms the taxon concept label, which may be seen as having the same relationship to `taxonConceptID` as, for example, `acceptedNameUsage` has to `acceptedNameUsageID`. When not provided, in Taxon Core data sets the `nameAccordingTo` can be taken to be the data set. In this case the data set mostly provides sufficient context to infer the delimitation of the taxon and its relationship with other taxa. In Occurrence Core data sets, when not provided, `nameAccordingTo` can be an underlying taxonomy of the data set, e.g. Plants of the World Online (http://powo.science.kew.org/) for vascular plant records in iNaturalist (in which case it should be provided), or, which is the case for most `PreservedSpecimen` data sets, the `Identification`, in which case there is no further context.\n\nExamples: `Franz NM, Cardona-Duque J (2013) Description of two new species and phylogenetic reassessment of Perelleschus Wibmer & O’Brien, 1986 (Coleoptera: Curculionidae), with a complete taxonomic concept history of Perelleschus sec. Franz & Cardona-Duque, 2013. Syst Biodivers. 11: 209–236.` (as the full citation of the Franz & Cardona-Duque (2013) in Perelleschus splendida sec. Franz & Cardona-Duque (2013))"
+                "input_message": "The reference to the source in which the specific taxon concept circumscription is defined or implied - traditionally signified by the Latin \"sensu\" or \"sec.\" (from secundum, meaning \"according to\"). For taxa that result from identifications, a reference to the keys, monographs, experts and other sources should be given.\n\nThis term provides context to the dwc:scientificName. Together with the dwc:scientificName, separated by `sensu` or `sec.`, it forms the taxon concept label, which may be seen as having the same relationship to dwc:taxonConceptID as, for example, dwc:acceptedNameUsage has to dwc:acceptedNameUsageID. When not provided, in Taxon Core data sets the dwc:nameAccordingTo can be taken to be the data set. In this case the data set mostly provides sufficient context to infer the delimitation of the taxon and its relationship with other taxa. In Occurrence Core data sets, when not provided, dwc:nameAccordingTo can be an underlying taxonomy of the data set, e.g. Plants of the World Online (http://powo.science.kew.org/) for vascular plant records in iNaturalist (in which case it should be provided), or, which is the case for most dwc:PreservedSpecimen data sets, the dwc:Identification, in which case there is no further context.\n\nExamples: `Franz NM, Cardona-Duque J (2013) Description of two new species and phylogenetic reassessment of Perelleschus Wibmer & O’Brien, 1986 (Coleoptera: Curculionidae), with a complete taxonomic concept history of Perelleschus sec. Franz & Cardona-Duque, 2013. Syst Biodivers. 11: 209–236.` (as the full citation of the Franz & Cardona-Duque (2013) in Perelleschus splendida sec. Franz & Cardona-Duque (2013))"
             },
             "format": "text"
         },
@@ -292,9 +292,9 @@
             "namespace": "http://rs.tdwg.org/dwc/terms/",
             "qualName": "http://rs.tdwg.org/dwc/terms/namePublishedIn",
             "relation": "https://dwc.tdwg.org/terms/#dwc:namePublishedIn",
-            "description": "A reference for the publication in which the scientificName was originally established under the rules of the associated nomenclaturalCode.\n\nExamples: `Pearson O. P., and M. I. Christie. 1985. Historia Natural, 5(37):388`, `Forel, Auguste, Diagnosies provisoires de quelques espèces nouvelles de fourmis de Madagascar, récoltées par M. Grandidier., Annales de la Societe Entomologique de Belgique, Comptes-rendus des Seances 30, 1886`",
-            "comments": NaN,
-            "examples": "`Pearson O. P., and M. I. Christie. 1985. Historia Natural, 5(37):388`, `Forel, Auguste, Diagnosies provisoires de quelques espèces nouvelles de fourmis de Madagascar, récoltées par M. Grandidier., Annales de la Societe Entomologique de Belgique, Comptes-rendus des Seances 30, 1886`",
+            "description": "A reference for the publication in which the dwc:scientificName was originally established under the rules of the associated dwc:nomenclaturalCode.\n\nA citation of the first publication of the name in its given combination, not the basionym / original name. Recombinations are often not published in zoology, in which case dwc:namePublishedIn should be empty.\n\nExamples: `Pearson O. P., and M. I. Christie. 1985. Historia Natural, 5(37):388`; `Forel, Auguste, Diagnosies provisoires de quelques espèces nouvelles de fourmis de Madagascar, récoltées par M. Grandidier., Annales de la Societe Entomologique de Belgique, Comptes-rendus des Seances 30, 1886`",
+            "comments": "A citation of the first publication of the name in its given combination, not the basionym / original name. Recombinations are often not published in zoology, in which case dwc:namePublishedIn should be empty.",
+            "examples": "`Pearson O. P., and M. I. Christie. 1985. Historia Natural, 5(37):388`; `Forel, Auguste, Diagnosies provisoires de quelques espèces nouvelles de fourmis de Madagascar, récoltées par M. Grandidier., Annales de la Societe Entomologique de Belgique, Comptes-rendus des Seances 30, 1886`",
             "required": false,
             "type": null,
             "thesaurus": null,
@@ -304,7 +304,7 @@
             "valid": {
                 "validate": "any",
                 "input_title": "namePublishedIn",
-                "input_message": "A reference for the publication in which the scientificName was originally established under the rules of the associated nomenclaturalCode.\n\nExamples: `Pearson O. P., and M. I. Christie. 1985. Historia Natural, 5(37):388`, `Forel, Auguste, Diagnosies provisoires de quelques espèces nouvelles de fourmis de Madagascar, récoltées par M. Grandidier., Annales de la Societe Entomologique de Belgique, Comptes-rendus des Seances 30, 1886`"
+                "input_message": "A reference for the publication in which the dwc:scientificName was originally established under the rules of the associated dwc:nomenclaturalCode.\n\nA citation of the first publication of the name in its given combination, not the basionym / original name. Recombinations are often not published in zoology, in which case dwc:namePublishedIn should be empty.\n\nExamples: `Pearson O. P., and M. I. Christie. 1985. Historia Natural, 5(37):388`; `Forel, Auguste, Diagnosies provisoires de quelques espèces nouvelles de fourmis de Madagascar, récoltées par M. Grandidier., Annales de la Societe Entomologique de Belgique, Comptes-rendus des Seances 30, 1886`"
             },
             "format": "text"
         },
@@ -314,9 +314,9 @@
             "namespace": "http://rs.tdwg.org/dwc/terms/",
             "qualName": "http://rs.tdwg.org/dwc/terms/namePublishedInYear",
             "relation": "https://dwc.tdwg.org/terms/#dwc:namePublishedInYear",
-            "description": "The four-digit year in which the scientificName was published.\n\nExamples: `1915`, `2008`",
+            "description": "The four-digit year in which the dwc:scientificName was published.\n\nExamples: `1915`; `2008`",
             "comments": NaN,
-            "examples": "`1915`, `2008`",
+            "examples": "`1915`; `2008`",
             "required": false,
             "type": "integer",
             "thesaurus": null,
@@ -328,7 +328,7 @@
                 "criteria": ">=",
                 "value": 0,
                 "input_title": "namePublishedInYear",
-                "input_message": "The four-digit year in which the scientificName was published.\n\nExamples: `1915`, `2008`",
+                "input_message": "The four-digit year in which the dwc:scientificName was published.\n\nExamples: `1915`; `2008`",
                 "error_title": "Error",
                 "error_message": "Integer >= 0"
             },
@@ -340,9 +340,9 @@
             "namespace": "http://rs.tdwg.org/dwc/terms/",
             "qualName": "http://rs.tdwg.org/dwc/terms/higherClassification",
             "relation": "https://dwc.tdwg.org/terms/#dwc:higherClassification",
-            "description": "A list (concatenated and separated) of taxa names terminating at the rank immediately superior to the taxon referenced in the taxon record.\n\nRecommended best practice is to separate the values in a list with space vertical bar space (` | `), with terms in order from the highest taxonomic rank to the lowest.\n\nExamples: `Plantae | Tracheophyta | Magnoliopsida | Ranunculales | Ranunculaceae | Ranunculus`, `Animalia`, `Animalia | Chordata | Vertebrata | Mammalia | Theria | Eutheria | Rodentia | Hystricognatha | Hystricognathi | Ctenomyidae | Ctenomyini | Ctenomys`",
+            "description": "A list (concatenated and separated) of taxa names terminating at the rank immediately superior to the referenced dwc:Taxon.\n\nRecommended best practice is to separate the values in a list with space vertical bar space (` | `), with terms in order from the highest taxonomic rank to the lowest.\n\nExamples: `Plantae | Tracheophyta | Magnoliopsida | Ranunculales | Ranunculaceae | Ranunculus`; `Animalia`; `Animalia | Chordata | Vertebrata | Mammalia | Theria | Eutheria | Rodentia | Hystricognatha | Hystricognathi | Ctenomyidae | Ctenomyini | Ctenomys`",
             "comments": "Recommended best practice is to separate the values in a list with space vertical bar space (` | `), with terms in order from the highest taxonomic rank to the lowest.",
-            "examples": "`Plantae | Tracheophyta | Magnoliopsida | Ranunculales | Ranunculaceae | Ranunculus`, `Animalia`, `Animalia | Chordata | Vertebrata | Mammalia | Theria | Eutheria | Rodentia | Hystricognatha | Hystricognathi | Ctenomyidae | Ctenomyini | Ctenomys`",
+            "examples": "`Plantae | Tracheophyta | Magnoliopsida | Ranunculales | Ranunculaceae | Ranunculus`; `Animalia`; `Animalia | Chordata | Vertebrata | Mammalia | Theria | Eutheria | Rodentia | Hystricognatha | Hystricognathi | Ctenomyidae | Ctenomyini | Ctenomys`",
             "required": false,
             "type": null,
             "thesaurus": null,
@@ -352,7 +352,7 @@
             "valid": {
                 "validate": "any",
                 "input_title": "higherClassification",
-                "input_message": "A list (concatenated and separated) of taxa names terminating at the rank immediately superior to the taxon referenced in the taxon record.\n\nRecommended best practice is to separate the values in a list with space vertical bar space (` | `), with terms in order from the highest taxonomic rank to the lowest.\n\nExamples: `Plantae | Tracheophyta | Magnoliopsida | Ranunculales | Ranunculaceae | Ranunculus`, `Animalia`, `Animalia | Chordata | Vertebrata | Mammalia | Theria | Eutheria | Rodentia | Hystricognatha | Hystricognathi | Ctenomyidae | Ctenomyini | Ctenomys`"
+                "input_message": "A list (concatenated and separated) of taxa names terminating at the rank immediately superior to the referenced dwc:Taxon.\n\nRecommended best practice is to separate the values in a list with space vertical bar space (` | `), with terms in order from the highest taxonomic rank to the lowest.\n\nExamples: `Plantae | Tracheophyta | Magnoliopsida | Ranunculales | Ranunculaceae | Ranunculus`; `Animalia`; `Animalia | Chordata | Vertebrata | Mammalia | Theria | Eutheria | Rodentia | Hystricognatha | Hystricognathi | Ctenomyidae | Ctenomyini | Ctenomys`"
             },
             "format": "text"
         },
@@ -362,9 +362,9 @@
             "namespace": "http://rs.tdwg.org/dwc/terms/",
             "qualName": "http://rs.tdwg.org/dwc/terms/kingdom",
             "relation": "https://dwc.tdwg.org/terms/#dwc:kingdom",
-            "description": "The full scientific name of the kingdom in which the taxon is classified.\n\nExamples: `Animalia`, `Archaea`, `Bacteria`, `Chromista`, `Fungi`, `Plantae`, `Protozoa`, `Viruses`",
+            "description": "The full scientific name of the kingdom in which the dwc:Taxon is classified.\n\nExamples: `Animalia`; `Archaea`; `Bacteria`; `Chromista`; `Fungi`; `Plantae`; `Protozoa`; `Viruses`",
             "comments": NaN,
-            "examples": "`Animalia`, `Archaea`, `Bacteria`, `Chromista`, `Fungi`, `Plantae`, `Protozoa`, `Viruses`",
+            "examples": "`Animalia`; `Archaea`; `Bacteria`; `Chromista`; `Fungi`; `Plantae`; `Protozoa`; `Viruses`",
             "required": false,
             "type": null,
             "thesaurus": null,
@@ -374,7 +374,7 @@
             "valid": {
                 "validate": "any",
                 "input_title": "kingdom",
-                "input_message": "The full scientific name of the kingdom in which the taxon is classified.\n\nExamples: `Animalia`, `Archaea`, `Bacteria`, `Chromista`, `Fungi`, `Plantae`, `Protozoa`, `Viruses`"
+                "input_message": "The full scientific name of the kingdom in which the dwc:Taxon is classified.\n\nExamples: `Animalia`; `Archaea`; `Bacteria`; `Chromista`; `Fungi`; `Plantae`; `Protozoa`; `Viruses`"
             },
             "format": "text"
         },
@@ -384,9 +384,9 @@
             "namespace": "http://rs.tdwg.org/dwc/terms/",
             "qualName": "http://rs.tdwg.org/dwc/terms/phylum",
             "relation": "https://dwc.tdwg.org/terms/#dwc:phylum",
-            "description": "The full scientific name of the phylum or division in which the taxon is classified.\n\nExamples: `Chordata` (phylum). `Bryophyta` (division).",
+            "description": "The full scientific name of the phylum or division in which the dwc:Taxon is classified.\n\nExamples: `Chordata` (phylum); `Bryophyta` (division)",
             "comments": NaN,
-            "examples": "`Chordata` (phylum). `Bryophyta` (division).",
+            "examples": "`Chordata` (phylum); `Bryophyta` (division)",
             "required": false,
             "type": null,
             "thesaurus": null,
@@ -396,7 +396,7 @@
             "valid": {
                 "validate": "any",
                 "input_title": "phylum",
-                "input_message": "The full scientific name of the phylum or division in which the taxon is classified.\n\nExamples: `Chordata` (phylum). `Bryophyta` (division)."
+                "input_message": "The full scientific name of the phylum or division in which the dwc:Taxon is classified.\n\nExamples: `Chordata` (phylum); `Bryophyta` (division)"
             },
             "format": "text"
         },
@@ -406,9 +406,9 @@
             "namespace": "http://rs.tdwg.org/dwc/terms/",
             "qualName": "http://rs.tdwg.org/dwc/terms/class",
             "relation": "https://dwc.tdwg.org/terms/#dwc:class",
-            "description": "The full scientific name of the class in which the taxon is classified.\n\nExamples: `Mammalia`, `Hepaticopsida`",
+            "description": "The full scientific name of the class in which the dwc:Taxon is classified.\n\nExamples: `Mammalia`; `Hepaticopsida`",
             "comments": NaN,
-            "examples": "`Mammalia`, `Hepaticopsida`",
+            "examples": "`Mammalia`; `Hepaticopsida`",
             "required": false,
             "type": null,
             "thesaurus": null,
@@ -418,7 +418,7 @@
             "valid": {
                 "validate": "any",
                 "input_title": "class",
-                "input_message": "The full scientific name of the class in which the taxon is classified.\n\nExamples: `Mammalia`, `Hepaticopsida`"
+                "input_message": "The full scientific name of the class in which the dwc:Taxon is classified.\n\nExamples: `Mammalia`; `Hepaticopsida`"
             },
             "format": "text"
         },
@@ -428,9 +428,9 @@
             "namespace": "http://rs.tdwg.org/dwc/terms/",
             "qualName": "http://rs.tdwg.org/dwc/terms/order",
             "relation": "https://dwc.tdwg.org/terms/#dwc:order",
-            "description": "The full scientific name of the order in which the taxon is classified.\n\nExamples: `Carnivora`, `Monocleales`",
+            "description": "The full scientific name of the order in which the dwc:Taxon is classified.\n\nExamples: `Carnivora`; `Monocleales`",
             "comments": NaN,
-            "examples": "`Carnivora`, `Monocleales`",
+            "examples": "`Carnivora`; `Monocleales`",
             "required": false,
             "type": null,
             "thesaurus": null,
@@ -440,7 +440,29 @@
             "valid": {
                 "validate": "any",
                 "input_title": "order",
-                "input_message": "The full scientific name of the order in which the taxon is classified.\n\nExamples: `Carnivora`, `Monocleales`"
+                "input_message": "The full scientific name of the order in which the dwc:Taxon is classified.\n\nExamples: `Carnivora`; `Monocleales`"
+            },
+            "format": "text"
+        },
+        {
+            "group": "Taxon",
+            "name": "superfamily",
+            "namespace": "http://rs.tdwg.org/dwc/terms/",
+            "qualName": "http://rs.tdwg.org/dwc/terms/superfamily",
+            "relation": "https://dwc.tdwg.org/terms/#dwc:superfamily",
+            "description": "The full scientific name of the superfamily in which the dwc:Taxon is classified.\n\nA taxonomic category subordinate to an order and superior to a family. According to ICZN article 29.2, the suffix `-oidea` is used for a superfamily name.\n\nExamples: `Achatinoidea`; `Cerithioidea`; `Helicoidea`; `Hypsibioidea`; `Valvatoidea`; `Zonitoidea`",
+            "comments": "A taxonomic category subordinate to an order and superior to a family. According to ICZN article 29.2, the suffix `-oidea` is used for a superfamily name.",
+            "examples": "`Achatinoidea`; `Cerithioidea`; `Helicoidea`; `Hypsibioidea`; `Valvatoidea`; `Zonitoidea`",
+            "required": false,
+            "type": null,
+            "thesaurus": null,
+            "disp_name": "superfamily",
+            "id": "superfamily",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "any",
+                "input_title": "superfamily",
+                "input_message": "The full scientific name of the superfamily in which the dwc:Taxon is classified.\n\nA taxonomic category subordinate to an order and superior to a family. According to ICZN article 29.2, the suffix `-oidea` is used for a superfamily name.\n\nExamples: `Achatinoidea`; `Cerithioidea`; `Helicoidea`; `Hypsibioidea`; `Valvatoidea`; `Zonitoidea`"
             },
             "format": "text"
         },
@@ -450,9 +472,9 @@
             "namespace": "http://rs.tdwg.org/dwc/terms/",
             "qualName": "http://rs.tdwg.org/dwc/terms/family",
             "relation": "https://dwc.tdwg.org/terms/#dwc:family",
-            "description": "The full scientific name of the family in which the taxon is classified.\n\nExamples: `Felidae`, `Monocleaceae`",
+            "description": "The full scientific name of the family in which the dwc:Taxon is classified.\n\nExamples: `Felidae`; `Monocleaceae`",
             "comments": NaN,
-            "examples": "`Felidae`, `Monocleaceae`",
+            "examples": "`Felidae`; `Monocleaceae`",
             "required": false,
             "type": null,
             "thesaurus": null,
@@ -462,7 +484,7 @@
             "valid": {
                 "validate": "any",
                 "input_title": "family",
-                "input_message": "The full scientific name of the family in which the taxon is classified.\n\nExamples: `Felidae`, `Monocleaceae`"
+                "input_message": "The full scientific name of the family in which the dwc:Taxon is classified.\n\nExamples: `Felidae`; `Monocleaceae`"
             },
             "format": "text"
         },
@@ -472,9 +494,9 @@
             "namespace": "http://rs.tdwg.org/dwc/terms/",
             "qualName": "http://rs.tdwg.org/dwc/terms/subfamily",
             "relation": "https://dwc.tdwg.org/terms/#dwc:subfamily",
-            "description": "The full scientific name of the subfamily in which the taxon is classified.\n\nExamples: `Periptyctinae`, `Orchidoideae`, `Sphindociinae`",
+            "description": "The full scientific name of the subfamily in which the dwc:Taxon is classified.\n\nExamples: `Periptyctinae`; `Orchidoideae`; `Sphindociinae`",
             "comments": NaN,
-            "examples": "`Periptyctinae`, `Orchidoideae`, `Sphindociinae`",
+            "examples": "`Periptyctinae`; `Orchidoideae`; `Sphindociinae`",
             "required": false,
             "type": null,
             "thesaurus": null,
@@ -484,7 +506,51 @@
             "valid": {
                 "validate": "any",
                 "input_title": "subfamily",
-                "input_message": "The full scientific name of the subfamily in which the taxon is classified.\n\nExamples: `Periptyctinae`, `Orchidoideae`, `Sphindociinae`"
+                "input_message": "The full scientific name of the subfamily in which the dwc:Taxon is classified.\n\nExamples: `Periptyctinae`; `Orchidoideae`; `Sphindociinae`"
+            },
+            "format": "text"
+        },
+        {
+            "group": "Taxon",
+            "name": "tribe",
+            "namespace": "http://rs.tdwg.org/dwc/terms/",
+            "qualName": "http://rs.tdwg.org/dwc/terms/tribe",
+            "relation": "https://dwc.tdwg.org/terms/#dwc:tribe",
+            "description": "The full scientific name of the tribe in which the dwc:Taxon is classified.\n\nExamples: `Ortaliini`; `Arethuseae`",
+            "comments": NaN,
+            "examples": "`Ortaliini`; `Arethuseae`",
+            "required": false,
+            "type": null,
+            "thesaurus": null,
+            "disp_name": "tribe",
+            "id": "tribe",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "any",
+                "input_title": "tribe",
+                "input_message": "The full scientific name of the tribe in which the dwc:Taxon is classified.\n\nExamples: `Ortaliini`; `Arethuseae`"
+            },
+            "format": "text"
+        },
+        {
+            "group": "Taxon",
+            "name": "subtribe",
+            "namespace": "http://rs.tdwg.org/dwc/terms/",
+            "qualName": "http://rs.tdwg.org/dwc/terms/subtribe",
+            "relation": "https://dwc.tdwg.org/terms/#dwc:subtribe",
+            "description": "The full scientific name of the subtribe in which the dwc:Taxon is classified.\n\nExamples: `Plotinini`; `Typhaeini`",
+            "comments": NaN,
+            "examples": "`Plotinini`; `Typhaeini`",
+            "required": false,
+            "type": null,
+            "thesaurus": null,
+            "disp_name": "subtribe",
+            "id": "subtribe",
+            "grouping": "Darwin Core term",
+            "valid": {
+                "validate": "any",
+                "input_title": "subtribe",
+                "input_message": "The full scientific name of the subtribe in which the dwc:Taxon is classified.\n\nExamples: `Plotinini`; `Typhaeini`"
             },
             "format": "text"
         },
@@ -494,9 +560,9 @@
             "namespace": "http://rs.tdwg.org/dwc/terms/",
             "qualName": "http://rs.tdwg.org/dwc/terms/genus",
             "relation": "https://dwc.tdwg.org/terms/#dwc:genus",
-            "description": "The full scientific name of the genus in which the taxon is classified.\n\nExamples: `Puma`, `Monoclea`",
+            "description": "The full scientific name of the genus in which the dwc:Taxon is classified.\n\nExamples: `Puma`; `Monoclea`",
             "comments": NaN,
-            "examples": "`Puma`, `Monoclea`",
+            "examples": "`Puma`; `Monoclea`",
             "required": false,
             "type": null,
             "thesaurus": null,
@@ -506,7 +572,7 @@
             "valid": {
                 "validate": "any",
                 "input_title": "genus",
-                "input_message": "The full scientific name of the genus in which the taxon is classified.\n\nExamples: `Puma`, `Monoclea`"
+                "input_message": "The full scientific name of the genus in which the dwc:Taxon is classified.\n\nExamples: `Puma`; `Monoclea`"
             },
             "format": "text"
         },
@@ -516,9 +582,9 @@
             "namespace": "http://rs.tdwg.org/dwc/terms/",
             "qualName": "http://rs.tdwg.org/dwc/terms/genericName",
             "relation": "https://dwc.tdwg.org/terms/#dwc:genericName",
-            "description": "The genus part of the scientificName without authorship.\n\nFor synonyms the accepted genus and the genus part of the name may be different. The term genericName should be used together with specificEpithet to form a binomial and with infraspecificEpithet to form a trinomial. The term genericName should only be used for combinations. Uninomials of generic rank do not have a genericName.\n\nExamples: `Felis` (for scientificName \"Felis concolor\", with accompanying values of \"Puma concolor\" in acceptedNameUsage and \"Puma\" in genus).",
-            "comments": "For synonyms the accepted genus and the genus part of the name may be different. The term genericName should be used together with specificEpithet to form a binomial and with infraspecificEpithet to form a trinomial. The term genericName should only be used for combinations. Uninomials of generic rank do not have a genericName.",
-            "examples": "`Felis` (for scientificName \"Felis concolor\", with accompanying values of \"Puma concolor\" in acceptedNameUsage and \"Puma\" in genus).",
+            "description": "The genus part of the dwc:scientificName without authorship.\n\nFor synonyms the accepted genus and the genus part of the name may be different. The term dwc:genericName should be used together with dwc:specificEpithet to form a binomial and with dwc:infraspecificEpithet to form a trinomial. The term dwc:genericName should only be used for combinations. Uninomials of generic rank do not have a dwc:genericName.\n\nExamples: `Felis` (for scientificName `Felis concolor`, with accompanying values of `Puma concolor` in acceptedNameUsage and `Puma` in genus)",
+            "comments": "For synonyms the accepted genus and the genus part of the name may be different. The term dwc:genericName should be used together with dwc:specificEpithet to form a binomial and with dwc:infraspecificEpithet to form a trinomial. The term dwc:genericName should only be used for combinations. Uninomials of generic rank do not have a dwc:genericName.",
+            "examples": "`Felis` (for scientificName `Felis concolor`, with accompanying values of `Puma concolor` in acceptedNameUsage and `Puma` in genus)",
             "required": false,
             "type": null,
             "thesaurus": null,
@@ -528,7 +594,7 @@
             "valid": {
                 "validate": "any",
                 "input_title": "genericName",
-                "input_message": "The genus part of the scientificName without authorship.\n\nFor synonyms the accepted genus and the genus part of the name may be different. The term genericName should be used together with specificEpithet to form a binomial and with infraspecificEpithet to form a trinomial. The term genericName should only be used for combinations. Uninomials of generic rank do not have a genericName.\n\nExamples: `Felis` (for scientificName \"Felis concolor\", with accompanying values of \"Puma concolor\" in acceptedNameUsage and \"Puma\" in genus)."
+                "input_message": "The genus part of the dwc:scientificName without authorship.\n\nFor synonyms the accepted genus and the genus part of the name may be different. The term dwc:genericName should be used together with dwc:specificEpithet to form a binomial and with dwc:infraspecificEpithet to form a trinomial. The term dwc:genericName should only be used for combinations. Uninomials of generic rank do not have a dwc:genericName.\n\nExamples: `Felis` (for scientificName `Felis concolor`, with accompanying values of `Puma concolor` in acceptedNameUsage and `Puma` in genus)"
             },
             "format": "text"
         },
@@ -538,9 +604,9 @@
             "namespace": "http://rs.tdwg.org/dwc/terms/",
             "qualName": "http://rs.tdwg.org/dwc/terms/subgenus",
             "relation": "https://dwc.tdwg.org/terms/#dwc:subgenus",
-            "description": "The full scientific name of the subgenus in which the taxon is classified. Values should include the genus to avoid homonym confusion.\n\nExamples: `Strobus`, `Amerigo`, `Pilosella`",
+            "description": "The full scientific name of the subgenus in which the dwc:Taxon is classified. Values should include the genus to avoid homonym confusion.\n\nExamples: `Strobus`; `Amerigo`; `Pilosella`",
             "comments": NaN,
-            "examples": "`Strobus`, `Amerigo`, `Pilosella`",
+            "examples": "`Strobus`; `Amerigo`; `Pilosella`",
             "required": false,
             "type": null,
             "thesaurus": null,
@@ -550,7 +616,7 @@
             "valid": {
                 "validate": "any",
                 "input_title": "subgenus",
-                "input_message": "The full scientific name of the subgenus in which the taxon is classified. Values should include the genus to avoid homonym confusion.\n\nExamples: `Strobus`, `Amerigo`, `Pilosella`"
+                "input_message": "The full scientific name of the subgenus in which the dwc:Taxon is classified. Values should include the genus to avoid homonym confusion.\n\nExamples: `Strobus`; `Amerigo`; `Pilosella`"
             },
             "format": "text"
         },
@@ -560,9 +626,9 @@
             "namespace": "http://rs.tdwg.org/dwc/terms/",
             "qualName": "http://rs.tdwg.org/dwc/terms/infragenericEpithet",
             "relation": "https://dwc.tdwg.org/terms/#dwc:infragenericEpithet",
-            "description": "The infrageneric part of a binomial name at ranks above species but below genus.\n\nThe term infragenericEpithet should be used in conjunction with genericName, specificEpithet, infraspecificEpithet, taxonRank and scientificNameAuthorship to represent the individual elements of the complete scientificName. It can be used to indicate the subgenus placement of a species, which in zoology is often given in parentheses. Can also be used to share infrageneric names such as botanical sections (e.g., `Vicia sect. Cracca`).\n\nExamples: `Abacetillus` (for scientificName \"Abacetus (Abacetillus) ambiguus\", `Cracca` (for scientificName \"Vicia sect. Cracca\")",
-            "comments": "The term infragenericEpithet should be used in conjunction with genericName, specificEpithet, infraspecificEpithet, taxonRank and scientificNameAuthorship to represent the individual elements of the complete scientificName. It can be used to indicate the subgenus placement of a species, which in zoology is often given in parentheses. Can also be used to share infrageneric names such as botanical sections (e.g., `Vicia sect. Cracca`).",
-            "examples": "`Abacetillus` (for scientificName \"Abacetus (Abacetillus) ambiguus\", `Cracca` (for scientificName \"Vicia sect. Cracca\")",
+            "description": "The infrageneric part of a binomial name at ranks above species but below genus.\n\nThe term dwc:infragenericEpithet should be used in conjunction with dwc:genericName, dwc:specificEpithet, dwc:infraspecificEpithet, dwc:taxonRank and dwc:scientificNameAuthorship to represent the individual elements of the complete dwc:scientificName. It can be used to indicate the subgenus placement of a species, which in zoology is often given in parentheses. Can also be used to share infrageneric names such as botanical sections (e.g., `Vicia sect. Cracca`).\n\nExamples: `Abacetillus` (for scientificName `Abacetus (Abacetillus) ambiguus`); `Cracca` (for scientificName `Vicia sect. Cracca`)",
+            "comments": "The term dwc:infragenericEpithet should be used in conjunction with dwc:genericName, dwc:specificEpithet, dwc:infraspecificEpithet, dwc:taxonRank and dwc:scientificNameAuthorship to represent the individual elements of the complete dwc:scientificName. It can be used to indicate the subgenus placement of a species, which in zoology is often given in parentheses. Can also be used to share infrageneric names such as botanical sections (e.g., `Vicia sect. Cracca`).",
+            "examples": "`Abacetillus` (for scientificName `Abacetus (Abacetillus) ambiguus`); `Cracca` (for scientificName `Vicia sect. Cracca`)",
             "required": false,
             "type": null,
             "thesaurus": null,
@@ -572,7 +638,7 @@
             "valid": {
                 "validate": "any",
                 "input_title": "infragenericEpithet",
-                "input_message": "The infrageneric part of a binomial name at ranks above species but below genus.\n\nThe term infragenericEpithet should be used in conjunction with genericName, specificEpithet, infraspecificEpithet, taxonRank and scientificNameAuthorship to represent the individual elements of the complete scientificName. It can be used to indicate the subgenus placement of a species, which in zoology is often given in parentheses. Can also be used to share infrageneric names such as botanical sections (e.g., `Vicia sect. Cracca`).\n\nExamples: `Abacetillus` (for scientificName \"Abacetus (Abacetillus) ambiguus\", `Cracca` (for scientificName \"Vicia sect. Cracca\")"
+                "input_message": "The infrageneric part of a binomial name at ranks above species but below genus.\n\nThe term dwc:infragenericEpithet should be used in conjunction with dwc:genericName, dwc:specificEpithet, dwc:infraspecificEpithet, dwc:taxonRank and dwc:scientificNameAuthorship to represent the individual elements of the complete dwc:scientificName. It can be used to indicate the subgenus placement of a species, which in zoology is often given in parentheses. Can also be used to share infrageneric names such as botanical sections (e.g., `Vicia sect. Cracca`).\n\nExamples: `Abacetillus` (for scientificName `Abacetus (Abacetillus) ambiguus`); `Cracca` (for scientificName `Vicia sect. Cracca`)"
             },
             "format": "text"
         },
@@ -582,9 +648,9 @@
             "namespace": "http://rs.tdwg.org/dwc/terms/",
             "qualName": "http://rs.tdwg.org/dwc/terms/specificEpithet",
             "relation": "https://dwc.tdwg.org/terms/#dwc:specificEpithet",
-            "description": "The name of the first or species epithet of the scientificName.\n\nExamples: `concolor`, `gottschei`",
+            "description": "The name of the first or species epithet of the dwc:scientificName.\n\nExamples: `concolor`; `gottschei`",
             "comments": NaN,
-            "examples": "`concolor`, `gottschei`",
+            "examples": "`concolor`; `gottschei`",
             "required": false,
             "type": null,
             "thesaurus": null,
@@ -594,7 +660,7 @@
             "valid": {
                 "validate": "any",
                 "input_title": "specificEpithet",
-                "input_message": "The name of the first or species epithet of the scientificName.\n\nExamples: `concolor`, `gottschei`"
+                "input_message": "The name of the first or species epithet of the dwc:scientificName.\n\nExamples: `concolor`; `gottschei`"
             },
             "format": "text"
         },
@@ -604,9 +670,9 @@
             "namespace": "http://rs.tdwg.org/dwc/terms/",
             "qualName": "http://rs.tdwg.org/dwc/terms/infraspecificEpithet",
             "relation": "https://dwc.tdwg.org/terms/#dwc:infraspecificEpithet",
-            "description": "The name of the lowest or terminal infraspecific epithet of the scientificName, excluding any rank designation.\n\nIn botany, where there can be more than one infraspecific rank, name strings may be provided, in literature and in identifications, that have more than two epithets. Only the last of these epithets is the infraspecificEpithet and only the first and the last epithets belong to the scientificName. For example: the infraspecificEpithet in the string \"Indigofera charlieriana subsp. sessilis var. scaberrima\" is `scaberrima` and the scientificName is `Indigophera charlieriana var. scaberrima`.\n\nExamples: `concolor` (for scientificName \"Puma concolor concolor\"), `oxyadenia` (for scientificName \"Quercus agrifolia var. oxyadenia\"), `laxa` (for scientificName \"Cheilanthes hirta f. laxa\"), `scaberrima` (for scientificName \"Indigofera charlieriana var. scaberrima\").",
-            "comments": "In botany, where there can be more than one infraspecific rank, name strings may be provided, in literature and in identifications, that have more than two epithets. Only the last of these epithets is the infraspecificEpithet and only the first and the last epithets belong to the scientificName. For example: the infraspecificEpithet in the string \"Indigofera charlieriana subsp. sessilis var. scaberrima\" is `scaberrima` and the scientificName is `Indigophera charlieriana var. scaberrima`.",
-            "examples": "`concolor` (for scientificName \"Puma concolor concolor\"), `oxyadenia` (for scientificName \"Quercus agrifolia var. oxyadenia\"), `laxa` (for scientificName \"Cheilanthes hirta f. laxa\"), `scaberrima` (for scientificName \"Indigofera charlieriana var. scaberrima\").",
+            "description": "The name of the lowest or terminal infraspecific epithet of the dwc:scientificName, excluding any rank designation.\n\nIn botany, name strings in literature and identifications may have multiple infraspecific ranks. According to the International Code of Nomenclature for algae, fungi, and plants (Schenzhen Code Articles 6.7 & Art. 24.1), valid names only have two epithets, with the lowest rank being the dwc:infraspecificEpithet. For example: the dwc:infraspecificEpithet in the string `Indigofera charlieriana subsp. sessilis var. scaberrima` is `scaberrima` and the dwc:scientificName is `Indigofera charlieriana var. scaberrima (Schinz) J.B.Gillett`. Use dwc:verbatimIdentification for the full name string used in a dwc:Identification.\n\nExamples: `concolor` (for scientificName `Puma concolor concolor (Linnaeus, 1771)`); `oxyadenia` (for scientificName `Quercus agrifolia var. oxyadenia (Torr.) J.T. Howell`); `laxa` (for scientificName `Cheilanthes hirta f. laxa (Kunze) W.Jacobsen & N.Jacobsen`); `scaberrima` (for scientificName `Indigofera charlieriana var. scaberrima (Schinz) J.B.Gillett`)",
+            "comments": "In botany, name strings in literature and identifications may have multiple infraspecific ranks. According to the International Code of Nomenclature for algae, fungi, and plants (Schenzhen Code Articles 6.7 & Art. 24.1), valid names only have two epithets, with the lowest rank being the dwc:infraspecificEpithet. For example: the dwc:infraspecificEpithet in the string `Indigofera charlieriana subsp. sessilis var. scaberrima` is `scaberrima` and the dwc:scientificName is `Indigofera charlieriana var. scaberrima (Schinz) J.B.Gillett`. Use dwc:verbatimIdentification for the full name string used in a dwc:Identification.",
+            "examples": "`concolor` (for scientificName `Puma concolor concolor (Linnaeus, 1771)`); `oxyadenia` (for scientificName `Quercus agrifolia var. oxyadenia (Torr.) J.T. Howell`); `laxa` (for scientificName `Cheilanthes hirta f. laxa (Kunze) W.Jacobsen & N.Jacobsen`); `scaberrima` (for scientificName `Indigofera charlieriana var. scaberrima (Schinz) J.B.Gillett`)",
             "required": false,
             "type": null,
             "thesaurus": null,
@@ -616,7 +682,7 @@
             "valid": {
                 "validate": "any",
                 "input_title": "infraspecificEpithet",
-                "input_message": "The name of the lowest or terminal infraspecific epithet of the scientificName, excluding any rank designation.\n\nIn botany, where there can be more than one infraspecific rank, name strings may be provided, in literature and in identifications, that have more than two epithets. Only the last of these epithets is the infraspecificEpithet and only the first and the last epithets belong to the scientificName. For example: the infraspecificEpithet in the string \"Indigofera charlieriana subsp. sessilis var. scaberrima\" is `scaberrima` and the scientificName is `Indigophera charlieriana var. scaberrima`.\n\nExamples: `concolor` (for scientificName \"Puma concolor concolor\"), `oxyadenia` (for scientificName \"Quercus agrifolia var. oxyadenia\"), `laxa` (for scientificName \"Cheilanthes hirta f. laxa\"), `scaberrima` (for scientificName \"Indigofera charlieriana var. scaberrima\")."
+                "input_message": "The name of the lowest or terminal infraspecific epithet of the dwc:scientificName, excluding any rank designation.\n\nIn botany, name strings in literature and identifications may have multiple infraspecific ranks. According to the International Code of Nomenclature for algae, fungi, and plants (Schenzhen Code Articles 6.7 & Art. 24.1), valid names only have two epithets, with the lowest rank being the dwc:infraspecificEpithet. For example: the dwc:infraspecificEpithet in the string `Indigofera charlieriana subsp. sessilis var. scaberrima` is `scaberrima` and the dwc:scientificName is `Indigofera charlieriana var. scaberrima (Schinz) J.B.Gillett`. Use dwc:verbatimIdentification for the full name string used in a dwc:Identification.\n\nExamples: `concolor` (for scientificName `Puma concolor concolor (Linnaeus, 1771)`); `oxyadenia` (for scientificName `Quercus agrifolia var. oxyadenia (Torr.) J.T. Howell`); `laxa` (for scientificName `Cheilanthes hirta f. laxa (Kunze) W.Jacobsen & N.Jacobsen`); `scaberrima` (for scientificName `Indigofera charlieriana var. scaberrima (Schinz) J.B.Gillett`)"
             },
             "format": "text"
         },
@@ -626,9 +692,9 @@
             "namespace": "http://rs.tdwg.org/dwc/terms/",
             "qualName": "http://rs.tdwg.org/dwc/terms/cultivarEpithet",
             "relation": "https://dwc.tdwg.org/terms/#dwc:cultivarEpithet",
-            "description": "Part of the name of a cultivar, cultivar group or grex that follows the scientific name.\n\nAccording to the Rules of the Cultivated Plant Code, a cultivar name consists of a botanical name followed by a cultivar epithet. The value given as the cultivarEpithet should exclude any quotes. The term taxonRank should be used to indicate which type of cultivated plant name (e.g. cultivar, cultivar group, grex) is concerned. This epithet, including any enclosing apostrophes or suffix, should be provided in scientificName as well.\n\nExamples: `King Edward` (for scientificName \"Solanum tuberosum 'King Edward'\" and taxonRank \"cultivar\"); `Mishmiense` (for scientificName \"Rhododendron boothii Mishmiense Group\" and taxonRank \"cultivar group\"); `Atlantis` (for scientificName \"Paphiopedilum Atlantis grex\" and taxonRank \"grex\").",
-            "comments": "According to the Rules of the Cultivated Plant Code, a cultivar name consists of a botanical name followed by a cultivar epithet. The value given as the cultivarEpithet should exclude any quotes. The term taxonRank should be used to indicate which type of cultivated plant name (e.g. cultivar, cultivar group, grex) is concerned. This epithet, including any enclosing apostrophes or suffix, should be provided in scientificName as well.",
-            "examples": "`King Edward` (for scientificName \"Solanum tuberosum 'King Edward'\" and taxonRank \"cultivar\"); `Mishmiense` (for scientificName \"Rhododendron boothii Mishmiense Group\" and taxonRank \"cultivar group\"); `Atlantis` (for scientificName \"Paphiopedilum Atlantis grex\" and taxonRank \"grex\").",
+            "description": "Part of the name of a cultivar, cultivar group or grex that follows the dwc:scientificName.\n\nAccording to the Rules of the Cultivated Plant Code, a cultivar name consists of a botanical name followed by a cultivar epithet. The value given as the dwc:cultivarEpithet should exclude any quotes. The term dwc:taxonRank should be used to indicate which type of cultivated plant name (e.g. cultivar, cultivar group, grex) is concerned. This epithet, including any enclosing apostrophes or suffix, should be provided in dwc:scientificName as well.\n\nExamples: `King Edward` (for scientificName `Solanum tuberosum 'King Edward'` and taxonRank `cultivar`); `Mishmiense` (for scientificName `Rhododendron boothii Mishmiense Group` and taxonRank `cultivar group`); `Atlantis` (for scientificName `Paphiopedilum Atlantis grex` and taxonRank `grex`)",
+            "comments": "According to the Rules of the Cultivated Plant Code, a cultivar name consists of a botanical name followed by a cultivar epithet. The value given as the dwc:cultivarEpithet should exclude any quotes. The term dwc:taxonRank should be used to indicate which type of cultivated plant name (e.g. cultivar, cultivar group, grex) is concerned. This epithet, including any enclosing apostrophes or suffix, should be provided in dwc:scientificName as well.",
+            "examples": "`King Edward` (for scientificName `Solanum tuberosum 'King Edward'` and taxonRank `cultivar`); `Mishmiense` (for scientificName `Rhododendron boothii Mishmiense Group` and taxonRank `cultivar group`); `Atlantis` (for scientificName `Paphiopedilum Atlantis grex` and taxonRank `grex`)",
             "required": false,
             "type": null,
             "thesaurus": null,
@@ -638,7 +704,7 @@
             "valid": {
                 "validate": "any",
                 "input_title": "cultivarEpithet",
-                "input_message": "Part of the name of a cultivar, cultivar group or grex that follows the scientific name.\n\nAccording to the Rules of the Cultivated Plant Code, a cultivar name consists of a botanical name followed by a cultivar epithet. The value given as the cultivarEpithet should exclude any quotes. The term taxonRank should be used to indicate which type of cultivated plant name (e.g. cultivar, cultivar group, grex) is concerned. This epithet, including any enclosing apostrophes or suffix, should be provided in scientificName as well.\n\nExamples: `King Edward` (for scientificName \"Solanum tuberosum 'King Edward'\" and taxonRank \"cultivar\"); `Mishmiense` (for scientificName \"Rhododendron boothii Mishmiense Group\" and taxonRank \"cultivar group\"); `Atlantis` (for scientificName \"Paphiopedilum Atlantis grex\" and taxonRank \"grex\")."
+                "input_message": "Part of the name of a cultivar, cultivar group or grex that follows the dwc:scientificName.\n\nAccording to the Rules of the Cultivated Plant Code, a cultivar name consists of a botanical name followed by a cultivar epithet. The value given as the dwc:cultivarEpithet should exclude any quotes. The term dwc:taxonRank should be used to indicate which type of cultivated plant name (e.g. cultivar, cultivar group, grex) is concerned. This epithet, including any enclosing apostrophes or suffix, should be provided in dwc:scientificName as well.\n\nExamples: `King Edward` (for scientificName `Solanum tuberosum 'King Edward'` and taxonRank `cultivar`); `Mishmiense` (for scientificName `Rhododendron boothii Mishmiense Group` and taxonRank `cultivar group`); `Atlantis` (for scientificName `Paphiopedilum Atlantis grex` and taxonRank `grex`)"
             },
             "format": "text"
         },
@@ -648,9 +714,9 @@
             "namespace": "http://rs.tdwg.org/dwc/terms/",
             "qualName": "http://rs.tdwg.org/dwc/terms/taxonRank",
             "relation": "https://dwc.tdwg.org/terms/#dwc:taxonRank",
-            "description": "The taxonomic rank of the most specific name in the scientificName.\n\nRecommended best practice is to use a controlled vocabulary.\n\nExamples: `subspecies`, `varietas`, `forma`, `species`, `genus`",
-            "comments": "Recommended best practice is to use a controlled vocabulary.",
-            "examples": "`subspecies`, `varietas`, `forma`, `species`, `genus`",
+            "description": "The taxonomic rank of the most specific name in the dwc:scientificName.\n\nRecommended best practice is to use a controlled vocabulary. The taxon ranks of algae, fungi and plants are defined in the International Code of Nomenclature for algae, fungi, and plants (Schenzhen Code Articles H3.2, H4.4 and H.3.1).\n\nExamples: `subspecies`; `varietas`; `forma`; `species`; `genus`; `nothogenus`; `nothospecies`; `nothosubspecies`",
+            "comments": "Recommended best practice is to use a controlled vocabulary. The taxon ranks of algae, fungi and plants are defined in the International Code of Nomenclature for algae, fungi, and plants (Schenzhen Code Articles H3.2, H4.4 and H.3.1).",
+            "examples": "`subspecies`; `varietas`; `forma`; `species`; `genus`; `nothogenus`; `nothospecies`; `nothosubspecies`",
             "required": false,
             "type": null,
             "thesaurus": "http://rs.gbif.org/vocabulary/gbif/rank_2015-04-24.xml",
@@ -660,7 +726,7 @@
             "valid": {
                 "validate": "any",
                 "input_title": "taxonRank",
-                "input_message": "The taxonomic rank of the most specific name in the scientificName.\n\nRecommended best practice is to use a controlled vocabulary.\n\nExamples: `subspecies`, `varietas`, `forma`, `species`, `genus`"
+                "input_message": "The taxonomic rank of the most specific name in the dwc:scientificName.\n\nRecommended best practice is to use a controlled vocabulary. The taxon ranks of algae, fungi and plants are defined in the International Code of Nomenclature for algae, fungi, and plants (Schenzhen Code Articles H3.2, H4.4 and H.3.1).\n\nExamples: `subspecies`; `varietas`; `forma`; `species`; `genus`; `nothogenus`; `nothospecies`; `nothosubspecies`"
             },
             "format": "text"
         },
@@ -670,9 +736,9 @@
             "namespace": "http://rs.tdwg.org/dwc/terms/",
             "qualName": "http://rs.tdwg.org/dwc/terms/verbatimTaxonRank",
             "relation": "https://dwc.tdwg.org/terms/#dwc:verbatimTaxonRank",
-            "description": "The taxonomic rank of the most specific name in the scientificName as it appears in the original record.\n\nExamples: `Agamospecies`, `sub-lesus`, `prole`, `apomict`, `nothogrex`, `sp.`, `subsp.`, `var.`",
+            "description": "The taxonomic rank of the most specific name in the dwc:scientificName as it appears in the original record.\n\nExamples: `Agamospecies`; `sub-lesus`; `prole`; `apomict`; `nothogrex`; `sp.`; `subsp.`; `var.`",
             "comments": NaN,
-            "examples": "`Agamospecies`, `sub-lesus`, `prole`, `apomict`, `nothogrex`, `sp.`, `subsp.`, `var.`",
+            "examples": "`Agamospecies`; `sub-lesus`; `prole`; `apomict`; `nothogrex`; `sp.`; `subsp.`; `var.`",
             "required": false,
             "type": null,
             "thesaurus": null,
@@ -682,7 +748,7 @@
             "valid": {
                 "validate": "any",
                 "input_title": "verbatimTaxonRank",
-                "input_message": "The taxonomic rank of the most specific name in the scientificName as it appears in the original record.\n\nExamples: `Agamospecies`, `sub-lesus`, `prole`, `apomict`, `nothogrex`, `sp.`, `subsp.`, `var.`"
+                "input_message": "The taxonomic rank of the most specific name in the dwc:scientificName as it appears in the original record.\n\nExamples: `Agamospecies`; `sub-lesus`; `prole`; `apomict`; `nothogrex`; `sp.`; `subsp.`; `var.`"
             },
             "format": "text"
         },
@@ -692,9 +758,9 @@
             "namespace": "http://rs.tdwg.org/dwc/terms/",
             "qualName": "http://rs.tdwg.org/dwc/terms/scientificNameAuthorship",
             "relation": "https://dwc.tdwg.org/terms/#dwc:scientificNameAuthorship",
-            "description": "The authorship information for the scientificName formatted according to the conventions of the applicable nomenclaturalCode.\n\nExamples: `(Torr.) J.T. Howell`, `(Martinovský) Tzvelev`, `(Györfi, 1952)`",
+            "description": "The authorship information for the dwc:scientificName formatted according to the conventions of the applicable dwc:nomenclaturalCode.\n\nExamples: `(Torr.) J.T. Howell`; `(Martinovský) Tzvelev`; `(Györfi, 1952)`",
             "comments": NaN,
-            "examples": "`(Torr.) J.T. Howell`, `(Martinovský) Tzvelev`, `(Györfi, 1952)`",
+            "examples": "`(Torr.) J.T. Howell`; `(Martinovský) Tzvelev`; `(Györfi, 1952)`",
             "required": false,
             "type": null,
             "thesaurus": null,
@@ -704,7 +770,7 @@
             "valid": {
                 "validate": "any",
                 "input_title": "scientificNameAuthorship",
-                "input_message": "The authorship information for the scientificName formatted according to the conventions of the applicable nomenclaturalCode.\n\nExamples: `(Torr.) J.T. Howell`, `(Martinovský) Tzvelev`, `(Györfi, 1952)`"
+                "input_message": "The authorship information for the dwc:scientificName formatted according to the conventions of the applicable dwc:nomenclaturalCode.\n\nExamples: `(Torr.) J.T. Howell`; `(Martinovský) Tzvelev`; `(Györfi, 1952)`"
             },
             "format": "text"
         },
@@ -714,9 +780,9 @@
             "namespace": "http://rs.tdwg.org/dwc/terms/",
             "qualName": "http://rs.tdwg.org/dwc/terms/vernacularName",
             "relation": "https://dwc.tdwg.org/terms/#dwc:vernacularName",
-            "description": "A common or vernacular name.\n\nExamples: `Andean Condor`, `Condor Andino`, `American Eagle`, `Gänsegeier`",
+            "description": "A common or vernacular name.\n\nExamples: `Andean Condor`; `Condor Andino`; `American Eagle`; `Gänsegeier`",
             "comments": NaN,
-            "examples": "`Andean Condor`, `Condor Andino`, `American Eagle`, `Gänsegeier`",
+            "examples": "`Andean Condor`; `Condor Andino`; `American Eagle`; `Gänsegeier`",
             "required": false,
             "type": null,
             "thesaurus": null,
@@ -726,7 +792,7 @@
             "valid": {
                 "validate": "any",
                 "input_title": "vernacularName",
-                "input_message": "A common or vernacular name.\n\nExamples: `Andean Condor`, `Condor Andino`, `American Eagle`, `Gänsegeier`"
+                "input_message": "A common or vernacular name.\n\nExamples: `Andean Condor`; `Condor Andino`; `American Eagle`; `Gänsegeier`"
             },
             "format": "text"
         },
@@ -736,19 +802,19 @@
             "namespace": "http://rs.tdwg.org/dwc/terms/",
             "qualName": "http://rs.tdwg.org/dwc/terms/nomenclaturalCode",
             "relation": "https://dwc.tdwg.org/terms/#dwc:nomenclaturalCode",
-            "description": "The nomenclatural code (or codes in the case of an ambiregnal name) under which the scientificName is constructed.\n\nRecommended best practice is to use a controlled vocabulary.\n\nExamples: `ICN`, `ICZN`, `BC`, `ICNCP`, `BioCode`",
+            "description": "The nomenclatural code (or codes in the case of an ambiregnal name) under which the dwc:scientificName is constructed.\n\nRecommended best practice is to use a controlled vocabulary.\n\nExamples: `ICN`; `ICZN`; `BC`; `ICNCP`; `BioCode`",
             "comments": "Recommended best practice is to use a controlled vocabulary.",
-            "examples": "`ICN`, `ICZN`, `BC`, `ICNCP`, `BioCode`",
+            "examples": "`ICN`; `ICZN`; `BC`; `ICNCP`; `BioCode`",
             "required": false,
             "type": null,
-            "thesaurus": null,
+            "thesaurus": "http://rs.gbif.org/vocabulary/gbif/nomenclatural_code.xml",
             "disp_name": "nomenclaturalCode",
             "id": "nomenclaturalCode",
             "grouping": "Darwin Core term",
             "valid": {
                 "validate": "any",
                 "input_title": "nomenclaturalCode",
-                "input_message": "The nomenclatural code (or codes in the case of an ambiregnal name) under which the scientificName is constructed.\n\nRecommended best practice is to use a controlled vocabulary.\n\nExamples: `ICN`, `ICZN`, `BC`, `ICNCP`, `BioCode`"
+                "input_message": "The nomenclatural code (or codes in the case of an ambiregnal name) under which the dwc:scientificName is constructed.\n\nRecommended best practice is to use a controlled vocabulary.\n\nExamples: `ICN`; `ICZN`; `BC`; `ICNCP`; `BioCode`"
             },
             "format": "text"
         },
@@ -758,9 +824,9 @@
             "namespace": "http://rs.tdwg.org/dwc/terms/",
             "qualName": "http://rs.tdwg.org/dwc/terms/taxonomicStatus",
             "relation": "https://dwc.tdwg.org/terms/#dwc:taxonomicStatus",
-            "description": "The status of the use of the scientificName as a label for a taxon. Requires taxonomic opinion to define the scope of a taxon. Rules of priority then are used to define the taxonomic status of the nomenclature contained in that scope, combined with the experts opinion. It must be linked to a specific taxonomic reference that defines the concept.\n\nRecommended best practice is to use a controlled vocabulary.\n\nExamples: `invalid`, `misapplied`, `homotypic synonym`, `accepted`",
+            "description": "The status of the use of the dwc:scientificName as a label for a taxon. Requires taxonomic opinion to define the scope of a dwc:Taxon. Rules of priority then are used to define the taxonomic status of the nomenclature contained in that scope, combined with the experts opinion. It must be linked to a specific taxonomic reference that defines the concept.\n\nRecommended best practice is to use a controlled vocabulary.\n\nExamples: `invalid`; `misapplied`; `homotypic synonym`; `accepted`",
             "comments": "Recommended best practice is to use a controlled vocabulary.",
-            "examples": "`invalid`, `misapplied`, `homotypic synonym`, `accepted`",
+            "examples": "`invalid`; `misapplied`; `homotypic synonym`; `accepted`",
             "required": false,
             "type": null,
             "thesaurus": null,
@@ -770,7 +836,7 @@
             "valid": {
                 "validate": "any",
                 "input_title": "taxonomicStatus",
-                "input_message": "The status of the use of the scientificName as a label for a taxon. Requires taxonomic opinion to define the scope of a taxon. Rules of priority then are used to define the taxonomic status of the nomenclature contained in that scope, combined with the experts opinion. It must be linked to a specific taxonomic reference that defines the concept.\n\nRecommended best practice is to use a controlled vocabulary.\n\nExamples: `invalid`, `misapplied`, `homotypic synonym`, `accepted`"
+                "input_message": "The status of the use of the dwc:scientificName as a label for a taxon. Requires taxonomic opinion to define the scope of a dwc:Taxon. Rules of priority then are used to define the taxonomic status of the nomenclature contained in that scope, combined with the experts opinion. It must be linked to a specific taxonomic reference that defines the concept.\n\nRecommended best practice is to use a controlled vocabulary.\n\nExamples: `invalid`; `misapplied`; `homotypic synonym`; `accepted`"
             },
             "format": "text"
         },
@@ -780,19 +846,19 @@
             "namespace": "http://rs.tdwg.org/dwc/terms/",
             "qualName": "http://rs.tdwg.org/dwc/terms/nomenclaturalStatus",
             "relation": "https://dwc.tdwg.org/terms/#dwc:nomenclaturalStatus",
-            "description": "The status related to the original publication of the name and its conformance to the relevant rules of nomenclature. It is based essentially on an algorithm according to the business rules of the code. It requires no taxonomic opinion.\n\nExamples: `nom. ambig.`, `nom. illeg.`, `nom. subnud.`",
+            "description": "The status related to the original publication of the name and its conformance to the relevant rules of nomenclature. It is based essentially on an algorithm according to the business rules of the code. It requires no taxonomic opinion.\n\nExamples: `nom. ambig.`; `nom. illeg.`; `nom. subnud.`",
             "comments": NaN,
-            "examples": "`nom. ambig.`, `nom. illeg.`, `nom. subnud.`",
+            "examples": "`nom. ambig.`; `nom. illeg.`; `nom. subnud.`",
             "required": false,
             "type": null,
-            "thesaurus": null,
+            "thesaurus": "http://rs.gbif.org/vocabulary/gbif/nomenclatural_status_2019-02-08.xml",
             "disp_name": "nomenclaturalStatus",
             "id": "nomenclaturalStatus",
             "grouping": "Darwin Core term",
             "valid": {
                 "validate": "any",
                 "input_title": "nomenclaturalStatus",
-                "input_message": "The status related to the original publication of the name and its conformance to the relevant rules of nomenclature. It is based essentially on an algorithm according to the business rules of the code. It requires no taxonomic opinion.\n\nExamples: `nom. ambig.`, `nom. illeg.`, `nom. subnud.`"
+                "input_message": "The status related to the original publication of the name and its conformance to the relevant rules of nomenclature. It is based essentially on an algorithm according to the business rules of the code. It requires no taxonomic opinion.\n\nExamples: `nom. ambig.`; `nom. illeg.`; `nom. subnud.`"
             },
             "format": "text"
         },
@@ -824,9 +890,9 @@
             "namespace": "http://purl.org/dc/terms/",
             "qualName": "http://purl.org/dc/terms/modified",
             "relation": "https://dwc.tdwg.org/terms/#dcterms:modified",
-            "description": "The most recent date-time on which the resource was changed.\n\nRecommended best practice is to use a date that conforms to ISO 8601-1:2019.\n\nExamples: `1963-03-08T14:07-0600` (8 Mar 1963 at 2:07pm in the time zone six hours earlier than UTC). `2009-02-20T08:40Z` (20 February 2009 8:40am UTC). `2018-08-29T15:19` (3:19pm local time on 29 August 2018). `1809-02-12` (some time during 12 February 1809). `1906-06` (some time in June 1906). `1971` (some time in the year 1971). `2007-03-01T13:00:00Z/2008-05-11T15:30:00Z` (some time during the interval between 1 March 2007 1pm UTC and 11 May 2008 3:30pm UTC). `1900/1909` (some time during the interval between the beginning of the year 1900 and the end of the year 1909). `2007-11-13/15` (some time in the interval between 13 November 2007 and 15 November 2007).",
+            "description": "The most recent date-time on which the resource was changed.\n\nRecommended best practice is to use a date that conforms to ISO 8601-1:2019.\n\nExamples: `1963-03-08T14:07-0600` (8 Mar 1963 at 2:07pm in the time zone six hours earlier than UTC); `2009-02-20T08:40Z` (20 February 2009 8:40am UTC); `2018-08-29T15:19` (3:19pm local time on 29 August 2018); `1809-02-12` (some time during 12 February 1809); `1906-06` (some time in June 1906); `1971` (some time in the year 1971); `2007-03-01T13:00:00Z/2008-05-11T15:30:00Z` (some time during the interval between 1 March 2007 1pm UTC and 11 May 2008 3:30pm UTC); `1900/1909` (some time during the interval between the beginning of the year 1900 and the end of the year 1909); `2007-11-13/15` (some time in the interval between 13 November 2007 and 15 November 2007)",
             "comments": "Recommended best practice is to use a date that conforms to ISO 8601-1:2019.",
-            "examples": "`1963-03-08T14:07-0600` (8 Mar 1963 at 2:07pm in the time zone six hours earlier than UTC). `2009-02-20T08:40Z` (20 February 2009 8:40am UTC). `2018-08-29T15:19` (3:19pm local time on 29 August 2018). `1809-02-12` (some time during 12 February 1809). `1906-06` (some time in June 1906). `1971` (some time in the year 1971). `2007-03-01T13:00:00Z/2008-05-11T15:30:00Z` (some time during the interval between 1 March 2007 1pm UTC and 11 May 2008 3:30pm UTC). `1900/1909` (some time during the interval between the beginning of the year 1900 and the end of the year 1909). `2007-11-13/15` (some time in the interval between 13 November 2007 and 15 November 2007).",
+            "examples": "`1963-03-08T14:07-0600` (8 Mar 1963 at 2:07pm in the time zone six hours earlier than UTC); `2009-02-20T08:40Z` (20 February 2009 8:40am UTC); `2018-08-29T15:19` (3:19pm local time on 29 August 2018); `1809-02-12` (some time during 12 February 1809); `1906-06` (some time in June 1906); `1971` (some time in the year 1971); `2007-03-01T13:00:00Z/2008-05-11T15:30:00Z` (some time during the interval between 1 March 2007 1pm UTC and 11 May 2008 3:30pm UTC); `1900/1909` (some time during the interval between the beginning of the year 1900 and the end of the year 1909); `2007-11-13/15` (some time in the interval between 13 November 2007 and 15 November 2007)",
             "required": false,
             "type": "date",
             "thesaurus": null,
@@ -836,7 +902,7 @@
             "valid": {
                 "validate": "any",
                 "input_title": "modified",
-                "input_message": "The most recent date-time on which the resource was changed.\n\nRecommended best practice is to use a date that conforms to ISO 8601-1:2019.\n\nExamples: `1963-03-08T14:07-0600` (8 Mar 1963 at 2:07pm in the time zone six hours earlier than UTC). `2009-02-20T08:40Z` (20 February 2009 8:40am UTC). `2018-08-29T15:19` (3:19pm local time on 29 August 2018). `1809-02-12` (some time during 12 February 1809). `1906-06` (some time in June 1906). `1971` (some time in the year 1971). `2007-03-01T13:00:00Z/2008-05-11T15:30:00Z` (some time during the interval between 1 March 2007 1pm UTC and 11 May 2008 3:30pm UTC). `1900/1909` (some time during the interval between the beginning of the year 1900 and the end of the year 1909). `2007-11-13/15` (some time in the interval between 13 November 2007 and 15 November 2007)."
+                "input_message": "The most recent date-time on which the resource was changed.\n\nRecommended best practice is to use a date that conforms to ISO 8601-1:2019.\n\nExamples: `1963-03-08T14:07-0600` (8 Mar 1963 at 2:07pm in the time zone six hours earlier than UTC); `2009-02-20T08:40Z` (20 February 2009 8:40am UTC); `2018-08-29T15:19` (3:19pm local time on 29 August 2018); `1809-02-12` (some time during 12 February 1809); `1906-06` (some time in June 1906); `1971` (some time in the year 1971); `2007-03-01T13:00:00Z/2008-05-11T15:30:00Z` (some time during the interval between 1 March 2007 1pm UTC and 11 May 2008 3:30pm UTC); `1900/1909` (some time during the interval between the beginning of the year 1900 and the end of the year 1909); `2007-11-13/15` (some time in the interval between 13 November 2007 and 15 November 2007)"
             },
             "format": "text"
         },
@@ -846,9 +912,9 @@
             "namespace": "http://purl.org/dc/elements/1.1/",
             "qualName": "http://purl.org/dc/elements/1.1/language",
             "relation": "https://dwc.tdwg.org/terms/#dc:language",
-            "description": "A language of the resource.\n\nRecommended best practice is to use a controlled vocabulary such as RFC 5646.\n\nExamples: `en` (for English), `es` (for Spanish)",
+            "description": "A language of the resource.\n\nRecommended best practice is to use a controlled vocabulary such as RFC 5646.\n\nExamples: `en` (for English); `es` (for Spanish)",
             "comments": "Recommended best practice is to use a controlled vocabulary such as RFC 5646.",
-            "examples": "`en` (for English), `es` (for Spanish)",
+            "examples": "`en` (for English); `es` (for Spanish)",
             "required": false,
             "type": null,
             "thesaurus": null,
@@ -858,7 +924,7 @@
             "valid": {
                 "validate": "any",
                 "input_title": "language",
-                "input_message": "A language of the resource.\n\nRecommended best practice is to use a controlled vocabulary such as RFC 5646.\n\nExamples: `en` (for English), `es` (for Spanish)"
+                "input_message": "A language of the resource.\n\nRecommended best practice is to use a controlled vocabulary such as RFC 5646.\n\nExamples: `en` (for English); `es` (for Spanish)"
             },
             "format": "text"
         },
@@ -868,9 +934,9 @@
             "namespace": "http://purl.org/dc/terms/",
             "qualName": "http://purl.org/dc/terms/license",
             "relation": "https://dwc.tdwg.org/terms/#dcterms:license",
-            "description": "A legal document giving official permission to do something with the resource.\n\nExamples: `http://creativecommons.org/publicdomain/zero/1.0/legalcode`, `http://creativecommons.org/licenses/by/4.0/legalcode`",
+            "description": "A legal document giving official permission to do something with the resource.\n\nExamples: `http://creativecommons.org/publicdomain/zero/1.0/legalcode`; `http://creativecommons.org/licenses/by/4.0/legalcode`",
             "comments": NaN,
-            "examples": "`http://creativecommons.org/publicdomain/zero/1.0/legalcode`, `http://creativecommons.org/licenses/by/4.0/legalcode`",
+            "examples": "`http://creativecommons.org/publicdomain/zero/1.0/legalcode`; `http://creativecommons.org/licenses/by/4.0/legalcode`",
             "required": false,
             "type": null,
             "thesaurus": null,
@@ -880,7 +946,7 @@
             "valid": {
                 "validate": "any",
                 "input_title": "license",
-                "input_message": "A legal document giving official permission to do something with the resource.\n\nExamples: `http://creativecommons.org/publicdomain/zero/1.0/legalcode`, `http://creativecommons.org/licenses/by/4.0/legalcode`"
+                "input_message": "A legal document giving official permission to do something with the resource.\n\nExamples: `http://creativecommons.org/publicdomain/zero/1.0/legalcode`; `http://creativecommons.org/licenses/by/4.0/legalcode`"
             },
             "format": "text"
         },
@@ -912,9 +978,9 @@
             "namespace": "http://purl.org/dc/terms/",
             "qualName": "http://purl.org/dc/terms/accessRights",
             "relation": "https://dwc.tdwg.org/terms/#dcterms:accessRights",
-            "description": "Information about who can access the resource or an indication of its security status.\n\nAccess Rights may include information regarding access or restrictions based on privacy, security, or other policies.\n\nExamples: `not-for-profit use only`, `https://www.fieldmuseum.org/field-museum-natural-history-conditions-and-suggested-norms-use-collections-data-and-images`",
+            "description": "Information about who can access the resource or an indication of its security status.\n\nAccess Rights may include information regarding access or restrictions based on privacy, security, or other policies.\n\nExamples: `not-for-profit use only` (string literal example); `https://www.fieldmuseum.org/field-museum-natural-history-conditions-and-suggested-norms-use-collections-data-and-images` (URI example)",
             "comments": "Access Rights may include information regarding access or restrictions based on privacy, security, or other policies.",
-            "examples": "`not-for-profit use only`, `https://www.fieldmuseum.org/field-museum-natural-history-conditions-and-suggested-norms-use-collections-data-and-images`",
+            "examples": "`not-for-profit use only` (string literal example); `https://www.fieldmuseum.org/field-museum-natural-history-conditions-and-suggested-norms-use-collections-data-and-images` (URI example)",
             "required": false,
             "type": null,
             "thesaurus": null,
@@ -924,7 +990,7 @@
             "valid": {
                 "validate": "any",
                 "input_title": "accessRights",
-                "input_message": "Information about who can access the resource or an indication of its security status.\n\nAccess Rights may include information regarding access or restrictions based on privacy, security, or other policies.\n\nExamples: `not-for-profit use only`, `https://www.fieldmuseum.org/field-museum-natural-history-conditions-and-suggested-norms-use-collections-data-and-images`"
+                "input_message": "Information about who can access the resource or an indication of its security status.\n\nAccess Rights may include information regarding access or restrictions based on privacy, security, or other policies.\n\nExamples: `not-for-profit use only` (string literal example); `https://www.fieldmuseum.org/field-museum-natural-history-conditions-and-suggested-norms-use-collections-data-and-images` (URI example)"
             },
             "format": "text"
         },
@@ -934,9 +1000,9 @@
             "namespace": "http://purl.org/dc/terms/",
             "qualName": "http://purl.org/dc/terms/bibliographicCitation",
             "relation": "https://dwc.tdwg.org/terms/#dcterms:bibliographicCitation",
-            "description": "A bibliographic reference for the resource as a statement indicating how this record should be cited (attributed) when used.\n\nFrom Dublin Core, \"Recommended practice is to include sufficient bibliographic detail to identify the resource as unambiguously as possible.\" The intended usage of this term in Darwin Core is to provide the preferred way to cite the resource itself - \"how to cite this record\". Note that the intended usage of dcterms:references in Darwin Core, by contrast, is to point to the definitive source representation of the resource - \"where to find the as-close-to-original reference, if one is available.\n\nExamples: Occurrence example: `Museum of Vertebrate Zoology, UC Berkeley. MVZ Mammal Collection (Arctos). Record ID: http://arctos.database.museum/guid/MVZ:Mamm:165861?seid=101356. Source: http://ipt.vertnet.org:8080/ipt/resource.do?r=mvz_mammal.` Taxon example: `https://www.gbif.org/species/2439608 Source: GBIF Taxonomic Backbone`, Event example: `Rand, K.M., Logerwell, E.A. The first demersal trawl survey of benthic fish and invertebrates in the Beaufort Sea since the late 1970s. Polar Biol 34, 475–488 (2011). https://doi.org/10.1007/s00300-010-0900-2`",
+            "description": "A bibliographic reference for the resource.\n\nFrom Dublin Core, \"Recommended practice is to include sufficient bibliographic detail to identify the resource as unambiguously as possible.\" The intended usage of this term in Darwin Core is to provide the preferred way to cite the resource itself - \"how to cite this record\". Note that the intended usage of dcterms:references in Darwin Core, by contrast, is to point to the definitive source representation of the resource - \"where to find the as-close-to-original reference, if one is available.\n\nExamples: `Museum of Vertebrate Zoology, UC Berkeley. MVZ Mammal Collection (Arctos). Record ID: http://arctos.database.museum/guid/MVZ:Mamm:165861?seid=101356. Source: http://ipt.vertnet.org:8080/ipt/resource.do?r=mvz_mammal.` (Occurrence example); `https://www.gbif.org/species/2439608 Source: GBIF Taxonomic Backbone` (Taxon example); `Rand, K.M., Logerwell, E.A. The first demersal trawl survey of benthic fish and invertebrates in the Beaufort Sea since the late 1970s. Polar Biol 34, 475–488 (2011). https://doi.org/10.1007/s00300-010-0900-2` (Event example)",
             "comments": "From Dublin Core, \"Recommended practice is to include sufficient bibliographic detail to identify the resource as unambiguously as possible.\" The intended usage of this term in Darwin Core is to provide the preferred way to cite the resource itself - \"how to cite this record\". Note that the intended usage of dcterms:references in Darwin Core, by contrast, is to point to the definitive source representation of the resource - \"where to find the as-close-to-original reference, if one is available.",
-            "examples": "Occurrence example: `Museum of Vertebrate Zoology, UC Berkeley. MVZ Mammal Collection (Arctos). Record ID: http://arctos.database.museum/guid/MVZ:Mamm:165861?seid=101356. Source: http://ipt.vertnet.org:8080/ipt/resource.do?r=mvz_mammal.` Taxon example: `https://www.gbif.org/species/2439608 Source: GBIF Taxonomic Backbone`, Event example: `Rand, K.M., Logerwell, E.A. The first demersal trawl survey of benthic fish and invertebrates in the Beaufort Sea since the late 1970s. Polar Biol 34, 475–488 (2011). https://doi.org/10.1007/s00300-010-0900-2`",
+            "examples": "`Museum of Vertebrate Zoology, UC Berkeley. MVZ Mammal Collection (Arctos). Record ID: http://arctos.database.museum/guid/MVZ:Mamm:165861?seid=101356. Source: http://ipt.vertnet.org:8080/ipt/resource.do?r=mvz_mammal.` (Occurrence example); `https://www.gbif.org/species/2439608 Source: GBIF Taxonomic Backbone` (Taxon example); `Rand, K.M., Logerwell, E.A. The first demersal trawl survey of benthic fish and invertebrates in the Beaufort Sea since the late 1970s. Polar Biol 34, 475–488 (2011). https://doi.org/10.1007/s00300-010-0900-2` (Event example)",
             "required": false,
             "type": null,
             "thesaurus": null,
@@ -946,7 +1012,7 @@
             "valid": {
                 "validate": "any",
                 "input_title": "bibliographicCitation",
-                "input_message": "A bibliographic reference for the resource as a statement indicating how this record should be cited (attributed) when used.\n\nFrom Dublin Core, \"Recommended practice is to include sufficient bibliographic detail to identify the resource as unambiguously as possible.\" The intended usage of this term in Darwin Core is to provide the preferred way to cite the resource itself - \"how to cite this record\". Note that the intended usage of dcterms:references in Darwin Core, by contrast, is to point to the definitive source representation of the resource - \"where to find the as-close-to-original reference, if one is available.\n\nExamples: Occurrence example: `Museum of Vertebrate Zoology, UC Berkeley. MVZ Mammal Collection (Arctos). Record ID: http://arctos.database.museum/guid/MVZ:Mamm:165861?seid=101356. Source: http://ipt.vertnet.org:8080/ipt/resource.do?r=mvz_mammal.` Taxon example: `https://www.gbif.org/species/2439608 Source: GBIF Taxonomic Backbone`, Event example: `Rand, K.M., Logerwell, E.A. The first demersal trawl survey of benthic fish and invertebrates in the Beaufort Sea since the late 1970s. Polar Biol 34, 475–488 (2011). https://doi.org/10.1007/s00300-010-0900-2`"
+                "input_message": "A bibliographic reference for the resource.\n\nFrom Dublin Core, \"Recommended practice is to include sufficient bibliographic detail to identify the resource as unambiguously as possible.\" The intended usage of this term in Darwin Core is to provide the preferred way to cite the resource itself - \"how to cite this record\". Note that the intended usage of dcterms:references in Darwin Core, by contrast, is to point to the definitive source representation of the resource - \"where to find the as-close-to-original reference, if one is available.\n\nExamples: `Museum of Vertebrate Zoology, UC Berkeley. MVZ Mammal Collection (Arctos). Record ID: http://arctos.database.museum/guid/MVZ:Mamm:165861?seid=101356. Source: http://ipt.vertnet.org:8080/ipt/resource.do?r=mvz_mammal.` (Occurrence example); `https://www.gbif.org/species/2439608 Source: GBIF Taxonomic Backbone` (Taxon example); `Rand, K.M., Logerwell, E.A. The first demersal trawl survey of benthic fish and invertebrates in the Beaufort Sea since the late 1970s. Polar Biol 34, 475–488 (2011). https://doi.org/10.1007/s00300-010-0900-2` (Event example)"
             },
             "format": "text"
         },
@@ -956,9 +1022,9 @@
             "namespace": "http://purl.org/dc/terms/",
             "qualName": "http://purl.org/dc/terms/references",
             "relation": "https://dwc.tdwg.org/terms/#dcterms:references",
-            "description": "A related resource that is referenced, cited, or otherwise pointed to by the described resource.\n\nFrom Dublin Core, \"This property is intended to be used with non-literal values. This property is an inverse property of Is Referenced By.\" The intended usage of this term in Darwin Core is to point to the definitive source representation of the resource (e.g.,Taxon, Occurrence, Event in Darwin Core), if one is available. Note that the intended usage of dcterms:bibliographicCitation in Darwin Core, by contrast, is to provide the preferred way to cite the resource itself.\n\nExamples: MaterialSample example: `http://arctos.database.museum/guid/MVZ:Mamm:165861`, Taxon example: `https://www.catalogueoflife.org/data/taxon/32664`",
+            "description": "A related resource that is referenced, cited, or otherwise pointed to by the described resource.\n\nFrom Dublin Core, \"This property is intended to be used with non-literal values. This property is an inverse property of Is Referenced By.\" The intended usage of this term in Darwin Core is to point to the definitive source representation of the resource (e.g.,Taxon, Occurrence, Event in Darwin Core), if one is available. Note that the intended usage of dcterms:bibliographicCitation in Darwin Core, by contrast, is to provide the preferred way to cite the resource itself.\n\nExamples: `http://arctos.database.museum/guid/MVZ:Mamm:165861` (MaterialEntity example); `https://www.catalogueoflife.org/data/taxon/32664` (Taxon example)",
             "comments": "From Dublin Core, \"This property is intended to be used with non-literal values. This property is an inverse property of Is Referenced By.\" The intended usage of this term in Darwin Core is to point to the definitive source representation of the resource (e.g.,Taxon, Occurrence, Event in Darwin Core), if one is available. Note that the intended usage of dcterms:bibliographicCitation in Darwin Core, by contrast, is to provide the preferred way to cite the resource itself.",
-            "examples": "MaterialSample example: `http://arctos.database.museum/guid/MVZ:Mamm:165861`, Taxon example: `https://www.catalogueoflife.org/data/taxon/32664`",
+            "examples": "`http://arctos.database.museum/guid/MVZ:Mamm:165861` (MaterialEntity example); `https://www.catalogueoflife.org/data/taxon/32664` (Taxon example)",
             "required": false,
             "type": "uri",
             "thesaurus": null,
@@ -968,7 +1034,7 @@
             "valid": {
                 "validate": "any",
                 "input_title": "references",
-                "input_message": "A related resource that is referenced, cited, or otherwise pointed to by the described resource.\n\nFrom Dublin Core, \"This property is intended to be used with non-literal values. This property is an inverse property of Is Referenced By.\" The intended usage of this term in Darwin Core is to point to the definitive source representation of the resource (e.g.,Taxon, Occurrence, Event in Darwin Core), if one is available. Note that the intended usage of dcterms:bibliographicCitation in Darwin Core, by contrast, is to provide the preferred way to cite the resource itself.\n\nExamples: MaterialSample example: `http://arctos.database.museum/guid/MVZ:Mamm:165861`, Taxon example: `https://www.catalogueoflife.org/data/taxon/32664`"
+                "input_message": "A related resource that is referenced, cited, or otherwise pointed to by the described resource.\n\nFrom Dublin Core, \"This property is intended to be used with non-literal values. This property is an inverse property of Is Referenced By.\" The intended usage of this term in Darwin Core is to point to the definitive source representation of the resource (e.g.,Taxon, Occurrence, Event in Darwin Core), if one is available. Note that the intended usage of dcterms:bibliographicCitation in Darwin Core, by contrast, is to provide the preferred way to cite the resource itself.\n\nExamples: `http://arctos.database.museum/guid/MVZ:Mamm:165861` (MaterialEntity example); `https://www.catalogueoflife.org/data/taxon/32664` (Taxon example)"
             },
             "format": "text"
         },
@@ -978,9 +1044,9 @@
             "namespace": "http://rs.tdwg.org/dwc/terms/",
             "qualName": "http://rs.tdwg.org/dwc/terms/institutionCode",
             "relation": "https://dwc.tdwg.org/terms/#dwc:institutionCode",
-            "description": "The name (or acronym) in use by the institution having custody of the object(s) or information referred to in the record.\n\nExamples: `MVZ`, `FMNH`, `CLO`, `UCMP`",
+            "description": "The name (or acronym) in use by the institution having custody of the object(s) or information referred to in the record.\n\nExamples: `MVZ`; `FMNH`; `CLO`; `UCMP`",
             "comments": NaN,
-            "examples": "`MVZ`, `FMNH`, `CLO`, `UCMP`",
+            "examples": "`MVZ`; `FMNH`; `CLO`; `UCMP`",
             "required": false,
             "type": null,
             "thesaurus": null,
@@ -990,7 +1056,7 @@
             "valid": {
                 "validate": "any",
                 "input_title": "institutionCode",
-                "input_message": "The name (or acronym) in use by the institution having custody of the object(s) or information referred to in the record.\n\nExamples: `MVZ`, `FMNH`, `CLO`, `UCMP`"
+                "input_message": "The name (or acronym) in use by the institution having custody of the object(s) or information referred to in the record.\n\nExamples: `MVZ`; `FMNH`; `CLO`; `UCMP`"
             },
             "format": "text"
         },
@@ -1000,9 +1066,9 @@
             "namespace": "http://rs.tdwg.org/dwc/terms/",
             "qualName": "http://rs.tdwg.org/dwc/terms/institutionID",
             "relation": "https://dwc.tdwg.org/terms/#dwc:institutionID",
-            "description": "An identifier for the institution having custody of the object(s) or information referred to in the record.\n\nFor physical specimens, the recommended best practice is to use an identifier from a collections registry such as the Global Registry of Biodiversity Repositories (http://grbio.org/).\n\nExamples: `http://biocol.org/urn:lsid:biocol.org:col:34777`, `http://grbio.org/cool/km06-gtbn`",
-            "comments": "For physical specimens, the recommended best practice is to use an identifier from a collections registry such as the Global Registry of Biodiversity Repositories (http://grbio.org/).",
-            "examples": "`http://biocol.org/urn:lsid:biocol.org:col:34777`, `http://grbio.org/cool/km06-gtbn`",
+            "description": "An identifier for the institution having custody of the object(s) or information referred to in the record.\n\nFor physical specimens, the recommended best practice is to use a globally unique and resolvable identifier from a collections registry such as the Research Organization Registry (ROR) or the Global Registry of Scientific Collections (https://www.gbif.org/grscicoll).\n\nExamples: `https://ror.org/015hz7p22`; `http://grscicoll.org/institution/museum-southwestern-biology`; `https://www.gbif.org/grscicoll/institution/e3d4dcc4-81e2-444c-8a5c-41d1044b5381`",
+            "comments": "For physical specimens, the recommended best practice is to use a globally unique and resolvable identifier from a collections registry such as the Research Organization Registry (ROR) or the Global Registry of Scientific Collections (https://www.gbif.org/grscicoll).",
+            "examples": "`https://ror.org/015hz7p22`; `http://grscicoll.org/institution/museum-southwestern-biology`; `https://www.gbif.org/grscicoll/institution/e3d4dcc4-81e2-444c-8a5c-41d1044b5381`",
             "required": false,
             "type": null,
             "thesaurus": null,
@@ -1012,7 +1078,7 @@
             "valid": {
                 "validate": "any",
                 "input_title": "institutionID",
-                "input_message": "An identifier for the institution having custody of the object(s) or information referred to in the record.\n\nFor physical specimens, the recommended best practice is to use an identifier from a collections registry such as the Global Registry of Biodiversity Repositories (http://grbio.org/).\n\nExamples: `http://biocol.org/urn:lsid:biocol.org:col:34777`, `http://grbio.org/cool/km06-gtbn`"
+                "input_message": "An identifier for the institution having custody of the object(s) or information referred to in the record.\n\nFor physical specimens, the recommended best practice is to use a globally unique and resolvable identifier from a collections registry such as the Research Organization Registry (ROR) or the Global Registry of Scientific Collections (https://www.gbif.org/grscicoll).\n\nExamples: `https://ror.org/015hz7p22`; `http://grscicoll.org/institution/museum-southwestern-biology`; `https://www.gbif.org/grscicoll/institution/e3d4dcc4-81e2-444c-8a5c-41d1044b5381`"
             },
             "format": "text"
         },
@@ -1044,9 +1110,9 @@
             "namespace": "http://rs.tdwg.org/dwc/terms/",
             "qualName": "http://rs.tdwg.org/dwc/terms/datasetName",
             "relation": "https://dwc.tdwg.org/terms/#dwc:datasetName",
-            "description": "The name identifying the data set from which the record was derived.\n\nExamples: `Grinnell Resurvey Mammals`, `Lacey Ctenomys Recaptures`",
+            "description": "The name identifying the data set from which the record was derived.\n\nExamples: `Grinnell Resurvey Mammals`; `Lacey Ctenomys Recaptures`",
             "comments": NaN,
-            "examples": "`Grinnell Resurvey Mammals`, `Lacey Ctenomys Recaptures`",
+            "examples": "`Grinnell Resurvey Mammals`; `Lacey Ctenomys Recaptures`",
             "required": false,
             "type": null,
             "thesaurus": null,
@@ -1056,7 +1122,7 @@
             "valid": {
                 "validate": "any",
                 "input_title": "datasetName",
-                "input_message": "The name identifying the data set from which the record was derived.\n\nExamples: `Grinnell Resurvey Mammals`, `Lacey Ctenomys Recaptures`"
+                "input_message": "The name identifying the data set from which the record was derived.\n\nExamples: `Grinnell Resurvey Mammals`; `Lacey Ctenomys Recaptures`"
             },
             "format": "text"
         },
@@ -1066,9 +1132,9 @@
             "namespace": "http://rs.tdwg.org/dwc/terms/",
             "qualName": "http://rs.tdwg.org/dwc/terms/informationWithheld",
             "relation": "https://dwc.tdwg.org/terms/#dwc:informationWithheld",
-            "description": "Additional information that exists, but that has not been shared in the given record.\n\nExamples: `location information not given for endangered species`, `collector identities withheld | ask about tissue samples`",
-            "comments": NaN,
-            "examples": "`location information not given for endangered species`, `collector identities withheld | ask about tissue samples`",
+            "description": "Additional information that exists, but that has not been shared in the given record.\n\nThis term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.\n\nExamples: `location information not given for endangered species`; `collector identities withheld | ask about tissue samples`",
+            "comments": "This term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.",
+            "examples": "`location information not given for endangered species`; `collector identities withheld | ask about tissue samples`",
             "required": false,
             "type": null,
             "thesaurus": null,
@@ -1078,10 +1144,10 @@
             "valid": {
                 "validate": "any",
                 "input_title": "informationWithheld",
-                "input_message": "Additional information that exists, but that has not been shared in the given record.\n\nExamples: `location information not given for endangered species`, `collector identities withheld | ask about tissue samples`"
+                "input_message": "Additional information that exists, but that has not been shared in the given record.\n\nThis term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.\n\nExamples: `location information not given for endangered species`; `collector identities withheld | ask about tissue samples`"
             },
             "format": "text"
         }
     ],
-    "description": "The category of information pertaining to a group of organisms (sensu http://purl.obolibrary.org/obo/OBI_0100026) considered by taxonomists to form a homogeneous unit."
+    "description": "Support for Darwin Core Taxon-based records."
 }

@@ -117,7 +117,7 @@
         {
             "name": "earliestChronometricAgeReferenceSystem",
             "namespace": "http://rs.tdwg.org/chrono/terms/",
-            "qualName": "http://rs.tdwg.org/chrono/terms/earlliestChronometricAgeReferenceSystem",
+            "qualName": "http://rs.tdwg.org/chrono/terms/earliestChronometricAgeReferenceSystem",
             "description": "The reference system associated with the earliestChronometricAge.\n\nRecommended best practice is to use a controlled vocabulary.\n\nExamples: `kya`,`mya`,`BP`,`AD`,`BCE`,`ka`,`Ma`,`Ga`",
             "comments": "Recommended best practice is to use a controlled vocabulary.",
             "examples": "`kya`,`mya`,`BP`,`AD`,`BCE`,`ka`,`Ma`,`Ga`",
@@ -155,7 +155,7 @@
         {
             "name": "latestChronometricAgeReferenceSystem",
             "namespace": "http://rs.tdwg.org/chrono/terms/",
-            "qualName": "http://rs.tdwg.org/chrono/terms/lattestChronometricAgeReferenceSystem",
+            "qualName": "http://rs.tdwg.org/chrono/terms/latestChronometricAgeReferenceSystem",
             "description": "The reference system associated with the latestChronometricAge.\n\nRecommended best practice is to use a controlled vocabulary.\n\nExamples: `kya`,`mya`,`BP`,`AD`,`BCE`,`ka`,`Ma`,`Ga`",
             "comments": "Recommended best practice is to use a controlled vocabulary.",
             "examples": "`kya`,`mya`,`BP`,`AD`,`BCE`,`ka`,`Ma`,`Ga`",
@@ -343,5 +343,5 @@
             "format": "text"
         }
     ],
-    "description": "Extension to Occurrence Core to capture chronometric age information to be used only in cases where the collecting event is not contemporaneous with the time when the dwc:Organism was alive in its context. Collection event information can be reported in dwc:eventDate. See also the normative term list document at https://tdwg.github.io/chrono/list/ and the human-friendly Quick Reference Guide at https://tdwg.github.io/chrono/terms/."
+    "description": "Extension to Occurrence Core to capture chronometric age information to be used only in cases where the collecting event is not contemporaneous with the time when the dwc:Organism was alive in its context. Collection event information can be reported in dwc:eventDate. See also the normative term list document at https://chrono.tdwg.org/list/ and the human-friendly Quick Reference Guide at https://chrono.tdwg.org/terms/."
 }

@@ -131,14 +131,14 @@ class Darwin_Core_Terms_json():
             self.dic2.append(term)
 
         with open(self.filename, 'w', encoding='utf-8') as f:
-           json.dump(self.dic2, f, ensure_ascii=False, indent=4)
+            json.dump(self.dic2, f, ensure_ascii=False, indent=4)
 
 
     def load_json(self):
         with open(self.filename, 'r', encoding='utf-8', errors='ignore') as f:
-           content = f.read()
-           cleaned_content = content.encode('utf-8').decode('utf-8', 'ignore')
-           self.dic = json.loads(cleaned_content)
+            content = f.read()
+            cleaned_content = content.encode('utf-8').decode('utf-8', 'ignore')
+            self.dic = json.loads(cleaned_content)
 
 class Darwin_Core_Extension():
     '''
@@ -286,41 +286,41 @@ class Darwin_Core_Extension():
             self.dic2['description'] = root.attrib.get('{http://purl.org/dc/terms/}description')
 
         with open(self.filename, 'w', encoding='utf-8') as f:
-           json.dump(self.dic2, f, ensure_ascii=False, indent=4)
+            json.dump(self.dic2, f, ensure_ascii=False, indent=4)
 
 
     def load_json(self):
         with open(self.filename, 'r', encoding='utf-8', errors='ignore') as f:
-           content = f.read()
-           cleaned_content = content.encode('utf-8').decode('utf-8', 'ignore')
-           self.dic = json.loads(cleaned_content)['terms']
+            content = f.read()
+            cleaned_content = content.encode('utf-8').decode('utf-8', 'ignore')
+            self.dic = json.loads(cleaned_content)['terms']
 
     def get_description(self):
         with open(self.filename, 'r', encoding='utf-8', errors='ignore') as f:
-           content = f.read()
-           cleaned_content = content.encode('utf-8').decode('utf-8', 'ignore')
-           self.description = json.loads(cleaned_content)['description']
+            content = f.read()
+            cleaned_content = content.encode('utf-8').decode('utf-8', 'ignore')
+            self.description = json.loads(cleaned_content)['description']
 
 extensions = {
     'Event Core': {
         'file': 'dwc_event.json',
-        'source': 'https://rs.gbif.org/core/dwc_event_2022-02-02.xml',
+        'source': 'https://rs.gbif.org/core/dwc_event_2024-02-19.xml',
         },
     'Occurrence Extension': {
         'file': 'dwc_occurrence.json',
-        'source': 'https://rs.gbif.org/core/dwc_occurrence_2022-02-02.xml',
+        'source': 'https://rs.gbif.org/core/dwc_occurrence_2024-02-23.xml',
         },
     'Occurrence Core': {
         'file': 'dwc_occurrence.json',
-        'source': 'https://rs.gbif.org/core/dwc_occurrence_2022-02-02.xml',
+        'source': 'https://rs.gbif.org/core/dwc_occurrence_2024-02-23.xml',
         },
     'Taxon Core': {
         'file': 'dwc_taxon.json',
-        'source': 'https://rs.gbif.org/core/dwc_taxon_2022-02-02.xml',
+        'source': 'https://rs.gbif.org/core/dwc_taxon_2024-02-19.xml',
         },
     'Taxon Extension': {
         'file': 'dwc_taxon.json',
-        'source': 'https://rs.gbif.org/core/dwc_taxon_2022-02-02.xml',
+        'source': 'https://rs.gbif.org/core/dwc_taxon_2024-02-19.xml',
         },
     'Extended MoF Extension': {
         'file': 'dwc_emof.json',
@@ -332,7 +332,7 @@ extensions = {
         },
     'Resource Relationship Extension': {
         'file': 'dwc_resourcerelationship.json',
-        'source': 'https://rs.gbif.org/extension/dwc/resource_relationship_2022-02-02.xml',
+        'source': 'https://rs.gbif.org/extension/resource_relationship_2024-02-19.xml',
         },
     'Simple Multimedia Extension': {
         'file': 'dwc_multimedia.json',
@@ -340,7 +340,7 @@ extensions = {
         },
     'DNA Derived Data Extension': {
         'file': 'dwc_dna_derived_data.json',
-        'source': 'https://rs.gbif.org/extension/gbif/1.0/dna_derived_data_2022-02-23.xml',
+        'source': 'https://rs.gbif.org/extension/gbif/1.0/dna_derived_data_2024-07-11.xml',
         },
     'Literature References Extension': {
         'file': 'references.json',
@@ -348,7 +348,7 @@ extensions = {
         },
     'Chronometric Age Extension': {
         'file': 'chronometric_age.json',
-        'source': 'https://rs.gbif.org/extension/dwc/ChronometricAge_2021-03-27.xml',
+        'source': 'https://rs.gbif.org/extension/dwc/ChronometricAge_2024-03-11.xml',
         }
 }
 
