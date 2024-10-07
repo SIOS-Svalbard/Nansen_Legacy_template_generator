@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from flask import request, send_file, render_template, flash, redirect, url_for
+from flask import request, send_file, render_template, flash, redirect, url_for, session
 import json
 from website import create_app
 from website.lib.template import print_html_template
@@ -24,20 +24,22 @@ def home(config):
 
     # Select or change configuration
     config = request.form.get("select-config", config)
+    subconfig = session.get('subconfig')
 
     list_of_configs = get_list_of_configs()
     list_of_subconfigs = get_list_of_subconfigs(config=config)
 
-    if config == "Nansen Legacy logging system":
-        subconfig = request.form.get("select-subconfig", "default")
-        if subconfig not in list_of_subconfigs:
-            subconfig = 'Activities'
-    elif config == 'Darwin Core':
-        subconfig = request.form.get("select-subconfig", "Sampling Event")
-        if subconfig not in list_of_subconfigs:
-            subconfig = 'Sampling Event'
-    else:
-        subconfig = None
+    if subconfig is None:
+        if config == "Nansen Legacy logging system":
+            subconfig = request.form.get("select-subconfig", "default")
+            if subconfig not in list_of_subconfigs:
+                subconfig = 'Activities'
+        elif config == 'Darwin Core':
+            subconfig = request.form.get("select-subconfig", "Sampling Event")
+            if subconfig not in list_of_subconfigs:
+                subconfig = 'Sampling Event'
+        else:
+            subconfig = None
 
     BASE_PATH = os.path.dirname(os.path.abspath(__file__))
     FIELDS_FILEPATH = os.path.join(BASE_PATH, 'website', 'config', 'fields')
@@ -135,13 +137,10 @@ def home(config):
             sheets_descriptions = sheets_descriptions
         )
 
-    if request.form["submitbutton"] == "selectConfig":
-        return redirect(url_for("home", config=config))
-
-    if request.form["submitbutton"] not in ["selectConfig", "selectSubConfig"]:
+    if 'submitbutton' in request.form:
 
         all_form_keys = list(request.form.keys())
-        
+
         # Removing bounds key if coordinate not selected
         keys_to_remove = []
         key_set = set(all_form_keys)
@@ -243,7 +242,17 @@ def home(config):
                 compulsary_sheets=compulsary_sheets,
                 sheets_descriptions = sheets_descriptions
             )
+    elif 'select-config' in request.form:
+
+        config = request.form.get('select-config')
+        subconfig = request.form.get('select-subconfig')
+        # Store subconfig in the session
+        session['subconfig'] = subconfig
+
+        return redirect(url_for("home", config=config))
+
     else:
+
         return print_html_template(
             output_config_dict=output_config_dict,
             extra_fields_dict=extra_fields_dict,
