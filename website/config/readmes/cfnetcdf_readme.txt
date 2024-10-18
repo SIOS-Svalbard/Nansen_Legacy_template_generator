@@ -18,12 +18,10 @@ There are examples in the CF conventions documentation.
 https://cfconventions.org/Data/cf-conventions/cf-conventions-1.10/cf-conventions.html#_data_representative_of_cells
 
 Use the attributes in the 'metadata' sheet as global attributes in your CF-NetCDF file.
-They are terms from the ACDD conventions in most cases.
+They are terms from the CF and ACDD conventions in most cases.
 These are the recommendations of the Arctic Data Centre and SIOS, based on ACDD.
 https://adc.met.no/node/4
 https://wiki.esipfed.org/Attribute_Convention_for_Data_Discovery_1-3
-
-The 'featureType' attribute is from the CF conventions:
 http://cfconventions.org/Data/cf-conventions/cf-conventions-1.10/cf-conventions.html#_features_and_feature_types
 
 You can create CF-NetCDF files using most programming languages. This includes Python, R, Matlab, C/C++, Java and Fortran.

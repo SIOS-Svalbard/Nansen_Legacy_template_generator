@@ -16,12 +16,9 @@ config_dir = os.path.abspath(os.path.join(
 sys.path.append(config_dir)
 from .check_internet import have_internet
 
-class ACDD_conventions_df():
+class global_attributes_df():
     '''
-    Class for pulling ACDD conventions to a pandas dataframe
-    Only try to pull latest ACDD conventions if online
-    Otherwise pull from existing CSV
-    So the CSV overwrites each time the script runs if online
+    Class for pulling global attributes to a pandas dataframe
     '''
 
     def __init__(self, path):
@@ -32,26 +29,24 @@ class ACDD_conventions_df():
         filename: string
             The name of the json file to be written
         """
-        self.filename = path + '/acdd_conventions.csv'
+        self.filename = path + '/global_attributes.csv'
 
 
     def pull_from_online(self):
         '''
-        Script to harvest the ACDD conventions to a pandas dataframe
+        Script to harvest the global attributes to a pandas dataframe
         Take them from the ADC page
 
         Returns
         -------
         df: pandas dataframe
-            ACDD conventions in a dataframe
+            global attributes in a dataframe
 
         '''
         url = 'https://adc.met.no/node/4'
         tables = pd.read_html(url)
         df1 = tables[0]
         df2 = tables[1]
-        df2 = df2.set_axis(df2.iloc[0], axis=1)
-        df2 = df2[1:]
         self.df = pd.concat([df1, df2], ignore_index=True)
         self.df = self.df.dropna(how='all')
         self.df.reset_index(inplace=True, drop=True)
@@ -79,30 +74,30 @@ class ACDD_conventions_df():
         '''
         self.df = pd.read_csv(self.filename, index_col=False)
 
-def acdd_conventions_update(path):
+def global_attributes_update(path):
     errors = []
-    acdd = ACDD_conventions_df(path)
+    global_attributes = global_attributes_df(path)
     if not have_internet():
-        errors.append('Could not update ACDD configuration. Not connected to the internet')
+        errors.append('Could not update global attributes. Not connected to the internet')
         return errors
     try:
-        acdd.pull_from_online()
+        global_attributes.pull_from_online()
     except:
-        errors.append("Could not update ACDD configuration. Couldn't access data from source URL")
+        errors.append("Could not update global attributes. Couldn't access data from source URL")
         return errors
     try:
-        acdd.add_recommendations_column()
+        global_attributes.add_recommendations_column()
     except:
-        errors.append("Could not update ACDD configuration. Error adding recommendations column")
+        errors.append("Could not update global attributes. Error adding recommendations column")
         return errors
     try:
-        acdd.output_to_csv()
+        global_attributes.output_to_csv()
     except:
-        errors.append("Could not update ACDD configuration. Couldn't save the CSV file.")
+        errors.append("Could not update global attributes. Couldn't save the CSV file.")
         return errors
     return errors
 
-def acdd_to_df(path):
-    acdd = ACDD_conventions_df(path)
-    acdd.read_csv()
-    return acdd.df
+def global_attributes_to_df(path):
+    global_attributes = global_attributes_df(path)
+    global_attributes.read_csv()
+    return global_attributes.df
