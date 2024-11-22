@@ -14,7 +14,7 @@ import math
 from argparse import Namespace
 import os.path
 from .get_configurations import get_field_requirements
-from .pull_acdd_conventions import acdd_to_df
+from .pull_global_attributes import global_attributes_to_df
 import os
 
 DEFAULT_FONT = 'Calibri'
@@ -55,7 +55,7 @@ class Template(object):
 
     def add_metadata(self):
         metadata = Metadata_Sheet(self)
-        metadata.add_acdd_metadata()
+        metadata.add_global_attributes()
 
     def add_data_sheet(self, sheetname, content, split_personnel_columns):
         data_sheet = Data_Sheet(sheetname, content, self)
@@ -212,8 +212,8 @@ class Data_Sheet(object):
         cf_standard_names
         ) = get_field_requirements(
             fields_filepath=self.template.fields_filepath,
-            config=self.template.config, 
-            subconfig=self.template.subconfig, 
+            config=self.template.config,
+            subconfig=self.template.subconfig,
             sheetname=self.sheetname
             )
 
@@ -392,7 +392,7 @@ class Data_Sheet(object):
 class Metadata_Sheet(object):
     """
     Metadata sheet object
-    ACDD or EML metadata
+    Global attributes or EML metadata
     """
     def __init__(self, template):
         self.sheetname = 'Metadata'
@@ -468,10 +468,10 @@ class Metadata_Sheet(object):
             })
 
 
-    def add_acdd_metadata(self):
+    def add_global_attributes(self):
 
-        metadata_filepath = os.path.dirname(self.template.fields_filepath) + '/metadata_sheet_fields'
-        df_metadata = acdd_to_df(metadata_filepath)
+        metadata_filepath = os.path.dirname(self.template.fields_filepath) + '/fields'
+        df_metadata = global_attributes_to_df(metadata_filepath)
         df_metadata['Content'] = ''
 
         last_col = len(df_metadata.columns)-1
@@ -500,7 +500,8 @@ class Metadata_Sheet(object):
                 if type(val) == float:
                     if math.isnan(val) and col == 3:
                         val = 'Optional'
-
+                    elif math.isnan(val):
+                        val = ''
                 self.sheet.write(row_num, col, val, cell_format)
 
                 if col == last_col:

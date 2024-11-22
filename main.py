@@ -8,7 +8,7 @@ from website.lib.template import print_html_template
 from website.lib.get_configurations import *
 from website.lib.create_template import create_template
 from website.lib.pull_cf_standard_names import cf_standard_names_update
-from website.lib.pull_acdd_conventions import acdd_conventions_update
+from website.lib.pull_global_attributes import global_attributes_update
 from website.lib.dropdown_lists_from_static_config_files import populate_dropdown_lists
 from website.lib.pull_darwin_core_terms import dwc_terms_update, dwc_extensions_update, get_dwc_extension_description
 import os
@@ -274,7 +274,7 @@ def home(config):
 @app.route("/update", methods=["GET", "POST"])
 def update_config():
     """
-    updates the DwC terms, ACDD Conventions and the CF standard names
+    updates the DwC terms, global attributes and the CF standard names
     in the config directory.
     """
     BASE_PATH = os.path.dirname(os.path.abspath(__file__))
@@ -298,10 +298,10 @@ def update_config():
                 for error in errors:
                     flash(error, category='error')
 
-        elif request.form["submitbutton"] == "pullACDD":
-            errors = acdd_conventions_update(FIELDS_FILEPATH)
+        elif request.form["submitbutton"] == "pullGlobal":
+            errors = global_attributes_update(FIELDS_FILEPATH)
             if len(errors) == 0:
-                flash('Pulled latest version of ACDD configuration', category='success')
+                flash('Pulled latest version of global attributes', category='success')
             else:
                 for error in errors:
                     flash(error, category='error')

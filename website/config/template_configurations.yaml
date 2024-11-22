@@ -37,15 +37,15 @@ setups:
     Sampling Event:
       Event Core:
         fields:
-        - Required: [eventID,eventDate,samplingProtocol]
-          Recommended: [sampleSizeValue, sampleSizeUnit, parentEventID, samplingEffort, locationID, decimalLatitude, decimalLongitude, geodeticDatum, footprintWKT, footprintSRS, countryCode]
+        - Required: [eventID,eventDate,samplingProtocol, decimalLatitude, decimalLongitude]
+          Recommended: [sampleSizeValue, sampleSizeUnit, parentEventID, samplingEffort, locationID, geodeticDatum, footprintWKT, footprintSRS, countryCode]
           Suggestions: 'from source'
         Source: 'https://rs.gbif.org/core/dwc_event_2024-02-19.xml'
         Required CSV: True
       Occurrence Extension:
         fields:
-        - Required: [occurrenceID,eventID,basisOfRecord,scientificName]
-          Recommended: [taxonRank,kingdom,individualCount,organismQuantity,organismQuantityType,occurrenceStatus]
+        - Required: [occurrenceID,eventID,basisOfRecord,scientificName,occurrenceStatus]
+          Recommended: [scientificNameID,taxonRank,kingdom,individualCount,organismQuantity,organismQuantityType]
           Suggestions: 'from source'
         Source: 'https://rs.gbif.org/core/dwc_occurrence_2024-02-23.xml'
         Required CSV: True
@@ -102,8 +102,8 @@ setups:
     Occurrence Core:
       Occurrence Core:
         fields:
-        - Required: [occurrenceID,basisOfRecord,scientificName]
-          Recommended: [eventID,eventDate,decimalLatitude,decimalLongitude,taxonRank,kingdom,individualCount,organismQuantity,organismQuantityType,occurrenceStatus]
+        - Required: [occurrenceID,basisOfRecord,scientificName,decimalLatitude,decimalLongitude,eventDate,occurrenceStatus]
+          Recommended: [eventID,scientificNameID,taxonRank,kingdom,individualCount,organismQuantity,organismQuantityType]
           Suggestions: 'from source'
         Source: 'https://rs.gbif.org/core/dwc_occurrence_2024-02-23.xml'
         Required CSV: True

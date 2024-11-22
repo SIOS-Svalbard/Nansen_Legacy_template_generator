@@ -5,11 +5,11 @@ The Nansen Legacy template generator is designed based on experiences gained dur
 CF Conventions: https://cfconventions.org/
 Darwin Core: https://dwc.tdwg.org/
 
-A separate sheet in the same file includes space to fill in metadata based on the Attribute Convention for Data Discovery (ACDD).
+A separate sheet in the same file includes space to fill in global attributes based on CF and the Attribute Convention for Data Discovery (ACDD).
 
 ACDD: https://wiki.esipfed.org/Attribute_Convention_for_Data_Discovery_1-3
 
-The ACDD conventions recommendations used in this template generator are in line with the recommendations for CF-NetCDF files that contribute to SIOS, as documented here:
+The global attributes recommendations used in this template generator are in line with the recommendations for CF-NetCDF files that contribute to SIOS, as documented here:
 https://adc.met.no/node/4
 
 ## Setup and Installation
