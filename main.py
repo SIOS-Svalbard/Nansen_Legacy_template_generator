@@ -18,6 +18,10 @@ import json
 
 app = create_app()
 
+# Get the directory of the currently running script
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_PATH = os.path.join(BASE_DIR, 'visits.db')
+
 # Function to get country from IP using ipstack API (example)
 def get_country_from_ip(ip):
     # Check if the IP address is the loopback address (localhost)
@@ -36,7 +40,7 @@ def get_country_from_ip(ip):
 
 # Function to log site visit with timestamp and country
 def log_visit(ip):
-    conn = sqlite3.connect('visits.db')
+    conn = sqlite3.connect(DB_PATH)
     c = conn.cursor()
 
     # Insert timestamp and country into the 'visits' table
@@ -48,7 +52,7 @@ def log_visit(ip):
     conn.close()
 
 def log_template(ip, config, subconfig, sheets):
-    conn = sqlite3.connect('visits.db')
+    conn = sqlite3.connect(DB_PATH)
     c = conn.cursor()
 
     # Insert timestamp and request details into the 'templates' table
