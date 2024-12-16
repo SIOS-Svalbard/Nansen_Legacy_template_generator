@@ -2,8 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from flask import request, send_file, render_template, flash, redirect, url_for, session, request
-import sqlite3
-from datetime import datetime
+import os
 from website import create_app
 from website.lib.template import print_html_template
 from website.lib.get_configurations import *
@@ -11,58 +10,14 @@ from website.lib.create_template import create_template
 from website.lib.pull_cf_standard_names import cf_standard_names_update
 from website.lib.pull_global_attributes import global_attributes_update
 from website.lib.dropdown_lists_from_static_config_files import populate_dropdown_lists
-from website.lib.pull_darwin_core_terms import dwc_terms_update, dwc_extensions_update, get_dwc_extension_description
-import os
-from ipwhois import IPWhois
-import json
+from website.lib.pull_darwin_core_terms import dwc_terms_update, get_dwc_extension_description
+from website.lib.usage_stats import log_template, log_visit
 
 app = create_app()
 
 # Get the directory of the currently running script
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(BASE_DIR, 'visits.db')
-
-# Function to get country from IP using ipstack API (example)
-def get_country_from_ip(ip):
-    # Check if the IP address is the loopback address (localhost)
-    if ip == '127.0.0.1' or ip == 'localhost':
-        return "Localhost"  # Return a default value for local IPs
-
-    try:
-        # Perform the IP lookup using IPWhois
-        ipwhois = IPWhois(ip)
-        result = ipwhois.lookup_rdap()
-        country = result.get('country', 'Unknown')  # Get country or return 'Unknown'
-        return country
-    except Exception as e:
-        print(f"Error looking up IP: {ip} - {e}")
-        return "Unknown"  # Return 'Unknown' in case of error
-
-# Function to log site visit with timestamp and country
-def log_visit(ip):
-    conn = sqlite3.connect(DB_PATH)
-    c = conn.cursor()
-
-    # Insert timestamp and country into the 'visits' table
-    country = get_country_from_ip(ip)
-    timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    c.execute("INSERT INTO visits (timestamp, ip, country) VALUES (?, ?, ?)", (timestamp, ip, country))
-
-    conn.commit()
-    conn.close()
-
-def log_template(ip, config, subconfig, sheets):
-    conn = sqlite3.connect(DB_PATH)
-    c = conn.cursor()
-
-    # Insert timestamp and request details into the 'templates' table
-    country = get_country_from_ip(ip)
-    timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    sheets_json = json.dumps(list(sheets))
-    c.execute("INSERT INTO templates (timestamp, ip, country, config, subconfig, sheets) VALUES (?, ?, ?, ?, ?, ?)", (timestamp, ip, country, config, subconfig, sheets_json))
-
-    conn.commit()
-    conn.close()
 
 @app.route("/", methods=["GET", "POST"])
 def home_redirect():
@@ -172,7 +127,7 @@ def home(config):
 
     if request.method == "GET":
 
-        log_visit(ip_address)
+        log_visit(ip_address, DB_PATH)
 
         return print_html_template(
             output_config_dict=output_config_dict,
@@ -263,7 +218,7 @@ def home(config):
 
             sheets = template_fields_dict.keys()
 
-            log_template(ip_address, config, subconfig, sheets)
+            log_template(ip_address, config, subconfig, sheets, DB_PATH)
 
             filepath = "/tmp/Nansen_Legacy_template.xlsx"
 
