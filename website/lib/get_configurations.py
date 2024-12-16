@@ -149,18 +149,18 @@ def get_dwc_config_dict(fields_filepath, subconfig, dwc_terms):
             output_config_dict[extension]['Recommended'].pop(field, None)
 
         # Removing fields from other that are already in required or recommended
-        if 'Suggestions' in output_config_dict[extension].keys():
+        if 'Suggested' in output_config_dict[extension].keys():
             for field in output_config_dict[extension]['Required'].keys():
-                output_config_dict[extension]['Suggestions'].pop(field, None)
+                output_config_dict[extension]['Suggested'].pop(field, None)
             for field in output_config_dict[extension]['Recommended'].keys():
-                output_config_dict[extension]['Suggestions'].pop(field, None)
-            # Sorting suggestions into alphabetical order
-            suggested_fields = list(output_config_dict[extension]['Suggestions'].keys())
+                output_config_dict[extension]['Suggested'].pop(field, None)
+            # Sorting Suggested into alphabetical order
+            suggested_fields = list(output_config_dict[extension]['Suggested'].keys())
             suggested_fields_sorted = sorted(suggested_fields)
             suggested_fields_dict = {}
             for field in suggested_fields_sorted:
-                suggested_fields_dict[field] = output_config_dict[extension]['Suggestions'][field]
-            output_config_dict[extension]['Suggestions'] = suggested_fields_dict
+                suggested_fields_dict[field] = output_config_dict[extension]['Suggested'][field]
+            output_config_dict[extension]['Suggested'] = suggested_fields_dict
 
     return output_config_dict
 

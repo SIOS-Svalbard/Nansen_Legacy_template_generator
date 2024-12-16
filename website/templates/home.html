@@ -89,6 +89,14 @@
     </div>
   </div>
 
+  {% if config == 'Darwin Core' %}
+  <div class="alert alert-info" role="alert">
+    We try to keep the requirements and recommendations below compliant with those of the
+    <a href="https://manual.obis.org/darwin_core.html#darwin-core-dwc-terms">Ocean Biodiversity Information System</a>.
+    If you notice any discrepencies, please let us know.
+  </div>
+  {% endif %}
+
   <hr class="bg-dark">
   {% for sheet in output_config_dict.keys() %}
 
@@ -164,9 +172,9 @@
               <div class="col-md-3">
                 <h4>{{col}}</h4><br>
 
-                {% if col == 'Suggestions' %}
+                {% if col == 'Suggested' %}
                   <button type="button" class="btn btn-outline-primary btn-lg dropdown-toggle" data-toggle="dropdown">
-                    Suggestions
+                    Suggested
                   </button>
                   <div class="dropdown-menu pre-scrollable">
                     {% for key, field in fields.items() %}
@@ -376,6 +384,16 @@
           </div>
           <br>
           {% endfor %}
+          {% endif %}
+
+          {% if config == 'Darwin Core' %}
+          <!--Disclaimer that only required, recommended and suggested terms can be used in DwCA-->
+          <div class="alert alert-info" role="alert">
+            <strong>Note:</strong> Only the <strong>Required</strong>, <strong>Recommended</strong>,
+            and <strong>Suggested</strong> terms can be used in the Darwin Core Archive.
+
+            You are, however, free to select different terms to use during data preparation if you wish.
+          </div>
           {% endif %}
         </div>
 
