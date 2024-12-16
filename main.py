@@ -35,17 +35,18 @@ def home(config):
     list_of_configs = get_list_of_configs()
     list_of_subconfigs = get_list_of_subconfigs(config=config)
 
-    if subconfig is None:
+    if subconfig is None or subconfig not in list_of_subconfigs:
         if config == "Nansen Legacy logging system":
             subconfig = request.form.get("select-subconfig", "default")
+            print('HERE1')
             if subconfig not in list_of_subconfigs:
+                print('HERE2')
                 subconfig = 'Activities'
         elif config == 'Darwin Core':
             subconfig = request.form.get("select-subconfig", "Sampling Event")
             if subconfig not in list_of_subconfigs:
                 subconfig = 'Sampling Event'
-        else:
-            subconfig = None
+
     if config == 'CF-NetCDF':
         subconfig = None
 
