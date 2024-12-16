@@ -3,9 +3,63 @@
 
 <form method="POST" enctype="multipart/form-data">
 
-    <!-- Video Section -->
-    <div class="row mb-3 justify-content-center">
-      <div class="col-md-8 text-center">
+  <div class="container">
+    <!-- Main Content Row -->
+    <div class="row">
+      <!-- Left Column: Main Content -->
+      <div class="col-md-8">
+        <!-- Configuration Selection Row -->
+        <div class="row mb-3 align-items-center">
+          <label class="col-sm-4 col-form-label" for="select-config">Configuration:</label>
+          <div class="col-sm-8">
+            <select class="form-control" id="select-config" name="select-config" onchange="this.form.submit()">
+              <option selected="selected">{{config}}</option>
+              {% for ii in list_of_configs %}
+                {% if ii != config %}
+                  <option>{{ii}}</option>
+                {% endif %}
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+
+        <!-- Sub-configuration Selection Row (only if available) -->
+        {% if list_of_subconfigs %}
+        <div class="row mb-3 align-items-center">
+          <label class="col-sm-4 col-form-label" for="select-subconfig">Sub-configuration:</label>
+          <div class="col-sm-8">
+            <select class="form-control" id="select-subconfig" name="select-subconfig" onchange="this.form.submit()">
+              <option selected="selected">{{subconfig}}</option>
+              {% for ii in list_of_subconfigs %}
+                {% if ii != subconfig %}
+                  <option>{{ii}}</option>
+                {% endif %}
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Description Section -->
+        <div class="row mb-3">
+          <div class="col-sm-12">
+            <p>{{description}}</p>
+          </div>
+        </div>
+
+        <!-- Option Buttons -->
+        {% for sheet in output_config_dict.keys() %}
+          {% if output_config_dict[sheet]['Required CSV'] == False %}
+          <!-- Option to add extensions that aren't required -->
+            <button class="btn btn-outline-success btn-sm" type="submit" name="submitbutton" value="add_{{sheet}}">
+              Add {{sheet}}
+            </button>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <!-- Right Column: Video -->
+      <div class="col-md-4">
         {% if config == 'Darwin Core' %}
         <iframe
           class="embed-responsive-item"
@@ -18,7 +72,6 @@
           referrerpolicy="strict-origin-when-cross-origin"
           allowfullscreen>
         </iframe>
-        <hr class="my-4">
         {% elif config == 'CF-NetCDF' %}
         <iframe
           class="embed-responsive-item"
@@ -31,56 +84,10 @@
           referrerpolicy="strict-origin-when-cross-origin"
           allowfullscreen>
         </iframe>
-        <hr class="my-4">
         {% endif %}
       </div>
     </div>
-
-  <!-- Configuration Selection Row -->
-  <div class="row mb-3 align-items-center">
-    <label class="col-sm-2 col-form-label" for="select-config">Configuration:</label>
-    <div class="col-sm-5">
-      <select class="form-control" id="select-config" name="select-config" onchange="this.form.submit()">
-        <option selected="selected">{{config}}</option>
-        {% for ii in list_of_configs %}
-          {% if ii != config %}
-            <option>{{ii}}</option>
-          {% endif %}
-        {% endfor %}
-      </select>
-    </div>
   </div>
-
-  <!-- Sub-configuration Selection Row (only if available) -->
-  {% if list_of_subconfigs %}
-  <div class="row mb-3 align-items-center">
-    <label class="col-sm-2 col-form-label" for="select-subconfig">Sub-configuration:</label>
-    <div class="col-sm-5">
-      <select class="form-control" id="select-subconfig" name="select-subconfig" onchange="this.form.submit()">
-        <option selected="selected">{{subconfig}}</option>
-        {% for ii in list_of_subconfigs %}
-          {% if ii != subconfig %}
-            <option>{{ii}}</option>
-          {% endif %}
-        {% endfor %}
-      </select>
-    </div>
-  </div>
-  {% endif %}
-
-  <!-- Description Section -->
-  <div class="row mb-3">
-    <div class="col-sm-12">
-      <p>{{description}}</p>
-    </div>
-  </div>
-
-  {% for sheet in output_config_dict.keys() %}
-    {% if output_config_dict[sheet]['Required CSV'] == False %}
-    <!--Option to add extensions that aren't required-->
-      <button class="btn btn-outline-success btn-sm" type="submit" name="submitbutton" value="add_{{sheet}}">Add {{sheet}}</button>
-    {% endif %}
-  {% endfor %}
 
   <hr class="bg-dark">
   {% for sheet in output_config_dict.keys() %}
