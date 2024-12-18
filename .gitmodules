@@ -1,0 +1,3 @@
+[submodule "website/config/fields/CF_Attributes"]
+	path = website/config/fields/CF_Attributes
+	url = git@github.com:NorDataNet/CF_attributes.git
