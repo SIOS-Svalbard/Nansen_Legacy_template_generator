@@ -70,6 +70,8 @@ def home(config):
 
         if config == 'Darwin Core':
             sheets_descriptions[sheet] = get_dwc_extension_description(FIELDS_FILEPATH, sheet)
+        elif config == 'CF-NetCDF':
+            sheets_descriptions[sheet] = 'Template for coordinate and data variables to be encoded in a CF-NetCDF file'
         else:
             sheets_descriptions[sheet] = None
 
@@ -217,6 +219,16 @@ def home(config):
 
             sheets = template_fields_dict.keys()
 
+            sheets_info = {}
+            for sheet in sheets:
+                sheets_info[sheet] = {
+                    'description': sheets_descriptions[sheet]
+                }
+                if 'Source' in output_config_dict[sheet].keys():
+                    sheets_info[sheet]['source'] = output_config_dict[sheet]['Source']
+                else:
+                    sheets_info[sheet]['source'] = None
+
             log_template(ip_address, config, subconfig, sheets, DB_PATH)
 
             filepath = "/tmp/Nansen_Legacy_template.xlsx"
@@ -229,6 +241,7 @@ def home(config):
             create_template(
                 filepath,
                 template_fields_dict,
+                sheets_info,
                 FIELDS_FILEPATH,
                 config,
                 subconfig,

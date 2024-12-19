@@ -394,6 +394,14 @@
 
             You are, however, free to select different terms to use during data preparation if you wish.
           </div>
+          {% elif config == 'CF-NetCDF' %}
+          <!--Disclaimer that only required, recommended and suggested terms can be used in DwCA-->
+          <div class="alert alert-info" role="alert">
+            <strong>Note:</strong> Variables in a CF-NetCDF file should have a <strong>standard_name</strong>
+            in almost all cases.
+
+            You are, however, free to select different terms to use during data preparation if you wish.
+          </div>
           {% endif %}
         </div>
 

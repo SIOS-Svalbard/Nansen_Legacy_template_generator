@@ -12,10 +12,17 @@ import xlsxwriter
 import pandas as pd
 import math
 from argparse import Namespace
-import os.path
 from .get_configurations import get_field_requirements
 from .pull_global_attributes import global_attributes_to_df
 import os
+import sys
+from pathlib import Path
+
+script_dir = Path(__file__).resolve().parent
+target_dir = script_dir / "../config/fields/CF_Attributes"
+sys.path.insert(0, str(target_dir.resolve()))
+
+from process_cf_attributes import CF_Attributes
 
 DEFAULT_FONT = 'Calibri'
 DEFAULT_SIZE = 10
@@ -50,15 +57,16 @@ class Template(object):
         self.workbook.formats[0].set_font_name(DEFAULT_FONT)
         self.workbook.formats[0].set_font_size(DEFAULT_SIZE)
 
-    def add_variables_sheet(self):
-        self.variables_sheet = Variables_Sheet(self)
+    def add_global_attributes(self):
+        global_attributes = Global_Attributes_Sheet(self)
+        global_attributes.add_global_attributes()
 
-    def add_metadata(self):
-        metadata = Metadata_Sheet(self)
-        metadata.add_global_attributes()
+    def add_variable_attributes(self, sheetname, content):
+        variable_attributes = Variable_Attributes_Sheet(sheetname, content, self)
+        variable_attributes.add_variable_attributes()
 
-    def add_data_sheet(self, sheetname, content, split_personnel_columns):
-        data_sheet = Data_Sheet(sheetname, content, self)
+    def add_data_sheet(self, sheetname, sheet_info, content, split_personnel_columns):
+        data_sheet = Data_Sheet(sheetname, sheet_info, content, self)
         data_sheet.write_key()
         data_sheet.write_columns(split_personnel_columns)
 
@@ -75,8 +83,11 @@ class Data_Sheet(object):
     """
     Data sheet object
     """
-    def __init__(self, sheetname, content, template):
+    def __init__(self, sheetname, sheet_info, content, template):
         self.sheetname = sheetname
+        self.sheet_info = sheet_info
+        self.sheet_description = sheet_info['description']
+        self.sheet_source = sheet_info['source']
         self.content = content
         self.template = template
         self.sheet = self.template.workbook.add_worksheet(self.sheetname)
@@ -165,6 +176,15 @@ class Data_Sheet(object):
             'num_format': 'hh:mm:ss'
             })
 
+        self.sheet_description_format = self.template.workbook.add_format({
+            'bold': True,
+            'font_size': DEFAULT_SIZE,
+            'valign': 'vcenter',
+            'text_wrap': True,
+            'border': 1,
+            'border_color': 'black'
+        })
+
     def write_key(self):
         '''
         Writing a key for colours at the top of the data sheet
@@ -174,28 +194,33 @@ class Data_Sheet(object):
 
         # Key
         if self.template.config == 'Nansen Legacy logging system':
-            self.title_row = 8  # starting row
+            self.title_row = 10  # starting row
             self.sheet.merge_range('A2:D2', 'Required', self.required_field_format)
             self.sheet.merge_range('A3:D3', 'Recommended', self.recommended_field_format)
             self.sheet.merge_range('A4:D4', 'Optional', self.optional_field_format)
             self.sheet.merge_range('A5:D5', 'CF standard name', self.cf_field_format)
             self.sheet.merge_range('A6:D6', 'Darwin Core term', self.dwc_term_format)
             self.sheet.merge_range('A7:D7', paste_message)
+            self.sheet.merge_range('A9:G9', f'{self.sheetname}: {self.sheet_description}', self.sheet_description_format)
         elif self.template.config == 'CF-NetCDF':
-            self.title_row = 7
+            self.title_row = 10
             self.sheet.merge_range('A2:D2', 'CF standard name', self.cf_field_format)
             self.sheet.merge_range('A3:D3', 'Cell bounds', self.bounds_format)
             self.sheet.merge_range('A4:D4', 'Other fields', self.optional_field_format)
             self.sheet.merge_range('A5:D5', 'Darwin Core term', self.dwc_term_format)
             self.sheet.merge_range('A6:D6', paste_message)
+            self.sheet.merge_range('A8:G8', f'{self.sheetname}: {self.sheet_description}', self.sheet_description_format)
+            self.sheet.merge_range('A9:G9', self.sheet_source, self.sheet_description_format)
         elif self.template.config == 'Darwin Core':
-            self.title_row = 8
+            self.title_row = 11
             self.sheet.merge_range('A2:D2', 'Required', self.required_field_format)
             self.sheet.merge_range('A3:D3', 'Recommended', self.recommended_field_format)
             self.sheet.merge_range('A4:D4', 'Other fields', self.optional_field_format)
             self.sheet.merge_range('A5:D5', 'CF standard name', self.cf_field_format)
             self.sheet.merge_range('A6:D6', 'Darwin Core term', self.dwc_term_format)
             self.sheet.merge_range('A7:D7', paste_message)
+            self.sheet.merge_range('A9:G9', f'{self.sheetname}: {self.sheet_description}', self.sheet_description_format)
+            self.sheet.merge_range('A10:G10', self.sheet_source, self.sheet_description_format)
 
     def write_columns(self, split_personnel_columns):
         '''
@@ -389,15 +414,222 @@ class Data_Sheet(object):
         # Hide ID row
         self.sheet.set_row(parameter_row, None, None, {'hidden': True})
 
-class Metadata_Sheet(object):
+class Variable_Attributes_Sheet(object):
     """
-    Metadata sheet object
+    Variable_Attributes sheet object
+    """
+    # TODO: Clean up code, e.g. remove duplicated code e.g. styles
+    # TODO: Prefill some variable attributes e.g. bounds
+    def __init__(self, sheetname, content, template):
+        if sheetname == 'Data':
+            self.sheetname = 'Variable_Attributes'
+        else:
+            self.sheetname = sheetname + '_Variable_Attributes'
+        self.template = template
+        self.content = content
+        self.sheet = self.template.workbook.add_worksheet(self.sheetname)
+        self.header_row = 8
+        self.start_row = self.header_row + 2
+        self.template = template
+
+        self.cf_field_format = self.template.workbook.add_format({
+            'font_name': DEFAULT_FONT,
+            'bottom': True,
+            'right': True,
+            'bold': False,
+            'text_wrap': True,
+            'valign': 'vcenter',
+            'font_size': DEFAULT_SIZE + 1,
+            'bg_color': '#A4BFEB'
+        })
+
+        self.required_format = template.workbook.add_format({
+                'font_name': DEFAULT_FONT,
+                'bottom': True,
+                'right': True,
+                'bold': False,
+                'text_wrap': True,
+                'valign': 'vcenter',
+                'font_size': DEFAULT_SIZE,
+                'bg_color': '#F06292'
+            })
+
+        self.recommended_format = template.workbook.add_format({
+                'font_name': DEFAULT_FONT,
+                'bottom': True,
+                'right': True,
+                'bold': False,
+                'text_wrap': True,
+                'valign': 'vcenter',
+                'font_size': DEFAULT_SIZE,
+                'bg_color': '#F8BBD0'
+            })
+
+        self.content_format = template.workbook.add_format({
+            'bold': False,
+            'font_name': DEFAULT_FONT,
+            'text_wrap': True,
+            'valign': 'vcenter',
+            'bg_color': '#e6ffff',
+            'bottom': True,
+            'right': True,
+            'font_size': DEFAULT_SIZE,
+            })
+
+        self.optional_format = template.workbook.add_format({
+            'font_name': DEFAULT_FONT,
+            'bottom': True,
+            'right': True,
+            'bold': False,
+            'text_wrap': True,
+            'valign': 'vcenter',
+            'font_size': DEFAULT_SIZE,
+            'bg_color': '#F5E1E8'
+        })
+
+        self.sheet_description_format = self.template.workbook.add_format({
+            'bold': True,
+            'font_size': DEFAULT_SIZE,
+            'valign': 'vcenter',
+            'text_wrap': True,
+            'border': 1,
+            'border_color': 'black'
+        })
+
+    def add_variable_attributes(self):
+        cf_attributes = CF_Attributes()
+        variable_attributes = cf_attributes.variable_attributes
+
+        variable_attributes['coverage_content_type'] = {
+            'Type': 'S',
+            'Use': 'C, D', # Could be more
+            'Description': 'An ISO 19115-1 code to indicate the source of the data (image, thematicClassification, physicalMeasurement, auxiliaryInformation, qualityInformation, referenceInformation, modelResult, or coordinate).'
+        }
+
+        highly_recommended_variable_attributes = [
+            'standard_name',
+            'long_name',
+            'units',
+            'coverage_content_type'
+        ]
+
+        (
+        required_fields,
+        recommended_fields,
+        dwc_terms,
+        cf_standard_names
+        ) = get_field_requirements(
+            fields_filepath=self.template.fields_filepath,
+            config=self.template.config,
+            subconfig=self.template.subconfig,
+            sheetname=self.sheetname
+            )
+
+        parameter_row = self.header_row + 1  # Parameter row, hidden
+        attribute_row = parameter_row + 1
+        column = 0
+
+        # Adding attributes, one attribute per row
+        for attr in highly_recommended_variable_attributes:
+            self.sheet.write(attribute_row, column, attr, self.required_format)
+            description = variable_attributes[attr]['Description']
+            self.sheet.write(attribute_row, column+1, description, self.required_format)
+
+            if attr in ['long_name']:
+                height = 200
+            elif len(description) > 75:
+                height = int(len(description)/3)
+            else:
+                height = 25
+
+            self.sheet.set_row(attribute_row, height)
+
+            attribute_row = attribute_row + 1
+
+        for attr, vals in variable_attributes.items():
+            if attr not in highly_recommended_variable_attributes:
+                self.sheet.write(attribute_row, column, attr, self.optional_format)
+                description = variable_attributes[attr]['Description']
+                self.sheet.write(attribute_row, column+1, description, self.optional_format)
+
+                if len(description) > 75:
+                    height = int(len(description)/3)
+                else:
+                    height = 25
+
+                self.sheet.set_row(attribute_row, height)
+
+                attribute_row = attribute_row + 1
+
+        # Loop over all the variables/columns needed to add column headers
+        column = column + 2
+
+        for field, vals in self.content.items():
+
+            # TODO: What about bounds?
+            # Write row for variable name to be added
+            self.sheet.write(self.header_row, 0, 'variable_name',self.optional_format)
+            variable_name_description = '''Name to be assigned to the variable in the NetCDF file.
+            Note that this is not a variable attribute, but the name assigned to the variable itself.
+            This is normally short and not necessarily standardised except for on some specific
+            CF profiles'''
+            variable_name_description = ' '.join(line.strip() for line in variable_name_description.splitlines())
+            self.sheet.write(self.header_row, 1, variable_name_description,self.optional_format)
+            if vals['disp_name'] in cf_standard_names:
+                variable_name = ''
+            else:
+                variable_name = vals['disp_name']
+            self.sheet.write(self.header_row, column, variable_name, self.cf_field_format)
+            self.sheet.set_row(self.header_row, 50)
+            # Write row below with parameter name
+            self.sheet.write(parameter_row, column, field)
+
+            attribute_row = parameter_row + 1
+
+            # Adding empty cells for user to enter values
+            for attr in highly_recommended_variable_attributes:
+                if attr == 'standard_name' and vals['disp_name'] in cf_standard_names:
+                    value = vals['disp_name']
+                else:
+                    value = ''
+                self.sheet.write(attribute_row, column, value, self.content_format)
+                attribute_row = attribute_row + 1
+            for attr, vals in variable_attributes.items():
+                if attr not in highly_recommended_variable_attributes:
+                    value = ''
+                    self.sheet.write(attribute_row, column, value, self.content_format)
+                    attribute_row = attribute_row + 1
+
+            self.sheet.set_column(column, column, width=40)
+
+            column = column + 1
+
+        # Key
+        sheet_description = 'Template for entering variable attributes, metadata that describe each variable'
+        source = "Mostly from the 'Appendix A: Attributes' section of the CF conventions document"
+        self.sheet.merge_range('A2:E2', sheet_description, self.sheet_description_format)
+        self.sheet.merge_range('A3:E3', source)
+        self.sheet.merge_range('A5:E5', 'Required attribute (in most cases)', self.required_format)
+        self.sheet.merge_range('A6:E6', 'Other attributes', self.optional_format)
+
+        self.sheet.set_column(0, 0, width=25)
+        self.sheet.set_column(1, 1, width=60)
+
+        # Freeze the rows at the top
+        self.sheet.freeze_panes(self.header_row, 0)
+
+        # Hide ID row
+        self.sheet.set_row(parameter_row, None, None, {'hidden': True})
+
+class Global_Attributes_Sheet(object):
+    """
+    Global_Attributes sheet object
     Global attributes or EML metadata
     """
     def __init__(self, template):
-        self.sheetname = 'Metadata'
+        self.sheetname = 'Global_Attributes'
         self.sheet = template.workbook.add_worksheet(self.sheetname)
-        self.header_row = 8
+        self.header_row = 10
         self.start_row = self.header_row + 2
         self.template = template
 
@@ -467,21 +699,30 @@ class Metadata_Sheet(object):
                 'bg_color': '#F5E1E8'
             })
 
+        self.sheet_description_format = self.template.workbook.add_format({
+            'bold': True,
+            'font_size': DEFAULT_SIZE,
+            'valign': 'vcenter',
+            'text_wrap': True,
+            'border': 1,
+            'border_color': 'black'
+        })
+
 
     def add_global_attributes(self):
 
-        metadata_filepath = os.path.dirname(self.template.fields_filepath) + '/fields'
-        df_metadata = global_attributes_to_df(metadata_filepath)
-        df_metadata['Content'] = ''
+        global_attributes_filepath = os.path.dirname(self.template.fields_filepath) + '/fields'
+        df_global_attributes = global_attributes_to_df(global_attributes_filepath)
+        df_global_attributes['Content'] = ''
 
-        last_col = len(df_metadata.columns)-1
+        last_col = len(df_global_attributes.columns)-1
 
-        for ii, col in enumerate(df_metadata.columns):
+        for ii, col in enumerate(df_global_attributes.columns):
             self.sheet.write(self.header_row, ii, col, self.header_format)
             self.sheet.write(self.header_row+1, ii, col, self.blank_format)
             self.sheet.set_row(self.header_row+1, None, None, {'hidden': True})
 
-        for idx, row in df_metadata.iterrows():
+        for idx, row in df_global_attributes.iterrows():
 
             row_num = self.start_row + idx
 
@@ -551,11 +792,13 @@ class Metadata_Sheet(object):
         self.sheet.set_column(3, 3, None, None, {'hidden': True})
 
         # Key
-        self.sheet.merge_range('A2:B2', 'Required term', self.required_format)
-        self.sheet.merge_range('A3:B3', 'Recommended term', self.recommended_format)
-        self.sheet.merge_range('A4:B4', 'Optional term', self.optional_format)
-        self.sheet.merge_range('A6:B6', 'More attributes can be selected from')
-        self.sheet.merge_range('A7:B7', 'https://wiki.esipfed.org/Attribute_Convention_for_Data_Discovery_1-3')
+        sheet_description = 'Template for entering global attributes, metadata that describe the overall dataset'
+        self.sheet.merge_range('A2:G2', sheet_description, self.sheet_description_format)
+        self.sheet.merge_range('A4:B4', 'Required term', self.required_format)
+        self.sheet.merge_range('A5:B5', 'Recommended term', self.recommended_format)
+        self.sheet.merge_range('A6:B6', 'Optional term', self.optional_format)
+        self.sheet.merge_range('A8:B8', 'More attributes can be selected from')
+        self.sheet.merge_range('A9:B9', 'https://wiki.esipfed.org/Attribute_Convention_for_Data_Discovery_1-3')
 
         self.sheet.set_column(0, 0, width=20)
         self.sheet.set_column(1, 1, width=60)
@@ -702,7 +945,7 @@ class Variables_Sheet(object):
         self.current_column = self.current_column + 1
         return ref
 
-def create_template(filepath, template_fields_dict, fields_filepath, config, subconfig=None, conversions=True, metadata=True, metadata_df=None,
+def create_template(filepath, template_fields_dict, sheets_info, fields_filepath, config, subconfig=None, conversions=True, metadata=True, global_attributes_df=None,
 split_personnel_columns=False):
     """
     Method for calling from other python programs
@@ -712,19 +955,21 @@ split_personnel_columns=False):
         The output file
     template_fields_dict : dictionary
         A dictionary of the fields to include in the template. Divided first by sheet. Includes descriptions, formats and validations
+    sheets_info: dictionary
+        Descriptions, source, name for each sheet
     config: string
         Configuration is either 'Darwin Core', 'CF-NetCDF', or 'Nansen Legacy logging system'
-        Dictates what is included in the metadata sheet and readme sheet
+        Dictates what is included in the metadata sheet and readme sheets
         Also used to check if fields are required or recommended
     subconfig: string
         Configuration is either 'Darwin Core', 'CF-NetCDF', or 'Nansen Legacy logging system'
-        Dictates what is included in the metadata sheet and readme sheet
+        Dictates what is included in the metadata sheet and readme sheets
         Used to check if fields are required or recommended
     conversions: Boolean
         Should the conversions sheet be written
         Default: True
-    metadata_df: pandas.core.frame.DataFrame
-        Optional parameter. Option to add metadata from a dataframe to the 'metadata' sheet.
+    global_attributes_df: pandas.core.frame.DataFrame
+        Optional parameter. Option to add global attributes from a dataframe to the 'global_attributes' sheet.
         Default: False
     split_personnel_columns: boolean
         Option to split personnel columns into multiple columns.
@@ -739,11 +984,12 @@ split_personnel_columns=False):
     args.filepath = filepath
 
     template = Template(args.filepath, fields_filepath, config, subconfig)
-    template.add_variables_sheet()
     if metadata == True:
-        template.add_metadata()
+        template.add_global_attributes()
     for sheetname, content in template_fields_dict.items():
-        template.add_data_sheet(sheetname, content, split_personnel_columns)
+        template.add_data_sheet(sheetname, sheets_info[sheetname], content, split_personnel_columns)
+        if metadata == True and config == 'CF-NetCDF':
+            template.add_variable_attributes(sheetname,content)
     if conversions == True:
         template.add_conversions()
     template.add_readme()

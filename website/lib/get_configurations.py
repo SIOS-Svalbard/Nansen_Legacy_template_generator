@@ -103,6 +103,8 @@ def get_config_fields(fields_filepath, config, subconfig=None):
                         }
                 else:
                     output_config_dict['Data'][key][value] = fields_in_config_dict[value]
+        if 'Source' in initial_config_dict.keys():
+            output_config_dict['Data']['Source'] = initial_config_dict['Source']
 
     return output_config_dict, fields_in_config_list, extra_fields_dict, cf_standard_names, groups, dwc_terms
 
