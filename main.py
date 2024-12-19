@@ -71,7 +71,7 @@ def home(config):
         if config == 'Darwin Core':
             sheets_descriptions[sheet] = get_dwc_extension_description(FIELDS_FILEPATH, sheet)
         elif config == 'CF-NetCDF':
-            sheets_descriptions[sheet] = 'Template for coordinate and data variables to be encoded in a CF-NetCDF file'
+            sheets_descriptions[sheet] = 'Template for data and metadata to be encoded in a CF-NetCDF file'
         else:
             sheets_descriptions[sheet] = None
 

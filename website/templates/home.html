@@ -124,8 +124,11 @@
           {% if col not in ['Required CSV', 'Source'] %}
 
             {% if col == 'Coordinate variables' %}
-              <div class="col-md-6">
-                <h4>{{col}}</h4><br>
+              <div class="col-md-7">
+                <h4>{{col}}</h4>
+                <p>CF standard names of commonly used coordinate variables. Other coordinate variables
+                  can be selected from the "Add CF standard names" button along with
+                  data variables.</p>
                 {% for key, field in fields.items() %}
                   <div class="row">
 
@@ -169,7 +172,7 @@
 
 
             {% else %}
-              <div class="col-md-3">
+              <div class="col-md-2">
                 <h4>{{col}}</h4><br>
 
                 {% if col == 'Suggested' %}
@@ -392,7 +395,7 @@
             <strong>Note:</strong> Only the <strong>Required</strong>, <strong>Recommended</strong>,
             and <strong>Suggested</strong> terms can be used in the Darwin Core Archive.
 
-            You are, however, free to select different terms to use during data preparation if you wish.
+            You are, however, free to select different terms to use in your template during data preparation if you wish.
           </div>
           {% elif config == 'CF-NetCDF' %}
           <!--Disclaimer that only required, recommended and suggested terms can be used in DwCA-->
@@ -400,7 +403,7 @@
             <strong>Note:</strong> Variables in a CF-NetCDF file should have a <strong>standard_name</strong>
             in almost all cases.
 
-            You are, however, free to select different terms to use during data preparation if you wish.
+            You are, however, free to select other terms to use in your template during data preparation if you wish.
           </div>
           {% endif %}
         </div>
