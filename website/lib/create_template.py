@@ -186,6 +186,9 @@ class Template(object):
         global_attributes = Global_Attributes_Sheet(self)
         global_attributes.add_global_attributes()
 
+    def add_variables_sheet(self):
+        self.variables_sheet = Variables_Sheet(self)
+
     def add_variable_attributes(self, sheetname, content):
         variable_attributes = Variable_Attributes_Sheet(sheetname, content, self)
         variable_attributes.add_variable_attributes()
@@ -582,6 +585,7 @@ class Variable_Attributes_Sheet(object):
             self.sheet.merge_range(self.header_row-1, 2, self.header_row-1, max_column, 'Enter values here', self.template.header_format)
         elif column > 2:
             self.sheet.write(self.header_row-1, max_column, 'Enter values here', self.template.header_format)
+
         # Key
         sheet_description = 'Template for entering variable attributes, metadata that describe each variable'
         source = "Mostly from the 'Appendix A: Attributes' section of the CF conventions document"
@@ -856,6 +860,7 @@ split_personnel_columns=False):
     args.filepath = filepath
 
     template = Template(args.filepath, fields_filepath, config, subconfig)
+    template.add_variables_sheet()
     if metadata == True:
         template.add_global_attributes()
     for sheetname, content in template_fields_dict.items():
