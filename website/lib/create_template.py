@@ -9,7 +9,6 @@ Based on https://github.com/SIOS-Svalbard/darwinsheet/blob/master/scripts/make_x
 '''
 
 import xlsxwriter
-import pandas as pd
 import math
 from argparse import Namespace
 from .get_configurations import get_field_requirements
@@ -57,6 +56,132 @@ class Template(object):
         self.workbook.formats[0].set_font_name(DEFAULT_FONT)
         self.workbook.formats[0].set_font_size(DEFAULT_SIZE)
 
+        self.required_field_format = self.workbook.add_format({
+            'font_name': DEFAULT_FONT,
+            'bottom': True,
+            'right': True,
+            'bold': False,
+            'text_wrap': True,
+            'valign': 'vcenter',
+            'font_size': DEFAULT_SIZE + 1,
+            'bg_color': '#f28880'
+        })
+
+        self.recommended_field_format = self.workbook.add_format({
+            'font_name': DEFAULT_FONT,
+            'bottom': True,
+            'right': True,
+            'bold': False,
+            'text_wrap': True,
+            'valign': 'vcenter',
+            'font_size': DEFAULT_SIZE + 1,
+            'bg_color': '#FFCF56'
+        })
+
+        self.optional_field_format = self.workbook.add_format({
+            'font_name': DEFAULT_FONT,
+            'bottom': True,
+            'right': True,
+            'bold': False,
+            'text_wrap': True,
+            'valign': 'vcenter',
+            'font_size': DEFAULT_SIZE + 1,
+            'bg_color': '#A3F7B5'
+        })
+
+        self.cf_field_format = self.workbook.add_format({
+            'font_name': DEFAULT_FONT,
+            'bottom': True,
+            'right': True,
+            'bold': False,
+            'text_wrap': True,
+            'valign': 'vcenter',
+            'font_size': DEFAULT_SIZE + 1,
+            'bg_color': '#5BC0EB'
+        })
+
+        self.dwc_term_format = self.workbook.add_format({
+            'font_name': DEFAULT_FONT,
+            'bottom': True,
+            'right': True,
+            'bold': False,
+            'text_wrap': True,
+            'valign': 'vcenter',
+            'font_size': DEFAULT_SIZE + 1,
+            'bg_color': '#60D394'
+        })
+
+        self.bounds_format = self.workbook.add_format({
+            'font_name': DEFAULT_FONT,
+            'bottom': True,
+            'right': True,
+            'bold': False,
+            'text_wrap': True,
+            'valign': 'vcenter',
+            'font_size': DEFAULT_SIZE + 1,
+            'bg_color': '#e6ffff'
+        })
+
+        self.date_format = self.workbook.add_format({
+            'font_name': DEFAULT_FONT,
+            'bold': False,
+            'text_wrap': False,
+            'valign': 'vcenter',
+            'font_size': DEFAULT_SIZE,
+            'num_format': 'dd/mm/yy'
+            })
+
+        self.time_format = self.workbook.add_format({
+            'font_name': DEFAULT_FONT,
+            'bold': False,
+            'text_wrap': False,
+            'valign': 'vcenter',
+            'font_size': DEFAULT_SIZE,
+            'num_format': 'hh:mm:ss'
+            })
+
+        self.sheet_description_format = self.workbook.add_format({
+            'bold': True,
+            'font_size': DEFAULT_SIZE,
+            'valign': 'vcenter',
+            'text_wrap': True,
+            'border': 1,
+            'border_color': 'black'
+        })
+
+        self.content_format = self.workbook.add_format({
+            'bold': False,
+            'font_name': DEFAULT_FONT,
+            'text_wrap': True,
+            'valign': 'vcenter',
+            'bg_color': '#e6ffff',
+            'bottom': True,
+            'right': True,
+            'font_size': DEFAULT_SIZE,
+            })
+
+        self.header_format = self.workbook.add_format({
+            'font_name': DEFAULT_FONT,
+            'font_color': '#FFFFFF',
+            'right': True,
+            'bottom': 5,
+            'bold': True,
+            'text_wrap': True,
+            'valign': 'vcenter',
+            'font_size': DEFAULT_SIZE + 2,
+            'bg_color': '#4a4a4a',
+        })
+
+        self.blank_format = self.workbook.add_format({
+            'bold': False,
+            'font_name': DEFAULT_FONT,
+            'text_wrap': True,
+            'valign': 'vcenter',
+            'bottom': True,
+            'right': True,
+            'font_size': DEFAULT_SIZE,
+            })
+
     def add_global_attributes(self):
         global_attributes = Global_Attributes_Sheet(self)
         global_attributes.add_global_attributes()
@@ -92,99 +217,6 @@ class Data_Sheet(object):
         self.template = template
         self.sheet = self.template.workbook.add_worksheet(self.sheetname)
 
-        self.required_field_format = self.template.workbook.add_format({
-            'font_name': DEFAULT_FONT,
-            'bottom': True,
-            'right': True,
-            'bold': False,
-            'text_wrap': True,
-            'valign': 'vcenter',
-            'font_size': DEFAULT_SIZE + 1,
-            'bg_color': '#B74F6F'
-        })
-
-        self.recommended_field_format = self.template.workbook.add_format({
-            'font_name': DEFAULT_FONT,
-            'bottom': True,
-            'right': True,
-            'bold': False,
-            'text_wrap': True,
-            'valign': 'vcenter',
-            'font_size': DEFAULT_SIZE + 1,
-            'bg_color': '#F49E4C'
-        })
-
-        self.optional_field_format = self.template.workbook.add_format({
-            'font_name': DEFAULT_FONT,
-            'bottom': True,
-            'right': True,
-            'bold': False,
-            'text_wrap': True,
-            'valign': 'vcenter',
-            'font_size': DEFAULT_SIZE + 1,
-            'bg_color': '#C0DF85'
-        })
-
-        self.cf_field_format = self.template.workbook.add_format({
-            'font_name': DEFAULT_FONT,
-            'bottom': True,
-            'right': True,
-            'bold': False,
-            'text_wrap': True,
-            'valign': 'vcenter',
-            'font_size': DEFAULT_SIZE + 1,
-            'bg_color': '#A4BFEB'
-        })
-
-        self.dwc_term_format = self.template.workbook.add_format({
-            'font_name': DEFAULT_FONT,
-            'bottom': True,
-            'right': True,
-            'bold': False,
-            'text_wrap': True,
-            'valign': 'vcenter',
-            'font_size': DEFAULT_SIZE + 1,
-            'bg_color': 'green'
-        })
-
-        self.bounds_format = self.template.workbook.add_format({
-            'font_name': DEFAULT_FONT,
-            'bottom': True,
-            'right': True,
-            'bold': False,
-            'text_wrap': True,
-            'valign': 'vcenter',
-            'font_size': DEFAULT_SIZE + 1,
-            'bg_color': '#BCE7FD'
-        })
-
-        self.date_format = self.template.workbook.add_format({
-            'font_name': DEFAULT_FONT,
-            'bold': False,
-            'text_wrap': False,
-            'valign': 'vcenter',
-            'font_size': DEFAULT_SIZE,
-            'num_format': 'dd/mm/yy'
-            })
-
-        self.time_format = self.template.workbook.add_format({
-            'font_name': DEFAULT_FONT,
-            'bold': False,
-            'text_wrap': False,
-            'valign': 'vcenter',
-            'font_size': DEFAULT_SIZE,
-            'num_format': 'hh:mm:ss'
-            })
-
-        self.sheet_description_format = self.template.workbook.add_format({
-            'bold': True,
-            'font_size': DEFAULT_SIZE,
-            'valign': 'vcenter',
-            'text_wrap': True,
-            'border': 1,
-            'border_color': 'black'
-        })
-
     def write_key(self):
         '''
         Writing a key for colours at the top of the data sheet
@@ -195,32 +227,32 @@ class Data_Sheet(object):
         # Key
         if self.template.config == 'Nansen Legacy logging system':
             self.title_row = 10  # starting row
-            self.sheet.merge_range('A2:D2', 'Required', self.required_field_format)
-            self.sheet.merge_range('A3:D3', 'Recommended', self.recommended_field_format)
-            self.sheet.merge_range('A4:D4', 'Optional', self.optional_field_format)
-            self.sheet.merge_range('A5:D5', 'CF standard name', self.cf_field_format)
-            self.sheet.merge_range('A6:D6', 'Darwin Core term', self.dwc_term_format)
+            self.sheet.merge_range('A2:D2', 'Required', self.template.required_field_format)
+            self.sheet.merge_range('A3:D3', 'Recommended', self.template.recommended_field_format)
+            self.sheet.merge_range('A4:D4', 'Optional', self.template.optional_field_format)
+            self.sheet.merge_range('A5:D5', 'CF standard name', self.template.cf_field_format)
+            self.sheet.merge_range('A6:D6', 'Darwin Core term', self.template.dwc_term_format)
             self.sheet.merge_range('A7:D7', paste_message)
-            self.sheet.merge_range('A9:G9', f'{self.sheetname}: {self.sheet_description}', self.sheet_description_format)
+            self.sheet.merge_range('A9:G9', f'{self.sheetname}: {self.sheet_description}', self.template.sheet_description_format)
         elif self.template.config == 'CF-NetCDF':
             self.title_row = 10
-            self.sheet.merge_range('A2:D2', 'CF standard name', self.cf_field_format)
-            self.sheet.merge_range('A3:D3', 'Cell bounds', self.bounds_format)
-            self.sheet.merge_range('A4:D4', 'Other fields', self.optional_field_format)
-            self.sheet.merge_range('A5:D5', 'Darwin Core term', self.dwc_term_format)
+            self.sheet.merge_range('A2:D2', 'CF standard name', self.template.cf_field_format)
+            self.sheet.merge_range('A3:D3', 'Cell bounds', self.template.bounds_format)
+            self.sheet.merge_range('A4:D4', 'Other fields', self.template.optional_field_format)
+            self.sheet.merge_range('A5:D5', 'Darwin Core term', self.template.dwc_term_format)
             self.sheet.merge_range('A6:D6', paste_message)
-            self.sheet.merge_range('A8:G8', f'{self.sheetname}: {self.sheet_description}', self.sheet_description_format)
-            self.sheet.merge_range('A9:G9', self.sheet_source, self.sheet_description_format)
+            self.sheet.merge_range('A8:G8', f'{self.sheetname}: {self.sheet_description}', self.template.sheet_description_format)
+            self.sheet.merge_range('A9:G9', self.sheet_source, self.template.sheet_description_format)
         elif self.template.config == 'Darwin Core':
             self.title_row = 11
-            self.sheet.merge_range('A2:D2', 'Required', self.required_field_format)
-            self.sheet.merge_range('A3:D3', 'Recommended', self.recommended_field_format)
-            self.sheet.merge_range('A4:D4', 'Other fields', self.optional_field_format)
-            self.sheet.merge_range('A5:D5', 'CF standard name', self.cf_field_format)
-            self.sheet.merge_range('A6:D6', 'Darwin Core term', self.dwc_term_format)
+            self.sheet.merge_range('A2:D2', 'Required', self.template.required_field_format)
+            self.sheet.merge_range('A3:D3', 'Recommended', self.template.recommended_field_format)
+            self.sheet.merge_range('A4:D4', 'Other fields', self.template.optional_field_format)
+            self.sheet.merge_range('A5:D5', 'CF standard name', self.template.cf_field_format)
+            self.sheet.merge_range('A6:D6', 'Darwin Core term', self.template.dwc_term_format)
             self.sheet.merge_range('A7:D7', paste_message)
-            self.sheet.merge_range('A9:G9', f'{self.sheetname}: {self.sheet_description}', self.sheet_description_format)
-            self.sheet.merge_range('A10:G10', self.sheet_source, self.sheet_description_format)
+            self.sheet.merge_range('A9:G9', f'{self.sheetname}: {self.sheet_description}', self.template.sheet_description_format)
+            self.sheet.merge_range('A10:G10', self.sheet_source, self.template.sheet_description_format)
 
     def write_columns(self, split_personnel_columns):
         '''
@@ -292,7 +324,7 @@ class Data_Sheet(object):
                     elif duplication == 1:
                         name = 'Maximum ' + field
 
-                    self.sheet.write(self.title_row, ii, name, self.bounds_format) # Write title row
+                    self.sheet.write(self.title_row, ii, name, self.template.bounds_format) # Write title row
                     self.sheet.write(parameter_row, ii, name.replace(' ', '_')) # Write title row
 
                     valid = {
@@ -325,17 +357,17 @@ class Data_Sheet(object):
 
                     # Write title row
                     if self.template.config == 'Nansen Legacy logging system' and field in ['recordedBy', 'pi_details'] and duplication == 3:
-                        self.sheet.write(self.title_row, ii, vals['disp_name'], self.required_field_format)
+                        self.sheet.write(self.title_row, ii, vals['disp_name'], self.template.required_field_format)
                     elif field in required_fields:
-                        self.sheet.write(self.title_row, ii, vals['disp_name'], self.required_field_format)
+                        self.sheet.write(self.title_row, ii, vals['disp_name'], self.template.required_field_format)
                     elif field in recommended_fields:
-                        self.sheet.write(self.title_row, ii, vals['disp_name'], self.recommended_field_format)
+                        self.sheet.write(self.title_row, ii, vals['disp_name'], self.template.recommended_field_format)
                     elif field in cf_standard_names:
-                        self.sheet.write(self.title_row, ii, vals['disp_name'], self.cf_field_format)
+                        self.sheet.write(self.title_row, ii, vals['disp_name'], self.template.cf_field_format)
                     elif field in dwc_terms:
-                        self.sheet.write(self.title_row, ii, vals['disp_name'], self.dwc_term_format)
+                        self.sheet.write(self.title_row, ii, vals['disp_name'], self.template.dwc_term_format)
                     else:
-                        self.sheet.write(self.title_row, ii, vals['disp_name'], self.optional_field_format)
+                        self.sheet.write(self.title_row, ii, vals['disp_name'], self.template.optional_field_format)
 
                     # Write row below with parameter name
                     if field in ['recordedBy', 'pi_details'] and split_personnel_columns == True:
@@ -418,8 +450,6 @@ class Variable_Attributes_Sheet(object):
     """
     Variable_Attributes sheet object
     """
-    # TODO: Clean up code, e.g. remove duplicated code e.g. styles
-    # TODO: Prefill some variable attributes e.g. bounds
     def __init__(self, sheetname, content, template):
         if sheetname == 'Data':
             self.sheetname = 'Variable_Attributes'
@@ -431,70 +461,6 @@ class Variable_Attributes_Sheet(object):
         self.header_row = 8
         self.start_row = self.header_row + 2
         self.template = template
-
-        self.cf_field_format = self.template.workbook.add_format({
-            'font_name': DEFAULT_FONT,
-            'bottom': True,
-            'right': True,
-            'bold': False,
-            'text_wrap': True,
-            'valign': 'vcenter',
-            'font_size': DEFAULT_SIZE + 1,
-            'bg_color': '#A4BFEB'
-        })
-
-        self.required_format = template.workbook.add_format({
-                'font_name': DEFAULT_FONT,
-                'bottom': True,
-                'right': True,
-                'bold': False,
-                'text_wrap': True,
-                'valign': 'vcenter',
-                'font_size': DEFAULT_SIZE,
-                'bg_color': '#F06292'
-            })
-
-        self.recommended_format = template.workbook.add_format({
-                'font_name': DEFAULT_FONT,
-                'bottom': True,
-                'right': True,
-                'bold': False,
-                'text_wrap': True,
-                'valign': 'vcenter',
-                'font_size': DEFAULT_SIZE,
-                'bg_color': '#F8BBD0'
-            })
-
-        self.content_format = template.workbook.add_format({
-            'bold': False,
-            'font_name': DEFAULT_FONT,
-            'text_wrap': True,
-            'valign': 'vcenter',
-            'bg_color': '#e6ffff',
-            'bottom': True,
-            'right': True,
-            'font_size': DEFAULT_SIZE,
-            })
-
-        self.optional_format = template.workbook.add_format({
-            'font_name': DEFAULT_FONT,
-            'bottom': True,
-            'right': True,
-            'bold': False,
-            'text_wrap': True,
-            'valign': 'vcenter',
-            'font_size': DEFAULT_SIZE,
-            'bg_color': '#F5E1E8'
-        })
-
-        self.sheet_description_format = self.template.workbook.add_format({
-            'bold': True,
-            'font_size': DEFAULT_SIZE,
-            'valign': 'vcenter',
-            'text_wrap': True,
-            'border': 1,
-            'border_color': 'black'
-        })
 
     def add_variable_attributes(self):
         cf_attributes = CF_Attributes()
@@ -531,16 +497,16 @@ class Variable_Attributes_Sheet(object):
 
         # Adding attributes, one attribute per row
         for attr in highly_recommended_variable_attributes:
-            self.sheet.write(attribute_row, column, attr, self.required_format)
+            self.sheet.write(attribute_row, column, attr, self.template.required_field_format)
             description = variable_attributes[attr]['Description']
-            self.sheet.write(attribute_row, column+1, description, self.required_format)
+            self.sheet.write(attribute_row, column+1, description, self.template.required_field_format)
 
             if attr in ['long_name']:
                 height = 200
-            elif len(description) > 75:
+            elif len(description) > 111:
                 height = int(len(description)/3)
             else:
-                height = 25
+                height = 37
 
             self.sheet.set_row(attribute_row, height)
 
@@ -548,14 +514,13 @@ class Variable_Attributes_Sheet(object):
 
         for attr, vals in variable_attributes.items():
             if attr not in highly_recommended_variable_attributes:
-                self.sheet.write(attribute_row, column, attr, self.optional_format)
+                self.sheet.write(attribute_row, column, attr, self.template.optional_field_format)
                 description = variable_attributes[attr]['Description']
-                self.sheet.write(attribute_row, column+1, description, self.optional_format)
-
-                if len(description) > 75:
+                self.sheet.write(attribute_row, column+1, description, self.template.optional_field_format)
+                if len(description) > 111:
                     height = int(len(description)/3)
                 else:
-                    height = 25
+                    height = 37
 
                 self.sheet.set_row(attribute_row, height)
 
@@ -565,22 +530,20 @@ class Variable_Attributes_Sheet(object):
         column = column + 2
 
         for field, vals in self.content.items():
-
-            # TODO: What about bounds?
             # Write row for variable name to be added
-            self.sheet.write(self.header_row, 0, 'variable_name',self.optional_format)
+            self.sheet.write(self.header_row, 0, 'variable_name',self.template.optional_field_format)
             variable_name_description = '''Name to be assigned to the variable in the NetCDF file.
             Note that this is not a variable attribute, but the name assigned to the variable itself.
             This is normally short and not necessarily standardised except for on some specific
             CF profiles'''
             variable_name_description = ' '.join(line.strip() for line in variable_name_description.splitlines())
-            self.sheet.write(self.header_row, 1, variable_name_description,self.optional_format)
+            self.sheet.write(self.header_row, 1, variable_name_description,self.template.optional_field_format)
             if vals['disp_name'] in cf_standard_names:
                 variable_name = ''
             else:
                 variable_name = vals['disp_name']
-            self.sheet.write(self.header_row, column, variable_name, self.cf_field_format)
-            self.sheet.set_row(self.header_row, 50)
+            self.sheet.write(self.header_row, column, variable_name, self.template.cf_field_format)
+            self.sheet.set_row(self.header_row, 80)
             # Write row below with parameter name
             self.sheet.write(parameter_row, column, field)
 
@@ -592,25 +555,40 @@ class Variable_Attributes_Sheet(object):
                     value = vals['disp_name']
                 else:
                     value = ''
-                self.sheet.write(attribute_row, column, value, self.content_format)
+                self.sheet.write(attribute_row, column, value, self.template.content_format)
                 attribute_row = attribute_row + 1
             for attr, vals in variable_attributes.items():
                 if attr not in highly_recommended_variable_attributes:
-                    value = ''
-                    self.sheet.write(attribute_row, column, value, self.content_format)
+                    if attr == 'bounds' and field +'_bounds' in self.content.keys():
+                        value = field +'_bounds'
+                    else:
+                        value = ''
+                    self.sheet.write(attribute_row, column, value, self.template.content_format)
                     attribute_row = attribute_row + 1
 
             self.sheet.set_column(column, column, width=40)
 
             column = column + 1
 
+        if column > 2:
+            max_column = column-1
+        else:
+            max_column = 2
+
+        # Column headers
+        self.sheet.write(self.header_row-1, 0, 'Variable Attribute', self.template.header_format)
+        self.sheet.write(self.header_row-1, 1, 'Description', self.template.header_format)
+        if column > 3:
+            self.sheet.merge_range(self.header_row-1, 2, self.header_row-1, max_column, 'Enter values here', self.template.header_format)
+        elif column > 2:
+            self.sheet.write(self.header_row-1, max_column, 'Enter values here', self.template.header_format)
         # Key
         sheet_description = 'Template for entering variable attributes, metadata that describe each variable'
         source = "Mostly from the 'Appendix A: Attributes' section of the CF conventions document"
-        self.sheet.merge_range('A2:E2', sheet_description, self.sheet_description_format)
+        self.sheet.merge_range('A2:E2', sheet_description, self.template.sheet_description_format)
         self.sheet.merge_range('A3:E3', source)
-        self.sheet.merge_range('A5:E5', 'Required attribute (in most cases)', self.required_format)
-        self.sheet.merge_range('A6:E6', 'Other attributes', self.optional_format)
+        self.sheet.merge_range('A5:E5', 'Required attribute (in most cases)', self.template.required_field_format)
+        self.sheet.merge_range('A6:E6', 'Other attributes', self.template.optional_field_format)
 
         self.sheet.set_column(0, 0, width=25)
         self.sheet.set_column(1, 1, width=60)
@@ -633,82 +611,6 @@ class Global_Attributes_Sheet(object):
         self.start_row = self.header_row + 2
         self.template = template
 
-        self.header_format = template.workbook.add_format({
-            'font_name': DEFAULT_FONT,
-            'font_color': '#FFFFFF',
-            'right': True,
-            'bottom': 5,
-            'bold': True,
-            'text_wrap': True,
-            'valign': 'vcenter',
-            'font_size': DEFAULT_SIZE + 2,
-            'bg_color': '#4a4a4a',
-        })
-
-        self.content_format = template.workbook.add_format({
-            'bold': False,
-            'font_name': DEFAULT_FONT,
-            'text_wrap': True,
-            'valign': 'vcenter',
-            'bg_color': '#e6ffff',
-            'bottom': True,
-            'right': True,
-            'font_size': DEFAULT_SIZE,
-            })
-
-        self.blank_format = template.workbook.add_format({
-            'bold': False,
-            'font_name': DEFAULT_FONT,
-            'text_wrap': True,
-            'valign': 'vcenter',
-            'bottom': True,
-            'right': True,
-            'font_size': DEFAULT_SIZE,
-            })
-
-        self.required_format = template.workbook.add_format({
-                'font_name': DEFAULT_FONT,
-                'bottom': True,
-                'right': True,
-                'bold': False,
-                'text_wrap': True,
-                'valign': 'vcenter',
-                'font_size': DEFAULT_SIZE,
-                'bg_color': '#F06292'
-            })
-
-        self.recommended_format = template.workbook.add_format({
-                'font_name': DEFAULT_FONT,
-                'bottom': True,
-                'right': True,
-                'bold': False,
-                'text_wrap': True,
-                'valign': 'vcenter',
-                'font_size': DEFAULT_SIZE,
-                'bg_color': '#F8BBD0'
-            })
-
-        self.optional_format = template.workbook.add_format({
-                'font_name': DEFAULT_FONT,
-                'bottom': True,
-                'right': True,
-                'bold': False,
-                'text_wrap': True,
-                'valign': 'vcenter',
-                'font_size': DEFAULT_SIZE,
-                'bg_color': '#F5E1E8'
-            })
-
-        self.sheet_description_format = self.template.workbook.add_format({
-            'bold': True,
-            'font_size': DEFAULT_SIZE,
-            'valign': 'vcenter',
-            'text_wrap': True,
-            'border': 1,
-            'border_color': 'black'
-        })
-
-
     def add_global_attributes(self):
 
         global_attributes_filepath = os.path.dirname(self.template.fields_filepath) + '/fields'
@@ -718,8 +620,8 @@ class Global_Attributes_Sheet(object):
         last_col = len(df_global_attributes.columns)-1
 
         for ii, col in enumerate(df_global_attributes.columns):
-            self.sheet.write(self.header_row, ii, col, self.header_format)
-            self.sheet.write(self.header_row+1, ii, col, self.blank_format)
+            self.sheet.write(self.header_row, ii, col, self.template.header_format)
+            self.sheet.write(self.header_row+1, ii, col, self.template.blank_format)
             self.sheet.set_row(self.header_row+1, None, None, {'hidden': True})
 
         for idx, row in df_global_attributes.iterrows():
@@ -727,16 +629,16 @@ class Global_Attributes_Sheet(object):
             row_num = self.start_row + idx
 
             if row['Requirement'] == 'Required':
-                cell_format = self.required_format
+                cell_format = self.template.required_field_format
             elif row['Requirement'] == 'Recommended':
-                cell_format = self.recommended_format
+                cell_format = self.template.recommended_field_format
             else:
-                cell_format = self.optional_format
+                cell_format = self.template.optional_field_format
 
             for col, val in enumerate(row):
 
                 if col == last_col:
-                    cell_format = self.content_format
+                    cell_format = self.template.content_format
 
                 if type(val) == float:
                     if math.isnan(val) and col == 3:
@@ -781,10 +683,10 @@ class Global_Attributes_Sheet(object):
 
             if row['Attribute'] == 'summary':
                 height = 150
-            elif length > 0:
-                height = int(length/4)
+            elif length > 180:
+                height = int(length/3)
             else:
-                height = 15
+                height = 60
 
             self.sheet.set_row(row_num, height)
 
@@ -793,16 +695,16 @@ class Global_Attributes_Sheet(object):
 
         # Key
         sheet_description = 'Template for entering global attributes, metadata that describe the overall dataset'
-        self.sheet.merge_range('A2:G2', sheet_description, self.sheet_description_format)
-        self.sheet.merge_range('A4:B4', 'Required term', self.required_format)
-        self.sheet.merge_range('A5:B5', 'Recommended term', self.recommended_format)
-        self.sheet.merge_range('A6:B6', 'Optional term', self.optional_format)
+        self.sheet.merge_range('A2:G2', sheet_description, self.template.sheet_description_format)
+        self.sheet.merge_range('A4:B4', 'Required term', self.template.required_field_format)
+        self.sheet.merge_range('A5:B5', 'Recommended term', self.template.recommended_field_format)
+        self.sheet.merge_range('A6:B6', 'Optional term', self.template.optional_field_format)
         self.sheet.merge_range('A8:B8', 'More attributes can be selected from')
         self.sheet.merge_range('A9:B9', 'https://wiki.esipfed.org/Attribute_Convention_for_Data_Discovery_1-3')
 
         self.sheet.set_column(0, 0, width=20)
         self.sheet.set_column(1, 1, width=60)
-        self.sheet.set_column(2, 2, width=30)
+        self.sheet.set_column(2, 2, width=60)
         self.sheet.set_column(4, 4, width=60)
 
         # Freeze the rows at the top
@@ -817,52 +719,22 @@ class Conversions_Sheet(object):
     def __init__(self, template):
         self.sheetname = 'Conversions'
         self.sheet = template.workbook.add_worksheet(self.sheetname)
-
-        parameter_format = template.workbook.add_format({
-            'font_name': DEFAULT_FONT,
-            'right': True,
-            'bottom': True,
-            'bold': False,
-            'text_wrap': True,
-            'valign': 'left',
-            'font_size': DEFAULT_SIZE + 2,
-            'bg_color': '#B9F6F5',
-        })
-        center_format = template.workbook.add_format({
-            'font_name': DEFAULT_FONT,
-            'right': True,
-            'bottom': True,
-            'bold': False,
-            'text_wrap': True,
-            'valign': 'center',
-            'font_size': DEFAULT_SIZE + 2,
-            'bg_color': '#23EEFF',
-        })
-        output_format = template.workbook.add_format({
-            'font_name': DEFAULT_FONT,
-            'right': True,
-            'bottom': True,
-            'bold': False,
-            'text_wrap': True,
-            'valign': 'left',
-            'font_size': DEFAULT_SIZE + 2,
-            'bg_color': '#FF94E8',
-        })
+        self.template = template
 
         self.sheet.set_column(0, 2, width=30)
 
-        self.sheet.write(1, 0, "Coordinate conversion ", parameter_format)
-        self.sheet.merge_range(2, 0, 2, 1, "Degree Minutes Seconds ", center_format)
-        self.sheet.write(3, 0, "Degrees ", parameter_format)
-        self.sheet.write(4, 0, "Minutes ", parameter_format)
-        self.sheet.write(5, 0, "Seconds ", parameter_format)
-        self.sheet.write(6, 0, "Decimal degrees ", output_format)
-        self.sheet.write(6, 1, "=B4+B5/60+B6/3600 ", output_format)
-        self.sheet.merge_range(7, 0, 7, 1, "Degree decimal minutes", center_format)
-        self.sheet.write(8, 0, "Degrees ", parameter_format)
-        self.sheet.write(9, 0, "Decimal minutes ", parameter_format)
-        self.sheet.write(10, 0, "Decimal degrees ", output_format)
-        self.sheet.write(10, 1, "=B9+B10/60 ", output_format)
+        self.sheet.write(1, 0, "Coordinate conversion ", self.template.bounds_format)
+        self.sheet.merge_range(2, 0, 2, 1, "Degree Minutes Seconds ", self.template.required_field_format)
+        self.sheet.write(3, 0, "Degrees ", self.template.bounds_format)
+        self.sheet.write(4, 0, "Minutes ", self.template.bounds_format)
+        self.sheet.write(5, 0, "Seconds ", self.template.bounds_format)
+        self.sheet.write(6, 0, "Decimal degrees ", self.template.optional_field_format)
+        self.sheet.write(6, 1, "=B4+B5/60+B6/3600 ", self.template.optional_field_format)
+        self.sheet.merge_range(7, 0, 7, 1, "Degree decimal minutes", self.template.required_field_format)
+        self.sheet.write(8, 0, "Degrees ", self.template.bounds_format)
+        self.sheet.write(9, 0, "Decimal minutes ", self.template.bounds_format)
+        self.sheet.write(10, 0, "Decimal degrees ", self.template.optional_field_format)
+        self.sheet.write(10, 1, "=B9+B10/60 ", self.template.optional_field_format)
 
 class Readme_Sheet(object):
     """
